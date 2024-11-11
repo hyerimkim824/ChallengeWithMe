@@ -8,7 +8,7 @@ public class PostCommVO {
 	private long us_num;//유저 번호
 	private String com_content;//댓글 내용
 	private Date date;//댓글 작성일
-	
+	 
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
 	

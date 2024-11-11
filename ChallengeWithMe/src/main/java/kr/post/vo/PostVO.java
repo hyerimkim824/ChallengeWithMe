@@ -9,7 +9,7 @@ public class PostVO {
 	private String title;//글 제목
 	private String content;//글 내용
 	private Date date;//글 작성일
-	
+	 
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
 	

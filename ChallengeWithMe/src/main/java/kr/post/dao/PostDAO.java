@@ -8,7 +8,7 @@ public class PostDAO {
 		return instance;
 	}
 	private PostDAO() {}
-
+ 
 	//글 등록
 	//전체 글 개수/검색 글 개수
 	//전체 글 목록/검색 글 목록
