@@ -1,5 +1,5 @@
 package kr.mychallenge.vo;
-
+  
 public class MyChallengeVO {
 	
 	//기본 챌린지 정보

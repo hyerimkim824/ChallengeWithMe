@@ -17,8 +17,8 @@ public class MyChallengeDAO {
 	
 		
 		Connection conn = null;
-		PreparedStatment pstmt = null;
-		String sql 
+		//PreparedStatment pstmt = null;
+		//String sql 
 		
 	}
 	
