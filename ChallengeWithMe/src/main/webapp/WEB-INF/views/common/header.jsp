@@ -33,7 +33,7 @@
 		</li>
 		</c:if>
 		<c:if test="${empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
+		<li><a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a></li>
 		<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
 		</c:if>
 	</ul>

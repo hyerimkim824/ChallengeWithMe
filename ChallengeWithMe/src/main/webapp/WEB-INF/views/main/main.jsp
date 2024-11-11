@@ -12,7 +12,6 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="content-main">
 		<h4>메인 페이지</h4>
-		
 	</div>
 </div>
 </body>
