@@ -1,0 +1,68 @@
+@charset "UTF-8";
+
+#main_nav{
+	display: flex;
+    align-items: center;
+    padding: 0 30px; /* 좌우 여백 설정 */
+    
+}
+
+a{
+	cursor:pointer;
+}
+
+a:hover{
+	font-size:20px;
+}
+
+.nav-logo{
+	margin-left:30px;
+	margin-right: 20px;
+	width:55px;
+	height:35px;
+}
+
+.nav-a{
+	
+	display: flex;
+    gap: 10px; /* nav 버튼 사이 간격 */
+    margin-right: auto;
+	margin-left:35%;
+}
+
+.nav-a a{
+	margin-left:50px;
+	font-weight:bold;
+	font-size:14px;
+}
+
+
+.nav-btn{
+	display: flex;
+    gap: 10px; /* 버튼 간격을 좁게 설정 */
+   	
+}
+
+.nav-btn .img-btn{
+	width:15px;
+	height:15px;
+}
+
+.profile_img{
+	width:35px;
+    height:35px;
+    border-radius:50%;
+    margin-left:30px;
+    margin-right:50px;
+}
+
+.right{
+	margin-left:auto;
+}
+
+.right a{
+	font-weight:bold;
+	font-size:14px;
+	margin-left:20px;
+	margin-right:20px;
+}

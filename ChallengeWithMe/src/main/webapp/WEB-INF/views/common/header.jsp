@@ -2,41 +2,43 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
-<div id="main_logo">
-	<h1 class="align-center"><a>회원제 게시판</a></h1>
-</div>
 <div id="main_nav">
-	<ul>
-	    <li>
-	    	<a href="${pageContext.request.contextPath}/board/list.do">게시판</a>
-	    </li>
-	    <c:if test="${!empty user_num && user_auth == 9}">
-	    <li>
-	    	<a href="${pageContext.request.contextPath}/member/adminList.do">회원관리</a>
-	    </li>
-	    </c:if>
-	    <c:if test="${!empty user_num}">
-	    <li><a href="${pageContext.request.contextPath}/member/myPage.do">MY페이지</a></li>
-	    </c:if>
-	    <!-- 프로필사진 표시 시작 -->
-	    <c:if test="${!empty user_num && !empty user_photo}">
-	    <li class="menu-profile"><img src="${pageContext.request.contextPath}/upload/${user_photo}" width="25" height="25" class="my-photo"></li>
-	    </c:if>
-	    <c:if test="${!empty user_num && empty user_photo}">
-	    <li class="menu-profile"><img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="my-photo"></li>
-	    </c:if>
-	    <!-- 프로필사진 표시 끝 -->
-		<c:if test="${!empty user_num}">
-		<li class="menu-logout">
-			[<span>${user_id}</span>]
-			<a href="${pageContext.request.contextPath}/member/logout.do">로그아웃</a>
-		</li>
-		</c:if>
-		<c:if test="${empty user_num}">
-		<li><a href="${pageContext.request.contextPath}/member/registerUserForm.do">회원가입</a></li>
-		<li><a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a></li>
-		</c:if>
-	</ul>
+	
+	<img src="${pageContext.request.contextPath}/images/logo.png" width="25" height="25" class="nav-logo left">
+	
+	<!-- 유저 계정으로 로그인된 경우 -->
+	<c:if test="${!empty us_num && admin == 0}">
+		<div class="nav-a">
+			<a>홈</a>
+			<a>챌린지</a>
+			<a>커뮤니티</a>
+			<a>마이챌린지</a>
+		</div>
+		<div class="nav-btn">
+			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">
+			<img src="${pageContext.request.contextPath}/images/heart.png" class="img-btn">
+			<img src="${pageContext.request.contextPath}/images/alarm.png" class="img-btn">
+		</div>
+		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
+	</c:if>
+	
+	<!-- 관리자 계정으로 로그인된 경우 -->
+	<c:if test="${!empty us_num  && admin == 9}">
+		<div class="right">
+			<a>관리페이지</a>
+			<a>공개챌린지</a>
+		</div>
+		
+		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
+	</c:if>
+	
+	<!-- 로그인되지 않은 경우 -->
+	<c:if test="${empty us_num}">
+		<div class="right">
+			<a>로그인</a>
+			<a>회원가입</a>
+		</div>
+	</c:if>
 </div>
 <!-- header 끝 -->
 
