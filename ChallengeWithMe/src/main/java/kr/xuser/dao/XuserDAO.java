@@ -40,7 +40,7 @@ public class XuserDAO {
 				num = rs.getLong(1);
 			}
 			// Xuser테이블 회원 번호 아이디 등록
-			sql = "INSERT INTO xuser (us_num, id) "
+			sql = "INSERT INTO xuser (us_num, us_id) "
 					+ "VALUES(?, ?)";
 			
 			ps2 = con.prepareStatement(sql);
@@ -73,23 +73,69 @@ public class XuserDAO {
 		}
 	}
 	
-	// ID, 전화번호 중복체크 및 로그인 처리
-	public void checkUser(String id, String tel)throws Exception{
+	// ID 중복체크 및 로그인 처리
+	public XuserVO checkUser(String id)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
+		ResultSet rs = null;
+		XuserVO xuser = null;
 		String sql = null;
 		
 		try {
 			con = DBUtil.getConnection();
 			sql = "SELECT * FROM xuser LEFT OUTER JOIN "
-					+ "user_detail USING(user_num) WHERE id=? ";
+					+ "user_detail USING(us_num) WHERE us_id=? ";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, id);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				xuser = new XuserVO();
+				xuser.setUs_num(rs.getLong("us_num"));
+				xuser.setId(rs.getString("us_id"));
+				xuser.setRank(rs.getInt("us_rank"));
+				xuser.setPasswd(rs.getString("us_pw"));
+				xuser.setImg(rs.getString("us_img"));
+				xuser.setEmail(rs.getString("us_email"));
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, ps, con);
+			DBUtil.executeClose(rs, ps, con);
 		}
-		
+		return xuser;
 	}
+	
+	// 닉네임 중복 체크
+	public XuserVO checkNick(String nick)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		XuserVO xuser = null;
+		String sql = null;
+		
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT * FROM xuser LEFT OUTER JOIN "
+					+ "user_detail USING(us_num) WHERE us_nickname=? ";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, nick);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				xuser = new XuserVO();
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return xuser;
+	}
+	
 	// 비밀번호 변경
 	
 	// 회원 상세 정보
