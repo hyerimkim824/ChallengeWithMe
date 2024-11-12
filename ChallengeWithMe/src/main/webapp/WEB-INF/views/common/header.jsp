@@ -39,7 +39,7 @@
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>
-
+	<a href="${pageContext.request.contextPath}/support/supportWrite.do">고객센터글쓰기</a>
 </div>
 <!-- header 끝 -->
 
