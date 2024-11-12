@@ -1,18 +1,21 @@
 @charset "UTF-8";
 
-#main_nav{
+
+body{
+	margin:0;
+	padding:0;
+}
+
+#header{
 	display: flex;
     align-items: center;
     padding: 0 30px; /* 좌우 여백 설정 */
-    
 }
 
 a{
 	cursor:pointer;
-}
-
-a:hover{
-	font-size:20px;
+	text-decoration:none;
+	color:black;
 }
 
 .nav-logo{
@@ -33,7 +36,7 @@ a:hover{
 .nav-a a{
 	margin-left:50px;
 	font-weight:bold;
-	font-size:14px;
+	font-size:12px;
 }
 
 
@@ -62,7 +65,7 @@ a:hover{
 
 .right a{
 	font-weight:bold;
-	font-size:14px;
+	font-size:12px;
 	margin-left:20px;
 	margin-right:20px;
 }

@@ -2,7 +2,8 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
-<div id="main_nav">	
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
+<div id="header">	
 	<img src="${pageContext.request.contextPath}/images/logo.png" width="25" height="25" class="nav-logo left">
 	
 	<!-- 유저 계정으로 로그인된 경우 -->
