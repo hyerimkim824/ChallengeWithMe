@@ -12,8 +12,6 @@ public class PostVO {
 	 
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
-	
-	
 	public long getPost_num() {
 		return post_num;
 	}
@@ -62,6 +60,9 @@ public class PostVO {
 	public void setUs_img(String us_img) {
 		this.us_img = us_img;
 	}
+	
+	
+	
 	
 	
 
