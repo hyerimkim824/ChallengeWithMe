@@ -58,7 +58,7 @@
 			$.ajax({
 				url:'checkDuplicatedNick.do',
 				type:'post',
-				data:{id:$('#nick').val()},
+				data:{nick:$('#nick').val()},
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'nickNotFound'){
@@ -86,7 +86,7 @@
 			$.ajax({
 				url:'checkEmail.do',
 				type:'post',
-				data:{id:$('#email').val()},
+				data:{email:$('#email').val()},
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'emailNotFound'){
@@ -168,6 +168,12 @@
 				if(items[i].id == 'name' && !/^[가-힣]{2,10}$/.test($('#name').val())){
 					alert('한글만 입력해주세요.')
 					$('#name').val('').focus()
+					return false
+				}
+				
+				if(items[i].id == 'tel' && !/^[0-9]{11,11}$/.test($('#tel').val())){
+					alert('11자리 숫자로만 입력해주세요.')
+					$('#tel').val('').focus()
 					return false
 				}
 			}

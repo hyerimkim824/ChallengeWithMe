@@ -25,7 +25,7 @@
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div>
 		<div>
 			<h2>로그인</h2>

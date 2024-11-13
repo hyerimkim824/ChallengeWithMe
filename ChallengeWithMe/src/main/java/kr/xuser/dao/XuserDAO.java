@@ -124,6 +124,7 @@ public class XuserDAO {
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
+				// 이메일이 이미 존재하면 true 반환
 				return true;
 			}
 		} catch (Exception e) {
@@ -136,7 +137,6 @@ public class XuserDAO {
 	
 	// 닉네임 중복 체크
 	public boolean checkNick(String nick) throws Exception {
-		System.out.println(nick);
 	    Connection con = null;
 	    PreparedStatement ps = null;
 	    ResultSet rs = null;
@@ -161,6 +161,40 @@ public class XuserDAO {
 	    }
 	    return false;
 	}
+	
+	// 마이페이지 상세정보
+	public XuserVO getMyInfo(long us_num)throws Exception{
+		Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    XuserVO xuser = null;
+	    String sql = null;
+	    
+	    try {
+	        con = DBUtil.getConnection();
+	        sql = "SELECT * FROM xuser JOIN user_detail USING(us_num) WHERE us_num=?";
+	        
+	        ps = con.prepareStatement(sql);
+	        ps.setLong(1, us_num);
+	        
+	        rs = ps.executeQuery();
+	        if (rs.next()) {
+	            xuser = new XuserVO();
+	            xuser.setUs_num(rs.getLong("us_num"));
+	            xuser.setId(rs.getString("us_id"));
+	            xuser.setRank(rs.getInt("us_rank"));
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, ps, con);
+	    }
+	    return xuser;
+	}
+	
+	// 회원 탈퇴
+	
+	
 	// 비밀번호 변경
 	
 	// 회원 상세 정보
@@ -169,7 +203,4 @@ public class XuserDAO {
 	
 	// 회원 정보 수정
 	
-	// 회원 탈퇴
-	
-	// 
 }

@@ -20,7 +20,7 @@ public class CheckDuplicatedNickAction implements Action{
 		
 		XuserDAO dao = XuserDAO.getInstance();
 		boolean check = dao.checkNick(nick);
-		System.out.println(check);
+
 		Map<String, String> Ajax = new HashMap<String, String>();
 		if(check) { // 닉네임 중복
 			Ajax.put("result", "nickDuplicated");

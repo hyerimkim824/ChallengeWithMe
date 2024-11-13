@@ -16,7 +16,7 @@
 		<!-- 유저 계정으로 로그인된 경우 -->
 	<c:if test="${!empty us_num}">
 		<a>1:1 문의</a>
-		<a>마이페이지</a>
+		<a  href="${pageContext.request.contextPath}/xuser/mypage.do">마이페이지</a>
 		[<span>${ us_id }</span>]
 		<a href="${pageContext.request.contextPath}/xuser/logout.do">로그아웃</a>
 	</c:if>
