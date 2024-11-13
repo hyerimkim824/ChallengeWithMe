@@ -35,6 +35,7 @@ public class LoginAction implements Action{
 			session.setAttribute("us_id", xuser.getId());
 			session.setAttribute("us_ban", xuser.getBan());
 			session.setAttribute("us_img", xuser.getImg());
+			session.setAttribute("admin", xuser.getAdmin());
 			
 			return "redirect:/main/main.do";
 		}
