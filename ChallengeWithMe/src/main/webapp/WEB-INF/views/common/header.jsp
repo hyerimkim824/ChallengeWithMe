@@ -35,7 +35,7 @@
 	<!-- 로그인되지 않은 경우 -->
 	<c:if test="${empty us_num}">
 		<div class="right">
-			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+			<a href="${pageContext.request.contextPath}/xuser/loginForm.do">로그인</a>
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>

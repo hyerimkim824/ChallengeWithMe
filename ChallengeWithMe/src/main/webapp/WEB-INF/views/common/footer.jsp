@@ -7,22 +7,23 @@
 	<div class="ft-nav">
 		<img src="${pageContext.request.contextPath}/images/logo.png" width="25" height="25" class="nav-logo left">
 		<a>ⓒ챌린지 윗미</a>
-		<!-- 유저 계정으로 로그인된 경우 -->
-	<c:if test="${!empty us_num && admin == 0}">
-		<a>1:1 문의</a>
-		<a>마이페이지</a>
-		<a>로그아웃</a>
-	</c:if>
-	<!-- 관리자 계정으로 로그인된 경우 -->
+		<!-- 관리자 계정으로 로그인된 경우 -->
 	<c:if test="${!empty us_num && admin == 9}">
 		<a>관리페이지</a>
 		<a>공개챌린지</a>
-		<a>로그아웃</a>
+		<a href="${pageContext.request.contextPath}/xuser/logout.do">로그아웃</a>
+	</c:if>
+		<!-- 유저 계정으로 로그인된 경우 -->
+	<c:if test="${!empty us_num}">
+		<a>1:1 문의</a>
+		<a>마이페이지</a>
+		[<span>${ us_id }</span>]
+		<a href="${pageContext.request.contextPath}/xuser/logout.do">로그아웃</a>
 	</c:if>
 	<!-- 로그인되지 않은 경우 -->
 	<c:if test="${empty us_num}">
 		<div>
-			<a href="${pageContext.request.contextPath}/member/loginForm.do">로그인</a>
+			<a href="${pageContext.request.contextPath}/xuser/loginForm.do">로그인</a>
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>

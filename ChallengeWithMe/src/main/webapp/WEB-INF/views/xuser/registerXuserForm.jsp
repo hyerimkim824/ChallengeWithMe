@@ -11,6 +11,7 @@
 	$(function() {
 		let idChecked = 0;
 		let nickChecked = 0;
+		let emailChecked = 0;
 		
 		// 아이디 중복체크
 		$('#id_check').click(function(){
@@ -49,7 +50,7 @@
 		$('#nick_check').click(function(){
 			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
 				alert('한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
-				$('#id').val('').focus()
+				$('#nick').val('').focus()
 				return
 			}
 			
@@ -66,7 +67,7 @@
 					}else if(param.result == 'nickDuplicated'){
 						nickChecked = 0
 						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
-						$('#id').val('').focus()
+						$('#nick').val('').focus()
 					}else{
 						nickChecked = 0
 						alert('닉네임 중복 체크 오류 발생')
@@ -74,6 +75,34 @@
 				},
 				error:function(){
 					nickChecked = 0
+					alert('네트워크 오류 발생')
+				}
+			})
+		})
+		
+		// 이메일 중복체크
+		$('#email_check').click(function(){
+			// 서버 통신
+			$.ajax({
+				url:'checkEmail.do',
+				type:'post',
+				data:{id:$('#email').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'emailNotFound'){
+						emailChecked = 1
+						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
+					}else if(param.result == 'emailDuplicated'){
+						emailChecked = 0
+						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
+						$('#email').val('').focus()
+					}else{
+						emailChecked = 0
+						alert('이메일 가입 체크 오류 발생')
+					}
+				},
+				error:function(){
+					emailChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -89,6 +118,12 @@
 		$('#register_from #nick').keydown(function(){
 			nickChecked = 0
 			$('#message_nick').text('')
+		})
+		
+		// 이메일 이미 가입 안내 메시지 초기화 및 이메일 값 초기화
+		$('#register_from #email').keydown(function(){
+			emailChecked = 0
+			$('#message_email').text('')
 		})
 		
 		// 회원 정보 등록 유효성 체크
@@ -125,6 +160,11 @@
 					return false
 				}
 				
+				if(items[i].id =='nick' && nickChecked == 0){
+					alert('닉네임 중복체크 필수입니다.')
+					return false
+				}
+				
 				if(items[i].id == 'name' && !/^[가-힣]{2,10}$/.test($('#name').val())){
 					alert('한글만 입력해주세요.')
 					$('#name').val('').focus()
@@ -136,7 +176,7 @@
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp" />
+<jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div>
 		<div>
 			<h2>회원가입</h2>
@@ -166,6 +206,7 @@
 							<label for="email">이메일</label>
 							<input type="email" id="email" name="email" maxlength="50" class="check">
 							<input type="button" id="email_check" value="가입체크">
+							<span id="message_email"></span>
 						</li>
 						<li>
 							<label for="name">이름</label>
@@ -196,6 +237,6 @@
 			</form>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

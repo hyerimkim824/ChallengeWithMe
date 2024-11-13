@@ -94,7 +94,7 @@ public class XuserDAO {
 				xuser = new XuserVO();
 				xuser.setUs_num(rs.getLong("us_num"));
 				xuser.setId(rs.getString("us_id"));
-				xuser.setRank(rs.getInt("us_rank"));
+				xuser.setBan(rs.getInt("us_ban"));
 				xuser.setPasswd(rs.getString("us_pw"));
 				xuser.setImg(rs.getString("us_img"));
 				xuser.setEmail(rs.getString("us_email"));
@@ -107,35 +107,60 @@ public class XuserDAO {
 		return xuser;
 	}
 	
-	// 닉네임 중복 체크
-	public XuserVO checkNick(String nick)throws Exception{
+	// 이메일 가입 체크
+	public boolean checkEmail(String email)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-		XuserVO xuser = null;
 		String sql = null;
 		
 		
 		try {
 			con = DBUtil.getConnection();
-			sql = "SELECT * FROM xuser LEFT OUTER JOIN "
-					+ "user_detail USING(us_num) WHERE us_nickname=? ";
+			sql = "SELECT * FROM user_detail WHERE us_email=?";
 			
 			ps = con.prepareStatement(sql);
-			ps.setString(1, nick);
+			ps.setString(1, email);
 			
 			rs = ps.executeQuery();
 			if(rs.next()) {
-				xuser = new XuserVO();
+				return true;
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(rs, ps, con);
 		}
-		return xuser;
+		return false;
 	}
 	
+	// 닉네임 중복 체크
+	public boolean checkNick(String nick) throws Exception {
+		System.out.println(nick);
+	    Connection con = null;
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    String sql = null;
+
+	    try {
+	        con = DBUtil.getConnection();
+	        sql = "SELECT * FROM user_detail WHERE us_nickname=?";
+	        
+	        ps = con.prepareStatement(sql);
+	        ps.setString(1, nick);
+	        
+	        rs = ps.executeQuery();
+	        if (rs.next()) {
+	            // 닉네임이 이미 존재하면 true 반환
+	            return true;
+	        }
+	    } catch (Exception e) {
+	        throw new Exception(e);
+	    } finally {
+	        DBUtil.executeClose(rs, ps, con);
+	    }
+	    return false;
+	}
 	// 비밀번호 변경
 	
 	// 회원 상세 정보

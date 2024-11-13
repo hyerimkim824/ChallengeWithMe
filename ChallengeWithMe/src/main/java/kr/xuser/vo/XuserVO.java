@@ -24,7 +24,7 @@ public class XuserVO {
 	// 비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
 		// 회원상태(us_ban) : "0" ACTIVE "1" BAN "2" IDBAN
-		if (ban > 0 && passwd.equals(userPasswd)) {
+		if (ban <= 0 && passwd.equals(userPasswd)) {
 			return true;
 		}
 		return false;

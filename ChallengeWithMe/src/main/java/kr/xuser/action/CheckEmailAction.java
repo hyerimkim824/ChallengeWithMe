@@ -10,24 +10,24 @@ import kr.controller.Action;
 import kr.util.StringUtil;
 import kr.xuser.dao.XuserDAO;
 
-public class CheckDuplicatedNickAction implements Action{
+public class CheckEmailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		String nick = request.getParameter("nick");
+		String email = request.getParameter("email");
 		
 		XuserDAO dao = XuserDAO.getInstance();
-		boolean check = dao.checkNick(nick);
-		System.out.println(check);
+		boolean check = dao.checkEmail(email);
+		
 		Map<String, String> Ajax = new HashMap<String, String>();
-		if(check) { // 닉네임 중복
-			Ajax.put("result", "nickDuplicated");
-		}else { // 닉네임 미중복
-			Ajax.put("result", "nickNotFound");
+		if(check) { // 이메일 중복
+			Ajax.put("result", "emailDuplicated");
+		}else { // 이메일 미중복
+			Ajax.put("result", "emailNotFound");
 		}
 		return StringUtil.parseJSON(request, Ajax);
 	}
-	
+
 }
