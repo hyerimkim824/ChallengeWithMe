@@ -19,7 +19,7 @@
 			<div class="ch-menu">
 				<img class="ch-img"
 					src="${pageContext.request.contextPath}/images/face.png">
-				<p>챌린지 참여</p>
+				<p><a href="${pageContext.request.contextPath}/challenge/challengeList.do">챌린지 참여</a></p>
 			</div>
 			<div class="ch-menu">
 				<img class="ch-img"

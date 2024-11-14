@@ -9,9 +9,9 @@
 	<!-- 유저 계정으로 로그인된 경우 -->
 	<c:if test="${!empty us_num && admin == 0}">
 		<div class="nav-a">
-			<a>홈</a>
-			<a>챌린지</a>
-			<a>커뮤니티</a>
+			<a href="${pageContext.request.contextPath}/main/main.do">홈</a>
+			<a href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지</a>
+			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
 			<a>마이챌린지</a>
 		</div>
 		<div class="nav-btn">
@@ -39,7 +39,7 @@
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>
-	<a href="${pageContext.request.contextPath}/support/supportWrite.do">고객센터글쓰기</a>
+	
 </div>
 <!-- header 끝 -->
 

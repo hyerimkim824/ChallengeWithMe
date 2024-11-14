@@ -29,8 +29,7 @@
    </c:if>
       <img class="right bird-img" src="${pageContext.request.contextPath}/images/bird.png" width="25" height="25">
    </div>
-   
-</div>
+  </div>
 <!-- header 끝 -->
 
 
