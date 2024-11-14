@@ -1,10 +1,11 @@
-package kr.xuser.action;
+package kr.mypage.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.mypage.dao.MyPageDAO;
 import kr.xuser.dao.XuserDAO;
 import kr.xuser.vo.XuserVO;
 
@@ -18,9 +19,12 @@ public class MyPageAction implements Action{
 			return "redirect:/xuser/loginForm.do";
 		}
 		// 로그인O
-		XuserDAO dao = XuserDAO.getInstance();
-		XuserVO xuser;
-		return null;
+		MyPageDAO dao = MyPageDAO.getInstance();
+		XuserVO xuser = dao.getMyInfo(us_num);
+		
+		request.setAttribute("xuser", xuser);
+		
+		return "/mypage/mypage.jsp";
 	}
 
 }

@@ -49,8 +49,8 @@ public class XuserDAO {
 			ps2.executeUpdate();
 			
 			// user_detail테이블 회원 개인정보 등록
-			sql = "INSERT INTO user_detail (us_num, us_name, us_birth, us_gen, us_tel, us_pw, us_nickname, us_email) "
-					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO user_detail (us_num, us_name, us_birth, us_gen, us_tel, us_pw, us_nickname, us_email, us_zipcode, us_address1, us_address2) "
+					+ "VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			ps3 = con.prepareStatement(sql);
 			ps3.setLong(++i, num);
 			ps3.setString(++i, xuser.getName());
@@ -60,6 +60,9 @@ public class XuserDAO {
 			ps3.setString(++i, xuser.getPasswd());
 			ps3.setString(++i, xuser.getNickname());
 			ps3.setString(++i, xuser.getEmail());
+			ps3.setString(++i, xuser.getZipcode());
+			ps3.setString(++i, xuser.getAddress1());
+			ps3.setString(++i, xuser.getAddress2());
 			ps3.executeUpdate();
 			
 			con.commit();
@@ -160,36 +163,6 @@ public class XuserDAO {
 	        DBUtil.executeClose(rs, ps, con);
 	    }
 	    return false;
-	}
-	
-	// 마이페이지 상세정보
-	public XuserVO getMyInfo(long us_num)throws Exception{
-		Connection con = null;
-	    PreparedStatement ps = null;
-	    ResultSet rs = null;
-	    XuserVO xuser = null;
-	    String sql = null;
-	    
-	    try {
-	        con = DBUtil.getConnection();
-	        sql = "SELECT * FROM xuser JOIN user_detail USING(us_num) WHERE us_num=?";
-	        
-	        ps = con.prepareStatement(sql);
-	        ps.setLong(1, us_num);
-	        
-	        rs = ps.executeQuery();
-	        if (rs.next()) {
-	            xuser = new XuserVO();
-	            xuser.setUs_num(rs.getLong("us_num"));
-	            xuser.setId(rs.getString("us_id"));
-	            xuser.setRank(rs.getInt("us_rank"));
-	        }
-	    } catch (Exception e) {
-	        throw new Exception(e);
-	    } finally {
-	        DBUtil.executeClose(rs, ps, con);
-	    }
-	    return xuser;
 	}
 	
 	// 회원 탈퇴

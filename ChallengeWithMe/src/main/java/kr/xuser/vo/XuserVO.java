@@ -20,6 +20,9 @@ public class XuserVO {
 	private String rdate;
 	private String img;
 	private String email;
+	private String address1;
+	private String address2;
+	private String zipcode;
 
 	// 비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
@@ -29,6 +32,30 @@ public class XuserVO {
 		}
 		return false;
 	}
+
+	public String getZipcode() {
+		return zipcode;
+	}
+	
+	public void setZipcode(String zipcode) {
+		this.zipcode = zipcode;
+	}
+	public String getAddress1() {
+		return address1;
+	}
+
+	public void setAddress1(String address1) {
+		this.address1 = address1;
+	}
+
+	public String getAddress2() {
+		return address2;
+	}
+
+	public void setAddress2(String address2) {
+		this.address2 = address2;
+	}
+
 
 	// 회원 get set
 	public long getUs_num() {

@@ -29,6 +29,9 @@ public class RegisterXuserAction implements Action{
 		}
 		xuser.setBirth(request.getParameter("birth"));
 		xuser.setTel(request.getParameter("tel"));
+		xuser.setZipcode(request.getParameter("zipcode"));
+		xuser.setAddress1(request.getParameter("address1"));
+		xuser.setAddress2(request.getParameter("address2"));
 		
 		XuserDAO dao = XuserDAO.getInstance();
 		dao.insertUser(xuser);
