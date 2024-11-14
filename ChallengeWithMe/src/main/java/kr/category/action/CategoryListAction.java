@@ -17,11 +17,13 @@ public class CategoryListAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
+		int category = Integer.parseInt(request.getParameter("category"));
+		
 		CategoryDAO dao = CategoryDAO.getInstance();
 		List<CategoryVO> list = dao.getList();
 		Map<String,Object> mapAjax = new HashMap<String,Object>();
 		
-		mapAjax.put("list", list);
+		mapAjax.put("cat_list", list);
 		
 		return StringUtil.parseJSON(request, mapAjax);
 	}

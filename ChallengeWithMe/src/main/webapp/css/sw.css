@@ -6,6 +6,8 @@
 }
 
 
+
+/* 챌린지 메인 */
 .challenge_title{
 	display:flex;
 	justify-content:center;
@@ -22,7 +24,7 @@
 
 #ch_container{
 	width:100%;
-	height:600px;
+	height:500px;
 	background:#FFE066;
 	display:flex;
 	align-items:center;
@@ -49,33 +51,165 @@
 	font-weight:bold;
 }
 
-.space-div{
+.space100-div{
+	width:100%;
+	height:100px;
+}
+
+.space500-div{
 	width:100%;
 	height:500px;
 }
 
-.cat-list{
-	width:100%;
-	height:200px;
-	background:blue;
-	display:flex;
-	align-items:flex-end;
-}
+
+/* 챌린지 목록 */
 
 .cat-btn{
 	
-	width:100px;
-	height:35px;
+	width:90px;
+	height:30px;
 	background:#FFE066;
 	border-radius: 10px 10px 10px 10px;
 	display:flex;
 	justify-content:center;
 	align-items:center;
 	margin-left:5%;
+	
+}
+
+.dropdown-item{
+	font-size:12px;
 }
 
 .ch-container{
 	width:100%;
 	height:500px;
-	background:pink;
+	display:flex; 
+	margin-top:3%;
 }
+
+.ch-item{
+	width:200px;
+	height:200px;
+	position:relative;
+	margin: 5% auto;
+}
+
+.ch-category{
+	width:80px;
+	height:30px;
+	border-radius:10px 10px 10px 10px;
+	background:#FFE066;
+	font-size:13px;
+	font-weight:bold;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	z-index:2;
+}
+
+.ch-background{
+	
+	height:150px;
+	position:relative;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	overflow: hidden;
+	border-radius: 5px 5px 5px 5px;
+	margin-top:5%;
+}
+
+.ch-bgImg{
+	object-fit: cover;
+	z-index:1;
+	width:100%;
+	height:100%;
+	
+}
+
+.ch-background::before {
+    content: "";
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background-color:rgba(0, 0, 0, 0.4); /* 어두운 오버레이 색상과 투명도 설정 */
+    z-index:2; /* 이미지 위에 오버레이가 오도록 설정 */
+}
+
+.ch-background p{
+	font-weight:bold;
+	font-size:16px;
+	color:white;
+	width:100%;
+	text-align:center;
+}
+
+.ch-dueDate{
+	font-weight:bold;
+	background:white;
+	font-size:13px;
+	border-radius:10px 10px 10px 10px;
+	width:50px;
+	height:20px;
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	z-index:2;
+	position:absolute;
+	right:3%;
+	top:3%;
+}
+
+.ch-title{
+	z-index:2;
+	position:absolute;
+}
+
+.ch-info{
+	width:100%;
+	height:15px;
+	margin-top:3%;
+	font-size:12px;	
+	display:flex;
+	flex-direction:row;
+	justify-content:center;
+	font-size:10px;
+}
+
+.ch-info img{
+	width:10px;
+	height:10px;
+}
+
+.ch-info p{
+	margin-left:10%;
+}
+
+.ch-people, .ch-like, .ch-view{
+	z-index:2;
+	display:flex;
+	flex-direction:row;
+	position:absolute;
+	height:15px;
+}
+
+.ch-people{
+	left:0;
+}
+
+.ch-like{
+	right:50px;
+}
+
+.ch-view{
+	right:5px;
+}
+
+
+
+
+
+

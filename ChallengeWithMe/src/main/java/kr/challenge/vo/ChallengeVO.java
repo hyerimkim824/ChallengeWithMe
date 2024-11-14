@@ -15,7 +15,14 @@ public class ChallengeVO {
 	private String ch_status;
 	private Long us_num;
 	private Long cate_num;
+	private String cate_name;
 	
+	public String getCate_name() {
+		return cate_name;
+	}
+	public void setCate_name(String cate_name) {
+		this.cate_name = cate_name;
+	}
 	public Long getCh_num() {
 		return ch_num;
 	}

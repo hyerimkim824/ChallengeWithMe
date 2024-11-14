@@ -17,22 +17,22 @@ public class CategoryDAO {
 		return instance;
 	}
 	private CategoryDAO() {}
-	
+
 	//카테고리 목록 확인
 	public List<CategoryVO> getList() throws Exception{
-		
+
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		ResultSet rs = null;
-		
+
 		List<CategoryVO> list = null;
 
 		try {
 			conn = DBUtil.getConnection();
 			sql = "SELECT * FROM cate";
 			pstmt = conn.prepareStatement(sql);
-			
+
 			rs = pstmt.executeQuery();
 			list = new ArrayList<CategoryVO>();
 			while(rs.next()) {
@@ -41,7 +41,7 @@ public class CategoryDAO {
 				vo.setCate_img(rs.getString("cate_img"));
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCate_desc(rs.getString("cate_desc"));
-				
+
 				list.add(vo);
 			}
 		}catch(Exception e) {
@@ -49,7 +49,37 @@ public class CategoryDAO {
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
-		
+
 		return list;
 	}
+	
+	public CategoryVO getDetail(int cat_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		CategoryVO vo = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM cate WHERE cate_num=" + cat_num;
+			pstmt = conn.prepareStatement(sql);
+			rs = pstmt.executeQuery();
+			vo = new CategoryVO();
+			
+			if(rs.next()) {				
+				vo.setCate_num(rs.getLong("cate_num"));
+				vo.setCate_img(rs.getString("cate_img"));
+				vo.setCate_name(rs.getString("cate_name"));
+				vo.setCate_desc(rs.getString("cate_desc"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return vo;
+	}
+
 }

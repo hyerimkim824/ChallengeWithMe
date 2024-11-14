@@ -33,7 +33,7 @@
 			</div>
 
 		</div>
-		<div class="space-div"></div>
+		<div class="space500-div"></div>
 
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
