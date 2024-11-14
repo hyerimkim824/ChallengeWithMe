@@ -26,7 +26,7 @@ public class WriteAction implements Action{
 		
 		//자바빈(VO) 생성
 		PostVO post = new PostVO();
-		post.setTitle(request.getParameter("title"));
+		post.setPost_title(request.getParameter("post_title"));
 		//post.setDate(request.getParameter("date"));
 		post.setUs_nickname(request.getParameter("us_nickname"));
 		post.setUs_img(FileUtil.uploadFile(request, "us_img"));

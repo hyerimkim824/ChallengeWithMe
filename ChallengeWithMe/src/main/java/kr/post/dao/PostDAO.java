@@ -34,8 +34,8 @@ public class PostDAO {
 			//?에 데이터 바인딩
 			pstmt.setLong(1, post.getPost_num());
 			pstmt.setString(2, post.getUs_img());
-			pstmt.setString(3, post.getTitle());
-			pstmt.setString(4, post.getContent());
+			pstmt.setString(3, post.getPost_title());
+			pstmt.setString(4, post.getPost_content());
 			pstmt.setLong(5, post.getUs_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
@@ -61,11 +61,11 @@ public class PostDAO {
 			//검색처리
 			if(keyword!=null && !"".equals(keyword)) {
 				if(keyfield.equals("1")) sub_sql += "WHERE us_nickname LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2")) sub_sql += "WHERE title LIKE '% || ? || '%'";
-				else if(keyfield.equals("3")) sub_sql += "WHERE content LIKE '% || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "WHERE post_title LIKE '% || ? || '%'";
+				else if(keyfield.equals("3")) sub_sql += "WHERE post_content LIKE '% || ? || '%'";
 			}
 			//sql문 작성
-			sql = "SELECT COUNT(*) FROM post JOIN xuser USING(us_num)" + sub_sql;
+			sql = "SELECT COUNT(*) FROM post JOIN user_detail USING(us_num)" + sub_sql;
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -110,7 +110,7 @@ public class PostDAO {
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ "(SELECT * FROM post JOIN xuser USING(us_num) " + sql_sub + " ORDER BY post_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+					+ "(SELECT * FROM post JOIN user_detail USING(us_num) " + sql_sub + " ORDER BY post_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -125,16 +125,14 @@ public class PostDAO {
 			list = new ArrayList<PostVO>();
 			while(rs.next()) {
 				PostVO post = new PostVO();
-				post.setUs_img(rs.getString(rs.getString("us_img")));
-				post.setUs_nickname(rs.getString("nickname"));
-				post.setDate(rs.getDate("date"));
-				//제목 html 태그 불허용
-				post.setTitle(StringUtil.useNoHtml("date"));
+				
+				post.setPost_title(rs.getString("post_title"));
+				post.setPost_date(rs.getDate("post_date"));
+				post.setUs_nickname(rs.getString("us_nickname"));
+				post.setUs_img(rs.getString("us_img"));
 				
 				list.add(post);
 			}
-
-
 		}catch (Exception e){
 			throw new Exception(e);
 
@@ -142,6 +140,7 @@ public class PostDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 			
 		}
+		System.out.println(list);
 		return list;
 	}
 	
