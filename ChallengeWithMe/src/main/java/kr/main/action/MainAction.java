@@ -13,7 +13,7 @@ public class MainAction implements Action{
 		
 		HttpSession session = request.getSession();
 		Long user_num = (Long)session.getAttribute("us_num");
-		System.out.println("유저: " + user_num);
+		
 		int admin = 0;
 		
 		if(user_num != null) {
@@ -23,7 +23,7 @@ public class MainAction implements Action{
 		request.setAttribute("us_num", user_num);
 		request.setAttribute("admin", admin);
 		
-		System.out.println(user_num + ", " + admin);
+		
 		
 		
 		//JSP 경로 반환
