@@ -128,20 +128,110 @@
 					<li>이름</li>
 					<li>성별</li>
 					<li>전화번호</li>
-					<li>성별</li>
+					<li>우편번호</li>
+					<li>주소</li>
+					<li>나머지주소</li>
 				</ul>
 			</div>
 			<div>
 				<ul>
 					<li>${ xuser.name }</li>
-					<li>${ xuser.gen }</li>
+					<c:if test="${ xuser.gen == 0 }">
+						<li>남자</li>
+					</c:if>
+					<c:if test="${ xuser.gen == 1 }">
+						<li>여자</li>
+					</c:if>
 					<li>${ xuser.tel }</li>
-					<li>${ xuser. }</li>
+					<li>${ xuser.zipcode }</li>
+					<li>${ xuser.address1 }</li>
+					<li>${ xuser.address2 }</li>
 				</ul>
 			</div>
 			<!-- 선호 카테고리 -->
 			<div>
-			
+				<h3>선호 카테고리</h3>
+				<input type="button" value="카테고리 변경">
+				<c:forEach var="pref" items="${ preName }">
+				<ul>
+					<li>${ pref }</li>
+				</ul>
+				</c:forEach>
+			</div>
+			<!-- 꼬박꼬박 달성도 -->
+			<h1>꼬박꼬박 달성도</h1>
+			<div>
+				<!-- 좌측 정보 -->
+				<div>
+					<div>
+						<h3>나의 등급</h3>
+						<p>Lv${ xuser.rank }</p>
+					</div><br>
+					<div>
+						<p><!-- 점수 들어갈 예정 -->점</p>
+					</div>
+					<div>
+						<!-- 나무 애니메이션 들어가는곳 -->
+					</div>
+				</div>
+				<!-- 우측 정보 -->
+				<div>
+					<h3>등급 기준 표</h3>
+					<div>
+						<ul>
+							<li>0 ~ 99				점</li>
+							<li>100 ~ 499			점</li>
+							<li>500 ~ 999			점</li>
+							<li>1000 ~ 1499			점</li>
+							<li>1500 ~ 2499			점</li>
+							<li>2500 ~ 3999			점</li>
+							<li>4000 ~ 5499			점</li>
+							<li>5500 ~ 6999			점</li>
+							<li>7000 ~ 8999			점</li>
+							<li>9000 ~				점</li>
+						</ul>
+					</div>
+					<div>
+						<ul>
+							<li>Lv1</li>
+							<li>Lv2</li>
+							<li>Lv3</li>
+							<li>Lv4</li>
+							<li>Lv5</li>
+							<li>Lv6</li>
+							<li>Lv7</li>
+							<li>Lv8</li>
+							<li>Master</li>
+							<li style="color: red;">Challenger</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<!-- 보유 뱃지 -->
+			<h1>보유 뱃지</h1>
+			<div>
+				<!-- 대표 뱃지 -->
+				<div>
+					<h3>대표 뱃지</h3>
+					<a href="#"><img src="${ pageContext.request.contextPath }/images/face.png" width="200" height="200" class=""></a>
+					<input type="button" value="뱃지 변경">
+				</div>
+				<!-- 뱃지 개수 정보 -->
+				<div>
+					<input type="button" value="자세히 보기">
+					<ul>
+						<li>총 뱃지</li>
+						<li>획득 뱃지</li>
+						<li>미획득 뱃지</li>
+					</ul>
+				</div>
+				<div>
+					<ul>
+						<c:forEach var="bg" items="${ bgInfo }">
+						<li>${ bg } 개</li>
+						</c:forEach>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -3,6 +3,8 @@ package kr.mypage.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import kr.util.DBUtil;
 import kr.xuser.vo.XuserVO;
@@ -60,6 +62,70 @@ public class MyPageDAO {
 	    return xuser;
 	}
 	
+	// 마이페이지 선호 카테고리
+	public List<String> pref(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<String> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "select c.cate_name  from pref p join cate c on p.cate_num = c.cate_num WHERE p.us_num = ?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<String>();
+			
+			while(rs.next()) {
+				String prefName = rs.getString("cate_name");
+				list.add(prefName);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
+	
+	// 유저 획득 뱃지 정보 불러오기
+	public List<Integer> getBadgeInfo(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Integer> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "select b.totalbg, coalesce(ub.us_bgcount, 0) as us_bg, b.totalbg - coalesce(ub.us_bgcount, 0) as re_bg "
+					+ "from (select count(*) as totalbg from badge) b "
+					+ "left join (select count(DISTINCT bg_num) as us_bgcount from userbadge where us_num = ?) ub on 1 = 1";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<Integer>();
+			while(rs.next()) {
+				int totalbg = rs.getInt(1);
+				int us_bg = rs.getInt(2);
+				int re_bg = rs.getInt(3);
+				list.add(totalbg);
+				list.add(us_bg);
+				list.add(re_bg);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
+	
 	// 프로필 사진 수정
 	public void updateImg(String img, long us_num)throws Exception {
 		Connection con = null;
@@ -71,7 +137,7 @@ public class MyPageDAO {
 			sql = "UPDATE user_detail SET photo=? WHERE us_num=?";
 			
 			ps = con.prepareStatement(sql);
-			ps.setString(1, sql);
+			ps.setString(1, img);
 			ps.setLong(2, us_num);
 			
 			ps.executeUpdate();
