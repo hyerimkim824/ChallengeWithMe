@@ -26,37 +26,39 @@
 	<div class="page-main">
 
 		<div class="space100-div"></div>
-		<div class="dropdown">
-			<button class="btn dropdown-toggle" type="button"
-				style="background-color: #FFE066" data-bs-toggle="dropdown"
-				aria-expanded="false">
-				<c:if test="${!empty cat_name}">
+		<div class="ch-top-container">
+			<div class="dropdown">
+				<button class="btn dropdown-toggle" type="button"
+					style="background-color: #FFE066" data-bs-toggle="dropdown"
+					aria-expanded="true">
+					<c:if test="${!empty cat_name}">
 					${cat_name}
 				</c:if>
-				<c:if test="${empty cat_name}">
+					<c:if test="${empty cat_name}">
 					전체
 				</c:if>
-			</button>
-			<ul class="dropdown-menu" style="background-color: #FFFAE5">
-				<li><a class="dropdown-item" id="cat_all" data-catagory="0"
-					href="challengeList.do?category=0">전체</a></li>
-				<li><a class="dropdown-item" id="cat_health" data-catagory="1"
-					href="challengeList.do?category=1">건강</a></li>
-				<li><a class="dropdown-item" id="cat_food" data-catagory="2"
-					href="challengeList.do?category=2">식습관</a></li>
-				<li><a class="dropdown-item" id="cat_develop" data-catagory="3"
-					href="challengeList.do?category=3">자기계발</a></li>
+				</button>
 
-			</ul>
+				<ul class="dropdown-menu" style="background-color: #FFFAE5">
+					<li><a class="dropdown-item" id="cat_all" data-catagory="0"
+						href="challengeList.do?category=0">전체</a></li>
+					<li><a class="dropdown-item" id="cat_health" data-catagory="1"
+						href="challengeList.do?category=1">건강</a></li>
+					<li><a class="dropdown-item" id="cat_food" data-catagory="2"
+						href="challengeList.do?category=2">식습관</a></li>
+					<li><a class="dropdown-item" id="cat_develop"
+						data-catagory="3" href="challengeList.do?category=3">자기계발</a></li>
+
+				</ul>
+			</div>
+			<button class="btn ch-create" style="background-color: #FFE066" 
+				onclick="location.href='challengeCreateForm.do'" type="button"><p>챌린지 개설</p></button>
 		</div>
-
 		<div class="ch-container">
 			<c:if test="${!empty chall_list}">
 				<c:forEach var="list" items="${chall_list}">
 					<div class="ch-item">
-						<div class="ch-category">
-							${list.cate_name}
-						</div>
+						<div class="ch-category">${list.cate_name}</div>
 						<div class="ch-background">
 							<img class="ch-bgImg"
 								src="${pageContext.request.contextPath}/images/study.jpg">
@@ -68,16 +70,19 @@
 
 						<div class="ch-info">
 							<div class="ch-people">
-								<img class="people-img" src="${pageContext.request.contextPath}/images/person.svg">
-								<p>20/100</p>
+								<img class="people-img"
+									src="${pageContext.request.contextPath}/images/person.svg">
+								<p>${list.ch_person}/${list.ch_max}</p>
 							</div>
 							<div class="ch-like">
-								<img class="like-img" src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
-								<p>30</p>
+								<img class="like-img"
+									src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
+								<p>${list.ch_like}</p>
 							</div>
 							<div class="ch-view">
-								<img class="view-img" src="${pageContext.request.contextPath}/images/eye.svg">
-								<p>11.9k</p>
+								<img class="view-img"
+									src="${pageContext.request.contextPath}/images/eye.svg">
+								<p>${list.ch_view}</p>
 							</div>
 						</div>
 					</div>

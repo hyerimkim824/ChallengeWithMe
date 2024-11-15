@@ -64,6 +64,24 @@
 
 /* 챌린지 목록 */
 
+.ch-top-container{
+	display:flex;
+}
+
+.ch-create{
+	background:#FFE066;
+	width:120px;
+	height:40px;
+	border-radius: 10px 10px 10px 10px;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	position:absolute;
+	right:5%;
+}
+
+
+
 .cat-btn{
 	
 	width:90px;
@@ -208,8 +226,32 @@
 	right:5px;
 }
 
+/* 챌린지 개설 페이지 */
 
-
-
+.chc-one{
+	width:100%;
+	height:100px;
+	background:blue;
+}
+.chc-two{
+	width:100%;
+	height:100px;
+	background:red;
+}
+.chc-three{
+	width:100%;
+	height:60px;
+	background:yellow;
+}
+.chc-main{
+	width:100%;
+	height:700px;
+	background:green;
+}
+.chc-end{
+	width:100%;
+	height:200px;
+	background:pink;
+}
 
 

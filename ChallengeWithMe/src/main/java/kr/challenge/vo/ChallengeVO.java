@@ -8,6 +8,9 @@ public class ChallengeVO {
 	private String ch_end;
 	private String ch_img;
 	private int ch_min;
+	private int ch_max;
+	private int ch_like;
+	private int ch_view;
 	private int ch_person;
 	private int ch_visi;
 	private int trans_bal;
@@ -16,6 +19,7 @@ public class ChallengeVO {
 	private Long us_num;
 	private Long cate_num;
 	private String cate_name;
+	private String ch_authd;
 	
 	public String getCate_name() {
 		return cate_name;
@@ -70,6 +74,12 @@ public class ChallengeVO {
 		this.ch_img = ch_img;
 	}
 	
+	public int getCh_max() {
+		return ch_max;
+	}
+	public void setCh_max(int ch_max) {
+		this.ch_max = ch_max;
+	}
 	
 	public int getCh_min() {
 		return ch_min;
@@ -78,6 +88,18 @@ public class ChallengeVO {
 		this.ch_min = ch_min;
 	}
 	
+	public int getCh_like() {
+		return ch_like;
+	}
+	public void setCh_like(int ch_like) {
+		this.ch_like = ch_like;
+	}
+	public int getCh_view() {
+		return ch_view;
+	}
+	public void setCh_view(int ch_view) {
+		this.ch_view = ch_view;
+	}
 	
 	public int getCh_person() {
 		return ch_person;
@@ -132,5 +154,12 @@ public class ChallengeVO {
 	}
 	public void setCate_num(Long cate_num) {
 		this.cate_num = cate_num;
+	}
+	
+	public String getCh_authd() {
+		return ch_authd;
+	}
+	public void setCh_authd(String ch_authd) {
+		this.ch_authd = ch_authd;
 	}
 }
