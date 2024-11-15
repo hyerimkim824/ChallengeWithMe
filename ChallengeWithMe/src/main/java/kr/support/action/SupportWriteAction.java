@@ -19,14 +19,11 @@ public class SupportWriteAction implements Action {
         if (userNum == null) {
             // 로그인이 되어 있지 않으면 로그인 필요 안내 페이지로 이동 🐥
             request.setAttribute("error", "로그인이 필요합니다.");
-            return "redirect:/xuser/loginForm.do";
+            return "redirect:/xuser/loginForm.jsp";
         }
+        // GET 요청인 경우, 작성 폼으로 이동 🐰
         return "support/supportWrite.jsp";
-        /*// 🐇 2. 요청 방식(GET/POST)에 따라 처리 분기
-        if (request.getMethod().equalsIgnoreCase("POST")) {
-            // GET 요청인 경우, 작성 폼으로 이동 🐰
-            return "support/supportWrite.jsp";
-        }
+       
 
         // POST 요청인 경우 데이터 처리 🐥
         // 🐇 3. 요청 파라미터에서 데이터 가져오기
@@ -75,6 +72,6 @@ public class SupportWriteAction implements Action {
 
         // 🐇 7. 작성 완료 후 문의 리스트 페이지로 리다이렉트
         return "redirect:/support/List.do"; // 문의 리스트로 이동
-    }*/
     }
-}
+    }
+
