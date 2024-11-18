@@ -1,1 +1,30 @@
 @charset "UTF-8";
+
+
+
+.page-main .mychallenge-content-main .align-left #part_ch_btn{
+	
+	width:100px;
+	height:50px;
+	align-items:left;
+	background:#FFE066;
+
+	
+	
+}
+.page-main .mychallenge-content-main .align-left #gen_ch_btn{
+	
+	width:100px;
+	height:50px;
+	align-items:left;
+	background:#FFE066;
+
+	
+}
+.page-main .mychallenge-content-main .align-right{
+	border-collapse: collapse;
+    width: 200px;
+    margin-left: auto; /* 테이블 오른쪽 정렬 */
+    margin-right: 100px;
+   
+}

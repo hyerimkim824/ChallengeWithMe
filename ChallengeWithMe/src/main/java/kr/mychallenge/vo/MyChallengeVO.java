@@ -16,8 +16,16 @@ public class MyChallengeVO {
 	private String ch_status; //챌린지 상태
 	private String auth_num; //인증 방식
 	
-	//us_img 필요하다고 제안
+	//가져오는 이미지->user detail table
+	private String us_img;
 	
+	
+	public String getUs_img() {
+		return us_img;
+	}
+	public void setUs_img(String us_img) {
+		this.us_img = us_img;
+	}
 	
 	/*인증 방식*/
 	private long ab_num; //인증글 고유 번호(PK)
