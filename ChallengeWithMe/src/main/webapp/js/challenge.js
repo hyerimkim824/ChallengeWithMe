@@ -18,5 +18,12 @@ $(function(){
 	           
 	       });
 	   });
+	   
+	   //이미지 등록
+	   $('#imageBtn').click(function(){
+	   			$(this).hide();//수정 버튼 감추기
+				$('#fileInput').click();
+	   		});
+	   		
 	
 });

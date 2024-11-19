@@ -17,7 +17,7 @@ public class ChallengeDAO {
 	}
 	private ChallengeDAO() {}
 
-	//사용자가 개설한 챌린지 목록
+	//챌린지 목록
 	public List<ChallengeVO> getList() throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -69,7 +69,7 @@ public class ChallengeDAO {
 		return list;
 	}
 
-	//사용자가 개설한 챌린지 카테고리별 목록 
+	//챌린지 카테고리별 목록 
 	public List<ChallengeVO> getList(int cat_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

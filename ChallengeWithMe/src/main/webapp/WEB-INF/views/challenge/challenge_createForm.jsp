@@ -11,11 +11,13 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/sw.css" type="text/css">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/challenge.js"></script>
 
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
+	<!-- =====================form 시작 ============================ -->
 		<form id="create_form">
 			<div class="chc-one">
 				<div class="chc-title">챌린지 개설</div>
@@ -51,7 +53,7 @@
 			</div>
 			<div class="chc-four">
 				<div>
-					<input type="text" id="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요">
+					<input type="text" id="chc_title" name="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요">
 				</div>
 				<div class="nickname-container">
 					<img class="user-img">
@@ -60,17 +62,21 @@
 			</div>
 			<div class="chc-five">
 				<div class="chc-image">
+				
 					<div class="image">
+						<img id="previewImage" src="${pageContext.request.contextPath}" alt="이미지 미리보기" style="max-width: 100%;" />
 						<p><b>이미지 등록</b></p>
 						<div class="chc-imageBtn">
-							<button class="imageBtn">파일 찾기</button>
+							<input type="file" id="fileInput" accept="image/*" style="display:none;" />
+							<button class="imageBtn" id="imageBtn">파일 찾기</button>
 						</div>
 					</div>
+				
 				</div>
 				<div class="chc-info">
 					<div class="chc-desc shadow-effect">
 						<div class="info-title">챌린지 소개</div>
-						<textarea id="chc_desc" class="ta1" placeholder="소개 글을 입력해주세요"></textarea>
+						<textarea id="chc_desc" class="ta1" name="chc_desc" placeholder="소개 글을 입력해주세요"></textarea>
 					</div>
 					<div class="chc-authm shadow-effect">
 						<div class="info-title">인증방법</div>
@@ -106,16 +112,18 @@
 							</div>
 						</div>
 
-						<textarea  class="ta2" placeholder="인증 방식을 입력해주세요"></textarea>
+						<textarea  class="ta2" id="chc_authd" name="chc_authd" placeholder="인증 방식을 입력해주세요"></textarea>
 					</div>
 				</div>
 			</div>
 			<div class="chc-six">
 				<div class="extra-info shadow-effect">
 					<ul>
-						<li><label>참가인원</label> <input type="text"  class="extra-input" id="chc_people" placeholder="클릭 후 입력"></li>
-						<li><label>고정 예치금</label> <input type="text" class="extra-input" id="chc_price" placeholder="클릭 후 입력"></li>
-						<li><label>챌린지 기간</label> <input type="text" class="input-date" id="chc_start" placeholder="시작 날짜 (YY-MM-DD)"> <input type="text" class="input-date" id="chc_end" placeholder="종료 날짜 (YY-MM-DD)"></li>
+						<li><label>최소인원</label> <input type="text" name="min" class="extra-input" id="chc_people" placeholder="클릭 후 입력"></li>
+						<li><label>최대인원</label> <input type="text" name="max" class="extra-input" id="chc_people" placeholder="클릭 후 입력"></li>
+						<li><label>고정 예치금</label> <input type="text" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력"></li>
+						<li><label>챌린지 기간</label> <input type="text" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)"> 
+						<input type="text" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)"></li>
 						<li><label>참여 코드</label> EXAMPLE CODE</li>
 					</ul>
 				</div>
@@ -140,6 +148,7 @@
 				<button class="submit-btn" type="submit">개설하기</button>
 			</div>
 		</form>
+		<!-- =====================form 끝 ============================ -->
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
