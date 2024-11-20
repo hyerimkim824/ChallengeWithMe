@@ -22,17 +22,19 @@ public class ChallengeCreateAction implements Action{
 		
 		request.setCharacterEncoding("utf-8");
 		
-		System.out.println("1." + request.getParameter("chc_title"));
-		System.out.println("2." + request.getParameter("chc_desc"));
-		System.out.println("3." + request.getParameter("start"));
-		System.out.println("4." + request.getParameter("end"));
-		System.out.println("5." + request.getParameter("img"));
-		System.out.println("6." + request.getParameter("min"));
-		System.out.println("7." + request.getParameter("0"));
-		System.out.println("8." + request.getParameter("visi"));
-		System.out.println("9." + request.getParameter("chc_price"));
-		System.out.println("10." + request.getParameter("max"));
-		System.out.println("11." + request.getParameter("chc_authd"));
+		System.out.println(us_num);
+		System.out.println("1.제목: " + request.getParameter("chc_title"));
+		System.out.println("2.소개: " + request.getParameter("chc_desc"));
+		System.out.println("3.시작일: " + request.getParameter("start"));
+		System.out.println("4.종료일: " + request.getParameter("end"));
+		//System.out.println("5.이미지: " + request.getParameter("img"));
+		System.out.println("6.최소인원: " + request.getParameter("min"));
+		System.out.println("7.카테고리: " + request.getParameter("cate_num"));
+		System.out.println("8.공개여부: " + request.getParameter("visi"));
+		System.out.println("9.예치금: " + request.getParameter("chc_price"));
+		System.out.println("10.최대인원: " + request.getParameter("max"));
+		System.out.println("11.인증주기: " + request.getParameter("chc_authd"));
+		System.out.println("12.인증방법: " + request.getParameter("ah_num"));
 		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
@@ -48,11 +50,12 @@ public class ChallengeCreateAction implements Action{
 		int official = 0; 
 		String ch_status = "before";
 		Long user_num =  us_num;
-		Long cate_num =  0L; 
-		int max = Integer.parseInt(request.getParameter("max")); 
+		Long cate_num =  Long.parseLong(request.getParameter("cate_num"));
+		int max = Integer.parseInt(request.getParameter("max"));
 		int ch_like = 0; 
 		int ch_view = 0; 
-		String ch_authd = request.getParameter("chc_authd"); 
+		int ch_authd = Integer.parseInt(request.getParameter("chc_authd")); 
+		int ahDetail_num = Integer.parseInt(request.getParameter("ah_num"));
 		
 		ChallengeVO vo = new ChallengeVO();
 		
@@ -73,11 +76,12 @@ public class ChallengeCreateAction implements Action{
 		vo.setCh_like(ch_like);
 		vo.setCh_view(ch_view);
 		vo.setCh_authd(ch_authd);
+		vo.setAh_num(ahDetail_num);
 		
 		dao.createChallenge(vo);
 		
 		
-		return "/challenge_create.jsp";
+		return "/challenge/challenge_create.jsp";
 	}
 
 }

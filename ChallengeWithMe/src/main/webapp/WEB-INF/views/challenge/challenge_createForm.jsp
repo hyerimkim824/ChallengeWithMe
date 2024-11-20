@@ -33,33 +33,33 @@
 			</div>
 			<div class="chc-three">
 				<div class="dropdown"> 
-					<button class="btn dropdown-toggle" type="button"
+					<button class="btn dropdown-toggle create-dd-btn" type="button"
 						style="background-color: #FFE066" data-bs-toggle="dropdown"
 						aria-expanded="true">
 						<c:if test="${!empty cat_name}">
 					${cat_name}
 				</c:if>
 						<c:if test="${empty cat_name}">
-					전체
+					카테고리
 				</c:if>
 					</button>
 
 					<ul class="dropdown-menu" style="background-color: #FFFAE5">
-						<li><a class="dropdown-item" id="cat_all" data-catagory="0">전체</a></li>
-						<li><a class="dropdown-item" id="cat_health"data-catagory="1">건강</a></li>
-						<li><a class="dropdown-item" id="cat_food" data-catagory="2">식습관</a></li>
-						<li><a class="dropdown-item" id="cat_develop" data-catagory="3">자기계발</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_health" data-category="1">건강</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_food" data-category="2">식습관</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_develop" data-category="3">자기계발</a></li>
 					</ul>
+					<input type="hidden" id="cate_num" name="cate_num">
 				</div>
-				<div class="auth-dur">인증빈도</div> 
+				<div class="auth-dur">인증주기 <input class="authd-input" name="chc_authd" required>일마다</div> 
 			</div>
 			<div class="chc-four">
 				<div>
-					<input type="text" id="chc_title" name="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요">
+					<input type="text" id="chc_title" name="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요" required>
 				</div>
 				<div class="nickname-container">
 					<img class="user-img">
-					<p class="user-nickname">닉네임</p>
+					<p class="user-nickname">${us_nickname}</p>
 				</div>
 			</div>
 			<div class="chc-five">
@@ -73,21 +73,21 @@
 							<input type="file" id="fileInput" accept="image/*" style="display:none;" />
 							<button class="imageBtn" id="imageBtn">사진 선택</button>
 						</div>
-						<input type="hidden" name="img" id="photoPath" value="">
+						<input type="hidden" name="img" id="photoPath">
 					</div>
 				
 				</div>
 				<div class="chc-info">
 					<div class="chc-desc shadow-effect">
 						<div class="info-title">챌린지 소개</div>
-						<textarea id="chc_desc" class="ta1" name="chc_desc" placeholder="소개 글을 입력해주세요"></textarea>
+						<textarea id="chc_desc" class="ta1" name="chc_desc" placeholder="소개 글을 입력해주세요" maxlength="500"></textarea>
 					</div>
 					<div class="chc-authm shadow-effect">
 						<div class="info-title">인증방법</div>
 						<div class="chc-authm-header">
 							<div class="authm-title"><b>인증방식</b></div>
 							<div class="dropdown">
-								<button class="btn dropdown-toggle custom-btn shadow-effect" type="button" style="background-color:white" 
+								<button class="btn dropdown-toggle custom-btn shadow-effect" id="auth_btn" type="button" style="background-color:white" 
 								data-bs-toggle="dropdown" aria-expanded="true">
 									<c:if test="${!empty cat_name}">
 										${cat_name}
@@ -98,35 +98,36 @@
 								</button>
 
 								<ul class="dropdown-menu" style="background-color: #FFFAE5">
-									<li><a class="dropdown-item" id="auth_pic" data-auth="0">사진
+									<li><a class="dropdown-item auth-dd" id="auth_pic" data-auth="1">사진
 											인증</a></li>
-									<li><a class="dropdown-item" id="auth_time" data-auth="1">시간
+									<li><a class="dropdown-item auth-dd" id="auth_time" data-auth="2">시간
 											인증</a></li>
-									<li><a class="dropdown-item" id="auth_quote" data-auth="2">문구
+									<li><a class="dropdown-item auth-dd" id="auth_quote" data-auth="3">문구
 											인증</a></li>
-									<li><a class="dropdown-item" id="auth_qr" data-auth="3">QR코드
+									<li><a class="dropdown-item auth-dd" id="auth_qr" data-auth="4">QR코드
 											인증</a></li>
-									<li><a class="dropdown-item" id="auth_game" data-auth="4">게임
+									<li><a class="dropdown-item auth-dd" id="auth_game" data-auth="5">게임
 											인증</a></li>
-									<li><a class="dropdown-item" id="auth_report"
+									<li><a class="dropdown-item auth-dd" id="auth_report"
 										data-auth="5">가계부 인증</a></li>
-									<li><a class="dropdown-item" id="auth_zoom" data-auth="6">줌
+									<li><a class="dropdown-item auth-dd" id="auth_zoom" data-auth="6">줌
 											인증</a></li>
 								</ul>
+								<input type="hidden" id="ah_num" name="ah_num">
 							</div>
 						</div>
 
-						<textarea  class="ta2" id="chc_authd" name="chc_authd" placeholder="인증 방식을 입력해주세요"></textarea>
+						<textarea  class="ta2" id="chc_authd" name="chc_authd" placeholder="인증 방식의 구체적인 정보를 입력해주세요" maxlength="500"></textarea>
 					</div>
 				</div>
 			</div>
 			<div class="chc-six">
 				<div class="extra-info shadow-effect">
 					<ul>
-						<li><label>최소인원</label> <input type="text" name="min" class="extra-input" id="min" placeholder="클릭 후 입력"></li>
-						<li><label>최대인원</label> <input type="text" name="max" class="extra-input" id="max" placeholder="클릭 후 입력"></li>
-						<li><label>고정 예치금</label> <input type="text" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력"></li>
-						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)"></li>
+						<li><label>최소인원</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required></li>
+						<li><label>최대인원</label> <input type="number" name="max" class="extra-input" id="max" placeholder="클릭 후 입력" required></li>
+						<li><label>고정 예치금</label> <input type="number" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력" required></li>
+						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)" required></li>
 						<li><label>참여 코드</label> EXAMPLE CODE</li>
 					</ul>
 				</div>

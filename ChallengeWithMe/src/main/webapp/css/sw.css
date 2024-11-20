@@ -25,6 +25,16 @@
 	align-items:center;
 }
 
+.space100-div{
+	width:100%;
+	height:100px;
+}
+
+.space500-div{
+	width:100%;
+	height:500px;
+}
+
 /* 챌린지 메인 */
 .challenge_title{
 	display:flex;
@@ -67,16 +77,6 @@
 .ch-menu p{
 	font-size:20px;
 	font-weight:bold;
-}
-
-.space100-div{
-	width:100%;
-	height:100px;
-}
-
-.space500-div{
-	width:100%;
-	height:500px;
 }
 
 
@@ -122,13 +122,16 @@
 	height:500px;
 	display:flex; 
 	margin-top:3%;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
+
 .ch-item{
-	width:200px;
-	height:200px;
-	position:relative;
-	margin: 5% auto;
+	width: calc(20% - 50px);  
+    height: 200px; 
+    margin-bottom: 20px; 
+    position: relative;
 }
 
 .ch-category{
@@ -309,6 +312,10 @@
 
 .auth-dur{
 	margin-left:3%;
+}
+
+.authd-input{
+	width:50px;
 }
 
 .chc-three .dropdown{

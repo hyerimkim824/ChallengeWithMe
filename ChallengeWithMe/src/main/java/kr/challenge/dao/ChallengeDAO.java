@@ -54,8 +54,10 @@ public class ChallengeDAO {
 				vo.setUs_num(rs.getLong("us_num"));
 				vo.setCate_num(rs.getLong("cate_num"));
 				vo.setCate_name(rs.getString("cate_name"));
-				vo.setCh_authd(rs.getString("ch_authd"));
-
+				vo.setCh_authd(rs.getInt("ch_authd"));
+				vo.setAh_num(rs.getInt("ah_num"));
+				
+				
 				list.add(vo);
 
 			}
@@ -107,7 +109,8 @@ public class ChallengeDAO {
 				vo.setUs_num(rs.getLong("us_num"));
 				vo.setCate_num(rs.getLong("cate_num"));
 				vo.setCate_name(rs.getString("cate_name"));
-				vo.setCh_authd(rs.getString("ch_authd"));
+				vo.setCh_authd(rs.getInt("ch_authd"));
+				vo.setAh_num(rs.getInt("ah_num"));
 
 				list.add(vo);
 
@@ -130,7 +133,7 @@ public class ChallengeDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, trans_bal, offical, ch_status, us_num, cate_num, ch_max, ch_authd) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, trans_bal, official, ch_status, us_num, cate_num, ch_max, ch_authd, ah_num) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, vo.getCh_title());
@@ -146,7 +149,8 @@ public class ChallengeDAO {
 			pstmt.setLong(11, vo.getUs_num());
 			pstmt.setLong(12, vo.getCate_num());
 			pstmt.setInt(13, vo.getCh_max());
-			pstmt.setString(14, vo.getCh_authd());
+			pstmt.setInt(14, vo.getCh_authd());
+			pstmt.setInt(15, vo.getAh_num());
 			
 			pstmt.executeUpdate();
 			
@@ -156,7 +160,7 @@ public class ChallengeDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 		
-		
+		                               
 		
 	}
 }

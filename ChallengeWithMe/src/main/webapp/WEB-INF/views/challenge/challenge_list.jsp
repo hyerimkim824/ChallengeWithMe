@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -40,13 +41,13 @@
 				</button>
 
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
-					<li><a class="dropdown-item" id="cat_all" data-catagory="0"
+					<li><a class="dropdown-item list-dd" id="cat_all" data-category="0"
 						href="challengeList.do?category=0">전체</a></li>
-					<li><a class="dropdown-item" id="cat_health" data-catagory="1"
+					<li><a class="dropdown-item list-dd" id="cat_health" data-category="1"
 						href="challengeList.do?category=1">건강</a></li>
-					<li><a class="dropdown-item" id="cat_food" data-catagory="2"
+					<li><a class="dropdown-item list-dd" id="cat_food" data-category="2"
 						href="challengeList.do?category=2">식습관</a></li>
-					<li><a class="dropdown-item" id="cat_develop"
+					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-catagory="3" href="challengeList.do?category=3">자기계발</a></li>
 
 				</ul>
@@ -58,6 +59,7 @@
 			<c:if test="${!empty chall_list}">
 				<c:forEach var="list" items="${chall_list}">
 					<div class="ch-item">
+					
 						<div class="ch-category">${list.cate_name}</div>
 						<div class="ch-background">
 							<img class="ch-bgImg"

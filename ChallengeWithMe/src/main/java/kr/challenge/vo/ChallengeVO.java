@@ -19,7 +19,9 @@ public class ChallengeVO {
 	private Long us_num;
 	private Long cate_num;
 	private String cate_name;
-	private String ch_authd;
+	private int ch_authd;
+	private int ahDetail_num;
+	
 	
 	public String getCate_name() {
 		return cate_name;
@@ -156,10 +158,17 @@ public class ChallengeVO {
 		this.cate_num = cate_num;
 	}
 	
-	public String getCh_authd() {
+	public int getCh_authd() {
 		return ch_authd;
 	}
-	public void setCh_authd(String ch_authd) {
+	public void setCh_authd(int ch_authd) {
 		this.ch_authd = ch_authd;
+	}
+	
+	public int getAh_num() {
+		return ahDetail_num;
+	}
+	public void setAh_num(int ah_num) {
+		this.ahDetail_num = ah_num;
 	}
 }
