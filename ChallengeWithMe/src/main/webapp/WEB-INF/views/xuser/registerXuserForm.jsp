@@ -4,19 +4,115 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>꼬박꼬박 회원가입</title>
-<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/style.css" type="text/css">
+<title>회원가입</title>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/sj.css" type="text/css">
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/test.js"></script>
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
+$(function() {
+	$('#login_form').submit(function(){
+		if($('#logid').val().trim()==''){
+			alert('아이디를 입력하세요!')
+			$('#logid').val('').focus()
+			return false
+		}
+		if($('#logpwd').val().trim()==''){
+			alert('비밀번호를 입력하세요!')
+			$('#logpwd').val('').focus()
+			return false
+		}
+	})
+	
+    $('#submit_all').click(function(e) {
+        e.preventDefault(); // 기본 버튼 동작 방지
+        
+        const items = document.querySelectorAll('.check');
+	    for (let i = 0; i < items.length; i++) {
+	    const item = items[i];
+
+	        // 필드가 비어 있는지 확인
+	        if (item.value.trim() === '') {
+	            alert(item.placeholder + '을(를) 입력해주세요.');
+	            item.focus();
+	            return false;
+	        }
+
+	        // ID 유효성 검사
+	        if (item.id === 'id' && !/^[A-Za-z0-9]{4,12}$/.test(item.value)) {
+	            alert('아이디는 영문, 숫자 포함 4 ~ 12자로 작성해주세요.');
+	            item.value = '';
+	            item.focus();
+	            return false;
+	        }
+
+	        // 비밀번호 유효성 검사
+	        if (item.id === 'pwd' && !/^[A-Za-z0-9]{8,16}$/.test(item.value)) {
+	            alert('비밀번호는 영문, 숫자 포함 8 ~ 16자로 작성해주세요.');
+	            item.value = '';
+	            item.focus();
+	            return false;
+	        }
+
+	        // 비밀번호 확인
+	        if (item.id === 'cpwd') {
+	            const pwd = document.getElementById('pwd').value;
+	            if (item.value !== pwd) {
+	                alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
+	                item.value = '';
+	                item.focus();
+	                return false;
+	            }
+	        }
+
+	        // 닉네임 유효성 검사
+	        if (item.id === 'nick' && !/^[가-힣A-Za-z0-9]{2,15}$/.test(item.value)) {
+	            alert('닉네임은 한글, 영문, 숫자 포함 2 ~ 15자로 작성해주세요.');
+	            item.value = '';
+	            item.focus();
+	            return false;
+	        }
+
+	        // 이메일 유효성 검사
+	        if (item.id === 'email' && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(item.value)) {
+	            alert('유효한 이메일 주소를 입력해주세요.');
+	            item.value = '';
+	            item.focus();
+	            return false;
+	        }
+	    }
+
+        let form1 = document.getElementById('register_form1');
+        let form2 = document.getElementById('register_form2');
+        
+        // FormData 객체 생성
+        let formData = new FormData(form1); // 폼1 데이터 추가
+        new FormData(form2).forEach((value, key) => { // 폼2 데이터 병합
+            formData.append(key, value);
+        });
+
+        $.ajax({
+            url: 'registerXuser.do',
+            type: 'POST',
+            data: formData,
+            processData: false, // FormData 사용 시 필수
+            contentType: false, // FormData 사용 시 필수
+            success: function(response) {
+                alert('회원가입 성공');
+                console.log(response);
+                location.href='${ pageContext.request.contextPath }/main/main.do'
+            },
+            error: function() {
+                alert('회원가입 실패: 네트워크 오류 발생');
+            }
+        });
+    });
+});
+
 	$(function() {
-		let idChecked = 0;
-		let nickChecked = 0;
-		let emailChecked = 0;
-		
 		// 아이디 중복체크
 		$('#id_check').click(function(){
 			if(!/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
-				alert('영문 숫자 포함 4 ~ 12자로 작성해주세요.')
+				alert('아이디는 영문 숫자 포함 4 ~ 12자로 작성해주세요.')
 				$('#id').val('').focus()
 				return
 			}
@@ -29,19 +125,15 @@
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'idNotFound'){
-						idChecked = 1
 						$('#message_id').css('color', '#000000').text('등록 가능한 ID입니다.')
 					}else if(param.result == 'idDuplicated'){
-						idChecked = 0
 						$('#message_id').css('color', 'red').text('중복된 ID입니다.')
 						$('#id').val('').focus()
 					}else{
-						idChecked = 0
 						alert('아이디 중복 체크 오류 발생')
 					}
 				},
 				error:function(){
-					idChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -49,7 +141,7 @@
 			// 닉네임 중복체크
 		$('#nick_check').click(function(){
 			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
-				alert('한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
+				alert('닉네임은 한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
 				$('#nick').val('').focus()
 				return
 			}
@@ -62,19 +154,15 @@
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'nickNotFound'){
-						nickChecked = 1
 						$('#message_nick').css('color', '#000000').text('등록 가능한 닉네임입니다.')
 					}else if(param.result == 'nickDuplicated'){
-						nickChecked = 0
 						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
 						$('#nick').val('').focus()
 					}else{
-						nickChecked = 0
 						alert('닉네임 중복 체크 오류 발생')
 					}
 				},
 				error:function(){
-					nickChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -82,6 +170,11 @@
 		
 		// 이메일 중복체크
 		$('#email_check').click(function(){
+			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())){
+				alert('이메일 형식에 맞게 작성해주세요.')
+				$('#email').val('').focus()
+				return
+			}
 			// 서버 통신
 			$.ajax({
 				url:'checkEmail.do',
@@ -90,19 +183,15 @@
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'emailNotFound'){
-						emailChecked = 1
 						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
 					}else if(param.result == 'emailDuplicated'){
-						emailChecked = 0
 						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
 						$('#email').val('').focus()
 					}else{
-						emailChecked = 0
 						alert('이메일 가입 체크 오류 발생')
 					}
 				},
 				error:function(){
-					emailChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -110,160 +199,105 @@
 		
 		// 아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
 		$('#register_from #id').keydown(function(){
-			idChecked = 0
 			$('#message_id').text('')
 		})
 		
 		// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
 		$('#register_from #nick').keydown(function(){
-			nickChecked = 0
 			$('#message_nick').text('')
 		})
 		
 		// 이메일 이미 가입 안내 메시지 초기화 및 이메일 값 초기화
 		$('#register_from #email').keydown(function(){
-			emailChecked = 0
 			$('#message_email').text('')
 		})
 		
 		// 회원 정보 등록 유효성 체크
-		$('#register_form').submit(function(){
-			const items = document.querySelectorAll('.check')
-			for(let i = 0; i < items.length; i++){
-				if(items[i].value.trim()==''){
-					const label = document.querySelector('label[for="'+items[i].id+'"]')
-					alert(label.textContent + ' 필수 입력입니다.')
-					items[i].value=''
-					items[i].focus()
-					return false	
-				}
-				
-				if(items[i].id == 'id' && !/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
-					alert('영문 숫자 포함 4 ~ 12자로 작성해주세요.')
-					$('#id').val('').focus()
-					return false
-				}
-				
-				if(items[i].id == 'pwd' && !/^[A-Za-z0-9]{8,16}$/.test($('#pwd').val())){
-					alert('영문 숫자 포함 8 ~ 16자로 작성해주세요.')
-					$('#pwd').val('').focus()
-					return false
-				}
-				
-				if(items[i].id == 'nick' && !/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
-					alert('한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
-					$('#nick').val('').focus()
-					return false
-				}
-				if(items[i].id =='id' && idChecked == 0){
-					alert('아이디 중복체크 필수입니다.')
-					return false
-				}
-				
-				if(items[i].id =='nick' && nickChecked == 0){
-					alert('닉네임 중복체크 필수입니다.')
-					return false
-				}
-				
-				if(items[i].id == 'name' && !/^[가-힣]{2,10}$/.test($('#name').val())){
-					alert('한글만 입력해주세요.')
-					$('#name').val('').focus()
-					return false
-				}
-				
-				if(items[i].id == 'tel' && !/^[0-9]{11,11}$/.test($('#tel').val())){
-					alert('11자리 숫자로만 입력해주세요.')
-					$('#tel').val('').focus()
-					return false
-				}
-				
-				if(items[i].id == 'zipcode' && !/^[0-9]{5}$/.test($('#zipcode').val())){
-					alert('우편번호를 입력하세요')
-					$('#zipcode').val('').focus()
-					return false
-				}
-			}
-		})
+		$('#register_form2').submit(function (e) {
+		    e.preventDefault(); // 기본 제출 동작 방지
+		    
+		   
+		});
 	})
 </script>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-	<div>
-		<div>
-			<h2>회원가입</h2>
-			<form id="register_form" action="registerXuser.do" method="post">
-				<div>
-					<ul>
-						<li>
-							<label for="id">아이디</label>
-							<input type="text" id="id" name="id" maxlength="12" autocomplete="off" class="check">
-							<input type="button" id="id_check" value="중복체크">
-							<span id="message_id"></span>
-							<div class="form_notice">* 영문 숫자 포함 4 ~ 12자</div>
-						</li>
-						<li>
-							<label for="pwd">비밀번호</label>
-							<input type="password" id="pwd" name="pwd" maxlength="16" class="check">
-							<div class="form_notice">* 영문 숫자 포함 8 ~ 16자</div>
-						</li>
-						<li>
-							<label for="nick">닉네임</label>
-							<input type="text" id="nick" name="nick" maxlength="15" class="check">
-							<input type="button" id="nick_check" value="중복체크">
-							<span id="message_nick"></span>
-							<div class="form_notice">* 한글 영문 숫자 포함 2 ~ 15자</div>
-						</li>
-						<li>
-							<label for="email">이메일</label>
-							<input type="email" id="email" name="email" maxlength="50" class="check">
-							<input type="button" id="email_check" value="가입체크">
-							<span id="message_email"></span>
-						</li>
-						<li>
-							<label for="name">이름</label>
-							<input type="text" id="name" name="name" maxlength="6" class="check">
-						</li>
-						<li>
-							<label for="gender">성별</label>
-							<label>
-								<input type="radio" id="gender" name="gender" class="check" value="남" checked>남자
-							</label>
-							<label>
-							<input type="radio" id="gender" name="gender" class="check" value="여">여자
-							</label>
-						</li>
-						<li>
-							<label for="birth">생년월일</label>
-							<input type="date" id="birth" name="birth" class="check">
-						</li>
-						<li>
-							<label for="tel">전화번호</label>
-							<input type="text" id="tel" name="tel" maxlength="11" class="check">
-							<span id="message_id"></span>
-							<div class="form_notice">* "-" 제외한 번호 11개 입력</div>
-						</li>
-						<li>
-							<label for="zipcode">우편번호</label>
-							<input type="text" name="zipcode" id="zipcode" maxlength="5" class="check" autocomplete="off">
-							<input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
-						</li>
-						<li>
-							<label for="address1">주소</label>
-							<input type="text" name="address1" id="address1" maxlength="30" class="check">
-						</li>
-						<li>
-							<label for="address2">나머지주소</label>
-							<input type="text" name="address2" id="address2" maxlength="30" class="check">
-						</li>
-					</ul>
-					<div>
-						<input type="submit" value="등록">
-						<input type="button" value="메인으로"
-						onclick="location.href='${ pageContext.request.contextPath }/main/main.do'">
-					</div>
+	<h2>꼬박꼬박 챌린지 회원가입</h2>
+	<div class="container-wrapper">
+		<div class="container" id="container">
+		  <div class="form-container sign-up-container">
+		    <form action="#" id="register_form1">
+		      <h1>회원가입</h1>
+		      <div class="input-group">
+			      <input type="text" id="id" name="id" maxlength="12" autocomplete="off" class="check" placeholder="아이디">
+			      <input type="button" id="id_check" value="중복체크">
+		      </div>
+		      <span id="message_id"></span>
+		      <input type="password" id="pwd" name="pwd" maxlength="16" class="check" placeholder="비밀번호">
+		      <input type="password" id="cpwd" name="cpwd" maxlength="16" class="check" placeholder="비밀번호 확인">
+		      <div class="input-group">
+			      <input type="email" id="email" name="email" maxlength="50" class="check" placeholder="이메일">
+			      <input type="button" id="email_check" value="중복체크">
+		      </div>
+		      <span id="message_email"></span>
+		      <div class="input-group">
+			      <input type="text" id="nick" name="nick" maxlength="15" class="check" placeholder="닉네임">
+			      <input type="button" id="nick_check" value="중복체크">
+		      </div>
+		      <span id="message_nick"></span>
+		      <button class="detail" id="detail">정보입력</button>
+		    </form>
+		  </div>
+		  <div class="form-container sign-in-container">
+		    <form id="login_form" action="login.do" method="post">
+		      <h1>로그인</h1>
+		      <span>계정 정보를 입력하세요</span>
+		      <input type="text" name="logid" id="logid" maxlength="12" autocomplete="off" placeholder="아이디" />
+		      <input type="password" name="logpwd" id="logpwd" maxlength="12" autocomplete="off" placeholder="비밀번호"/>
+		      <a href="#">비밀번호 찾기</a>
+		      <input type="submit" value="로그인">
+		      <input class="main" type="button" value="메인으로"
+		        onclick="location.href='${ pageContext.request.contextPath }/main/main.do'">
+		    </form>
+		  </div>
+		  <div class="overlay-container">
+		    <div class="overlay">
+		      <div class="overlay-panel overlay-left">
+		        <h1>환영합니다!</h1>
+		        <p>아래 버튼을 클릭해 로그인을 하세요!</p>
+		        <button class="ghost" id="signIn">로그인</button>
+		      </div>
+		      <div class="overlay-panel overlay-right">
+		        <h1>환영합니다!</h1>
+		        <p>아래 버튼을 클릭해 회원가입을 하세요!</p>
+		        <button class="ghost" id="signUp">회원등록</button>
+		      </div>
+		    </div>
+		  </div>
+		</div>
+		<div class="container2" id="container2">
+			<div class="form-container2" id="detail-container">
+			    <form id="register_form2" action="#" method="post">
+			      <h1>개인정보</h1>
+			      <input type="text" id="name" name="name" maxlength="6" class="check" placeholder="이름" />
+			      <div class="radio-group">
+	 				<label for="male" class="custom-radio">
+				    	<input type="radio" id="male" name="gender" value="남" checked>
+			    		<span>남자</span>
+			  		</label>
+			  		<label for="female" class="custom-radio">
+			    		<input type="radio" id="female" name="gender" value="여">
+			    		<span>여자</span>
+			  		</label>
 				</div>
-			</form>
+			      <input type="date" id="birth" name="birth" class="check" placeholder="생년월일" />
+			      <input type="text" id="tel" name="tel" maxlength="11" class="check" placeholder="전화번호" />
+			      <input type="text" name="zipcode" id="zipcode" maxlength="5" class="check" autocomplete="off" placeholder="우편번호" />
+			      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
+			      <input type="text" name="address1" id="address1" maxlength="30" class="check" placeholder="주소" />
+			      <input type="text" name="address2" id="address2" maxlength="30" class="check" placeholder="나머지주소" />
+			      <input id="submit_all" type="button" value="회원가입">
+			    </form>
 <!-- 다음 우편번호 API 시작 -->
 <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
 <div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
@@ -361,8 +395,8 @@
     }
 </script>
 <!-- 다음 우편번호 API 끝 -->
+			</div>
 		</div>
 	</div>
-	<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

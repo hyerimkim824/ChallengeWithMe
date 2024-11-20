@@ -36,12 +36,8 @@ public class RegisterXuserAction implements Action{
 		XuserDAO dao = XuserDAO.getInstance();
 		dao.insertUser(xuser);
 		
-		request.setAttribute("result_title", "회원가입 완료");
-		request.setAttribute("result_msg", "회원가입이 완료되었습니다.");
-		request.setAttribute("result_url", request.getContextPath() + "/main/main.do");
-		
 		// JSP 경로 반환
-		return "common/result_view.jsp";
+		return "main/main.jsp";
 	}
 
 }

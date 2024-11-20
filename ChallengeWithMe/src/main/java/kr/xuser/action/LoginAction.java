@@ -14,8 +14,8 @@ public class LoginAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		request.setCharacterEncoding("utf-8");
 		
-		String id = request.getParameter("id");
-		String pwd = request.getParameter("pwd");
+		String id = request.getParameter("logid");
+		String pwd = request.getParameter("logpwd");
 		
 		XuserDAO dao = XuserDAO.getInstance();
 		XuserVO xuser = dao.checkUser(id);
