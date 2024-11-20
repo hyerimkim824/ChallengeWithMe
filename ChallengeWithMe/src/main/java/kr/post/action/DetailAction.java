@@ -21,14 +21,11 @@ public class DetailAction implements Action{
 		dao.viewcount(post_num);
 
 		PostVO post = dao.getpost(post_num);
-		
-		if(post == null) {
-			System.out.println("post는 null");
-		}
+		System.out.println(post);
 		//HTML 태그를 허용하지 않음
-		//post.setPost_title(StringUtil.useNoHtml(post.getPost_title()));
+		post.setPost_title(StringUtil.useNoHtml(post.getPost_title()));
 		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
-		//post.setPost_content(StringUtil.useBrNoHtml(post.getPost_content()));
+		post.setPost_content(StringUtil.useBrNoHtml(post.getPost_content()));
 
 		request.setAttribute("post", post);
 

@@ -18,7 +18,7 @@ public class WriteAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		if(us_num == null) {
-			//return "redirect: 로그인 창 주소 적어야함 
+			return "redirect:/xuser/loginForm.do";
 		}
 		//로그인이 된 경우
 		//전송된 데이터 인코딩 처리

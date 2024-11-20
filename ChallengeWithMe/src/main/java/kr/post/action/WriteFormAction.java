@@ -15,8 +15,9 @@ public class WriteFormAction implements Action{
 		if(us_num == null) {//로그인이 되지 않은 경우
 			return "redirect:/xuser/loginForm.jsp";
 		}
+		
 		//로그인이 된 경우
-		return "/post/writeForm.jsp";
+		return "post/writeForm.jsp";
 	}
 
 }

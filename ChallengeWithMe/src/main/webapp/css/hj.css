@@ -1,9 +1,29 @@
 @charset "UTF-8";
 
-.top-list-space{
-	margin-top : 50px;
+/* 커뮤니티 글 목록*/
+.list-page-main{
+	background:#FFE066;
 }
 
-.bottom-list-space{
-	margin-bottom : 50px;
+/* 커뮤니티 글 상세*/
+.detail-background{
+	background:#FFE066;
+}
+
+
+.detail-main{
+	background:white;
+}
+
+.detail-header{
+	background:green;
+}
+
+.detail-photo{
+	max-width:300px;
+}
+
+/* 커뮤니티 글 등록*/
+.writeform-main{
+	background:#FFE066;
 }

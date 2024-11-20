@@ -28,14 +28,16 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//sql문 작성
-			sql = "INSERT INTO post (post_num,post_img,post_title,post_content,us_num) VALUES (post_seq.nextval,?,?,?,?)";
+			sql = "INSERT INTO post (post_num, us_nickname, post_img, post_title, post_content, us_num) " +
+	                 "SELECT post_seq.nextval, ?, ?, ?, ?, ? FROM user_detail ud WHERE ud.us_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setString(1, post.getPost_img());
-			pstmt.setString(2, post.getPost_title());
-			pstmt.setString(3, post.getPost_content());
-			pstmt.setLong(4, post.getUs_num());
+			pstmt.setString(2, post.getUs_nickname());
+			pstmt.setString(3, post.getPost_title());
+			pstmt.setString(4, post.getPost_content());
+			pstmt.setLong(5, post.getUs_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
@@ -159,7 +161,7 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성-> 프로필 사진,닉네임,등록일,조회수,제목,이미지,내용
-			sql = "SELECT * FROM post JOIN comm ON post.post_num = comm.post_num WHERE post.post_num=?";
+			sql = "SELECT * FROM post JOIN user_detail USING(us_num) WHERE post_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -169,10 +171,12 @@ public class PostDAO {
 			if(rs.next()) {
 				post = new PostVO();
 				post.setPost_num(post_num);
+				post.setUs_img(rs.getString("us_img"));
 				post.setPost_content(rs.getString("post_content"));
 				post.setPost_img(rs.getString("post_img"));
 				post.setUs_nickname(rs.getString("us_nickname"));
 				post.setPost_date(rs.getDate("post_date"));
+				post.setUs_num(rs.getLong("us_num"));
 				post.setPost_title(rs.getString("post_title"));
 				post.setPost_modifydate("post_modifydate");
 			}

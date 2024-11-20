@@ -8,6 +8,7 @@
 <meta charset="UTF-8">
 <title>꼬박꼬박 커뮤니티</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
 <%-- 부트스트랩 링크 --%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -20,7 +21,7 @@
 	window.onload=function(){
 		//변수 지정
 		const myForm = document.getElementById('search_form');
-		//이벤트 연력
+		//이벤트 연결
 		myForm.onsubmit=function(){
 			const keyword = getElementById('keyword');
 			if(keyword.value.trim()==''){
@@ -66,7 +67,7 @@
 
 
 	<%-- 부트스트랩 버튼  --%>
-			<div class="btn-group" role="group"
+			<div id="search_form" class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
 				<button type="button" class="btn btn-light">🔍</button>
 
@@ -82,7 +83,7 @@
 
 				<button type="button" class="btn btn-light">검색하기</button>
 			</div>
-			
+		
 	<%-- 글 작성 버튼 --%>
 			<div class="top-list-space align-right">
 				<c:if test="${!empty us_num}">
@@ -97,7 +98,7 @@
 						onclick="location.href='writeForm.do'">
 				</c:if>
 			</div>
-
+		</div>
 
 	<%-- 게시글 --%>
 			<c:if test="${count==0}">
@@ -124,8 +125,6 @@
 				</c:forEach>
 			</c:if>
 
-
-		</div>
 	</div>
 </body>
 </html>
