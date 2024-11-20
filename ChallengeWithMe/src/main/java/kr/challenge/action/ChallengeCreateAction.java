@@ -20,25 +20,39 @@ public class ChallengeCreateAction implements Action{
 			return "redirect:/xuser/loginForm.do";
 		}
 		
+		request.setCharacterEncoding("utf-8");
+		
+		System.out.println("1." + request.getParameter("chc_title"));
+		System.out.println("2." + request.getParameter("chc_desc"));
+		System.out.println("3." + request.getParameter("start"));
+		System.out.println("4." + request.getParameter("end"));
+		System.out.println("5." + request.getParameter("img"));
+		System.out.println("6." + request.getParameter("min"));
+		System.out.println("7." + request.getParameter("0"));
+		System.out.println("8." + request.getParameter("visi"));
+		System.out.println("9." + request.getParameter("chc_price"));
+		System.out.println("10." + request.getParameter("max"));
+		System.out.println("11." + request.getParameter("chc_authd"));
+		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
 		String title = request.getParameter("chc_title");
-		String desc = request.getParameter("chc_desc"); //o
-		String start = request.getParameter("chc_start");
-		String end = request.getParameter("chc_end");
-		String img = request.getParameter("chc_img"); //o
-		int min = Integer.parseInt(request.getParameter("chc_min"));
-		int person = Integer.parseInt(request.getParameter("chc_person"));
-		int visi = Integer.parseInt(request.getParameter("chc_visi"));//o
-		int trans_bal = Integer.parseInt(request.getParameter("chc_trans_bal"));
-		int official = Integer.parseInt(request.getParameter("chc_official")); //o
-		String ch_status = request.getParameter("chc_ch_status");//o
-		Long user_num =  Long.parseLong(request.getParameter("chc_us_num"));//o
-		Long cate_num =  Long.parseLong(request.getParameter("chc_cate_num")); //o
-		int max = Integer.parseInt(request.getParameter("chc_max")); //o
-		int ch_like = 0; //o
-		int ch_view = 0; //o
-		String ch_authd = request.getParameter("ch_authd"); //o
+		String desc = request.getParameter("chc_desc"); 
+		String start = request.getParameter("start");
+		String end = request.getParameter("end");
+		String img = request.getParameter("img"); 
+		int min = Integer.parseInt(request.getParameter("min"));
+		int person = 0;
+		int visi = Integer.parseInt(request.getParameter("visi"));
+		int trans_bal = Integer.parseInt(request.getParameter("chc_price"));
+		int official = 0; 
+		String ch_status = "before";
+		Long user_num =  us_num;
+		Long cate_num =  0L; 
+		int max = Integer.parseInt(request.getParameter("max")); 
+		int ch_like = 0; 
+		int ch_view = 0; 
+		String ch_authd = request.getParameter("chc_authd"); 
 		
 		ChallengeVO vo = new ChallengeVO();
 		
@@ -62,7 +76,8 @@ public class ChallengeCreateAction implements Action{
 		
 		dao.createChallenge(vo);
 		
-		return "challenge/challenge_create.jsp";
+		
+		return "/challenge_create.jsp";
 	}
 
 }

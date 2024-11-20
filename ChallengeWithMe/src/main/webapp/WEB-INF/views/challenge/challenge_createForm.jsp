@@ -18,12 +18,14 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 	<!-- =====================form 시작 ============================ -->
-		<form id="create_form">
+		<form id="create_form" action="challengeCreate.do" method="post">
 			<div class="chc-one">
 				<div class="chc-title">챌린지 개설</div>
 				<div class="chc-visi">
-					<img>
-					<p>공개</p>
+					<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
+					<p id="visi_text">공개</p>
+					<input type="hidden" name="visi" id="visiState" value="1">
+    				
 				</div>
 			</div>
 			<div class="chc-two">
@@ -64,12 +66,14 @@
 				<div class="chc-image">
 				
 					<div class="image">
-						<img id="previewImage" src="${pageContext.request.contextPath}" alt="이미지 미리보기" style="max-width: 100%;" />
-						<p><b>이미지 등록</b></p>
+						<img id="previewImage" src="" alt="이미지 미리보기" />
+						<button class="image-reselectBtn">사진 재선택</button>
+						<p class="image-text"><b>이미지 등록</b></p>
 						<div class="chc-imageBtn">
 							<input type="file" id="fileInput" accept="image/*" style="display:none;" />
-							<button class="imageBtn" id="imageBtn">파일 찾기</button>
+							<button class="imageBtn" id="imageBtn">사진 선택</button>
 						</div>
+						<input type="hidden" name="img" id="photoPath" value="">
 					</div>
 				
 				</div>
@@ -119,11 +123,10 @@
 			<div class="chc-six">
 				<div class="extra-info shadow-effect">
 					<ul>
-						<li><label>최소인원</label> <input type="text" name="min" class="extra-input" id="chc_people" placeholder="클릭 후 입력"></li>
-						<li><label>최대인원</label> <input type="text" name="max" class="extra-input" id="chc_people" placeholder="클릭 후 입력"></li>
+						<li><label>최소인원</label> <input type="text" name="min" class="extra-input" id="min" placeholder="클릭 후 입력"></li>
+						<li><label>최대인원</label> <input type="text" name="max" class="extra-input" id="max" placeholder="클릭 후 입력"></li>
 						<li><label>고정 예치금</label> <input type="text" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력"></li>
-						<li><label>챌린지 기간</label> <input type="text" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)"> 
-						<input type="text" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)"></li>
+						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)"></li>
 						<li><label>참여 코드</label> EXAMPLE CODE</li>
 					</ul>
 				</div>
@@ -145,7 +148,7 @@
 
 
 			<div class="chc-end align-center">
-				<button class="submit-btn" type="submit">개설하기</button>
+				<input class="submit-btn" type="submit" value="개설하기">
 			</div>
 		</form>
 		<!-- =====================form 끝 ============================ -->
