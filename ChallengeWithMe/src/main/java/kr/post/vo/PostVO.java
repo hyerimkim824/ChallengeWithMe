@@ -11,6 +11,15 @@ public class PostVO {
 	private Date post_date;//글 작성일
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
+	private String post_view;//글 조회수
+	private String post_modifydate;//글 수정일
+	
+	public String getPost_modifydate() {
+		return post_modifydate;
+	}
+	public void setPost_modifydate(String post_modifydate) {
+		this.post_modifydate = post_modifydate;
+	}
 	public long getPost_num() {
 		return post_num;
 	}
@@ -58,6 +67,13 @@ public class PostVO {
 	}
 	public void setUs_img(String us_img) {
 		this.us_img = us_img;
+	}
+	
+	public String getPost_view() {
+		return post_view;
+	}
+	public void setPost_view(String post_view) {
+		this.post_view = post_view;
 	}
 	@Override
 	public String toString() {

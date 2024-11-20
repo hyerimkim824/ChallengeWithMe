@@ -15,7 +15,8 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		
+		<div>개설완료</div>
+		<button onclick="href.location='challengeList.do'">돌아가기</button>;
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

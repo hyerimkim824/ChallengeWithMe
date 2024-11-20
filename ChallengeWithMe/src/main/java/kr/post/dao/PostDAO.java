@@ -28,15 +28,14 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//sql문 작성
-			sql = "INSERT INTO post (post_num,post_img,post_title,post_content,us_num) VALUES (post_seq.nextval,?,?,?,?,?)";
+			sql = "INSERT INTO post (post_num,post_img,post_title,post_content,us_num) VALUES (post_seq.nextval,?,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setLong(1, post.getPost_num());
-			pstmt.setString(2, post.getUs_img());
-			pstmt.setString(3, post.getPost_title());
-			pstmt.setString(4, post.getPost_content());
-			pstmt.setLong(5, post.getUs_num());
+			pstmt.setString(1, post.getPost_img());
+			pstmt.setString(2, post.getPost_title());
+			pstmt.setString(3, post.getPost_content());
+			pstmt.setLong(4, post.getUs_num());
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
@@ -126,8 +125,10 @@ public class PostDAO {
 			while(rs.next()) {
 				PostVO post = new PostVO();
 				
+				post.setPost_num(rs.getLong("post_num"));
 				post.setPost_title(rs.getString("post_title"));
 				post.setPost_date(rs.getDate("post_date"));
+				post.setUs_num(rs.getLong("us_num"));
 				post.setUs_nickname(rs.getString("us_nickname"));
 				post.setUs_img(rs.getString("us_img"));
 				
@@ -147,9 +148,120 @@ public class PostDAO {
 	
 	
 	//글 상세->한건의 레코드 불러오기
+	public PostVO getpost(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PostVO post = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성-> 프로필 사진,닉네임,등록일,조회수,제목,이미지,내용
+			sql = "SELECT * FROM post JOIN comm ON post.post_num = comm.post_num WHERE post.post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, post_num);
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				post = new PostVO();
+				post.setPost_num(post_num);
+				post.setPost_content(rs.getString("post_content"));
+				post.setPost_img(rs.getString("post_img"));
+				post.setUs_nickname(rs.getString("us_nickname"));
+				post.setPost_date(rs.getDate("post_date"));
+				post.setPost_title(rs.getString("post_title"));
+				post.setPost_modifydate("post_modifydate");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return post;
+	}
+	
 	//조회수 증가
+	public void viewcount(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null; 
+		try {
+			//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE post SET post_view=post_view+1 WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, post_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
 	//파일 삭제
+	public void deleteFile(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "UPDATE post SET post_img='' WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, post_num);
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//글 수정
+	public void modifyPost(PostVO post)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		String sub_sql = null;
+		int cnt = 0;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			if(post.getPost_img()!=null && !"".equals(post.getPost_img())) {
+				sub_sql += ",post_img=?";
+			}
+			//sql문 작성
+			sql = "UPDATE post SET title=?,content=?,modifydate=SYSDATE" + sub_sql + "WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(++cnt, post.getPost_title());
+			pstmt.setString(++cnt, post.getPost_content());
+			if(post.getPost_img()!=null && !"".equals(post.getPost_img())) {
+				pstmt.setLong(++cnt, post.getPost_num());
+			}
+			pstmt.setLong(++cnt, post.getPost_num());
+			//SQL문 실행
+			pstmt.executeUpdate();			
+			}catch(Exception e) {
+				throw new Exception(e);
+			}finally {
+				DBUtil.executeClose(null, pstmt, conn);
+			}
+	
 	//글 삭제
 	//좋아요 개수
 	//회원번호와 게시물 번호를 이용한 좋아요 정보
@@ -163,4 +275,5 @@ public class PostDAO {
 	//댓글 상세
 	//댓글 수정
 	//댓글 삭제
+	}
 }

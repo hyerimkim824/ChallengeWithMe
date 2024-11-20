@@ -27,9 +27,10 @@ public class WriteAction implements Action{
 		//자바빈(VO) 생성
 		PostVO post = new PostVO();
 		post.setPost_title(request.getParameter("post_title"));
+		post.setPost_content(request.getParameter("post_content"));
 		//post.setDate(request.getParameter("date"));
 		post.setUs_nickname(request.getParameter("us_nickname"));
-		post.setUs_img(FileUtil.uploadFile(request, "us_img"));
+		post.setPost_img(FileUtil.uploadFile(request, "post_img"));
 		post.setUs_num(us_num);//회원번호
 		
 		PostDAO dao = PostDAO.getInstance();

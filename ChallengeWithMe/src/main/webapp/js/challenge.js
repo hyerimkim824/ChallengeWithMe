@@ -1,5 +1,8 @@
 $(function(){
 	
+	let visi = true;
+	
+	
 	$('.dropdown-item').click(function(e) {
 		e.preventDefault(); // 기본 동작 방지
 
@@ -18,12 +21,54 @@ $(function(){
 	           
 	       });
 	   });
-	   
-	   //이미지 등록
-	   $('#imageBtn').click(function(){
-	   			$(this).hide();//수정 버튼 감추기
-				$('#fileInput').click();
-	   		});
+	
+	$('.chc-visi').click(function(){
+		var contextPath = $('#contextPath').val();       
+		if (visi) {
+		    $('#visi_img').attr('src', contextPath + '/images/lock.svg');
+		    $('#visi_text').html("비공개");
+			$('#visiState').val(0);
+		    visi = false;
+		} else {
+		    $('#visi_img').attr('src', contextPath + '/images/unlock.svg');
+		    $('#visi_text').html("공개");
+			$('#visiState').val(1);
+		    visi = true;
+		}
+	});   
+	      
+	//이미지 등록
+	$('#imageBtn').click(function(e){
+		e.preventDefault();
+		$('#fileInput').click();
+	});
+		
+			
+	let photo_path = $('#previewImage').attr('src');	
+	$('#fileInput').change(function(){
+		$('#previewImage').show();
+		$('.image-reselectBtn').show();
+		$('.image-text').hide();
+		$('#imageBtn').hide();
+			
+		let my_photo = this.files[0];
+		if(!my_photo){
+			//선택을 취소하면 원래 처음 화면으로 되돌림
+			$('#previewImage').attr('src',photo_path);
+			alert('파일 선택 안됨');
+			return;
+		}
+			
+		//화면에서 이미지 미리보기
+		const reader = new FileReader();
+		reader.readAsDataURL(my_photo);
+						
+		reader.onload=function(){
+			$('#previewImage').attr('src',reader.result);
+			let updated_path = $('#previewImage').attr('src');
+			$('#photoPath').val(updated_path);
+		};		
+	});
 	   		
 	
 });

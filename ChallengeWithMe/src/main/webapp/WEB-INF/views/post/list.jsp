@@ -7,8 +7,7 @@
 <head>
 <meta charset="UTF-8">
 <title>꼬박꼬박 커뮤니티</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/style.css" type="text/css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <%-- 부트스트랩 링크 --%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -41,8 +40,10 @@
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 		crossorigin="anonymous"></script>
+		
+		<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	
 	<div class="list-page-main">
-		<%-- <jsp:include page="/WEB-INF/views/commom/header.jsp"/> --%>
 		<div class="content-main">
 			<h4>꼬박꼬박 커뮤니티</h4>
 			<%-- 부트스트랩 버튼 사용 확정 시 삭제할 것
@@ -64,7 +65,7 @@
 			</form> --%>
 
 
-			<%-- 부트스트랩 버튼  --%>
+	<%-- 부트스트랩 버튼  --%>
 			<div class="btn-group" role="group"
 				aria-label="Button group with nested dropdown">
 				<button type="button" class="btn btn-light">🔍</button>
@@ -81,7 +82,8 @@
 
 				<button type="button" class="btn btn-light">검색하기</button>
 			</div>
-
+			
+	<%-- 글 작성 버튼 --%>
 			<div class="top-list-space align-right">
 				<c:if test="${!empty us_num}">
 					<input type="button" value="글 작성"
@@ -96,11 +98,13 @@
 				</c:if>
 			</div>
 
+
+	<%-- 게시글 --%>
 			<c:if test="${count==0}">
 				<div class="result-display">작성한 게시물이 없습니다.</div>
 			</c:if>
 
-			<%-- 부트스트랩 카드 --%>
+	
 			<c:if test="${count>0}">
 				<c:forEach var="post" items="${post}">
 					<div class="post-list">
@@ -110,12 +114,11 @@
 							<span class="post-list-nickname">${post.us_nickname}</span> 
 							<span class="post-list-date">${post.post_date}</span>
 							<span class="post-list-like">좋아요</span>
-							<span class="post-list-re">댓글</span>
 							<span class="post-list-view">조회수</span>
 						</div>
 						
 						<div class="post-list-bottom">
-								<p>"${post.post_title}"</p>
+							<a href="detail.do?post_num=${post.post_num}">${post.post_title}</a>
 						</div>
 					</div>
 				</c:forEach>
