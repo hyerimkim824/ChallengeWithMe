@@ -22,6 +22,7 @@ public class DetailAction implements Action{
 
 		PostVO post = dao.getpost(post_num);
 		System.out.println(post);
+		
 		//HTML 태그를 허용하지 않음
 		post.setPost_title(StringUtil.useNoHtml(post.getPost_title()));
 		//HTML 태그를 허용하지 않으면서 줄바꿈 처리
@@ -29,6 +30,13 @@ public class DetailAction implements Action{
 
 		request.setAttribute("post", post);
 
+		//이미지는 받아와지는데 upload폴더에 사진이 없어서 안나온다고 함
+		System.out.println("PostVO us_img: " + post.getUs_img());
+		//수정일 체크
+		System.out.println("Post Modify Date: " + post.getPost_modifydate());
+		//조회수 체크
+		System.out.println("Post View Count: " + post.getPost_view());
+		
 		return "post/detail.jsp";
 	}
 

@@ -20,7 +20,7 @@ public class UpdateAction implements Action{
 			return "redirect:/xuser/loginForm.do";
 		}
 		//전송된 데이터 인코딩 처리
-		request.setCharacterEncoding("urf-8");
+		request.setCharacterEncoding("UTF-8");
 		//전송된 데이터 반환
 		long post_num = Long.parseLong(request.getParameter("post_num"));
 		

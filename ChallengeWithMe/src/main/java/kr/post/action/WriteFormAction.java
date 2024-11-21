@@ -5,6 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.mypage.dao.MyPageDAO;
+import kr.xuser.vo.XuserVO;
+
 
 public class WriteFormAction implements Action{
 
@@ -16,8 +19,20 @@ public class WriteFormAction implements Action{
 			return "redirect:/xuser/loginForm.jsp";
 		}
 		
-		//로그인이 된 경우
+		MyPageDAO dao = MyPageDAO.getInstance();
+		XuserVO user = dao.getMyInfo(us_num);
+		
+		String us_img = user.getImg();
+		String us_nickname = user.getNickname();
+		
+		request.setAttribute("us_img", us_img);
+		request.setAttribute("us_nickname", us_nickname);
+
+
 		return "post/writeForm.jsp";
 	}
 
+
 }
+
+

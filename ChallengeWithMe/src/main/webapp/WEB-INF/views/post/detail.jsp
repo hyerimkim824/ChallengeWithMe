@@ -39,7 +39,15 @@
 			<%-- 댓글 갯수 --%>
 			
 			<%-- 조회수 --%>
-			<li class="post-view">${post.post_view}</li>
+			<li class="post-view">
+			조회수 : 
+			<c:if test="${!empty post.post_view}">
+			${post.post_view}
+			</c:if>
+			<c:if test="${empty post.post_view}">
+			0
+			</c:if>
+			</li>
 		</ul>
 		</div>
 			<hr size="1" noshade="noshade" width="100%">

@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.post.vo.PostCommVO;
 import kr.post.vo.PostVO;
 import kr.util.DBUtil;
 import kr.util.StringUtil;
@@ -111,7 +112,8 @@ public class PostDAO {
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
-					+ "(SELECT * FROM post JOIN user_detail USING(us_num) " + sql_sub + " ORDER BY post_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
+					+ "(SELECT * FROM post JOIN user_detail USING(us_num) " + sql_sub 
+					+ " ORDER BY post_num DESC)a) WHERE rnum >= ? AND rnum <= ?";
 			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
@@ -133,6 +135,7 @@ public class PostDAO {
 				post.setUs_num(rs.getLong("us_num"));
 				post.setUs_nickname(rs.getString("us_nickname"));
 				post.setUs_img(rs.getString("us_img"));
+				post.setPost_view(rs.getLong("post_view"));
 				
 				list.add(post);
 			}
@@ -144,6 +147,7 @@ public class PostDAO {
 			
 		}
 		System.out.println(list);
+		
 		return list;
 	}
 	
@@ -178,7 +182,8 @@ public class PostDAO {
 				post.setPost_date(rs.getDate("post_date"));
 				post.setUs_num(rs.getLong("us_num"));
 				post.setPost_title(rs.getString("post_title"));
-				post.setPost_modifydate("post_modifydate");
+				post.setPost_modifydate(rs.getDate("post_modifydate"));
+				post.setPost_view(rs.getLong("post_view"));
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -197,7 +202,7 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션을 할당
 			conn = DBUtil.getConnection();
 			//SQL문 작성
-			sql = "UPDATE post SET post_view=post_view+1 WHERE post_num=?";
+			sql = "UPDATE post SET post_view = post_view+ 1 WHERE post_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
@@ -265,8 +270,40 @@ public class PostDAO {
 			}finally {
 				DBUtil.executeClose(null, pstmt, conn);
 			}
+	}
 	
 	//글 삭제
+	public void deletePost(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		PreparedStatement pstmt2 = null;
+		PreparedStatement pstmt3 = null;
+		String sql = null;
+		try {
+			//커넥션 풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//오토커밋 해제
+			conn.setAutoCommit(false);
+			//SQL문 작성
+			sql = "DELETE FROM post where post_num=?";
+			//?에 데이터 바인딩
+			pstmt3 = conn.prepareStatement(sql);
+			pstmt3.setLong(1, post_num);
+			pstmt3.executeUpdate();
+			//예외 발생 없이 정상적으로 모든 SQL문이 실행
+			conn.commit();
+		}catch(Exception e) {
+			//SQL문이 하나라도 예외가 발생하면 롤백 처리
+			conn.rollback();
+			throw new Exception (e);
+		}finally {
+			DBUtil.executeClose(null, pstmt3, null);
+			DBUtil.executeClose(null, pstmt2, null);
+			DBUtil.executeClose(null, pstmt, null);
+		}
+	}
+	
+
 	//좋아요 개수
 	//회원번호와 게시물 번호를 이용한 좋아요 정보
 	//좋아요 등록
@@ -274,10 +311,65 @@ public class PostDAO {
 	//좋아요 목록(=찜 목록)
 	//내가 선택한 좋아요 목록 -> 게시판 목록의 정보 보여져야함 List<PostVO>
 	//댓글 등록
+	public void insertPostReply(PostCommVO postReply) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "INSERT INTO comm(com_rownum,com_num,post_num,us_num,com_content,date)"
+					+ "VALUES (com_seq.nextval,?,?,?,?,?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, postReply.getCom_num());
+			pstmt.setLong(2, postReply.getPost_num());
+			pstmt.setLong(3, postReply.getUs_num());
+			pstmt.setString(4, postReply.getCom_content());
+			pstmt.setDate(5, postReply.getDate());
+			//SQL문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.getConnection();
+		}
+	}
 	//댓글 개수
+	public int getPostReplyCount(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//SQL문 작성
+			sql = "SELECT COUNT(*) FROM comm WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(0, post_num);		
+			//SQL문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.getConnection();
+		}
+		return count;
+	}
+	
 	//댓글 목록
 	//댓글 상세
 	//댓글 수정
 	//댓글 삭제
-	}
+	
 }

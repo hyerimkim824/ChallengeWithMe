@@ -30,10 +30,12 @@ public class ListAction implements Action{
 		if(count>0) {
 			list = dao.getListPost(page.getStartRow(), page.getEndRow(), keyfield, keyword);
 		}
-			
+		
+		
 		request.setAttribute("count", count);
 		request.setAttribute("post", list);
 		request.setAttribute("page", page.getPage());
+		
 		
 		return "/post/list.jsp";
 	}

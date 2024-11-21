@@ -38,13 +38,13 @@
 <%-- 프로필 사진 유저닉네임 날짜 좋아요 댓글개수 조회수 표시 --%>
 <div>
 	<div class="writeform-header">
-		<c:if test="${!empty post.us_img}">
-		<img src="${pageContext.request.contextPath}/upload/${post.us_img}" width="40" height="40" class="my-photo">
+		<c:if test="${!empty us_img}">
+		<img src="${pageContext.request.contextPath}/upload/${us_img}" width="40" height="40" class="my-photo">
 		</c:if>
-		<c:if test="${empty post.us_img}">
+		<c:if test="${empty us_img}">
 		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 		</c:if>
-		<span class="writeform-nickname">${post.us_nickname}</span>
+		<span class="writeform-nickname">${us_nickname}</span>
 	</div>
 		<hr size="1" noshade="noshade" width="100%">
 <%-- 제목, 내용 --%>

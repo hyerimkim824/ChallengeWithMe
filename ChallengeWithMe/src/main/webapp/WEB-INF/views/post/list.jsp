@@ -47,7 +47,7 @@
 	<div class="list-page-main">
 		<div class="content-main">
 			<h4>꼬박꼬박 커뮤니티</h4>
-			<%-- 부트스트랩 버튼 사용 확정 시 삭제할 것
+	<%-- 부트스트랩 버튼 사용 확정 시 삭제할 것
 			<form id="search_form" action="list.do" method="get">
 				<ul class = "search">
 					<li>
@@ -109,17 +109,32 @@
 			<c:if test="${count>0}">
 				<c:forEach var="post" items="${post}">
 					<div class="post-list">
-						
 						<div class="post-list-header">
-							<span class="post-list-img">${post.us_img}</span> 
+							<c:if test="${!empty post.us_img}">
+							<img src="${pageContext.request.contextPath}/upload/${post.us_img}" width="40" height="40" class="my-photo">
+							</c:if>
+							<c:if test="${empty post.us_img}">
+							<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+							</c:if>
 							<span class="post-list-nickname">${post.us_nickname}</span> 
 							<span class="post-list-date">${post.post_date}</span>
-							<span class="post-list-like">좋아요</span>
-							<span class="post-list-view">조회수</span>
+							<%-- <span class="post-list-like">좋아요</span> --%>
+							<%-- 조회수 --%>
+							<span class="post-list-view">
+							조회수 : 
+							<c:if test="${!empty post.post_view}">
+							${post.post_view}
+							</c:if>
+							<c:if test="${empty post.post_view}">
+							0
+							</c:if>
+							</span>
+							<hr size="1" noshade="noshade" width="100%">
 						</div>
 						
 						<div class="post-list-bottom">
 							<a href="detail.do?post_num=${post.post_num}">${post.post_title}</a>
+							<hr size="1" noshade="noshade" width="100%">
 						</div>
 					</div>
 				</c:forEach>
