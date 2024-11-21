@@ -30,6 +30,7 @@ $(function(){
 		else if($(this).hasClass('create-dd')){
 			$('#cate_num').val(category);
 			$('.create-dd-btn').text(categoryName);
+			$('#cat-warn').hide();
 			
 		}else if($(this).hasClass('auth-dd')){
 			$('#ah_num').val(auth);
@@ -38,15 +39,14 @@ $(function(){
 	   
 	   });
 	
-	$('.chc-visi').click(function(){
-		var contextPath = $('#contextPath').val();       
+	$('.chc-visi').click(function(){ 
 		if (visi) {
-		    $('#visi_img').attr('src', contextPath + '/images/lock.svg');
+		    $('#visi_img').attr('src', '../images/lock.svg');
 		    $('#visi_text').html("비공개");
 			$('#visiState').val(0);
 		    visi = false;
 		} else {
-		    $('#visi_img').attr('src', contextPath + '/images/unlock.svg');
+		    $('#visi_img').attr('src', '../images/unlock.svg');
 		    $('#visi_text').html("공개");
 			$('#visiState').val(1);
 		    visi = true;
@@ -95,6 +95,28 @@ $(function(){
 			$('#imageBtn').hide();
 		}
 	}
+	
+	$('#create_form').submit(function(e){
+		
+		
+		if($('#cate_num').val() == "" && $('#ah_num').val() != ""){
+			$('.create-dd-btn')[0].scrollIntoView({behavior : 'smooth'});
+			$('.cat-warn').show();
+			$('.cat-dd').hide();
+			e.preventDefault();
+		}
+		else if($('#cate_num').val() != "" && $('#ah_num').val() == ""){
+			$('.info-title')[0].scrollIntoView({behavior : 'smooth'});
+			$('.auth-warn').show();
+			$('.cat-warn').hide();
+			e.preventDefault();
+		}else if($('#cate_num').val() == "" && $('#ah_num').val() == ""){
+			$('.create-dd-btn')[0].scrollIntoView({behavior : 'smooth'});
+			$('.auth-warn').show();
+			$('.cat-warn').show();
+			e.preventDefault();
+		}
+	});
 	   		
 	
 });

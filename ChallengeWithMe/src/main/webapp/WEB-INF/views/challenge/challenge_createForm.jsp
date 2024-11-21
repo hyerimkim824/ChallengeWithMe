@@ -23,7 +23,7 @@
 				<div class="chc-title">챌린지 개설</div>
 				<div class="chc-visi">
 					<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
-					<p id="visi_text">공개</p>
+					<div id="visi_text">공개</div>
 					<input type="hidden" name="visi" id="visiState" value="1">
     				
 				</div>
@@ -37,13 +37,13 @@
 						style="background-color: #FFE066" data-bs-toggle="dropdown"
 						aria-expanded="true">
 						<c:if test="${!empty cat_name}">
-					${cat_name}
-				</c:if>
+							${cat_name}
+						</c:if>
 						<c:if test="${empty cat_name}">
-					카테고리
-				</c:if>
+							카테고리
+						</c:if>
 					</button>
-
+					
 					<ul class="dropdown-menu" style="background-color: #FFFAE5">
 						<li><a class="dropdown-item create-dd" id="cat_health" data-category="1">건강</a></li>
 						<li><a class="dropdown-item create-dd" id="cat_food" data-category="2">식습관</a></li>
@@ -51,8 +51,10 @@
 					</ul>
 					<input type="hidden" id="cate_num" name="cate_num">
 				</div>
+				
 				<div class="auth-dur">인증주기 <input class="authd-input" name="chc_authd" required>일마다</div> 
 			</div>
+			<p class="warning cat-warn">카테고리가 선택되지 않았습니다!</p>
 			<div class="chc-four">
 				<div>
 					<input type="text" id="chc_title" name="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요" required>
@@ -97,7 +99,7 @@
 									</c:if>
 								</button>
 
-								<ul class="dropdown-menu" style="background-color: #FFFAE5">
+								<ul class="dropdown-menu" id="auth-dd" style="background-color: #FFFAE5">
 									<li><a class="dropdown-item auth-dd" id="auth_pic" data-auth="1">사진
 											인증</a></li>
 									<li><a class="dropdown-item auth-dd" id="auth_time" data-auth="2">시간
@@ -121,6 +123,7 @@
 					</div>
 				</div>
 			</div>
+			<p class="warning auth-warn">인증방식이 선택되지 않았습니다!</p>
 			<div class="chc-six">
 				<div class="extra-info shadow-effect">
 					<ul>

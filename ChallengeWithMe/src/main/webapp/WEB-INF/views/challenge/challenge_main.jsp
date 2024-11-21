@@ -15,16 +15,21 @@
 		<div class="challenge_title">
 			<p>당신의 도전을 환영합니다</p>
 		</div>
-		<div id="ch_container">
+		<div id="menu_container">
 			<div class="ch-menu">
+				<a href="${pageContext.request.contextPath}/challenge/challengeList.do">
 				<img class="ch-img"
 					src="${pageContext.request.contextPath}/images/face.png">
-				<p><a href="${pageContext.request.contextPath}/challenge/challengeList.do">챌린지 참여</a></p>
+				</a>
+				<p>챌린지 참여</p>
 			</div>
 			<div class="ch-menu">
+			<a href="${pageContext.request.contextPath}/challenge/challengeCreateForm.do">
 				<img class="ch-img"
 					src="${pageContext.request.contextPath}/images/face.png">
+			</a>
 				<p>챌린지 개설</p>
+			
 			</div>
 			<div class="ch-menu">
 				<img class="ch-img"

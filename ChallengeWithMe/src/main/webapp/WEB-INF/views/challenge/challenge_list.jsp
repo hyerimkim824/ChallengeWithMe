@@ -59,17 +59,13 @@
 			<c:if test="${!empty chall_list}">
 				<c:forEach var="list" items="${chall_list}">
 					<div class="ch-item">
-					
 						<div class="ch-category">${list.cate_name}</div>
 						<div class="ch-background">
 							<img class="ch-bgImg"
 								src="${pageContext.request.contextPath}/images/study.jpg">
 							<p class="ch-title">${list.ch_title}</p>
 							<div class="ch-dueDate">D-10</div>
-
 						</div>
-
-
 						<div class="ch-info">
 							<div class="ch-people">
 								<img class="people-img"

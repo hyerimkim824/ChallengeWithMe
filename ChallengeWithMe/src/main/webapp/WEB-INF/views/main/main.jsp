@@ -14,11 +14,11 @@
 	<div class="page-main">
 		<div class="space50-div"></div>
 		<div class="m-title-container align-center">
-			<h1>작심삼일? 이제는 '끝'</h1>
+			<h1>작심삼일? 이제는 끝!</h1>
 		</div>
 		<div class="m-header1-container">
 			<div class="header1-box box1">
-				<div class="header-item item1">꼬박꼬박은?</div>
+				<div class="header-item item1 align-left">꼬박꼬박은?</div>
 				<div class="header-item item2">꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다. 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요</div>
 				<div class="header-item item3"><button value="챌린지 시작하기"></button></div>
 			</div>
