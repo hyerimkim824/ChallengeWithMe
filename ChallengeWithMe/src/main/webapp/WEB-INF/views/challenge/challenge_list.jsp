@@ -58,13 +58,37 @@
 		<div class="ch-container">
 			<c:if test="${!empty chall_list}">
 				<c:forEach var="list" items="${chall_list}">
+					
 					<div class="ch-item">
+					<a href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">	
 						<div class="ch-category">${list.cate_name}</div>
 						<div class="ch-background">
-							<img class="ch-bgImg"
-								src="${pageContext.request.contextPath}/images/study.jpg">
+							<c:if test="${empty list.ch_img}">
+								<c:choose>
+									<c:when test="${list.cate_num == 1}">
+										<img class="ch-bgImg" src="../images/health.jpg"
+											style="max-width: 100%; max-height: 100%;" />
+									</c:when>
+									<c:when test="${list.cate_num == 2}">
+										<img class="ch-bgImg" src="../images/food.jpg"
+											style="max-width: 100%; max-height: 100%;" />
+									</c:when>
+									<c:when test="${list.cate_num == 3}">
+										<img class="ch-bgImg" src="../images/self-develop.jpg"
+											style="max-width: 100%; max-height: 100%;" />
+									</c:when>
+									<c:otherwise>
+										<img class="ch-bgImg" src="../images/face.jpg"
+											style="max-width: 100%; max-height: 100%;" />
+									</c:otherwise>
+								</c:choose>
+							</c:if>
+							<c:if test="${!empty list.ch_img}">
+								<img class="ch-bgImg"
+								src="${pageContext.request.contextPath}/upload/${list.ch_img}" style="max-width: 100%; max-height: 100%;">
+							</c:if>
 							<p class="ch-title">${list.ch_title}</p>
-							<div class="ch-dueDate">D-10</div>
+							<div class="ch-dueDate">D-${list.dateDifference}</div>
 						</div>
 						<div class="ch-info">
 							<div class="ch-people">
@@ -83,7 +107,9 @@
 								<p>${list.ch_view}</p>
 							</div>
 						</div>
+					</a>	
 					</div>
+					
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty chall_list}">

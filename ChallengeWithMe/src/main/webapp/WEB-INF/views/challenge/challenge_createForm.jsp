@@ -18,7 +18,7 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 	<!-- =====================form 시작 ============================ -->
-		<form id="create_form" action="challengeCreate.do" method="post">
+		<form id="create_form" action="challengeCreate.do" method="post" enctype="multipart/form-data">
 			<div class="chc-one">
 				<div class="chc-title">챌린지 개설</div>
 				<div class="chc-visi">
@@ -60,7 +60,12 @@
 					<input type="text" id="chc_title" name="chc_title" class="shadow-effect" placeholder="제목을 입력해주세요" required>
 				</div>
 				<div class="nickname-container">
-					<img class="user-img">
+					<c:if test="${us_img == null}">
+						<img class="user-img" src="${pageContext.request.contextPath}/images/face.png">
+					</c:if>
+					<c:if test="${us_img != null}">
+						<img class="user-img" src="${pageContext.request.contextPath}/images/${us_img}">
+					</c:if>
 					<p class="user-nickname">${us_nickname}</p>
 				</div>
 			</div>
@@ -72,10 +77,10 @@
 						<button class="image-reselectBtn">사진 재선택</button>
 						<p class="image-text"><b>이미지 등록</b></p>
 						<div class="chc-imageBtn">
-							<input type="file" id="fileInput" accept="image/*" style="display:none;" />
+							<input type="file" name="img" id="fileInput" accept="image/*" style="display:none;" />
 							<button class="imageBtn" id="imageBtn">사진 선택</button>
 						</div>
-						<input type="hidden" name="img" id="photoPath">
+						
 					</div>
 				
 				</div>

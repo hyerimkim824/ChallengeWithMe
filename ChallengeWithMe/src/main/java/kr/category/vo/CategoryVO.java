@@ -1,14 +1,16 @@
 package kr.category.vo;
 
 public class CategoryVO {
-	private long cate_num;
+	private int cate_num;
 	private String cate_img;
 	private String cate_name;
 	private String cate_desc;
-	public long getCate_num() {
+	
+	
+	public int getCate_num() {
 		return cate_num;
 	}
-	public void setCate_num(long cate_num) {
+	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
 	}
 	public String getCate_img() {

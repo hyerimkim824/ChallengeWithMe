@@ -36,7 +36,6 @@ public class ChallengeDAO {
 
 			while(rs.next()) {
 				ChallengeVO vo = new ChallengeVO();
-				vo.setCate_num(rs.getLong("cate_num"));
 				vo.setCh_title(rs.getString("ch_title"));
 				vo.setCh_desc(rs.getString("ch_desc"));
 				vo.setCh_start(rs.getString("ch_start"));
@@ -52,7 +51,7 @@ public class ChallengeDAO {
 				vo.setOfficial(rs.getInt("official"));
 				vo.setCh_status(rs.getString("ch_status"));
 				vo.setUs_num(rs.getLong("us_num"));
-				vo.setCate_num(rs.getLong("cate_num"));
+				vo.setCate_num(rs.getInt("cate_num"));
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCh_authd(rs.getInt("ch_authd"));
 				vo.setAh_num(rs.getInt("ah_num"));
@@ -91,7 +90,7 @@ public class ChallengeDAO {
 
 			while(rs.next()) {
 				ChallengeVO vo = new ChallengeVO();
-				vo.setCate_num(rs.getLong("cate_num"));
+				
 				vo.setCh_title(rs.getString("ch_title"));
 				vo.setCh_desc(rs.getString("ch_desc"));
 				vo.setCh_start(rs.getString("ch_start"));
@@ -107,7 +106,7 @@ public class ChallengeDAO {
 				vo.setOfficial(rs.getInt("official"));
 				vo.setCh_status(rs.getString("ch_status"));
 				vo.setUs_num(rs.getLong("us_num"));
-				vo.setCate_num(rs.getLong("cate_num"));
+				vo.setCate_num(rs.getInt("cate_num"));
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCh_authd(rs.getInt("ch_authd"));
 				vo.setAh_num(rs.getInt("ah_num"));
@@ -147,7 +146,7 @@ public class ChallengeDAO {
 			pstmt.setInt(9, vo.getOfficial());
 			pstmt.setString(10, vo.getCh_status());
 			pstmt.setLong(11, vo.getUs_num());
-			pstmt.setLong(12, vo.getCate_num());
+			pstmt.setInt(12, vo.getCate_num());
 			pstmt.setInt(13, vo.getCh_max());
 			pstmt.setInt(14, vo.getCh_authd());
 			pstmt.setInt(15, vo.getAh_num());
@@ -162,5 +161,60 @@ public class ChallengeDAO {
 		
 		                               
 		
+	}
+	
+	//챌린지 상세
+	public ChallengeVO getChallengeDetail(long ch_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		ChallengeVO vo = null;
+		
+		
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM chall JOIN user_detail USING(us_num) JOIN cate ON chall.cate_num = cate.cate_num WHERE chall.ch_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, ch_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				vo = new ChallengeVO();
+				vo.setCh_num(ch_num);
+				vo.setCh_title(rs.getString("ch_title"));
+				vo.setCh_desc(rs.getString("ch_desc"));
+				vo.setCh_start(rs.getString("ch_start"));
+				vo.setCh_end(rs.getString("ch_end"));
+				vo.setCh_img(rs.getString("ch_img"));
+				vo.setCh_min(rs.getInt("ch_min"));
+				vo.setCh_max(rs.getInt("ch_max"));
+				vo.setCh_like(rs.getInt("ch_like"));
+				vo.setCh_view(rs.getInt("ch_view"));
+				vo.setCh_person(rs.getInt("ch_person"));
+				vo.setCh_visi(rs.getInt("ch_visi"));
+				vo.setTrans_bal(rs.getInt("trans_bal"));
+				vo.setOfficial(rs.getInt("official"));
+				vo.setCh_status(rs.getString("ch_status"));
+				vo.setUs_num(rs.getLong("us_num"));
+				vo.setCate_num(rs.getInt("cate_num"));
+				vo.setCate_name(rs.getString("cate_name"));
+				vo.setCh_authd(rs.getInt("ch_authd"));
+				vo.setAh_num(rs.getInt("ah_num"));
+				
+				vo.setUs_nickname(rs.getString("us_nickname"));
+				vo.setUs_img(rs.getString("us_img"));
+				
+				vo.calDate_diff();
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}
+		finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return vo;
 	}
 }

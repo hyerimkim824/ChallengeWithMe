@@ -37,7 +37,7 @@ public class CategoryDAO {
 			list = new ArrayList<CategoryVO>();
 			while(rs.next()) {
 				CategoryVO vo = new CategoryVO();
-				vo.setCate_num(rs.getLong("cate_num"));
+				vo.setCate_num(rs.getInt("cate_num"));
 				vo.setCate_img(rs.getString("cate_img"));
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCate_desc(rs.getString("cate_desc"));
@@ -68,7 +68,7 @@ public class CategoryDAO {
 			vo = new CategoryVO();
 			
 			if(rs.next()) {				
-				vo.setCate_num(rs.getLong("cate_num"));
+				vo.setCate_num(rs.getInt("cate_num"));
 				vo.setCate_img(rs.getString("cate_img"));
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCate_desc(rs.getString("cate_desc"));

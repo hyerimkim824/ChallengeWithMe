@@ -1,7 +1,7 @@
 $(function(){
 	
 	let visi = true;
-	showImg();
+	
 	
 	$('.dropdown-item').click(function(e) {
 		e.preventDefault(); // 기본 동작 방지
@@ -74,15 +74,13 @@ $(function(){
 			alert('파일 선택 안됨');
 			return;
 		}
-			
 		//화면에서 이미지 미리보기
 		const reader = new FileReader();
 		reader.readAsDataURL(my_photo);
 						
 		reader.onload=function(){
 			$('#previewImage').attr('src',reader.result);
-			let updated_path = $('#previewImage').attr('src');
-			$('#photoPath').val(updated_path);
+			
 		};		
 	});
 	
@@ -117,6 +115,9 @@ $(function(){
 			e.preventDefault();
 		}
 	});
-	   		
+	
+	$('.ch-item').click(function(){
+		alert('클릭되었습니다');
+	});	
 	
 });

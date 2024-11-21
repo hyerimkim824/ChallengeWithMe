@@ -1,5 +1,8 @@
 package kr.challenge.vo;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class ChallengeVO {
 	private Long ch_num;
 	private String ch_title;
@@ -17,11 +20,16 @@ public class ChallengeVO {
 	private int official;
 	private String ch_status;
 	private Long us_num;
-	private Long cate_num;
+	private int cate_num;
 	private String cate_name;
 	private int ch_authd;
 	private int ahDetail_num;
 	
+	private String us_nickname;
+	private String us_img;
+	
+	
+	private long dateDifference;
 	
 	public String getCate_name() {
 		return cate_name;
@@ -151,10 +159,10 @@ public class ChallengeVO {
 	}
 	
 	
-	public Long getCate_num() {
+	public int getCate_num() {
 		return cate_num;
 	}
-	public void setCate_num(Long cate_num) {
+	public void setCate_num(int cate_num) {
 		this.cate_num = cate_num;
 	}
 	
@@ -171,4 +179,55 @@ public class ChallengeVO {
 	public void setAh_num(int ah_num) {
 		this.ahDetail_num = ah_num;
 	}
+	
+	public void calDate_diff() {
+		try {
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	        
+	        // 날짜 문자열을 Date 객체로 변환
+	        Date startDate = sdf.parse(ch_start);
+	        Date endDate = sdf.parse(ch_end);
+	        
+	        // 날짜 차이를 계산 (밀리초 단위)
+	        long diffInMillis = endDate.getTime() - startDate.getTime();
+	        
+	        // 밀리초를 일 단위로 변환
+	        long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);
+	        
+	        this.dateDifference = diffInDays;  // 날짜 차이 저장
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    } 
+	}
+	
+	public long getDateDifference() {
+		calDate_diff();
+		return dateDifference;
+	}
+	public void setDateDifference(long dateDifference) {
+		this.dateDifference = dateDifference;
+	}
+	public int getAhDetail_num() {
+		return ahDetail_num;
+	}
+	public void setAhDetail_num(int ahDetail_num) {
+		this.ahDetail_num = ahDetail_num;
+	}
+	public String getUs_nickname() {
+		return us_nickname;
+	}
+	public void setUs_nickname(String us_nickname) {
+		this.us_nickname = us_nickname;
+	}
+	public String getUs_img() {
+		return us_img;
+	}
+	public void setUs_img(String us_img) {
+		this.us_img = us_img;
+	}
+	
+	
+	
+	
+	
 }

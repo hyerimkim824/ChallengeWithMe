@@ -33,8 +33,9 @@ public class ChallengeListAction implements Action{
 			
 			request.setAttribute("cat_name", cat_name);
 		}
-		
+			
 		request.setAttribute("chall_list", chall_list);
+	
 		
 		return "/challenge/challenge_list.jsp";
 	}
