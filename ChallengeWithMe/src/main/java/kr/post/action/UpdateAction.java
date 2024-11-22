@@ -5,9 +5,11 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.mypage.dao.MyPageDAO;
 import kr.post.dao.PostDAO;
 import kr.post.vo.PostVO;
 import kr.util.FileUtil;
+import kr.xuser.vo.XuserVO;
 
 public class UpdateAction implements Action{
 
@@ -20,18 +22,21 @@ public class UpdateAction implements Action{
 			return "redirect:/xuser/loginForm.do";
 		}
 		//전송된 데이터 인코딩 처리
-		request.setCharacterEncoding("UTF-8");
+		request.setCharacterEncoding("utf-8");
 		//전송된 데이터 반환
 		long post_num = Long.parseLong(request.getParameter("post_num"));
 		
 		PostDAO dao = PostDAO.getInstance();
 		PostVO db_post = dao.getpost(post_num);
 		
+		
+		
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
-		if(us_num != db_post.getPost_num()) {
+		if(us_num != db_post.getUs_num()) {
 			return "common/notice.jsp";
 		}
 		
+		//글 수정
 		PostVO post = new PostVO();
 		post.setPost_num(post_num);
 		post.setPost_content(request.getParameter("post_content"));
@@ -48,6 +53,7 @@ public class UpdateAction implements Action{
 		
 		return "redirect:/post/detail.do?post_num="+post_num;
 	}
+
 
 }
 

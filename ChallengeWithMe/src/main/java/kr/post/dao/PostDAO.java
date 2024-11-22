@@ -253,7 +253,7 @@ public class PostDAO {
 				sub_sql += ",post_img=?";
 			}
 			//sql문 작성
-			sql = "UPDATE post SET title=?,content=?,modifydate=SYSDATE" + sub_sql + "WHERE post_num=?";
+			sql = "UPDATE post SET title=?,content=?,modifydate=SYSDATE" + sub_sql + " WHERE post_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

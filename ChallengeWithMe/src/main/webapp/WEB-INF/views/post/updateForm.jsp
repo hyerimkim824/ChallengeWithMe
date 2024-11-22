@@ -35,6 +35,10 @@
 <div class=writeform-main>
 <h4>글 수정하기</h4>
 <form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
+			<!-- 숨겨진 필드로 post_num 전달 -->
+    		<input type="hidden" name="post_num" value="${post.post_num}">
+
+
 <%-- 프로필 사진 유저닉네임 날짜 좋아요 댓글개수 조회수 표시 --%>
 <div>
 	<div class="updateform-header">
@@ -50,12 +54,12 @@
 <%-- 제목, 내용 --%>
 	<div class="updateform-header">
     	<label for="post_title">제목 입력</label>
-    	<input type="text" name= "update_title" id="update_title" value="${post.post_title}" class="input-check">
+    	<input type="text" name= "post_title" id="post_title" value="${post.post_title}" class="input-check">
 	</div>
 		<hr size="1" noshade="noshade" width="100%">
 	<div>
-   		<label for="updateform_content">내용 입력</label>
-   		<textarea name= "updateform_content" id="updateform_content"  rows="10" cols="75" >"${post.post_content}"</textarea>
+   		<label for="post_content">내용 입력</label>
+   		<textarea name= "post_content" id="post_content"  rows="10" cols="75" >${post.post_content}</textarea>
 		<hr size="1" noshade="noshade" width="100%">
 	</div>
 	
