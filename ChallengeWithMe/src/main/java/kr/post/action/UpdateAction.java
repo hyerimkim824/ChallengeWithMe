@@ -40,7 +40,7 @@ public class UpdateAction implements Action{
 		PostVO post = new PostVO();
 		post.setPost_num(post_num);
 		post.setPost_content(request.getParameter("post_content"));
-		post.setPost_img(request.getParameter("post_img"));
+		//post.setPost_img(request.getParameter("post_img"));
 		//수정 날짜 작성 유무 생각해보기 post.setPost_modifydate(request.get);
 		post.setPost_title(request.getParameter("post_title"));
 	

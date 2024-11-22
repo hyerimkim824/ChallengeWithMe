@@ -21,7 +21,7 @@ public class PostDAO {
 	private PostDAO() {}
  
 	//글 등록
-	public void insertPost(PostVO post)throws Exception{
+	public void insertPost(PostVO post, long us_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -29,16 +29,17 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//sql문 작성
-			sql = "INSERT INTO post (post_num, us_nickname, post_img, post_title, post_content, us_num) " +
-	                 "SELECT post_seq.nextval, ?, ?, ?, ?, ? FROM user_detail ud WHERE ud.us_num=?";
+			sql = "INSERT INTO post (post_num, post_img, post_title, post_content, us_num) " +
+	                 "SELECT post_seq.nextval, ?, ?, ?, ? FROM user_detail ud WHERE ud.us_num=?";
+			
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
 			pstmt.setString(1, post.getPost_img());
-			pstmt.setString(2, post.getUs_nickname());
-			pstmt.setString(3, post.getPost_title());
-			pstmt.setString(4, post.getPost_content());
-			pstmt.setLong(5, post.getUs_num());
+			pstmt.setString(2, post.getPost_title());
+			pstmt.setString(3, post.getPost_content());
+			pstmt.setLong(4, post.getUs_num());
+			pstmt.setLong(5, us_num);
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
@@ -243,7 +244,7 @@ public class PostDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
-		String sub_sql = null;
+		String sub_sql = "";
 		int cnt = 0;
 		try {
 			//커넥션풀로부터 커넥션 할당
@@ -253,7 +254,7 @@ public class PostDAO {
 				sub_sql += ",post_img=?";
 			}
 			//sql문 작성
-			sql = "UPDATE post SET title=?,content=?,modifydate=SYSDATE" + sub_sql + " WHERE post_num=?";
+			sql = "UPDATE post SET post_title=?,post_content=?,post_modifydate=SYSDATE " + sub_sql + " WHERE post_num=?";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩

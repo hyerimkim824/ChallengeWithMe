@@ -34,7 +34,7 @@ public class WriteAction implements Action{
 		post.setUs_num(us_num);//회원번호
 		
 		PostDAO dao = PostDAO.getInstance();
-		dao.insertPost(post);
+		dao.insertPost(post, us_num);
 		
 		request.setAttribute("notice_msg", "작성이 완료되었습니다.");
 		request.setAttribute("notice_url", request.getContextPath()+"/post/list.do");
