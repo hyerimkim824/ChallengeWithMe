@@ -1,0 +1,445 @@
+body {
+  background: white;
+  align-items: center;
+  font-family: sans-serif;
+  height: 100vh;
+  margin: -20px 0 50px;
+}
+
+ul{
+	list-style-type: none;
+}
+
+.chall ul, .prize ul{
+	padding: 0px;
+	margin: 0px;
+	display: flex;
+	justify-content: center;
+}
+
+.chall li, .prize li{
+	margin-right: 50px;
+	font-weight: bold;
+}
+
+.mypage{
+	height: 100vh;
+}
+
+img.logo{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 70px;
+    height: 50px;
+}
+img.logo2 {
+    position: absolute; /* 부모 요소 기준으로 위치 지정 */
+    top: 10px; /* 상단에서 10px 위치 */
+    left: 10px; /* 왼쪽에서 10px 위치 */
+    width: 70px;
+    height: 50px;
+}
+/* 마이페이지 배경 */
+.top{
+	position: absolute;
+	height: 50%;
+	background-color: #fee066;
+}
+.bottom{
+	height: 50%;
+	background-color: white;
+}
+
+/* 헤더 홀 */
+input.hole{
+	width: 90px;
+	height: 20px;
+	border: 0px;
+	border-radius: 50px;
+	background-color: #fee066;
+	margin-right: 40px;
+}
+input.hole2{
+	width: 90px;
+	height: 20px;
+	border: 0px;
+	border-radius: 50px;
+	background-color: #fee066;
+	margin-left: 40px;
+}
+/* 폼 */
+form {
+  background-color: #FFFFFF;
+  align-items: center;
+  padding: 20px;
+  padding-left: 50px;
+  padding-right: 0;
+  width: 400px;
+  height: 600px;
+  text-align: center;
+  border: 2px solid;
+  border-radius: 10px;
+  margin: 0 auto;
+}
+
+.form-wrapper{
+	width: 100%;
+	height: 100vh;
+	display: flex;
+  	align-items: center;
+  	justify-content: center;
+  	background-color: #fee066;
+	background: linear-gradient(to bottom, #fee066 50%, transparent 50%);
+}
+
+form.mypage-form{
+    position: absolute;  /* 폼1을 절대 위치로 설정 */
+    top: 50%;             /* 부모 요소의 50% 위치 */
+    left: 50%;            /* 부모 요소의 50% 위치 */
+    transform: translate(-50%, -50%); /* 정확히 중앙에 위치 */
+	z-index: 2;
+}
+
+form.mypage-form2{
+    position: absolute;  /* 폼2도 절대 위치로 설정 */
+    transform: translate(-50%, -50%); /* 정확히 중앙에 위치 */
+    top: 50%;             /* 부모 요소의 50% 위치 */
+    left: 50%;  
+	z-index: 1;
+}
+
+/* 마이페이지 */
+.mypage-wrapper{
+	width: 100%;
+}
+
+/* 초록바 */
+.green{
+	background-color: #6ae06e;
+	width: 12px;
+	height: 600px;
+	padding: 20px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	border-top-left-radius: 9px;
+	border-bottom-left-radius: 9px;
+}
+.green2{
+	background-color: #6ae06e;
+	width: 12px;
+	height: 600px;
+	padding: 20px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	border-top-right-radius: 9px;
+	border-bottom-right-radius: 9px;
+}
+
+/* 프로필 */
+.profile-container{
+	display: flex;
+	align-items: center;
+	padding: 10px;
+ 	position: relative; 
+}
+.profile-wrapper{
+	padding-top: 40px;
+	padding-left: 20px;
+	width: 100px;
+}
+.photo-btn{
+	padding-top: 10px;
+	padding-left: 20px;
+	width: 100px;
+}
+
+/* 닉네임 뱃지 */
+.badge-nick{
+	margin-left: 50px;
+	padding-top: 30px;
+	align-content: center;
+}
+.badge span{
+	align-items: center;
+}
+
+/* 챌린지 성과 */
+.chall h3{
+	margin-top: 40px;
+}
+.prize{
+	margin-top: 50px;
+}
+
+/* 계정 정보 */
+.mydetail-wrapper{
+	display: flex;
+}
+
+
+.mydetail-list,
+.mydetail-result {
+  	display: flex;
+  	flex-direction: column;
+  	margin: 0;
+  	padding: 0;
+}
+
+.mydetail-list ul,
+.mydetail-result ul {
+	margin: 0;
+	padding: 0;
+}
+
+.mydetail-list{
+	width: 70px;
+	padding-top: 40px;
+	padding-left: 30px;
+}
+
+.mydetail-list li {
+ 	font-size: 13px;
+ 	font-weight: bold;
+ 	text-align: left;
+  	margin-bottom: 40px;
+  	width: 70px;
+}
+
+.mydetail-result{
+	width: 70px;
+	padding-top: 40px;
+	padding-left: 50px;
+}
+
+.mydetail-result li {
+  	margin-bottom: 10px;
+  	display: flex;
+  	flex-direction: column;
+  	width: 80px;
+  	font-size: 16px;
+}
+.mydetail-result li input[type="button"] {
+	font-weight: bold;
+	padding: 5px 10px;
+	font-size: 10px;
+	cursor: pointer;
+	border: none;
+	border-radius: 50px;
+	background-color: #d9d9d9;
+}
+
+/* 개인 정보 */
+.myinfo-wrapper{
+	display: flex;
+}
+
+.myinfo-list,
+.myinfo-result {
+  	display: flex;
+  	flex-direction: column;
+  	margin: 0;
+  	padding: 0;
+  	font-weight: bold;
+}
+
+.myinfo-list ul,
+.myinfo-result ul {
+	margin: 0;
+	padding: 0;
+}
+
+.myinfo-list{
+	width: 100px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+.myinfo-list li {
+ 	font-size: 15px;
+ 	font-weight: bold;
+ 	text-align: center;
+  	margin-bottom: 10px;
+}
+
+.myinfo-result{
+	width: 100px;
+	padding-top: 10px;
+	padding-left: 10px;
+}
+
+.myinfo-result li {
+ 	font-size: 15px;
+ 	font-weight: bold;
+ 	text-align: center;
+  	margin-bottom: 10px;
+}
+
+/* 선호 카테고리 */
+
+.pref-pref{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 30px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+}
+
+.pref-pref ul{
+	margin: 0;
+	padding: 0;
+}
+
+.pref-pref input{
+    font-weight: bold;
+    font-size: 12px;
+    cursor: pointer;
+    border: none;
+    border-radius: 50px;
+    width: 90px;
+    height: 25px;
+    margin: 0;
+    padding: 0;
+    background-color: #d9d9d9;
+}
+
+.pref-pref h3{
+    font-size: 15px;
+    margin: 0; /* 기본 여백 제거 */
+    padding-left: 10px;
+}
+
+.pref-result{
+	display: flex;
+	align-items: center;
+    justify-content: flex-start;
+    font-weight: bold;
+    margin: 0;
+    padding: 0;
+    margin-top: 10px;
+    text-align: center;
+}
+
+.pref-result ul{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.pref-result li{
+	display: flex;
+    align-items: center;
+    justify-content: center;
+	margin-bottom: 15px;
+	margin-left: 20px;
+	border: 1px solid;
+	border-radius: 25px;
+	width: 80px;
+	height: 30px;
+	background-color: #fee066;
+}
+
+/* 랭크 */
+h1{
+	text-align: center;
+	font-style: bold;
+	font-size: 50px;
+	margin-bottom: 0;
+	margin-top: 50px;
+}
+.pp{
+  display: flex;
+  justify-content: center; /* 가로 중앙 정렬 */
+  align-items: center; /* 세로 중앙 정렬 */
+  margin-top: 50px;
+}
+p{
+	position: absolute;
+	text-align: center;
+	border: 5px solid;
+	width: 800px;
+	height: 30px;
+	border-radius: 25px;
+}
+
+.rank-wrapper{
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	margin-top: 100px;
+}
+
+.rank{
+	border: 0px;
+	border-radius: 25px;
+	width: 900px;
+	height: 800;
+	display: flex;
+	justify-content: flex-end; /* 자식 요소들을 오른쪽으로 정렬 */
+}
+
+.rank-left{
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 20px;
+   	margin-left: 50px;
+   	width: 150px;
+   	text-align: center;
+}
+
+.rank-rank {
+	flex-direction: center;
+	text-align: center;
+}
+
+.rank-rank h3{
+	width: 100%;
+}
+
+.rank-rank ul{
+	padding: 0;
+    margin: 0;
+    margin-top: 20px
+}
+
+.rank-rank li{
+	display: flex;
+    flex-direction: column;
+}
+
+.rank-left img{
+	margin-top: 50px;
+	width: 100px;
+	height: 100px;
+}
+
+.rank-right img{
+	margin: 50px 150px;
+	width: 350px;
+	height: 300px;
+}
+
+/* 뱃지 */
+.infobadge-wrapper{
+	display: flex;
+	align-items: center;
+  	justify-content: center;
+  	margin-top: 20px;
+  	margin-bottom: 50px;
+}
+
+.infobadge{
+	border: 0px;
+	border-radius: 25px;
+	width: 900px;
+	height: 404px;
+	display: flex;
+	justify-content: flex-end; /* 자식 요소들을 오른쪽으로 정렬 */
+}

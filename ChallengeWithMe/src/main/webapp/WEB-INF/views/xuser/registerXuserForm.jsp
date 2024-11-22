@@ -79,6 +79,13 @@ $(function() {
 	            item.focus();
 	            return false;
 	        }
+	        // 우편번호 유효성 검사
+	        if (item.id === 'zipcode' && !/^[0-9]{5,5}$/.test(item.value)) {
+	            alert('우편번호는 5자리 숫자로 작성해주세요.');
+	            item.value = '';
+	            item.focus();
+	            return false;
+	        }
 	    }
 
         let form1 = document.getElementById('register_form1');
@@ -300,7 +307,7 @@ $(function() {
 			    </form>
 <!-- 다음 우편번호 API 시작 -->
 <!-- iOS에서는 position:fixed 버그가 있음, 적용하는 사이트에 맞게 position:absolute 등을 이용하여 top,left값 조정 필요 -->
-<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:1;-webkit-overflow-scrolling:touch;">
+<div id="layer" style="display:none;position:fixed;overflow:hidden;z-index:5;-webkit-overflow-scrolling:touch;">
 <img src="//t1.daumcdn.net/postcode/resource/images/close.png" id="btnCloseLayer" style="cursor:pointer;position:absolute;right:-3px;top:-3px;z-index:1" onclick="closeDaumPostcode()" alt="닫기 버튼">
 </div>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -383,7 +390,7 @@ $(function() {
     function initLayerPosition(){
         var width = 300; //우편번호서비스가 들어갈 element의 width
         var height = 400; //우편번호서비스가 들어갈 element의 height
-        var borderWidth = 5; //샘플에서 사용하는 border의 두께
+        var borderWidth = 2; //샘플에서 사용하는 border의 두께
 
         // 위에서 선언한 값들을 실제 element에 넣는다.
         element_layer.style.width = width + 'px';
