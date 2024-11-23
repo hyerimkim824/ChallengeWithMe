@@ -24,6 +24,8 @@ public class WriteAction implements Action{
 		//전송된 데이터 인코딩 처리
 		request.setCharacterEncoding("utf-8");
 		
+		
+	    
 		//자바빈(VO) 생성
 		PostVO post = new PostVO();
 		post.setPost_title(request.getParameter("post_title"));
@@ -32,6 +34,12 @@ public class WriteAction implements Action{
 		post.setUs_nickname(request.getParameter("us_nickname"));
 		post.setPost_img(FileUtil.uploadFile(request, "post_img"));
 		post.setUs_num(us_num);//회원번호
+		
+		//글자 20byte초과시 입력제한수 -> 이거 아닌가?
+		String postTitle = request.getParameter("post_title");
+		if (postTitle.length() > 20) {
+			request.setAttribute("notice_msg", "제목 글자 입력수가 초과되었습니다.");
+		}
 		
 		PostDAO dao = PostDAO.getInstance();
 		dao.insertPost(post, us_num);

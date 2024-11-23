@@ -109,7 +109,7 @@
 </div>
 	<div>
 		<button type="submit" id="submit-btn">글 등록</button>
-		<button type="button" id="cancle-btn" onclick="location.href='list.do'">목록</button>
+		<button type="button" id="cancle-btn" onclick="location.href='list.do'">취소</button>
 	</div>
 </form>
 </div>

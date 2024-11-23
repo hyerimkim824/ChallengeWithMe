@@ -84,10 +84,10 @@
 			};
 			</script>
 		</c:if>
-		<c:if test="${us_num != post.us_num}">${post.us_num}</c:if>
+		<c:if test="${us_num != post.us_num}"></c:if>
 		
 			<input type="button" value="글 목록" onclick="location.href='list.do'">
-			<input type="button" value="고객의소리" onclick="support/FeedBackForm.do">
+			<input type="button" value="고객의소리" onclick="location.href='/support/FeedBackForm.do'">
 			<hr size="1" noshade="noshade" width="100%">
 	</div>
 	
@@ -95,7 +95,6 @@
 		<div id="post-reply">
 			<span class="reply">댓글 작성</span>
 			<form id="re_form">
-				<input type="button" name="post_num" value="${post.post_num}" id="post_num">
 				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
 				<c:if test="${empty us_num}">disabled="disabled"</c:if>>
 				<c:if test="${empty us_num}">댓글 작성은 로그인 후 가능합니다.</c:if></textarea>

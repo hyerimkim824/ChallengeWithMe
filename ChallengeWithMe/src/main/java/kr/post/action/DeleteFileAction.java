@@ -43,8 +43,10 @@ public class DeleteFileAction implements Action{
 			//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
 			if(us_num!=db_post.getUs_num()) {
 				mapAjax.put("result", "wrongAccess");
-			}else {
+			
+			}else if(us_num==db_post.getUs_num()){
 				Dao.deleteFile(post_num);
+				mapAjax.put("result", "success");
 				//파일 삭제
 				FileUtil.removeFile(request, db_post.getPost_img());
 			}
