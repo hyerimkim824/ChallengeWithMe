@@ -9,6 +9,7 @@ import java.util.List;
 import kr.post.vo.PostCommVO;
 import kr.post.vo.PostVO;
 import kr.util.DBUtil;
+import kr.util.DurationFromNow;
 import kr.util.StringUtil;
 
 public class PostDAO {
@@ -217,7 +218,7 @@ public class PostDAO {
 		}
 	}
 	
-	//파일 삭제
+	//사진 삭제
 	public void deleteFile(long post_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -239,6 +240,8 @@ public class PostDAO {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
+	
 	//글 수정
 	public void modifyPost(PostVO post)throws Exception{
 		Connection conn = null;
@@ -261,7 +264,7 @@ public class PostDAO {
 			pstmt.setString(++cnt, post.getPost_title());
 			pstmt.setString(++cnt, post.getPost_content());
 			if(post.getPost_img()!=null && !"".equals(post.getPost_img())) {
-				pstmt.setLong(++cnt, post.getPost_num());
+				pstmt.setString(++cnt, post.getPost_img());
 			}
 			pstmt.setLong(++cnt, post.getPost_num());
 			//SQL문 실행
@@ -311,8 +314,9 @@ public class PostDAO {
 	//좋아요 삭제
 	//좋아요 목록(=찜 목록)
 	//내가 선택한 좋아요 목록 -> 게시판 목록의 정보 보여져야함 List<PostVO>
+	
 	//댓글 등록
-	public void insertPostReply(PostCommVO postReply) throws Exception{
+	public void insertPostReply(PostCommVO postReply, long us_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -320,18 +324,24 @@ public class PostDAO {
 			//커넥션풀로부터 커넥션 할당
 			conn = DBUtil.getConnection();
 			//sql문 작성
-			sql = "INSERT INTO comm(com_rownum,com_num,post_num,us_num,com_content,date)"
-					+ "VALUES (com_seq.nextval,?,?,?,?,?)";
+			sql = "INSERT INTO comm(com_num,post_num,us_num,com_content) VALUES (com_seq.nextval,?,?,?)";
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setLong(1, postReply.getCom_num());
-			pstmt.setLong(2, postReply.getPost_num());
-			pstmt.setLong(3, postReply.getUs_num());
-			pstmt.setString(4, postReply.getCom_content());
-			pstmt.setDate(5, postReply.getDate());
+			
+	System.out.println("PostDAO - SQL 준비: " + sql);
+	System.out.println("PostDAO - post_num: " + postReply.getPost_num());
+	System.out.println("PostDAO - us_num: " + postReply.getUs_num());
+	System.out.println("PostDAO - com_content: " + postReply.getCom_content());
+			pstmt.setLong(1, postReply.getPost_num());
+			pstmt.setLong(2, us_num);
+			pstmt.setString(3, postReply.getCom_content());
+			
+	System.out.println("SQL post_num: " + postReply.getPost_num());
+	System.out.println("SQL com_content: " + postReply.getCom_content());
 			//SQL문 실행
 			pstmt.executeUpdate();
+	System.out.println("PostDAO - SQL 실행 성공");
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -353,7 +363,7 @@ public class PostDAO {
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			pstmt.setLong(0, post_num);		
+			pstmt.setLong(1, post_num);		
 			//SQL문 실행
 			rs = pstmt.executeQuery();
 			if(rs.next()) {
@@ -369,8 +379,138 @@ public class PostDAO {
 	}
 	
 	//댓글 목록
-	//댓글 상세
-	//댓글 수정
-	//댓글 삭제
+	public List<PostCommVO> getListPostReply(int start, int end, long post_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<PostCommVO> list = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM (SELECT * FROM comm JOIN"
+					+ " user_detail USING(us_num) WHERE post_num=? ORDER BY com_num DESC)a) WHERE rnum>=? AND rnum<=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, post_num);
+			pstmt.setInt(2, start);
+			pstmt.setInt(3, end);
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			list = new ArrayList<PostCommVO>();
+			while(rs.next()) {
+				PostCommVO reply = new PostCommVO();
+				reply.setCom_num(rs.getLong("com_num"));
+				reply.setCom_content(rs.getString("com_content"));
+				reply.setUs_num(rs.getLong("us_num"));
+				reply.setUs_nickname(rs.getString("us_nickname"));
+				reply.setPost_num(rs.getLong("post_num"));
+				reply.setUs_img(rs.getString("us_img"));
+				reply.setCom_date(rs.getDate("com_date"));
+				//댓글 수정일
+				if(rs.getDate("com_modifydate")!=null) {
+					reply.setCom_modifydate(rs.getDate("com_modifydate"));
+				}
+				
+				list.add(reply);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+		
+	}
 	
+	//댓글 상세(댓글 수정,삭제시 작성자 회원번호 체크 용도로 사용)
+	public PostCommVO getReplyPost(long com_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PostCommVO reply = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT * FROM comm WHERE com_num=?";
+			//PreparedStatement 객체생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, com_num);
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				reply = new PostCommVO();
+				reply.setCom_num(rs.getLong("com_num"));
+				reply.setUs_num(rs.getLong("us_num"));
+			}
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return reply;
+	}
+	
+	//댓글 수정
+	public void modifyReplyPost(PostCommVO reply)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "UPDATE comm SET com_content=?, com_modifydate=SYSDATE WHERE com_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setString(1, reply.getCom_content());
+			pstmt.setLong(2, reply.getCom_num());
+			//sql문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	//댓글 삭제
+	public void deleteReplyPost(long com_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "DELETE FROM comm WHERE com_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, com_num);
+			//sql문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+	}
 }
+
+
+
+
+
+
+
+
+

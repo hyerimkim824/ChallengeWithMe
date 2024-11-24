@@ -9,12 +9,15 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/post.fav.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/post.reply.js"></script>
 
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 
 <div class="detail-background">
+
 	<h4>${post.us_nickname} 님의 글</h4>
 	<div class="detail-main">
 		
@@ -94,8 +97,9 @@
 	<%-- 댓글 시작 --%>
 		<div id="post-reply">
 			<span class="reply">댓글 작성</span>
-			<form id="re_form">
-				<textarea rows="3" cols="50" name="re_content" id="re_content" class="rep-content"
+			<form id="re_form" action="writeReply.do" method="post">
+				<input type="hidden" id="post_num" name="post_num" value="${post.post_num}">
+				<textarea rows="3" cols="50" name="com_content" id="re_content" class="rep-content"
 				<c:if test="${empty us_num}">disabled="disabled"</c:if>>
 				<c:if test="${empty us_num}">댓글 작성은 로그인 후 가능합니다.</c:if></textarea>
 				<c:if test="${!empty us_num}"><div id="re_first"><span class="letter-count"></span>
@@ -106,7 +110,8 @@
 				</c:if>
 			</form>
 		</div>
-	<%-- 댓글 시작 --%>
+		
+	<%-- 댓글 페이징 --%>
 		<div id="output"></div>
 		<div class="paging-button" style="display:none;">
 			<input type="button" value="다음글 보기">

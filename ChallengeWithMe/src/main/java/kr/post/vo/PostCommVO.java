@@ -7,7 +7,8 @@ public class PostCommVO {
 	private long post_num;//글 번호
 	private long us_num;//유저 번호
 	private String com_content;//댓글 내용
-	private Date date;//댓글 작성일
+	private Date com_date;//댓글 작성일
+	private Date com_modifydate;//댓글 수정일
 	 
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
@@ -37,11 +38,19 @@ public class PostCommVO {
 	public void setCom_content(String com_content) {
 		this.com_content = com_content;
 	}
-	public Date getDate() {
-		return date;
+	
+	public Date getCom_modifydate() {
+		return com_modifydate;
 	}
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCom_modifydate(Date com_modifydate) {
+		this.com_modifydate = com_modifydate;
+	}
+	
+	public Date getCom_date() {
+		return com_date;
+	}
+	public void setCom_date(Date com_date) {
+		this.com_date = com_date;
 	}
 	public String getUs_nickname() {
 		return us_nickname;
