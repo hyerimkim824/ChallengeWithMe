@@ -118,10 +118,10 @@ function hideFunction4(){
 			</div>
 			<div class="align-left">
 				
-					<input type="button" value="참여 챌린지" id="part_ch_btn">
+					<input type="button" value="참여 챌린지" id="part_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
 					<br>
 				
-					<input type="button" value="개설 챌린지" id="gen_ch_btn">
+					<input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
 				
 			</div>
 		
@@ -155,7 +155,8 @@ function hideFunction4(){
 			
 			 <div id ="get" class="ch-button">
 				<h4>현재 참여 챌린지 달성률</h4>
-				
+				${list}
+			
 				<h4>한달 평균 챌린지 달성률</h4>
 				<h4>1년 평균 챌린지 달성률</h4>
 				
@@ -164,6 +165,7 @@ function hideFunction4(){
 			 </div>
 			  <div id ="like" class="ch-button">
 				<h4>챌린지 선호도</h4>
+				${list_prefer}
 				<!--<input type="text" value="달성률" >-->
 			 </div>
 			  <div id ="overall" class="ch-button">

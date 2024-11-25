@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.List;
 
 import kr.mychallenge.vo.MyChallengeVO;
@@ -86,7 +87,7 @@ public class MyChallengeDAO {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		List<Integer> list = null;
+		ArrayList<Integer> list = new ArrayList<>();
 		String sql = null;
 	/*
 		
@@ -118,7 +119,7 @@ public class MyChallengeDAO {
 			//커넥션풀로부터 커넥션 할당
 			 conn = DBUtil.getConnection();
 			 
-			 sql = "SELECT ch_proved FROM AUTHs WHERE us_num=? ";
+			 sql = "SELECT ch_proved FROM AUTH WHERE us_num=? ";
 			 
 			 //preparedStatement 객체 생성
 			 pstmt= conn.prepareStatement(sql);
@@ -150,7 +151,53 @@ public class MyChallengeDAO {
 	//달성률(한달 평균 달성률)
 	
 	//달성률(1년 평균 달성률)
+	
 	//선호도
+	
+		public List<Integer> preference(long us_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		ArrayList<Integer> list = new ArrayList<>();
+		String sql = null;
+
+		
+		try {
+			
+
+			//커넥션풀로부터 커넥션 할당
+			 conn = DBUtil.getConnection();
+			 
+			 sql = "SELECT cate_num FROM PREF WHERE us_num=? ";
+			 
+			 //preparedStatement 객체 생성
+			 pstmt= conn.prepareStatement(sql);
+			 
+			 pstmt.setLong(1,us_num);
+			 
+			 //SQL문 실행
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()) {
+	
+				 list.add(rs.getInt("cate_num"));
+				 
+			 }
+			 
+			 
+		}catch(Exception e) {
+			throw new Exception(e);
+			
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+		
+	
+	}
+	
 	
 	
 	//전체 챌린지 표시

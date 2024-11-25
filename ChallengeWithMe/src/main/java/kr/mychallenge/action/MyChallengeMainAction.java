@@ -27,23 +27,41 @@ public class MyChallengeMainAction  implements Action{
 
 		// 회원번호별 챌린지 참여 개수 정보
 		Long partNum = dao.participateNum(us_num); // participateNum 호출
-		System.out.println("partNum : " + partNum);
 
 		request.setAttribute("partNum", partNum);
 		
 		/*달성률
 		 * 
-		String ch_start = (String)session.getAttribute("20");
-		String ch_end = (String)session.getAttribute("30");
+		 */
+		 
+		//String ch_start = (String)session.getAttribute("20");
+		//String ch_end = (String)session.getAttribute("30");
 		
 		List<Integer> list = null;
 		
 		
 		list = dao.AchieveOne(us_num);
-		*/
+		System.out.println(list);
 		
-		//request.setAttribute("list", list);
-		//request.setAttribute("listLength", (int)list.size());
+		
+		request.setAttribute("list", list);
+		request.setAttribute("listLength", (int)list.size());
+		
+		/*달성률
+		 * 
+		 */
+		
+		List<Integer> list2 = null;
+		
+		
+		list2 = dao.preference(us_num);
+		System.out.println(list);
+		
+		
+		request.setAttribute("list_prefer", list2);
+		
+		
+		
 		
 		
 		 
