@@ -155,8 +155,6 @@ function hideFunction4(){
 			
 			 <div id ="get" class="ch-button">
 				<h4>현재 참여 챌린지 달성률</h4>
-				${list}
-				${listLength}
 				
 				<h4>한달 평균 챌린지 달성률</h4>
 				<h4>1년 평균 챌린지 달성률</h4>

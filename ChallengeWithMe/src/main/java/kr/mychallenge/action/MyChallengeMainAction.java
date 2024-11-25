@@ -1,5 +1,7 @@
 package kr.mychallenge.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -28,6 +30,23 @@ public class MyChallengeMainAction  implements Action{
 		System.out.println("partNum : " + partNum);
 
 		request.setAttribute("partNum", partNum);
+		
+		/*달성률
+		 * 
+		String ch_start = (String)session.getAttribute("20");
+		String ch_end = (String)session.getAttribute("30");
+		
+		List<Integer> list = null;
+		
+		
+		list = dao.AchieveOne(us_num);
+		*/
+		
+		//request.setAttribute("list", list);
+		//request.setAttribute("listLength", (int)list.size());
+		
+		
+		
 
 		return "mychallenge/myChallengeMain.jsp";
 

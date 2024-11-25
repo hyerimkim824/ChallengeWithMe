@@ -37,7 +37,7 @@ public class MyChallengeOneAchieveAction implements Action{
 		
 		MyChallengeDAO dao = MyChallengeDAO.getInstance();
 		
-		list = dao.AchieveOne(us_num, ch_start, ch_end);
+		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("listLength", list.size());

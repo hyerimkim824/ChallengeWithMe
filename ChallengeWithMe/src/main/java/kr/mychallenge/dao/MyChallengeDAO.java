@@ -81,14 +81,14 @@ public class MyChallengeDAO {
 	//참가수(한달 평균)
 	
 	//달성률(챌린지 1개 달성률)
-	public List<Integer> AchieveOne(long us_num, String ch_start, String ch_end)throws Exception{
+	public List<Integer> AchieveOne(long us_num)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<Integer> list = null;
 		String sql = null;
-	
+	/*
 		
 		//날짜 기간 계산하기
 		//시작 날짜 -> 년,월,일
@@ -110,6 +110,7 @@ public class MyChallengeDAO {
         
         // 총 일수 계산
         int days = period.getDays();
+        */
 		
 		try {
 			
