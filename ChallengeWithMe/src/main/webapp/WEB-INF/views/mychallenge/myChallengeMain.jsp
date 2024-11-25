@@ -136,10 +136,7 @@ function hideFunction4(){
 			<button onclick="hideFunction4()">전체 챌린지</button>
 			<div  id ="part" class="ch-button">
 				<h4>MY챌린지 참가수</h4>
-				<form id ="part" action='${pageContext.request.contextPath}/mychallenge/myChallengePartNum.do' method ="post">
 				${partNum}
-				<c:out value="${partNum}" default="partNum is not set!" />
-				</form>
 				<h4>MY평균 챌린지 침가수</h4>
 				<form id ="" method="post" >
 				

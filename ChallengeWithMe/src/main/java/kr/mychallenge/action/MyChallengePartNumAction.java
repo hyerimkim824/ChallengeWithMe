@@ -28,7 +28,7 @@ public class MyChallengePartNumAction implements Action{
 
 	    // 회원번호별 챌린지 참여 개수 정보
 	    Long partNum = dao.participateNum(us_num); // participateNum 호출
-	    
+	    System.out.println("partNum : " + partNum);
 
 	    request.setAttribute("partNum", partNum);
 	    
