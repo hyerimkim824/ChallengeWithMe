@@ -130,33 +130,40 @@ function hideFunction4(){
 			<h2>챌린지 리포트</h2>
 			
 			
-			<button onclick="hideFunction1()">챌린지 참가수</button>
+			<button onclick="hideFunction1()" >챌린지 참가수</button>
 			<button onclick="hideFunction2()">챌린지 달성률</button>
 			<button onclick="hideFunction3()">챌린지 선호도</button>
 			<button onclick="hideFunction4()">전체 챌린지</button>
-			<div id ="part" class="ch-button">
-				<h4>챌린지 참가수</h4>
-				<form id ="" method="post" action="${pageContext.request.contextPath}/mychallenge/myChallengePartNum.do">
+			<div  id ="part" class="ch-button">
+				<h4>MY챌린지 참가수</h4>
+				<form id ="part" action='${pageContext.request.contextPath}/mychallenge/myChallengePartNum.do' method ="post">
+				${partNum}
 				<c:out value="${partNum}" default="partNum is not set!" />
 				</form>
-				<h4>평균 챌린지</h4>
-				<form id ="" method="post" action="${pageContext.request.contextPath}/mychallenge/myChallengePartNum.do">
+				<h4>MY평균 챌린지 침가수</h4>
+				<form id ="" method="post" >
 				
 				 <label for="year">Year:</label>
 			        <input type="number" id="year" name="year" required><br><br>
-			
+	
 			        <label for="month">Month:</label>
 			        <input type="number" id="month" name="month" required><br><br>
 			
 			        <button type="submit">Submit</button>
 							 
-				<c:out value="${partNum}" default="partNum is not set!" />
+		
 				</form>
 				<!-- <input type="date" value="참여 날짜"> -->
 			</div>
 			
 			 <div id ="get" class="ch-button">
-				<h4>챌린지 달성률</h4>
+				<h4>현재 참여 챌린지 달성률</h4>
+				${list}
+				${listLength}
+				
+				<h4>한달 평균 챌린지 달성률</h4>
+				<h4>1년 평균 챌린지 달성률</h4>
+				
 				
 				<!--<input type="text" value="달성률" >-->
 			 </div>

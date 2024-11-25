@@ -3,6 +3,9 @@ package kr.mychallenge.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.Period;
+import java.util.List;
 
 import kr.mychallenge.vo.MyChallengeVO;
 import kr.util.DBUtil;
@@ -62,29 +65,92 @@ public class MyChallengeDAO {
 			
 			//SQL문 실행
             rs = pstmt.executeQuery();
-            
+          
             if(rs.next()) {
                 total = rs.getInt(1);
             }
-			
-			
+						
 		}catch(Exception e){
 			throw new Exception(e);
 		}finally {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return total;
-		
-		
-	
+
 	}
 	//참가수(한달 평균)
 	
+	//달성률(챌린지 1개 달성률)
+	public List<Integer> AchieveOne(long us_num, String ch_start, String ch_end)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Integer> list = null;
+		String sql = null;
 	
+		
+		//날짜 기간 계산하기
+		//시작 날짜 -> 년,월,일
+		String year_start = ch_start.substring(0, 4); // 시작위치를 0에서 4까지로 제한
+        String month_start = ch_start.substring(5, 7);// 시작위치를 5에서 7까지로 제한
+        String day_start = ch_start.substring(8); 
+        
+      //시작 날짜 -> 년,월,일
+      	String year_end = ch_end.substring(0, 4); // 시작위치를 0에서 4까지로 제한
+        String month_end = ch_end.substring(5, 7);// 시작위치를 5에서 7까지로 제한
+        String day_end = ch_end.substring(8); 
+        
+        //총 일수 계산
+        LocalDate startDate = LocalDate.of(Integer.parseInt(year_start), Integer.parseInt(month_start), Integer.parseInt(day_start));
+        LocalDate endDate = LocalDate.of(Integer.parseInt(year_end), Integer.parseInt(month_end), Integer.parseInt(day_end));
+
+        // Period를 사용하여 두 날짜 간의 차이 계산
+        Period period = Period.between(startDate, endDate);
+        
+        // 총 일수 계산
+        int days = period.getDays();
+		
+		try {
+			
+
+			//커넥션풀로부터 커넥션 할당
+			 conn = DBUtil.getConnection();
+			 
+			 sql = "SELECT ch_proved FROM AUTHs WHERE us_num=? ";
+			 
+			 //preparedStatement 객체 생성
+			 pstmt= conn.prepareStatement(sql);
+			 
+			 pstmt.setLong(1,us_num);
+			 
+			 //SQL문 실행
+			 rs = pstmt.executeQuery();
+			 
+			 while(rs.next()) {
 	
-	//달성률(그래프)
+				 list.add(rs.getInt("ch_proved"));
+				 
+			 }
+			 
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+			
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+		return list;
+		
 	
+	}
+	
+	//달성률(한달 평균 달성률)
+	
+	//달성률(1년 평균 달성률)
 	//선호도
+	
 	
 	//전체 챌린지 표시
 	

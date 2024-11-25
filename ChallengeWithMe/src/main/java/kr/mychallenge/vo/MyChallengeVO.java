@@ -16,8 +16,41 @@ public class MyChallengeVO {
 	private String ch_status; //챌린지 상태
 	private String auth_num; //인증 방식
 	
+	public long getAh_num() {
+		return ah_num;
+	}
+	public void setAh_num(long ah_num) {
+		this.ah_num = ah_num;
+	}
+	public int getCh_proved() {
+		return ch_proved;
+	}
+	public void setCh_proved(int ch_proved) {
+		this.ch_proved = ch_proved;
+	}
+	public String getAh_img() {
+		return ah_img;
+	}
+	public void setAh_img(String ah_img) {
+		this.ah_img = ah_img;
+	}
+	public String getAh_date() {
+		return ah_date;
+	}
+	public void setAh_date(String ah_date) {
+		this.ah_date = ah_date;
+	}
+
 	//가져오는 이미지->user detail table
 	private String us_img;
+	
+	//auth table 정보
+	private long ah_num; //인증 글 고유 번호
+	private int ch_proved; //인증 여부
+	private String ah_img; //인증 사진
+	private String ah_date; //인증 날짜
+
+	
 	
 	
 	public String getUs_img() {
