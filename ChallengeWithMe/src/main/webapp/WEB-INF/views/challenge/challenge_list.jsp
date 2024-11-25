@@ -19,7 +19,7 @@
 	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
 	crossorigin="anonymous"></script>
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
-
+<script src="${pageContext.request.contextPath}/js/challenge.js"></script>
 
 </head>
 <body>
@@ -39,77 +39,90 @@
 					전체
 				</c:if>
 				</button>
-
+				
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
-					<li><a class="dropdown-item list-dd" id="cat_all" data-category="0"
-						href="challengeList.do?category=0">전체</a></li>
-					<li><a class="dropdown-item list-dd" id="cat_health" data-category="1"
-						href="challengeList.do?category=1">건강</a></li>
-					<li><a class="dropdown-item list-dd" id="cat_food" data-category="2"
-						href="challengeList.do?category=2">식습관</a></li>
+					<li><a class="dropdown-item list-dd" id="cat_all"
+						data-category="0" href="challengeList.do?category=0">전체</a></li>
+					<li><a class="dropdown-item list-dd" id="cat_health"
+						data-category="1" href="challengeList.do?category=1">건강</a></li>
+					<li><a class="dropdown-item list-dd" id="cat_food"
+						data-category="2" href="challengeList.do?category=2">식습관</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-catagory="3" href="challengeList.do?category=3">자기계발</a></li>
 
 				</ul>
 			</div>
-			<button class="btn ch-create" style="background-color: #FFE066" 
-				onclick="location.href='challengeCreateForm.do'" type="button"><p>챌린지 개설</p></button>
+			<button class="btn ch-create" style="background-color: #FFE066"
+				onclick="location.href='challengeCreateForm.do'" type="button">
+				<p>챌린지 개설</p>
+			</button>
 		</div>
 		<div class="ch-container">
 			<c:if test="${!empty chall_list}">
-				<c:forEach var="list" items="${chall_list}">
+				<c:forEach var="list" items="${chall_list}" varStatus="status">
 					
 					<div class="ch-item">
-					<a href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">	
-						<div class="ch-category">${list.cate_name}</div>
-						<div class="ch-background">
-							<c:if test="${empty list.ch_img}">
-								<c:choose>
-									<c:when test="${list.cate_num == 1}">
-										<img class="ch-bgImg" src="../images/health.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-									</c:when>
-									<c:when test="${list.cate_num == 2}">
-										<img class="ch-bgImg" src="../images/food.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-									</c:when>
-									<c:when test="${list.cate_num == 3}">
-										<img class="ch-bgImg" src="../images/self-develop.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-									</c:when>
-									<c:otherwise>
-										<img class="ch-bgImg" src="../images/face.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-									</c:otherwise>
-								</c:choose>
-							</c:if>
-							<c:if test="${!empty list.ch_img}">
-								<img class="ch-bgImg"
-								src="${pageContext.request.contextPath}/upload/${list.ch_img}" style="max-width: 100%; max-height: 100%;">
-							</c:if>
-							<p class="ch-title">${list.ch_title}</p>
-							<div class="ch-dueDate">D-${list.dateDifference}</div>
-						</div>
-						<div class="ch-info">
-							<div class="ch-people">
-								<img class="people-img"
-									src="${pageContext.request.contextPath}/images/person.svg">
-								<p>${list.ch_person}/${list.ch_max}</p>
+						
+							<div class="item-header">
+								<div class="ch-category">${list.cate_name}</div>
+								<c:if test="${like_list[status.index].us_num == list.us_num && like_list[status.index].ch_num == list.ch_num}">
+									<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px"></div>
+								</c:if>
+								<c:if test="${like_list[status.index].us_num != list.us_num || like_list[status.index].ch_num != list.ch_num}">
+									<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px"></div>
+								</c:if>
 							</div>
-							<div class="ch-like">
-								<img class="like-img"
-									src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
-								<p>${list.ch_like}</p>
+						<a
+							href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">
+							<div class="ch-background">
+								<c:if test="${empty list.ch_img}">
+									<c:choose>
+										<c:when test="${list.cate_num == 1}">
+											<img class="ch-bgImg" src="../images/health.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 2}">
+											<img class="ch-bgImg" src="../images/food.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 3}">
+											<img class="ch-bgImg" src="../images/self-develop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:otherwise>
+											<img class="ch-bgImg" src="../images/face.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${!empty list.ch_img}">
+									<img class="ch-bgImg"
+										src="${pageContext.request.contextPath}/upload/${list.ch_img}"
+										style="max-width: 100%; max-height: 100%;">
+								</c:if>
+								<p class="ch-title">${list.ch_title}</p>
+								<div class="ch-dueDate">D-${list.dateDifference}</div>
 							</div>
-							<div class="ch-view">
-								<img class="view-img"
-									src="${pageContext.request.contextPath}/images/eye.svg">
-								<p>${list.ch_view}</p>
+							<div class="ch-info">
+								<div class="ch-people">
+									<img class="people-img"
+										src="${pageContext.request.contextPath}/images/person.svg">
+									<p>${list.ch_person}/${list.ch_max}</p>
+								</div>
+								<div class="ch-like">
+									<img class="like-img"
+										src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
+									<p>${list.ch_like}</p>
+								</div>
+								<div class="ch-view">
+									<img class="view-img"
+										src="${pageContext.request.contextPath}/images/eye.svg">
+									<p>${list.ch_view}</p>
+								</div>
 							</div>
-						</div>
-					</a>	
+						</a>
 					</div>
-					
+
 				</c:forEach>
 			</c:if>
 			<c:if test="${empty chall_list}">

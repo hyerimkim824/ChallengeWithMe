@@ -94,6 +94,49 @@ $(function(){
 		}
 	}
 	
+	$(".item-heart").click(function () {
+		
+	    $.ajax({
+	        url: 'challengeLike.do',
+	        type: 'POST',
+	        data: { ch_num: $(this).attr('data-chnum') },
+			dataType: 'json',
+	        success: function (param) {
+				console.log("param:"+param.myLike)
+				if(param.result=="logout"){
+					alert('로그인 해야합니다');
+				}else if(param.result=="success"){
+					if(param.myLike=="do"){
+						$('.item-heart').attr('src', '../images/red-heart.png');
+					}else if(param.myLike=="undo"){
+						$('.item-heart').attr('src', '../images/heart.png');
+					}
+					
+				}else{
+					alert('실패!');
+				}
+				
+	        },
+	        error: function () {
+	            alert('네트워크 오류 발생!');
+	        }
+	    });
+	});
+
+	function displayLike(element, param) {
+	    let output;
+	    if (param.my_like == 'do') {
+	        // 좋아요 선택
+	        output = '../images/red-heart.png';
+	    } else {
+	        // 좋아요 미선택
+	        output = '../images/heart.png';
+	    }
+	    // 클릭한 요소에만 설정
+	    element.attr('src', output);
+	}
+	
+	
 	$('#create_form').submit(function(e){
 		
 		
@@ -116,8 +159,5 @@ $(function(){
 		}
 	});
 	
-	$('.ch-item').click(function(){
-		alert('클릭되었습니다');
-	});	
 	
 });

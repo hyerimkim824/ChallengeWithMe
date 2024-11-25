@@ -128,7 +128,6 @@
 
 .ch-container{
 	width:100%;
-	height:500px;
 	display:flex; 
 	margin-top:3%;
 	flex-wrap: wrap;
@@ -142,6 +141,17 @@
     margin-bottom: 20px; 
     position: relative;
     cursor:pointer;
+}
+
+.item-header{
+	display:flex;
+	position:relative;
+	width:100%;
+}
+
+.item-heart{
+	position:absolute;
+	right:1%;
 }
 
 .ch-category{
@@ -273,7 +283,6 @@
 
 .chc-title, .chc-visi{
 	height:30px;
-	border:1px solid black;
 	width:100px;
 	
 }
@@ -286,11 +295,12 @@
 	background:#FFE066;
 	width:130px;
 	height:40px;
-	margin-left:11%;
+	margin-left:10%;
 }
 
 
 .chc-visi{
+	border:1px solid black;
 	display:flex;
 	margin-left:2%;
 	align-items:center;
@@ -334,7 +344,7 @@
 }
 
 .chc-three .dropdown{
-	margin-left:11%;
+	margin-left:10%;
 }
 
 
@@ -348,7 +358,7 @@
 }
 
 #chc_title{
-	margin-left:11%;
+	margin-left:10%;
 	margin-top:3%;
 	border:none;
 	border-radius:5px 5px 5px 5px;
@@ -360,7 +370,7 @@
 
 .nickname-container{
 	display:flex;
-	margin-left:11%;
+	margin-left:10%;
 	margin-top:1%;
 	align-items:center;
 	height:50px;
@@ -392,6 +402,9 @@
 /* 챌린지 개설 이미지 & 정보 */
 .chc-five{
 	display:flex;
+	position:relative;
+	width:80%;
+	margin:0 auto;
 }
 
 /* 챌린지 개설 이미지 */
@@ -404,7 +417,7 @@
 
 .chc-image .image{
 	background:#CECECE;
-	width:600px;
+	width:550px;
 	height:450px;
 	display:flex;
 	flex-direction:column;
@@ -415,8 +428,8 @@
 }
 
 #previewImage{
-	width:600px;
-	height:400px;
+	width:100%;
+	height:100%;
 	border:2px solid black;
 	display:none;
 } 
@@ -460,7 +473,6 @@
 	display:flex;
 	flex-direction:column;
 	
-	
 }
 
 .chc-info .info-title{
@@ -480,7 +492,7 @@
 .chc-desc, .chc-authm{
 	width:300px;
 	height:200px;
-	margin-top:7%;
+	margin:7% auto;
 	position:relative;
 	border-radius:20px 20px 20px 20px;
 }
@@ -544,16 +556,18 @@
 
 /* 하단 정보 */
 .chc-six{
-	margin-top:5%;
+	width:80%;
+	position:relative;
+	margin:10% auto;
 }
 
 .extra-info{
 	background:#D9D9D9;
-	margin-top:3%;
 	border-radius:20px 20px 20px 20px;
-	width:76%;
+	width:100%;
 	height:250px;
-	margin-left:11%;
+	font-size:16px;
+	font-weight:bold;
 	
 }
 
@@ -585,12 +599,12 @@ li{
 .auth-method{
 	background:#CECECE;
 	margin-top:10%;
-	margin-left:11%;
-	width:76%;
+	width:100%;
 	height:500px;
 	border-radius:20px 20px 20px 20px;
 	position:relative;
 	font-size:20px;
+	
 }
 
 .method-title{
@@ -640,11 +654,114 @@ li{
 
 /* 경고 css */
 .cat-warn{
-	margin-left:11%;
+	margin-left:10%;
 }
 
 .auth-warn{
 	text-align:right;
 	margin-right:11%;
-	
+	margin-top:1%;
 }
+
+/*------------------------------------챌린지 정보 */
+
+.linkToList{
+	width:120px;
+	height:40px;
+	background:#FFE066;
+	border-radius:10px 10px 10px 10px;
+	font-size:14px;
+	font-weight:bold;
+	border:none;
+	position:absolute;
+	right:20%;
+	cursor:pointer;
+}
+
+.chd-catname{
+	width:100px;
+	height:35px;
+	background:#FFE066;
+	font-size:14px;
+	font-weight:bold;
+	border-radius:10px 10px 10px 10px;
+	border:none;
+	margin-left:10%;
+}
+
+.chd-auth{
+	margin-left:1%;
+	font-weight:bold;
+	font-size:13px;
+	text-shadow:1px 1px 3px black;
+}
+
+
+
+.chd-title{
+	font-size:25px;
+	width:80%;
+	font-weight:bold;
+	margin-left:10%;
+	margin-top:2%;
+}
+
+.img-container{
+	position:relative;
+	width:60%;
+}
+
+.chd-img{
+	background:grey;
+	width:90%;
+	height:100%;
+}
+
+
+.chd-desc{
+	width:100%;
+	height:100%;
+	background:blue;
+}
+
+.chd-info-container{
+	width:80%;
+	margin:0 auto;
+	position:relative;
+	border-radius:0 0 20px 20px;
+}
+
+.chd-six{
+	width:100%;
+}
+
+.chd-extra-info{
+	background:#D9D9D9;
+	border-radius:20px 20px 20px 20px;
+	width:100%;
+	height:150px;
+	margin:1% auto;
+}
+
+.chd-extra-info label{
+	width:120px;
+	font-size:16px;
+	text-shadow:0.2px 0.2px 1px black;
+}
+
+.chd-extra-info ul{
+	font-size:15px;
+	font-weight:bold;
+	line-height:2.5rem;
+	display:flex;
+	flex-direction:column;
+}
+.chd-extra-info li{
+	margin-top:0.8%;
+}
+
+.chd-five{
+	display:flex;
+	position:relative;
+}
+

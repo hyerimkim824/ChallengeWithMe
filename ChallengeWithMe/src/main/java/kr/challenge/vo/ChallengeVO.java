@@ -24,6 +24,7 @@ public class ChallengeVO {
 	private String cate_name;
 	private int ch_authd;
 	private int ahDetail_num;
+	private String auth_desc;
 	
 	private String us_nickname;
 	private String us_img;
@@ -212,6 +213,13 @@ public class ChallengeVO {
 	}
 	public void setAhDetail_num(int ahDetail_num) {
 		this.ahDetail_num = ahDetail_num;
+	}
+	
+	public String getAuth_desc() {
+		return auth_desc;
+	}
+	public void setAuth_desc(String auth_desc) {
+		this.auth_desc = auth_desc;
 	}
 	public String getUs_nickname() {
 		return us_nickname;

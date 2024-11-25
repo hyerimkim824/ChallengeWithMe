@@ -58,7 +58,7 @@ public class ChallengeCreateAction implements Action{
 		int ch_view = 0; 
 		int ch_authd = Integer.parseInt(request.getParameter("chc_authd")); 
 		int ahDetail_num = Integer.parseInt(request.getParameter("ah_num"));
-		
+		String auth_desc = request.getParameter("auth_desc");
 		
 		
 		ChallengeVO vo = new ChallengeVO();
@@ -82,7 +82,7 @@ public class ChallengeCreateAction implements Action{
 		vo.setCh_view(ch_view);
 		vo.setCh_authd(ch_authd);
 		vo.setAh_num(ahDetail_num);
-		
+		vo.setAuth_desc(auth_desc);
 		dao.createChallenge(vo);
 		
 		

@@ -124,7 +124,7 @@
 							</div>
 						</div>
 
-						<textarea  class="ta2" id="chc_authd" name="chc_authd" placeholder="인증 방식의 구체적인 정보를 입력해주세요" maxlength="500"></textarea>
+						<textarea  class="ta2" id="auth_desc" name="auth_desc" placeholder="인증 방식의 구체적인 정보를 입력해주세요" maxlength="500"></textarea>
 					</div>
 				</div>
 			</div>

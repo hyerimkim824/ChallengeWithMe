@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import kr.category.dao.CategoryDAO;
 import kr.category.vo.CategoryVO;
 import kr.challenge.dao.ChallengeDAO;
+import kr.challenge.dao.ChallengeLikeDAO;
+import kr.challenge.vo.ChallengeLikeVO;
 import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
 
@@ -19,6 +21,7 @@ public class ChallengeListAction implements Action{
 		
 		ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 		List<ChallengeVO> chall_list = null;
+		
 		if(category == null || category.equals("0")) {
 			chall_list = chall_dao.getList();
 		}
@@ -33,7 +36,13 @@ public class ChallengeListAction implements Action{
 			
 			request.setAttribute("cat_name", cat_name);
 		}
-			
+		
+		ChallengeLikeDAO like_dao = ChallengeLikeDAO.getInstance();
+		List<ChallengeLikeVO> like_list = like_dao.checkLike();
+		
+		
+		
+		request.setAttribute("like_list", like_list);
 		request.setAttribute("chall_list", chall_list);
 	
 		

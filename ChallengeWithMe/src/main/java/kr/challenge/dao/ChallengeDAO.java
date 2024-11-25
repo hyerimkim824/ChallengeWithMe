@@ -36,6 +36,7 @@ public class ChallengeDAO {
 
 			while(rs.next()) {
 				ChallengeVO vo = new ChallengeVO();
+				vo.setCh_num(Long.parseLong(rs.getString("ch_num")));
 				vo.setCh_title(rs.getString("ch_title"));
 				vo.setCh_desc(rs.getString("ch_desc"));
 				vo.setCh_start(rs.getString("ch_start"));
@@ -90,7 +91,7 @@ public class ChallengeDAO {
 
 			while(rs.next()) {
 				ChallengeVO vo = new ChallengeVO();
-				
+				vo.setCh_num(Long.parseLong(rs.getString("ch_num")));
 				vo.setCh_title(rs.getString("ch_title"));
 				vo.setCh_desc(rs.getString("ch_desc"));
 				vo.setCh_start(rs.getString("ch_start"));
@@ -132,7 +133,7 @@ public class ChallengeDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, trans_bal, official, ch_status, us_num, cate_num, ch_max, ch_authd, ah_num) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, trans_bal, official, ch_status, us_num, cate_num, ch_max, ch_authd, ah_num, auth_desc) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setString(1, vo.getCh_title());
@@ -150,6 +151,7 @@ public class ChallengeDAO {
 			pstmt.setInt(13, vo.getCh_max());
 			pstmt.setInt(14, vo.getCh_authd());
 			pstmt.setInt(15, vo.getAh_num());
+			pstmt.setString(16, vo.getAuth_desc());
 			
 			pstmt.executeUpdate();
 			
@@ -202,6 +204,7 @@ public class ChallengeDAO {
 				vo.setCate_name(rs.getString("cate_name"));
 				vo.setCh_authd(rs.getInt("ch_authd"));
 				vo.setAh_num(rs.getInt("ah_num"));
+				vo.setAuth_desc(rs.getString("auth_desc"));
 				
 				vo.setUs_nickname(rs.getString("us_nickname"));
 				vo.setUs_img(rs.getString("us_img"));
@@ -216,5 +219,33 @@ public class ChallengeDAO {
 		}
 		
 		return vo;
+	}
+	
+	public void plusView(ChallengeVO vo) throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+			
+			int curr_view = vo.getCh_view();
+			long ch_num = vo.getCh_num();
+			
+			conn = DBUtil.getConnection();
+			sql = "UPDATE chall SET ch_view=? WHERE chall.ch_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, curr_view+1);
+			pstmt.setLong(2, ch_num);
+			
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		
 	}
 }
