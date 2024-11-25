@@ -46,7 +46,7 @@ public class MyChallengeMainAction  implements Action{
 		//request.setAttribute("listLength", (int)list.size());
 		
 		
-		
+		 
 
 		return "mychallenge/myChallengeMain.jsp";
 

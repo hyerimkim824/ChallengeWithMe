@@ -26,7 +26,7 @@ public class MyChallengePhotoAction implements Action{
 			mapAjax.put("result", "logout");
 		}else {//로그인 된 경우
 			//전송된 데이터 인코딩 처리
-			request.setCharacterEncoding("utf-8");
+			request.setCharacterEncoding("utf-8"); 
 			//파일 업로드 처리
 			String photo = FileUtil.uploadFile(request, "img");
 			
