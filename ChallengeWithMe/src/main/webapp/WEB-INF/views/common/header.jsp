@@ -12,7 +12,7 @@
 			<a href="${pageContext.request.contextPath}/main/main.do">홈</a>
 			<a href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지</a>
 			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
-			<a>마이챌린지</a>
+			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">>마이챌린지</a>
 		</div>
 		<div class="nav-btn">
 			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">

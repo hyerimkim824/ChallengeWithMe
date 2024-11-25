@@ -2,7 +2,7 @@
 
 
 
-.page-main .mychallenge-content-main .align-left #part_ch_btn{
+.page-main .align-left #part_ch_btn{
 	
 	width:100px;
 	height:50px;
@@ -12,7 +12,7 @@
 	
 	
 }
-.page-main .mychallenge-content-main .align-left #gen_ch_btn{
+.page-main .align-left #gen_ch_btn{
 	
 	width:100px;
 	height:50px;
@@ -27,4 +27,14 @@
     margin-left: auto; /* 테이블 오른쪽 정렬 */
     margin-right: 100px;
    
+}
+
+.page-main .mychallenge-content-main{
+	display:flex;
+	gap:100px
+}
+
+
+.page-main .ch-button{
+	  display: none; /* 초기 상태 숨김 */
 }
