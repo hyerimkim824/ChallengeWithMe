@@ -5,13 +5,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
 
-public class MychallengeMainAction  implements Action{
+public class MyChallengeMainAction  implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 			
-		return "mychallenge/mychallengeMain.jsp";
+		return "mychallenge/myChallengeMain.jsp";
 		
 		
 	}
