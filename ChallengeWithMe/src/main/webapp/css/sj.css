@@ -344,7 +344,7 @@ footer a {
 }
 
 .input-group input[type="button"] {
-	border-radius: 5px;
+border-radius: 5px;
   border: 1px solid #ffeb3b;
   background-color: #ffeb3b;
   color: #000000;

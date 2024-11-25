@@ -1,20 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>마이페이지</title>
+<link rel="stylesheet" href="${ pageContext.request.contextPath }/css/test.css" type="text/css">
 <link rel="stylesheet" href="${ pageContext.request.contextPath }/css/mypage.css" type="text/css">
-<script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/js/mypage.js"></script>
+<title>Insert title here</title>
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
-		<!-- 마이페이지 앞 -->
-		<div class="form-wrapper" id="form-wrapper">
+	<div class="wrapper">
             <div class="card-3d-wrap">
               <div class="card-3d-wrapper">
                 <div class="card-front">
@@ -25,8 +20,8 @@
 		<div class="mypage-wrapper">
 			<!-- 앞면 헤더 -->
 			<div>
-				<input class="hole" type="button">
-				<input class="checkbox" type="checkbox" id="checkbox" style="display: none">
+			      <input class="checkbox" type="checkbox" id="reg-log" name="reg-log" style="display: none"/>
+          <label for="reg-log"></label>
 				<img class="logo" src="${ pageContext.request.contextPath }/images/logo.png">
 			</div>
 			<!-- 프로필사진 랭크 닉네임 -->
@@ -108,8 +103,7 @@
                       <!-- center-wrap -->
                     </div>
                     <!-- card-front -->
-		<!-- 마이페이지 뒤 -->
-               <div class="card-back">
+                <div class="card-back">
                     <!-- 아래 내용 뒷면 -->
                     <form class="mypage-form2" action="#" id="form2">
 		<div class="green2"></div>
@@ -117,7 +111,6 @@
 			<!-- 뒷면 헤더 -->
 			<div>
 				<input class="hole2" type="button">
-				<input class="checkbox hole2" type="checkbox" id="checkbox2" style="display: none"/>
 				<img class="logo2" src="${ pageContext.request.contextPath }/images/logo.png">
 			</div>
 			<!-- 닉네임 아이디 비밀번호 -->
@@ -193,69 +186,5 @@
                   <!-- card-3d-wrapper -->
                 </div>
                 <!-- card-3d-wrap mx-auto -->
-			<!-- 꼬박꼬박 달성도 -->
-			<h1>꼬박꼬박 달성도</h1>
-			<div class="pp">
-			<p></p>
-			</div>
-			<div class="rank-wrapper">
-			<div class="rank" style="background-color: #ffe479">
-				<!-- 좌측 정보 -->
-				<div class="rank-left">
-					<div class="rank-rank">
-						<ul>
-							<li><h3>나의 등급</h3></li>
-							<li>Lv${ xuser.rank }</li>
-							<li><!-- 점수 들어갈 예정 -->점</li>
-						</ul>
-					</div>
-					<div>
-						<!-- 나무 애니메이션 들어가는곳 -->
-						<img src="${ pageContext.request.contextPath }/images/logo.png">
-					</div>
-				</div>
-				<!-- 우측 정보 -->
-				<div class="rank-right">
-					<div>
-						<img src="${ pageContext.request.contextPath }/images/rank.png">
-					</div>
-				</div>
-			</div>
-			</div>
-			<!-- 보유 뱃지 -->
-			<h1>보유 뱃지</h1>
-			<div class="infobadge-wrapper">
-			<div class="infobadge" style="background-color: #ffe479">
-				<!-- 대표 뱃지 -->
-				<div class="info-left">
-					<h3>대표 뱃지</h3>
-					<a href="#"><img src="${ pageContext.request.contextPath }/images/face.png" width="200" height="200" class=""></a>
-					<input type="button" value="뱃지 변경">
-				</div>
-				<!-- 뱃지 개수 정보 -->
-				<div class="info-right">
-					<div class="info-info">
-						<div class="infobadge-list">
-							<ul>
-								<li>총 뱃지</li>
-								<li>획득 뱃지</li>
-								<li>미획득 뱃지</li>
-							</ul>
-						</div>
-						<div class="infobadge-result">
-							<ul>
-								<c:forEach var="bg" items="${ bgInfo }">
-								<li>${ bg } 개</li>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>	
-					<div class="info-rightbtn">
-						<input type="button" value="자세히 보기 &#8594">
-					</div>
-				</div>
-			</div>
-			</div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>
