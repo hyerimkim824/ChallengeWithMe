@@ -10,7 +10,6 @@ public class MyChallengeMainAction  implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-			
 		return "mychallenge/myChallengeMain.jsp";
 		
 		

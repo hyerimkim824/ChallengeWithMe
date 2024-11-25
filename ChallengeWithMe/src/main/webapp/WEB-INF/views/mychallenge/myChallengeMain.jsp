@@ -21,8 +21,6 @@
 <script type="text/javascript">
 
 
-
-
 function hideFunction1(){
 	var part = document.getElementById("part");
 
