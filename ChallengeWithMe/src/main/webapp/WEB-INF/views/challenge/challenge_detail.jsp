@@ -16,9 +16,11 @@
 
 </head>
 <body>
+	
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	
 	<div class="page-main">
-
+	
 
 		<div class="chc-one">
 			<div class="chc-title"><b>챌린지 정보</b></div>
@@ -45,7 +47,18 @@
 		</div>
 
 		<div class="chc-four">
-			<div class="chd-title">참가 챌린지 명: ${chall.ch_title}</div>
+			<div class="chd-four-header">
+				<div class="chd-title">참가 챌린지 명: ${chall.ch_title}</div>
+				<div class="like-container align-center">
+					<c:if test="${chall.heart_status}">
+						<img src="${pageContext.request.contextPath}/images/red-heart.png" width="30px" height="30px">
+					</c:if>
+					<c:if test="${!chall.heart_status}">
+						<img src="${pageContext.request.contextPath}/images/heart.png" width="30px" height="30px">
+					</c:if>
+					
+				</div>
+			</div>
 			<div class="nickname-container">
 				<c:if test="${us_img == null}">
 					<img class="user-img"
@@ -116,13 +129,20 @@
 			</div>
 		</div>
 
-
-
-		<div class="chc-end align-center">
-			<input class="submit-btn" type="submit" value="참가하기">
-		</div>
-
+		
+		<c:if test="${!joined}">
+			<div class="chc-end align-center">
+				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 참가</a>
+			</div>
+		</c:if>
+		<c:if test="${joined}">
+			<div class="chc-end align-center">
+				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 포기</a>
+			</div>
+		</c:if>
+		
 	</div>
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

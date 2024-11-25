@@ -24,23 +24,23 @@
 			</div>
 			<div class="header1-box box2">
 				<c:if test="${us_num != null && admin == 0}">
-					<div class="user-card">
+					<div class="user-card shadow-effect">
 						<div class="card-left">
 							<div class="left1">
-								<img>
+								<img src="../images/face.png">
 								<div>
 									<p>나의 등급</p>
 									<p>Lv3</p>
 								</div>
 							</div>
 							<div class="left2">
-								<div>보유 배찌</div>
+								<div class="left2-title">보유 배찌</div>
 								<hr>
-								<div>
-									<div>
-										<img>
+								<div class="left2-container">
+									<div class="left2-box1">
+										<img src="../images/face.png" width="50px" height="50px">
 									</div>
-									<div>
+									<div class="left2-box2">
 										<ul>
 											<li><label>보유배찌</label>6개</li>
 											<li><label>미획득배찌</label>10개</li>
@@ -49,23 +49,27 @@
 								</div>
 
 							</div>
-							<div class="left3">나의배찌 -></div>
+							<div class="left3"><div class="info-link">나의배찌 -></div></div>
 						</div>
-
+						<hr class="vertical">
 						<div class="card-right">
-							<div>
-								<div>
-									<img>
-									<div>
+							<div class="right1">
+								<div class="right1-box1">
+									<img src="../images/face.png" >
+									<div class="right-user">
 										<p>환영합니다</p>
 										<p>${us_nickname}님</p>
 									</div>
 								</div>
-								<div>
-									참여중인 챌린지: 3개 <br> 완료한 챌린지: 6개 <br> 랭크 점수: 897점 <br>
-								</div>
-								<div>마이페이지 -></div>
 							</div>
+							<div class="right2">
+									<ul>
+										<li><label>참여중인 챌린지</label>3개</li>
+										<li><label>완료한 챌린지</label>6개</li>
+										<li><label>랭크 점수</label>897점</li>
+									</ul>
+							</div>
+							<div class="right3"><div class="info-link">마이페이지 -></div></div>
 						</div>
 					</div>
 				</c:if>
@@ -74,23 +78,23 @@
 		<hr>
 		<div class="space50-div"></div>
 		<div class="m-content1-container">
-			<p>누구나 할 수 있습니다!</p>
-			<div class="content1-box box1">
-				<div class="c1b1-item item1">
-					<div>제목</div>
-					<div>내용</div>
+			<div class="m-content1-title">누구나 할 수 있습니다!</div>
+			<div class="content1-box box1 ">
+				<div class="c1b1-item item1 shadow-effect">
+					<div class="c1b1-title shadow-effect">달성률 100%</div>
+					<div class="c1b1-content">계획해놨던 목표 제대로 끝까지 완료하고싶은 사람</div>
 				</div>
-				<div class="c1b1-item item2">
-					<div>제목</div>
-					<div>내용</div>
+				<div class="c1b1-item item2 shadow-effect">
+					<div class="c1b1-title shadow-effect">챌린지 소개</div>
+					<div class="c1b1-content">매일 같이 물 먹어요!</div>
 				</div>
-				<div class="c1b1-item item3">
-					<div>제목</div>
-					<div>내용</div>
+				<div class="c1b1-item item3 shadow-effect">
+					<div class="c1b1-title shadow-effect">참여 챌린지</div>
+					<div class="c1b1-content">매일 새로운 챌린지가 오픈! 매일  습관을 만들고 싶은 사람</div>
 				</div>
-				<div class="c1b1-item item4">
-					<div>제목</div>
-					<div>내용</div>
+				<div class="c1b1-item item4 shadow-effect">
+					<div class="c1b1-title shadow-effect">챌린지 소개</div>
+					<div class="c1b1-content">매일 같이 물 먹어요!</div>
 				</div>
 			</div>
 			<div class="content1-box box2">

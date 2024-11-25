@@ -349,8 +349,10 @@
 
 
 .chc-four{
-	width:100%;
+	width:80%;
 	height:150px;
+	margin:2% auto;
+	position:relative;
 }
 .chc-end{
 	width:100%;
@@ -358,7 +360,6 @@
 }
 
 #chc_title{
-	margin-left:10%;
 	margin-top:3%;
 	border:none;
 	border-radius:5px 5px 5px 5px;
@@ -370,7 +371,6 @@
 
 .nickname-container{
 	display:flex;
-	margin-left:10%;
 	margin-top:1%;
 	align-items:center;
 	height:50px;
@@ -378,6 +378,9 @@
 	position:relative;
 }
 
+.margin10{
+	margin-left:10%;
+}
 .user-img{
 	border:1px solid black;
 	border-radius:50%;
@@ -411,14 +414,14 @@
 .chc-image{
 	width:65%;
 	display:flex;
-	justify-content:center;
 	align-items:center;
+	justify-content:center;
 }
 
 .chc-image .image{
 	background:#CECECE;
 	width:550px;
-	height:450px;
+	height:500px;
 	display:flex;
 	flex-direction:column;
 	justify-content:center;
@@ -469,10 +472,10 @@
 /* 챌린지 개설 정보 */
 
 .chc-info{
-	width:35%;
+	width:50%;
 	display:flex;
 	flex-direction:column;
-	
+
 }
 
 .chc-info .info-title{
@@ -678,6 +681,19 @@ li{
 	cursor:pointer;
 }
 
+.chd-four-header{
+	display:flex;
+	align-items:center;
+	
+}
+
+.like-container{
+	position:absolute;
+	right:5%;
+	cursor:pointer;
+}
+
+
 .chd-catname{
 	width:100px;
 	height:35px;
@@ -698,12 +714,13 @@ li{
 
 
 
+
+
 .chd-title{
 	font-size:25px;
-	width:80%;
+	width:75%;
 	font-weight:bold;
-	margin-left:10%;
-	margin-top:2%;
+	
 }
 
 .img-container{
@@ -764,4 +781,5 @@ li{
 	display:flex;
 	position:relative;
 }
+
 

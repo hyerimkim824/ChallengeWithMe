@@ -25,7 +25,7 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-
+		
 		<div class="space100-div"></div>
 		<div class="ch-top-container">
 			<div class="dropdown">
@@ -65,13 +65,20 @@
 						
 							<div class="item-header">
 								<div class="ch-category">${list.cate_name}</div>
-								<c:if test="${like_list[status.index].us_num == list.us_num && like_list[status.index].ch_num == list.ch_num}">
-									<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px"></div>
+								<c:if test="${list.heart_status}">
+									<div class="item-heart" data-chnum="${list.ch_num}">
+										<img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px">
+									</div>
 								</c:if>
-								<c:if test="${like_list[status.index].us_num != list.us_num || like_list[status.index].ch_num != list.ch_num}">
-									<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px"></div>
+								<c:if test="${!list.heart_status}">
+									<div class="item-heart" data-chnum="${list.ch_num}">
+										<img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px">
+									</div>
 								</c:if>
-							</div>
+								
+							
+
+						</div>
 						<a
 							href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">
 							<div class="ch-background">
@@ -132,7 +139,7 @@
 		</div>
 
 	</div>
-
+	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

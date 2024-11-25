@@ -2,17 +2,25 @@ package kr.challenge.action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.challenge.dao.ChallengeDAO;
+import kr.challenge.dao.ChallengeLikeDAO;
+import kr.challenge.vo.ChallengeLikeVO;
 import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
+import kr.participant.dao.ParticipantDAO;
 import kr.xuser.vo.XuserVO;
 
 public class ChallengeDetailAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		Long us_num = (Long)session.getAttribute("us_num");
+		
 		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
@@ -28,9 +36,24 @@ public class ChallengeDetailAction implements Action{
 		
 		String us_nickname = user.getNickname();
 		
+		ChallengeLikeDAO like_dao = ChallengeLikeDAO.getInstance();
+		boolean liked = like_dao.checkLikeByUser(us_num, ch_num);
+		
+		if(liked) {
+			chall.setHeart_status(true);
+		}else {
+			chall.setHeart_status(false);
+		}
+		
+		ParticipantDAO p_dao = ParticipantDAO.getInstance();
+		
+		boolean joined = p_dao.isJoined(us_num, ch_num);
+		
 		request.setAttribute("chall", chall);
 		request.setAttribute("us_nickname", us_nickname);
 		request.setAttribute("auth_name", auth_name);
+		request.setAttribute("joined", joined);
+		
 		return "/challenge/challenge_detail.jsp?";
 	}
 	

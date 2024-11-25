@@ -86,7 +86,7 @@ public class ChallengeLikeDAO {
 		
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO chall_like SET(us_num, ch_num) VALUES(?,?)";
+			sql = "INSERT INTO chall_like (us_num, ch_num) VALUES (?, ?)";
 			pstmt = conn.prepareStatement(sql);
 			
 			pstmt.setLong(1, us_num);

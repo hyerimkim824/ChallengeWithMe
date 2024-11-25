@@ -94,7 +94,10 @@ $(function(){
 		}
 	}
 	
-	$(".item-heart").click(function () {
+	$(document).on('click', '.item-heart', function () {
+		
+		let $clickedElement = $(this);
+		let $imgElement = $clickedElement.find('img');
 		
 	    $.ajax({
 	        url: 'challengeLike.do',
@@ -107,9 +110,12 @@ $(function(){
 					alert('로그인 해야합니다');
 				}else if(param.result=="success"){
 					if(param.myLike=="do"){
-						$('.item-heart').attr('src', '../images/red-heart.png');
+						$imgElement.attr('src', '../images/red-heart.png');
 					}else if(param.myLike=="undo"){
-						$('.item-heart').attr('src', '../images/heart.png');
+						$imgElement.attr('src', '../images/heart.png');
+					}
+					else{
+						alert('no');
 					}
 					
 				}else{
@@ -123,18 +129,6 @@ $(function(){
 	    });
 	});
 
-	function displayLike(element, param) {
-	    let output;
-	    if (param.my_like == 'do') {
-	        // 좋아요 선택
-	        output = '../images/red-heart.png';
-	    } else {
-	        // 좋아요 미선택
-	        output = '../images/heart.png';
-	    }
-	    // 클릭한 요소에만 설정
-	    element.attr('src', output);
-	}
 	
 	
 	$('#create_form').submit(function(e){

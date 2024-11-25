@@ -29,6 +29,8 @@ public class ChallengeVO {
 	private String us_nickname;
 	private String us_img;
 	
+	private boolean heart_status;
+	
 	
 	private long dateDifference;
 	
@@ -235,7 +237,12 @@ public class ChallengeVO {
 	}
 	
 	
-	
+	public boolean isHeart_status() {
+		return heart_status;
+	}
+	public void setHeart_status(boolean heart_status) {
+		this.heart_status = heart_status;
+	}
 	
 	
 }

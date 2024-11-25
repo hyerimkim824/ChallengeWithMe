@@ -1,8 +1,12 @@
 package kr.challenge.action;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.category.dao.CategoryDAO;
 import kr.category.vo.CategoryVO;
@@ -16,6 +20,13 @@ public class ChallengeListAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		HttpSession session = request.getSession();
+		Long us_num = (Long)session.getAttribute("us_num");
+		
+		if(us_num == null) {
+			return "redirect:/xuser/registerXuserForm.do";
+		}
 		
 		String category = request.getParameter("category");
 		
@@ -41,8 +52,16 @@ public class ChallengeListAction implements Action{
 		List<ChallengeLikeVO> like_list = like_dao.checkLike();
 		
 		
+		for(ChallengeVO vo : chall_list) {
+			for(ChallengeLikeVO vo2 : like_list){
+				if(vo2.getCh_num() == vo.getCh_num() && vo2.getUs_num() == us_num) {
+					vo.setHeart_status(true);
+				}
+			}
+		}
 		
 		request.setAttribute("like_list", like_list);
+		
 		request.setAttribute("chall_list", chall_list);
 	
 		
