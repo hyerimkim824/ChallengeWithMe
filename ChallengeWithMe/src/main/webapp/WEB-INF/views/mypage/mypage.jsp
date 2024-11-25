@@ -30,7 +30,7 @@
 				<img class="logo" src="${ pageContext.request.contextPath }/images/logo.png">
 			</div>
 			<!-- 프로필사진 랭크 닉네임 -->
-			<div class="profile-container">
+			<div class="profile-container" id="profile-container">
 				<div class="profile-wrapper">
 					<c:if test="${ empty xuser.img }">
 						<img class="profile" src="${ pageContext.request.contextPath }/images/face.png">
@@ -52,12 +52,8 @@
 				</div>
 			</div>
 			<div class="photo-btn">
-				<input type="button" value="이미지 변경" id="photo_btn">
-				<div style="display: none;">
-					<input type="file" id="photo" accept="image/png, image/jpeg"><br>
-					<input type="button" value="저장" id="photo_set">
-					<input type="button" value="취소" id="photo_reset">
-				</div>
+				<input type="button" value="이미지 변경" id="photo_btn" onclick="addIframe()">
+				<div id="iframe-container"></div>
 			</div>
 			<!-- 각종 챌린지 성과 -->
 			<div class="chall">
@@ -255,7 +251,19 @@
 					</div>
 				</div>
 			</div>
-			</div>
+		</div>
+<script type="text/javascript">
+	function addIframe(){
+		var iframe = document.createElement('iframe')
+		iframe.src = '${ pageContext.request.contextPath }/mypage/UpdateMyPhoto.do'
+		iframe.width= '300'
+		iframe.height = '400'
+		iframe.frameborder = '2'
+		iframe.allowfullscreen = false
+		
+		document.getElementById('iframe-container').appendChild(iframe)
+	}
+</script>
 <jsp:include page="/WEB-INF/views/common/footer.jsp"/>
 </body>
 </html>

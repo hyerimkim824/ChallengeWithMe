@@ -15,11 +15,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 	
 	detail.addEventListener('click', () => {
-		document.querySelector('.container-wrapper').classList.add('right-panel-active');
+		document.querySelector('.container-wrapper').classList.add('right-panel-active2');
 	})
 	
 	signInButton.addEventListener('click', () => {
 	      container_wrapper.classList.remove("right-panel-active");
+	      container_wrapper.classList.remove("right-panel-active2");
 	    });
   }
 });
