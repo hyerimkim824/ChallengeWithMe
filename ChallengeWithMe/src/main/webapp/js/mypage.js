@@ -1,13 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
-	const form1 = document.getElementById('form1');
-	const form2 = document.getElementById('form2');
 
-	if (form1 && form2) {
-		form1.addEventListener('click', () => {
-			container.classList.add("change-form");
-		});
-		form2.addEventListener('click', () => {
-			container.classList.remove("change-form");
-		});
-	}
+	const form1 = document.getElementById('form1')
+	const form2 = document.getElementById('form2')
+	const select2 = document.querySelector('.card-3d-wrapper')
+
+	form1.addEventListener('click', function(event) {
+		if (event.target.tagName !== 'INPUT') {
+			select2.classList.add('check')
+		}
+	})
+	form2.addEventListener('click', function(evnet) {
+		if (event.target.tagName !== 'INPUT') {
+			select2.classList.remove('check')
+		}
+	})
 })

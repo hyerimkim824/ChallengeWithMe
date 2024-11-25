@@ -64,9 +64,9 @@ input.hole2{
 	width: 90px;
 	height: 20px;
 	border: 0px;
-	border-radius: 50px;
+	border-radius: 50px;	
 	background-color: #fee066;
-	margin-left: 40px;
+	margin-right: 30px;
 }
 /* 폼 */
 form {
@@ -98,7 +98,7 @@ form.mypage-form{
     top: 50%;             /* 부모 요소의 50% 위치 */
     left: 50%;            /* 부모 요소의 50% 위치 */
     transform: translate(-50%, -50%); /* 정확히 중앙에 위치 */
-	z-index: 2;
+	z-index: 3;
 }
 
 form.mypage-form2{
@@ -106,7 +106,7 @@ form.mypage-form2{
     transform: translate(-50%, -50%); /* 정확히 중앙에 위치 */
     top: 50%;             /* 부모 요소의 50% 위치 */
     left: 50%;  
-	z-index: 1;
+	z-index: 2;
 }
 
 /* 마이페이지 */
@@ -142,36 +142,74 @@ form.mypage-form2{
 .profile-container{
 	display: flex;
 	align-items: center;
-	padding: 10px;
  	position: relative; 
 }
 .profile-wrapper{
 	padding-top: 40px;
-	padding-left: 20px;
+	padding-left: 40px;
 	width: 100px;
 }
 .photo-btn{
 	padding-top: 10px;
-	padding-left: 20px;
+	padding-left: 40px;
 	width: 100px;
 }
 
+.photo-btn input{
+  	border-radius: 10px;
+  	border: 2px solid #666666;
+  	background-color: #ffeb3b;
+  	color: #000000;
+  	font-size: 12px;
+  	font-weight: bold;
+  	padding: 10px 10px;
+  	letter-spacing: 1px;
+  	cursor: pointer;
+  	width: 100px;
+}
+
+.profile{
+	width: 100px;
+	height: 100px;
+	border-radius: 100px;
+	border: 2px solid #666666;
+}
+
 /* 닉네임 뱃지 */
+.badge{
+	text-align: center;
+	width: 40px;
+	display: flex;
+}
+
 .badge-nick{
-	margin-left: 50px;
+	margin-left: 80px;
 	padding-top: 30px;
 	align-content: center;
+	width: 70px;
 }
-.badge span{
-	align-items: center;
+.level{
+	margin-left: 10px;
+	margin-top: 5px;
 }
 
 /* 챌린지 성과 */
+.chall{
+	margin-top: 100px;
+}
+
 .chall h3{
 	margin-top: 40px;
+	margin-left: 0;
 }
 .prize{
 	margin-top: 50px;
+}
+
+.chall ul li, .prize ul li{
+	font-size: 20px;
+	font-style: bold;
+	margin-left: 40px;
 }
 
 /* 계정 정보 */
@@ -431,7 +469,7 @@ p{
 	display: flex;
 	align-items: center;
   	justify-content: center;
-  	margin-top: 20px;
+  	margin-top: 50px;
   	margin-bottom: 50px;
 }
 
@@ -442,4 +480,134 @@ p{
 	height: 404px;
 	display: flex;
 	justify-content: flex-end; /* 자식 요소들을 오른쪽으로 정렬 */
+}
+
+.info-left{
+    margin: 0 auto;
+    font-weight: bold;
+    font-size: 20px;
+   	margin-left: 70px;
+   	width: 150px;
+   	text-align: center;
+   	align-content: center;
+   	align-items: center;
+}
+
+.info-left img{
+    border-radius: 50px;
+}
+
+.info-left input{
+   	margin-left: 45px;
+   	border-radius: 10px;
+  	border: 2px solid #666666;
+  	background-color: #ffe479;
+  	color: #000000;
+  	font-size: 12px;
+  	font-weight: bold;
+  	padding: 10px 10px;
+  	letter-spacing: 1px;
+  	cursor: pointer;
+  	width: 100px;
+  	margin-top: 20px;
+}
+
+.info-left h3{
+	margin-left: 45px;
+}
+
+.info-info{
+	display: flex;
+   	align-items: center;
+   	margin-top: 20px;
+}
+
+.info-right ul li{
+	margin-bottom: 30px;
+	font-weight: 900;
+	font-size: 20px;
+}
+
+.info-right{
+	display: flex;
+	margin-right: 100px;
+}
+
+.info-right input{
+	border: none;
+	background-color: #ffe479;
+	font-weight: 900;
+	font-size: 20px;
+	color: #796c68;
+}	
+
+.info-rightbtn{
+	margin-top: 30px;
+}
+
+/* 폼 애니메이션 */
+.checkbox:checked + label,
+.checkbox:not(:checked) + label{
+ position: relative;
+  display: block;
+  text-align: center;
+  width: 60px;
+  height: 16px;
+  border-radius: 8px;
+  padding: 0;
+  margin: 10px auto;
+  cursor: pointer;
+  background-color: #ffeba7;
+}
+.checkbox:checked + label:before,
+.checkbox:not(:checked) + label:before{
+  position: absolute;
+  display: block;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  color: #ffeba7;
+  background-color: #102770;
+  font-family: 'unicons';
+  content: '\eb4f';
+  z-index: 20;
+  top: -10px;
+  left: -10px;
+  line-height: 36px;
+  text-align: center;
+  font-size: 24px;
+  transition: all 0.5s ease;
+}
+.checkbox:checked + label:before {
+  transform: translateX(44px) rotate(-180deg);
+}
+
+.card-3d-wrap {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  perspective: 800px;
+}
+.card-3d-wrapper {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: all 600ms ease-out; 
+}
+.card-front, .card-back {
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  -webkit-backface-visibility: hidden;
+  -moz-backface-visibility: hidden;
+  -o-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+.card-back {
+  transform: rotateY(-180deg);
+}
+.card-3d-wrap.check, .card-3d-wrapper.check {
+  transform: rotateY(-180deg);
+}
+
+.center-wrap{
+  transform: translate3d(0, -50%, 35px) perspective(100px);
+  z-index: 20;
 }
