@@ -134,7 +134,7 @@ public class MyPageDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			sql = "UPDATE user_detail SET photo=? WHERE us_num=?";
+			sql = "UPDATE user_detail SET us_img=? WHERE us_num=?";
 			
 			ps = con.prepareStatement(sql);
 			ps.setString(1, img);

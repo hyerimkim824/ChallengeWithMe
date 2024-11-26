@@ -255,10 +255,10 @@
 <script type="text/javascript">
 	function addIframe(){
 		var iframe = document.createElement('iframe')
-		iframe.src = '${ pageContext.request.contextPath }/mypage/UpdateMyPhoto.do'
+		iframe.src = '${ pageContext.request.contextPath }/mypage/UpdateMyPhotoForm.do'
 		iframe.width= '300'
-		iframe.height = '400'
-		iframe.frameborder = '2'
+		iframe.height = '390'
+		iframe.frameborder = '0'
 		iframe.allowfullscreen = false
 		
 		document.getElementById('iframe-container').appendChild(iframe)
