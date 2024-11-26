@@ -15,6 +15,7 @@ import kr.challenge.dao.ChallengeLikeDAO;
 import kr.challenge.vo.ChallengeLikeVO;
 import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
+import kr.util.PagingUtil;
 
 public class ChallengeListAction implements Action{
 
@@ -29,32 +30,42 @@ public class ChallengeListAction implements Action{
 		}
 		
 		String category = request.getParameter("category");
+		String pageNum = request.getParameter("pageNum");
 		
-		System.out.println("==================전달받은 카테고리 번호: "+category);
+		if(pageNum==null)pageNum="1";
 		
+		String keyfield = request.getParameter("keyfield");
+		String keyword = request.getParameter("keyword");
 		
 		ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 		List<ChallengeVO> chall_list = null;
 		
-		if(category == null || category.equals("0")) {
-			chall_list = chall_dao.getList();
-			
-		}
+		int count = category == null ? chall_dao.getListCount(keyfield, keyword, null) : chall_dao.getListCount(keyfield, keyword, category);
 		
-		else {
-			int cat_num = Integer.parseInt(category);
-			chall_list = chall_dao.getList(cat_num);
-			
-			CategoryDAO cat_dao = CategoryDAO.getInstance();
-			CategoryVO cat_vo = cat_dao.getDetail(cat_num);
-			String cat_name = cat_vo.getCate_name();
-			
-			request.setAttribute("cat_name", cat_name);
-		}
+		PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum),count,15,10,"challengeList.do");
+		
+		
 		
 		ChallengeLikeDAO like_dao = ChallengeLikeDAO.getInstance();
 		List<ChallengeLikeVO> like_list = like_dao.checkLike();
 		
+		
+		if(count > 0) {
+			if(category == null || category.equals("0")) {
+				chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null);
+			}
+			else {
+				chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category);
+				
+				int cat_num = Integer.parseInt(category);
+				
+				CategoryDAO cat_dao = CategoryDAO.getInstance();
+				CategoryVO cat_vo = cat_dao.getDetail(cat_num);
+				String cat_name = cat_vo.getCate_name();
+				
+				request.setAttribute("cat_name", cat_name);
+			}
+		}
 		
 		for(ChallengeVO vo : chall_list) {
 			for(ChallengeLikeVO vo2 : like_list){
@@ -64,11 +75,10 @@ public class ChallengeListAction implements Action{
 			}
 		}
 		
-		
+		request.setAttribute("count", count);
 		request.setAttribute("like_list", like_list);
-		
 		request.setAttribute("chall_list", chall_list);
-	
+		request.setAttribute("page", page.getPage());
 		
 		return "/challenge/challenge_list.jsp";
 	}

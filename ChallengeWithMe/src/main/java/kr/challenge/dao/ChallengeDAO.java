@@ -17,21 +17,104 @@ public class ChallengeDAO {
 	}
 	private ChallengeDAO() {}
 
+	public int getListCount(String keyfield, String keyword, String cate_num) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql;
+		String sub_sql = "";
+		int cnt = 1; // 초기값 1로 설정
+		int count = 0;
+
+		try {
+			// 커넥션 풀에서 연결 가져오기
+			conn = DBUtil.getConnection();
+
+			// 검색 조건 처리
+			if (keyword != null && !"".equals(keyword)) {
+				if ("1".equals(keyfield)) {
+					sub_sql = " WHERE c.ch_title LIKE '%' || ? || '%'";
+				} else if ("2".equals(keyfield)) {
+					sub_sql = " WHERE us.us_nickname LIKE '%' || ? || '%'";
+				} else {
+					throw new IllegalArgumentException("Invalid keyfield value");
+				}
+			}
+
+			// 카테고리 조건 처리
+			if (cate_num != null) {
+				sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cat.cate_num=?";
+			}
+
+			// 최종 SQL 생성
+			sql = "SELECT COUNT(*) FROM chall c "
+					+ "JOIN user_detail us ON c.us_num = us.us_num "
+					+ "JOIN cate cat ON c.cate_num = cat.cate_num" + sub_sql;
+
+			// PreparedStatement 생성
+			pstmt = conn.prepareStatement(sql);
+
+			// 파라미터 바인딩
+			if (keyword != null && !"".equals(keyword)) {
+				pstmt.setString(cnt++, keyword);  // keyword 바인딩
+			}
+			if (cate_num != null) {
+				pstmt.setInt(cnt++, Integer.parseInt(cate_num));  // cate_num 바인딩
+			}
+
+			// SQL 실행
+			rs = pstmt.executeQuery();
+			if (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+
+		return count;
+	}
+
 	//챌린지 목록
-	public List<ChallengeVO> getList() throws Exception{
+	public List<ChallengeVO> getList(int start, int end, String keyfield, String keyword, String cat_num) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
+		String sub_sql = "";
 
 		ResultSet rs = null;
 		List<ChallengeVO> list = null;
+		int cnt = 1;
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT chall.*, cate.cate_name FROM chall JOIN cate ON chall.cate_num = cate.cate_num ORDER BY ch_num DESC";
+
+			if(keyword != null && !"".equals(keyword)) {
+				if(keyfield.equals("1")) sub_sql += " WHERE chall.ch_title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += " WHERE us.us_nickname LIKE '%' || ? || '%'";
+
+			}
+
+			if (cat_num != null) {
+				sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cate.cate_num=?";
+			}
+
+			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, us.us_nickname, rownum AS rnum"
+					+ " FROM chall JOIN cate ON chall.cate_num = cate.cate_num JOIN user_detail us ON chall.us_num = us.us_num" + sub_sql
+					+ " ORDER BY ch_num DESC) WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
-			
-			
+
+			if (keyword != null && !"".equals(keyword)) {
+				pstmt.setString(cnt++, keyword); 
+			}
+			if (cat_num != null) {
+				pstmt.setInt(cnt++, Integer.parseInt(cat_num));  
+			}
+			pstmt.setInt(cnt++, start);
+			pstmt.setInt(cnt++, end);
+
+
 			rs = pstmt.executeQuery();
 			list = new ArrayList<ChallengeVO>();
 
@@ -248,7 +331,7 @@ public class ChallengeDAO {
 		}
 
 	}
-	public void plusLike(ChallengeVO vo) throws Exception{
+	public void updateLike(ChallengeVO vo, boolean isPlus) throws Exception{
 
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -262,7 +345,15 @@ public class ChallengeDAO {
 			sql = "UPDATE chall SET ch_like=? WHERE chall.ch_num=?";
 			pstmt = conn.prepareStatement(sql);
 
-			pstmt.setInt(1, curr_like+1);
+			if(isPlus) {
+				pstmt.setInt(1, curr_like+1);
+			}else {
+				if(curr_like == 0) {
+					pstmt.setInt(1, 0);
+				}else {
+					pstmt.setInt(1, curr_like-1);
+				}
+			}
 			pstmt.setLong(2, ch_num);
 
 			pstmt.executeUpdate();
@@ -275,33 +366,7 @@ public class ChallengeDAO {
 
 
 	}
-	
-	public void minusLike(ChallengeVO vo) throws Exception{
-
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		String sql = null;
-		try {
-
-			int curr_like = vo.getCh_like();
-			long ch_num = vo.getCh_num();
-
-			conn = DBUtil.getConnection();
-			sql = "UPDATE chall SET ch_like=? WHERE chall.ch_num=?";
-			pstmt = conn.prepareStatement(sql);
-
-			pstmt.setInt(1, curr_like-1);
-			pstmt.setLong(2, ch_num);
-
-			pstmt.executeUpdate();
-
-		}catch(Exception e) {
-			throw new Exception(e);
-		}finally{
-			DBUtil.executeClose(null, pstmt, conn);
-		}
 
 
-	}
 
 }

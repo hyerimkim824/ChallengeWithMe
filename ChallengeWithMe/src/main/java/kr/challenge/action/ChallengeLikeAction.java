@@ -38,12 +38,12 @@ public class ChallengeLikeAction implements Action{
 			if(isliked==true) {
 				mapAjax.put("myLike", "undo");
 				like_dao.deleteLike(us_num, ch_num);
-				chall_dao.minusLike(chall_vo);
+				chall_dao.updateLike(chall_vo, true);
 			}
 			else {
 				mapAjax.put("myLike", "do");
 				like_dao.addLike(us_num, ch_num);
-				chall_dao.plusLike(chall_vo);
+				chall_dao.updateLike(chall_vo, false);
 			}
 		}
 

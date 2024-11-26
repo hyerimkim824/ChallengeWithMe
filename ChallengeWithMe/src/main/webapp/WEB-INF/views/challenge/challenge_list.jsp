@@ -133,7 +133,7 @@
 			</c:if>
 
 		</div>
-
+		<div class="page-div align-center">${page}</div>
 	</div>
 
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
