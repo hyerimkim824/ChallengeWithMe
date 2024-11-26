@@ -8,68 +8,37 @@
 <head>
 <meta charset="UTF-8">
 <title>마이첼린지 메인</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/style.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/header.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/khr.css" type="text/css">
-<script type="text/javascript"
-	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css"type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/header.css" type="text/css">
+<link rel="stylesheet"href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
+	
 <script type="text/javascript">
 
 
-function hideFunction1(){
-	var part = document.getElementById("part");
+function hideFunction(id) {
+    // 모든 토글 요소를 닫음
+    var toggles = document.querySelectorAll('.ch-button');
+    toggles.forEach(function (toggle) {
+        toggle.style.display = "none";
+    });
 
-	if(part.style.display==="none"){
-	part.style.display = "block";
-	}else{
-	part.style.display="none"}
-	
+    // 클릭한 요소만 표시
+    var current = document.getElementById(id);
+    if (current.style.display === "none" || current.style.display === "") {
+        current.style.display = "block"; // 표시
+    } else {
+        current.style.display = "none"; // 닫기
+    }
 }
-function hideFunction2(){
-	var get = document.getElementById("get");
-	
-	if(get.style.display==="none"){
-	get.style.display = "block";
-	}else{
-	get.style.display="none"}
-	
-}
-
-function hideFunction3(){
-	var like = document.getElementById("like");
-	
-	if(like.style.display==="none"){
-	like.style.display = "block";
-	}else{
-	like.style.display="none"}
-	
-}
-
-function hideFunction4(){
-	var overall = document.getElementById("overall");
-	
-	if(overall.style.display==="none"){
-	overall.style.display = "block";
-	}else{
-	overall.style.display="none"}
-	
-}
-
 </script>
-
-
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<div class="page-main">
-
+	<div class="page-main">
+		<h2>마이 챌린지 메인 페이지</h2>
 		<div class="mychallenge-content-main">
-			<h2>마이 첼린지 메인 페이지</h2>
+
 			<div class="mychallenge-div">
 				<h4>프로필 사진</h4>
 				<ul>
@@ -83,8 +52,9 @@ function hideFunction4(){
 						</c:if></li>
 				</ul>
 			</div>
-			
-			<div class="align-right" >
+	
+
+			<div class="align-right">
 				<h4>마이 챌린지</h4>
 				<table id=my_challenge>
 					<tr>
@@ -111,71 +81,72 @@ function hideFunction4(){
 					</tr>
 
 				</table>
-				
-				</div>
-			
-			
+
 			</div>
-			<div class="align-left">
-				
-					<input type="button" value="참여 챌린지" id="part_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
-					<br>
-				
-					<input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
-				
-			</div>
-		
-			<div>
-			
+
+
+		</div>
+		<div class="align-left">
+
+			<input type="button" value="참여 챌린지" id="part_ch_btn"
+				onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
+			<br> <input type="button" value="개설 챌린지" id="gen_ch_btn"
+				onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
+
+		</div>
+
+		<div>
+
 			<h2>챌린지 리포트</h2>
-			
-			
-			<button onclick="hideFunction1()" >챌린지 참가수</button>
-			<button onclick="hideFunction2()">챌린지 달성률</button>
-			<button onclick="hideFunction3()">챌린지 선호도</button>
-			<button onclick="hideFunction4()">전체 챌린지</button>
-			<div  id ="part" class="ch-button">
+
+
+			<button id="mybutton" onclick="hideFunction('part')">챌린지 참가수</button>
+			<button id="mybutton" onclick="hideFunction('get')">챌린지 달성률</button>
+			<button id="mybutton" onclick="hideFunction('like')">챌린지 선호도</button>
+			<button id="mybutton" onclick="hideFunction('overall')">전체 챌린지</button>
+			<div id="part" class="ch-button">
 				<h4>MY챌린지 참가수</h4>
 				${partNum}
 				<h4>MY평균 챌린지 침가수</h4>
-				<form id ="" method="post" >
-				
-				 <label for="year">Year:</label>
-			        <input type="number" id="year" name="year" required><br><br>
-	
-			        <label for="month">Month:</label>
-			        <input type="number" id="month" name="month" required><br><br>
-			
-			        <button type="submit">Submit</button>
-							 
-		
+				<form id="" method="post">
+
+					<label for="year">Year:</label> <input type="number" id="year"
+						name="year" required><br>
+					<br> <label for="month">Month:</label> <input type="number"
+						id="month" name="month" required><br>
+					<br>
+
+					<button type="submit">Submit</button>
+
+
 				</form>
 				<!-- <input type="date" value="참여 날짜"> -->
 			</div>
-			
-			 <div id ="get" class="ch-button">
+
+			<div id="get" class="ch-button">
 				<h4>현재 참여 챌린지 달성률</h4>
 				${list}
-			
+
 				<h4>한달 평균 챌린지 달성률</h4>
 				<h4>1년 평균 챌린지 달성률</h4>
-				
-				
+
+
 				<!--<input type="text" value="달성률" >-->
-			 </div>
-			  <div id ="like" class="ch-button">
+			</div>
+			<div id="like" class="ch-button">
 				<h4>챌린지 선호도</h4>
 				${list_prefer}
 				<!--<input type="text" value="달성률" >-->
-			 </div>
-			  <div id ="overall" class="ch-button">
-				<h4>월별 전체 챌린지</h4>
+			</div>
+			<div id="overall" class="ch-button">
+				<h4>참여 중 챌린지</h4>
+				<h4>참여완료 챌린지</h4>
 				<!--<input type="text" value="달성률" >-->
-			 </div>
+			</div>
 
 
-	
-	</div>
+
+		</div>
 
 	</div>
 

@@ -3,7 +3,7 @@
 
 
 .page-main .align-left #part_ch_btn{
-	
+	 margin-left: 50px;
 	width:100px;
 	height:50px;
 	align-items:left;
@@ -13,7 +13,7 @@
 	
 }
 .page-main .align-left #gen_ch_btn{
-	
+	  margin-left: 50px;
 	width:100px;
 	height:50px;
 	align-items:left;
@@ -21,20 +21,82 @@
 
 	
 }
+
+/*마이 챌린지 메인 테이블*/
 .page-main .mychallenge-content-main .align-right{
 	border-collapse: collapse;
     width: 200px;
     margin-left: auto; /* 테이블 오른쪽 정렬 */
-    margin-right: 100px;
+    margin-right: 300px;
    
 }
 
 .page-main .mychallenge-content-main{
-	display:flex;
-	gap:100px
+	 display: flex;
+	 margin-left: 50px;
+	
+
 }
+
+/*마이 챌린지 참여 테이블*/
+.page-main .mychallenge-content-part .align-right{
+	border-collapse: collapse;
+    width: 200px;
+    margin-left: auto; /* 테이블 오른쪽 정렬 */
+    margin-right: 300px;
+   
+}
+
+.page-main .mychallenge-content-part{
+	 display: flex;
+	 margin-left: 50px;
+	
+
+}
+
+
+
+/* 프로필--------------------------- */
+.mychallenge-div {
+  margin-left: 50px; /* 왼쪽 여백 100px */
+}
+
+.mychallenge-div ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.mychallenge-div li {
+  text-align: left;
+}
+
+.my-photo {
+  display: block;
+  margin: 0;
+}
+/*--------------------------- */
 
 
 .page-main .ch-button{
-	  display: none; /* 초기 상태 숨김 */
+	  display: none;
+	 
+	   /* 초기 상태 숨김 */
 }
+
+.page-main #mybutton{
+	  
+	  width:100px;
+	 height:50px;
+	 background:#FFE066;
+	 
+	
+}
+
+.part-image{
+
+    float: right; /* 오른쪽 정렬 */
+    margin-right: 500px; /* 오쪽 여백 */
+}
+
+

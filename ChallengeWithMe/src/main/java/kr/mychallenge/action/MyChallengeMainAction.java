@@ -31,7 +31,7 @@ public class MyChallengeMainAction  implements Action{
 		request.setAttribute("partNum", partNum);
 		
 		/*달성률
-		 * 
+		 *   
 		 */
 		 
 		//String ch_start = (String)session.getAttribute("20");
