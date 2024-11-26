@@ -16,16 +16,13 @@ $(function(){
 		
 		if($(this).hasClass('list-dd'))	
 		{
-			// 카테고리 버튼의 텍스트를 클릭한 항목의 이름으로 변경
-			$('#categoryButton').text(categoryName);
-			
-			// AJAX 요청 전송
-			$.ajax({
-				url: 'challengeList.do', // 데이터를 전송할 서버 파일
-			    type: 'POST',
-			    data: { category: category } // category 데이터 전송
-			           
-			   });		
+			 $('#list_cat').text(categoryName);	
+			 $.ajax({
+				url: 'challengeList.do',
+				type: 'POST',
+				data: {category:category}
+				
+			 });
 		}
 		else if($(this).hasClass('create-dd')){
 			$('#cate_num').val(category);

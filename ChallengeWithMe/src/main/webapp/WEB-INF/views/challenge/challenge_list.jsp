@@ -25,11 +25,11 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		
+
 		<div class="space100-div"></div>
 		<div class="ch-top-container">
 			<div class="dropdown">
-				<button class="btn dropdown-toggle" type="button"
+				<button class="btn dropdown-toggle" type="button" id="list_cat"
 					style="background-color: #FFE066" data-bs-toggle="dropdown"
 					aria-expanded="true">
 					<c:if test="${!empty cat_name}">
@@ -39,16 +39,16 @@
 					전체
 				</c:if>
 				</button>
-				
+
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
 					<li><a class="dropdown-item list-dd" id="cat_all"
-						data-category="0" href="challengeList.do?category=0">전체</a></li>
+						data-category="0">전체</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_health"
-						data-category="1" href="challengeList.do?category=1">건강</a></li>
+						data-category="1">건강</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_food"
-						data-category="2" href="challengeList.do?category=2">식습관</a></li>
+						data-category="2">식습관</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
-						data-catagory="3" href="challengeList.do?category=3">자기계발</a></li>
+						data-category="3">자기계발</a></li>
 
 				</ul>
 			</div>
@@ -59,25 +59,21 @@
 		</div>
 		<div class="ch-container">
 			<c:if test="${!empty chall_list}">
-				<c:forEach var="list" items="${chall_list}" varStatus="status">
-					
-					<div class="ch-item">
-						
-							<div class="item-header">
-								<div class="ch-category">${list.cate_name}</div>
-								<c:if test="${list.heart_status}">
-									<div class="item-heart" data-chnum="${list.ch_num}">
-										<img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px">
-									</div>
-								</c:if>
-								<c:if test="${!list.heart_status}">
-									<div class="item-heart" data-chnum="${list.ch_num}">
-										<img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px">
-									</div>
-								</c:if>
-								
-							
+				<c:forEach var="list" items="${chall_list}">
 
+					<div class="ch-item">
+
+						<div class="item-header">
+							<div class="ch-category">${list.cate_name}</div>
+							<c:if test="${list.heart_status}">
+								<div class="item-heart" data-chnum="${list.ch_num}">
+									<img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px">
+								</div>
+							</c:if>
+							<c:if test="${!list.heart_status}">
+								<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px">
+								</div>
+							</c:if>
 						</div>
 						<a
 							href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">
@@ -139,7 +135,7 @@
 		</div>
 
 	</div>
-	
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

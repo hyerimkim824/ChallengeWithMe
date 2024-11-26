@@ -28,9 +28,10 @@ public class ChallengeDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "SELECT chall.*, cate.cate_name FROM chall JOIN cate ON chall.cate_num = cate.cate_num";
+			sql = "SELECT chall.*, cate.cate_name FROM chall JOIN cate ON chall.cate_num = cate.cate_num ORDER BY ch_num DESC";
 			pstmt = conn.prepareStatement(sql);
-
+			
+			
 			rs = pstmt.executeQuery();
 			list = new ArrayList<ChallengeVO>();
 

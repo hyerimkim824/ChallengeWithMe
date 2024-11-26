@@ -30,11 +30,14 @@ public class ChallengeListAction implements Action{
 		
 		String category = request.getParameter("category");
 		
+		
+		
 		ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 		List<ChallengeVO> chall_list = null;
 		
 		if(category == null || category.equals("0")) {
 			chall_list = chall_dao.getList();
+			
 		}
 		
 		else {
@@ -59,6 +62,7 @@ public class ChallengeListAction implements Action{
 				}
 			}
 		}
+		
 		
 		request.setAttribute("like_list", like_list);
 		
