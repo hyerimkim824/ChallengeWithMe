@@ -14,7 +14,7 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 	
 <head>
-<meta charset="UTF-8">
+<meta charset="UTF-8"> 
 <title>참여 챌린지</title>
 </head>
 <body>

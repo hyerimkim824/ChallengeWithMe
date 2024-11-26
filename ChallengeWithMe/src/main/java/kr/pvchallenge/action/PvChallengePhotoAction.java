@@ -14,3 +14,4 @@ public class PvChallengePhotoAction implements Action{
 	}
 
 }
+ 

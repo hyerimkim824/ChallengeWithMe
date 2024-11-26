@@ -74,7 +74,7 @@
 
 
 		</div>
-		<div class="align-left">
+		<div class="align-left"> 
 
 			<input type="button" value="참여 챌린지" id="part_ch_btn"
 				onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">

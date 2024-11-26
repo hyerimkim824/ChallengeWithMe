@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <h1>사진 인증</h1>
-
+ 
 <div class ="page-main">
 	
 	</div>
