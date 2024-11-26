@@ -42,13 +42,13 @@
 
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
 					<li><a class="dropdown-item list-dd" id="cat_all"
-						data-category="0">전체</a></li>
+						data-category="0" href="challengeList.do">전체</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_health"
-						data-category="1">건강</a></li>
+						data-category="1" href="challengeList.do?category=1">건강</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_food"
-						data-category="2">식습관</a></li>
+						data-category="2" href="challengeList.do?category=2">식습관</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
-						data-category="3">자기계발</a></li>
+						data-category="3" href="challengeList.do?category=3">자기계발</a></li>
 
 				</ul>
 			</div>
