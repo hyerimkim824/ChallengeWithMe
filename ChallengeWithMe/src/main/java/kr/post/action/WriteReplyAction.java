@@ -11,6 +11,7 @@ import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.post.dao.PostDAO;
 import kr.post.vo.PostCommVO;
+import kr.post.vo.PostVO;
 import kr.util.StringUtil;
 import kr.xuser.vo.XuserVO;
 
@@ -44,8 +45,8 @@ public class WriteReplyAction implements Action{
 			request.setCharacterEncoding("utf-8");
 			//자바빈(VO)생성
 			PostCommVO reply = new PostCommVO();
-			//**댓글 번호(com_num)와 사용자 번호(us_num)가 같은 값이어야 하는 경우
-			reply.setCom_num(us_num);
+			//게시글 번호(Post_num), 사용자 번호(us_num)
+			reply.setPost_num(us_num);
 			reply.setCom_content(request.getParameter("com_content"));
 			reply.setUs_img(request.getParameter("us_img"));
 			reply.setUs_nickname(request.getParameter("us_nickname"));
@@ -53,14 +54,12 @@ public class WriteReplyAction implements Action{
 
 			try {
 				PostDAO dao = PostDAO.getInstance();
+				PostVO vo = dao.getpost(Long.parseLong(request.getParameter("post_num")));
 				dao.insertPostReply(reply, us_num);
 
-				//디버깅
-				System.out.println("WriteReplyAction - post_num: " + reply.getPost_num());
-				System.out.println("WriteReplyAction - com_content: " + reply.getCom_content());
-				System.out.println("WriteReplyAction - us_num: " + reply.getUs_num());
-
 				mapAjax.put("result", "success");
+				
+				dao.updateCommentCount(vo, true);
 
 			} catch (Exception e) {
 				e.printStackTrace();

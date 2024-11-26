@@ -20,8 +20,13 @@ public class ListAction implements Action{
 		String keyfield = request.getParameter("keyfield");
 		String keyword = request.getParameter("keyword");
 		
+	
 		PostDAO dao = PostDAO.getInstance();
 		int count = dao.getPostCount(keyfield,keyword);
+		
+	//int comm_count = dao.getListPostReply(start,end,post_num);
+		//int like_count = dao.getLikeCount(post_num);
+		
 		
 		//페이지 처리
 		PagingUtil page = new PagingUtil(keyfield,keyword,Integer.parseInt(pageNum),count,5,10,"list.do");
@@ -35,6 +40,8 @@ public class ListAction implements Action{
 		request.setAttribute("count", count);
 		request.setAttribute("post", list);
 		request.setAttribute("page", page.getPage());
+		//request.setAttribute("comm_count", comm_count);
+	   // request.setAttribute("like_count", like_count);
 		
 		
 		return "/post/list.jsp";

@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,6 +10,10 @@
 <title>꼬박꼬박 커뮤니티</title>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+
+
+
 <%-- 부트스트랩 링크 --%>
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
@@ -117,11 +122,12 @@
 							<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 							</c:if>
 							<span class="post-list-nickname">${post.us_nickname}</span> 
-							<span class="post-list-date">${post.post_date}</span>
-							<%-- <span class="post-list-like">좋아요</span> --%>
+							<span class="post-list-date"> <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></span>
+							
+							
 							<%-- 조회수 --%>
 							<span class="post-list-view">
-							조회수 : 
+							<img src="${pageContext.request.contextPath}/images/eye.svg" width="15" height="15">
 							<c:if test="${!empty post.post_view}">
 							${post.post_view}
 							</c:if>

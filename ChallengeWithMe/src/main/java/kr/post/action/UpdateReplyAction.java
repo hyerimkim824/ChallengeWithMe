@@ -36,11 +36,10 @@ public class UpdateReplyAction implements Action{
 			//로그인한 회원번호 == 작성자 회원번호
 			//자바빈(VO) 생성
 			PostCommVO reply = new PostCommVO();
-			reply.setCom_num(us_num);
+			reply.setCom_num(com_num);
 			reply.setCom_content(request.getParameter("com_content"));
 			reply.setUs_img(request.getParameter("us_img"));
 			reply.setUs_nickname(request.getParameter("us_nickname"));
-			
 			
 			//댓글 수정
 			dao.modifyReplyPost(reply);

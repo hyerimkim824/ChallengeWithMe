@@ -32,21 +32,33 @@ public class ListReplyAction implements Action{
 				         request.getParameter("post_num"));
 		
 		PostDAO dao = PostDAO.getInstance();
+		//전체개수
 		int count = dao.getPostReplyCount(post_num);
+		
+		
+		/*
+		 * 페이징 처리
+		 * 필요한 변수
+		 * 1. 화면에 보여질 페이지 그룹   : Math.ceil(현재 페이지/5(한 화면에 나타낼 데이터 수))
+		 * 2. 화면에 보여질 첫번째 페이지 : 1*5(rowCount)    = 1
+		 * 3. 화면에 보여질 마지막 페이지 : 5(rowCount)-(5-1)= 1
+		 * 4. 총 페이지 수            : Math.ceil(count(전체개수)/10(한 페이지에 나타낼 페이지 수))
+		 * 
+		 */
+		
+		
+		
 		
 		//currentPage,count,rowCount
 		PagingUtil page = 
-				new PagingUtil(Integer.parseInt(pageNum),
-						       count,
-						       Integer.parseInt(rowCount));
+				new PagingUtil(Integer.parseInt(pageNum),count,Integer.parseInt(rowCount));
 		List<PostCommVO> list = null;
 		if(count > 0) {
-			list = dao.getListPostReply(page.getStartRow(),
-					                     page.getEndRow(),
-					                     post_num);
+			list = dao.getListPostReply(page.getStartRow(),page.getEndRow(), post_num);
 		}else {
 			list = Collections.emptyList();
 		}
+		
 		
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
@@ -57,6 +69,7 @@ public class ListReplyAction implements Action{
 		mapAjax.put("list", list);
 		//로그인한 사람이 작성자인지 체크하기 위해서 로그인한 회원번호 전송
 		mapAjax.put("us_num", us_num);
+		
 		//JSON 데이터로 변환
 		return StringUtil.parseJSON(request, mapAjax);
 

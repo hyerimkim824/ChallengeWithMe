@@ -14,18 +14,18 @@ public class DetailAction implements Action{
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
-		
-		
         long post_num = Long.parseLong(request.getParameter("post_num"));
        
-        
-		
         PostDAO dao = PostDAO.getInstance();
 		//조회수 증가
 		dao.viewcount(post_num);
-
+		 
 		PostVO post = dao.getpost(post_num);
+		
+		//detail.jsp에서 받는 comm_count, like_count 갯수
+		int comm_count = dao.getPostReplyCount(post_num);
+		int like_count = dao.getLikeCount(post_num);
+		
 		System.out.println(post);
 		
 		//HTML 태그를 허용하지 않음
@@ -34,6 +34,8 @@ public class DetailAction implements Action{
 		post.setPost_content(StringUtil.useBrNoHtml(post.getPost_content()));
 
 		request.setAttribute("post", post);
+		request.setAttribute("comm_count", comm_count);
+		request.setAttribute("like_count", like_count);
 		
 		
 		//이미지는 받아와지는데 upload폴더에 사진이 없어서 안나온다고 함

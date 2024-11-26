@@ -2,6 +2,8 @@ package kr.post.vo;
 
 import java.sql.Date;
 
+import kr.post.dao.PostDAO;
+
 public class PostVO {
 	private long post_num;//글 번호
 	private long us_num;//유저 번호
@@ -12,8 +14,22 @@ public class PostVO {
 	private String us_nickname;//유저의 닉네임
 	private String us_img;//유저 프로필 이미지
 	private long post_view;//글 조회수
+	private long comm_count;//댓글 개수
+	private long like_count;//좋아요 개수
 	private Date post_modifydate;//글 수정일
 	
+	public long getComm_count() {
+		return comm_count;
+	}
+	public void setComm_count(long comm_count) {
+		this.comm_count = comm_count;
+	}
+	public long getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(long like_count) {
+		this.like_count = like_count;
+	}
 	public Date getPost_modifydate() {
 		return post_modifydate;
 	}
@@ -81,5 +97,9 @@ public class PostVO {
 				+ post_title + ", post_content=" + post_content + ", post_date=" + post_date + ", us_nickname="
 				+ us_nickname + ", us_img=" + us_img + "]";
 	}
+	
+	
+		
+	
 	
 }

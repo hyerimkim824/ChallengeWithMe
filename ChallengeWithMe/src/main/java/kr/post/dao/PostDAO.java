@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kr.post.vo.PostCommVO;
+import kr.post.vo.PostLikeVO;
 import kr.post.vo.PostVO;
 import kr.util.DBUtil;
 import kr.util.DurationFromNow;
@@ -138,6 +139,8 @@ public class PostDAO {
 				post.setUs_nickname(rs.getString("us_nickname"));
 				post.setUs_img(rs.getString("us_img"));
 				post.setPost_view(rs.getLong("post_view"));
+				post.setComm_count(rs.getLong("comm_count"));
+				post.setLike_count(rs.getLong("like_count"));
 				
 				list.add(post);
 			}
@@ -186,6 +189,7 @@ public class PostDAO {
 				post.setPost_title(rs.getString("post_title"));
 				post.setPost_modifydate(rs.getDate("post_modifydate"));
 				post.setPost_view(rs.getLong("post_view"));
+				
 			}
 		}catch(Exception e) {
 			throw new Exception(e);
@@ -308,12 +312,157 @@ public class PostDAO {
 	}
 	
 
-	//좋아요 개수
-	//회원번호와 게시물 번호를 이용한 좋아요 정보
+	//좋아요 개수 -> 다시 적어야 함 ->왜더라...
+	public int getLikeCount(long post_num)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = null;
+		int count = 0;
+		try {//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT COUNT(*) FROM post_like WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, post_num);
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt(1);
+			}
+	//테스트
+			System.out.println("좋아요 개수를 가져올 post_num 값: " + post_num);
+			if (rs.next()) {
+			    count = rs.getInt(1);
+			    System.out.println("좋아요 개수: " + count);
+			} else {
+			    System.out.println("좋아요 데이터가 없습니다.");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return count;
+		
+		
+	}
+	//회원번호와 게시물 번호를 이용한 좋아요 정보(유저가 게시물을 클릭했을 때 좋아요 선택 여부 표시)
+	public PostLikeVO selectLike(PostLikeVO likeVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		PostLikeVO like = null;
+		String sql = null;
+		try {//커넥션풀로부터 커넥션을 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "SELECT * FROM post_like WHERE post_num=? AND us_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, likeVO.getPost_num());
+			pstmt.setLong(2, likeVO.getUs_num());
+			//sql문 실행
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				like = new PostLikeVO();
+				like.setPost_num(rs.getLong("post_num"));
+				like.setUs_num(rs.getLong("us_num"));
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return like;
+	}
 	//좋아요 등록
+	public void insertLike(PostLikeVO likeVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "INSERT INTO post_like(post_num,us_num) VALUES (?,?)";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, likeVO.getPost_num());
+			pstmt.setLong(2, likeVO.getUs_num());
+			//sql문 실행
+			pstmt.executeUpdate();
+			  System.out.println("좋아요 등록 완료: post_num = " + likeVO.getPost_num() + ", us_num = " + likeVO.getUs_num());
+		}catch(Exception e) {
+			 System.err.println("좋아요 등록 실패: " + e.getMessage());
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
 	//좋아요 삭제
-	//좋아요 목록(=찜 목록)
-	//내가 선택한 좋아요 목록 -> 게시판 목록의 정보 보여져야함 List<PostVO>
+	public void deletetLike(PostLikeVO likeVO)throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "DELETE FROM post_like WHERE post_num=? AND us_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			//?에 데이터 바인딩
+			pstmt.setLong(1, likeVO.getPost_num());
+			pstmt.setLong(2, likeVO.getUs_num());
+			//sql문 실행
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//댓글 개수 관리
+	public void updateCommentCount(PostVO vo, boolean action) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		
+		try {
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			//sql문 작성
+			sql = "UPDATE post SET comm_count=? WHERE post_num=?";
+			//PreparedStatement 객체 생성
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 데이터 바인딩
+			if(action) {
+				pstmt.setLong(1, vo.getComm_count() + 1);
+			}else {
+				if(vo.getComm_count() == 0) {
+					pstmt.setLong(1, 0);
+				}else {
+					pstmt.setLong(1, vo.getComm_count() - 1);
+				}
+			}
+			pstmt.setLong(2, vo.getPost_num());
+			
+			
+			//SQL문 실행
+			pstmt.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+			
+		}
+	}
 	
 	//댓글 등록
 	public void insertPostReply(PostCommVO postReply, long us_num) throws Exception{
@@ -328,26 +477,18 @@ public class PostDAO {
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
-			
-	System.out.println("PostDAO - SQL 준비: " + sql);
-	System.out.println("PostDAO - post_num: " + postReply.getPost_num());
-	System.out.println("PostDAO - us_num: " + postReply.getUs_num());
-	System.out.println("PostDAO - com_content: " + postReply.getCom_content());
 			pstmt.setLong(1, postReply.getPost_num());
 			pstmt.setLong(2, us_num);
 			pstmt.setString(3, postReply.getCom_content());
-			
-	System.out.println("SQL post_num: " + postReply.getPost_num());
-	System.out.println("SQL com_content: " + postReply.getCom_content());
 			//SQL문 실행
 			pstmt.executeUpdate();
-	System.out.println("PostDAO - SQL 실행 성공");
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
+	
 	//댓글 개수
 	public int getPostReplyCount(long post_num)throws Exception{
 		Connection conn = null;
@@ -373,10 +514,11 @@ public class PostDAO {
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
-			DBUtil.getConnection();
+			DBUtil.executeClose(rs, pstmt, conn);
 		}
 		return count;
 	}
+	
 	
 	//댓글 목록
 	public List<PostCommVO> getListPostReply(int start, int end, long post_num) throws Exception{
@@ -471,6 +613,9 @@ public class PostDAO {
 			//PreparedStatement 객체 생성
 			pstmt = conn.prepareStatement(sql);
 			//?에 데이터 바인딩
+			System.out.println("modifyReplyPost 댓글 수정 com_content:" + reply.getCom_content());
+			System.out.println("modifyReplyPost 댓글 수정 com_num:" + reply.getCom_num());
+			
 			pstmt.setString(1, reply.getCom_content());
 			pstmt.setLong(2, reply.getCom_num());
 			//sql문 실행
@@ -504,6 +649,7 @@ public class PostDAO {
 		}
 		
 	}
+	//댓글 개수 관리
 }
 
 

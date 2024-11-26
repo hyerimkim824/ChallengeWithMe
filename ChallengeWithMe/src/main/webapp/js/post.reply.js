@@ -33,11 +33,13 @@ $(function(){
                     let output = '<div class="item">';
                     output += item.us_img;
                     output += '<h4>' + item.us_nickname + '</h4>';
+					output += '<div class="sub-item">';
                     if (item.com_modifydate) {
                         output += '<span class="modify-date">최근 수정일 : ' + item.com_modifydate + '</span>';
                     } else {
                         output += '<span class="modify-date">등록일 : ' + item.com_date + '</span>';
                     }
+					
                     // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
                     if (param.us_num == item.us_num) {
                         // 로그인한 회원번호와 작성자 회원번호 일치
@@ -56,17 +58,20 @@ $(function(){
                 });
 
                 // page button 처리 -> 고쳐야함
-                if (currentPage >= Math.ceil(count / rowCount)) {
-                    // 다음 페이지가 없음
-                    $('.paging-button').hide();
-                } else {
-                    // 다음 페이지가 존재
-                    $('.paging-button').show();
-                }
+				//page button 처리
+				if(currentPage>=Math.ceil(count/rowCount)){
+				//다음 페이지가 없음
+				$('.paging-button').hide();
+				}else{
+				//다음 페이지가 존재
+				$('.paging-button').show();
+				}	
+				
+			
             },
             error: function() {
                 $('#loading').hide();
-                alert('네트워크 오류 발생');
+                alert('네트워크 오류 발생 뿡');
             }
         });
     }
@@ -106,7 +111,7 @@ $(function(){
 					alert('댓글 등록 오류 발생');
 				}
 			},error:function(){
-				alert('네트워크 오류 발생');
+				alert('네트워크 오류 발생ㅗㅗㅗ');
 			}
 		});
 		//기본 이벤트 제거
@@ -127,9 +132,8 @@ $(function(){
 			//댓글 번호
 			let re_num = $(this).attr('data-com_num');
 			//댓글 내용
-			let content = $(this).parent().find('p')
-			                     .html().replace(/<br>/gi,'\n');
-								 //g:지정문자열 모두,i:대소문자 무시
+			let content = $(this).parent().find('p').html().replace(/<br>/gi,'\n');
+								                                        //g:지정문자열 모두,i:대소문자 무시
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="com_num" id="mre_num" value="'+re_num+'">';
@@ -147,6 +151,7 @@ $(function(){
 		initModifyForm();
 								 	
 		//지금 클릭해서 수정하고자 하는 데이터는 감추기 수정버튼을 감싸고 있는 div
+		//직속부모 찾기
 		$(this).parent().hide();
 								 	
 		//수정폼을 수정하고자 하는 데이터가 있는 div에 노출
@@ -187,7 +192,7 @@ $(function(){
 	 			if(param.result=='logout'){
 	 				alert('로그인해야 수정할 수 있습니다.');
 	 			}else if(param.result == 'success'){
-	 				$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
+	 				$('#mre_form').parent().find('p').html($('#mre_content').val().replace(/c/g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>'));
 	 				$('#mre_form').parent().find('.modify-date').text('최근 수정일 : 5초미만');
 	 				//수정폼 삭제 및 초기화
 	 				initModifyForm();
@@ -198,7 +203,7 @@ $(function(){
 	 			}
 	 		},
 	 		error:function(){
-	 			alert('네트워크 오류 발생');
+	 			alert('네트워크 오류 발생ㅎ');
 	 		}
 	 	});
 	 	//기본 이벤트 제거
@@ -256,7 +261,7 @@ $(function(){
 	 				}
 	 			},
 	 			error:function(){
-	 				alert('네트워크 오류 발생');
+	 				alert('네트워크 오류 발생ㅣㅣㅣ');
 	 			}
 	 		});
 	 	});
