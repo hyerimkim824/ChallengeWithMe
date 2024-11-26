@@ -93,11 +93,15 @@ $(document).ready(function() {
 <style type="text/css">
 	.overlay{
 		display: felx;
+		width: 100%;
+		height: 100%;
 	}
 	.container{
 		position: absolute;
 		align-content: center;
 		text-align: center;
+		width: 260px;
+		height: 360px;
 	}
 	ul{
 		list-style: none;
@@ -123,6 +127,10 @@ $(document).ready(function() {
 	input[type=file]{
 		margin-top: 10px;
 	}
+	h3{
+		margin-left: 40px;
+	}
+	
 </style>
 </head>
 <body>

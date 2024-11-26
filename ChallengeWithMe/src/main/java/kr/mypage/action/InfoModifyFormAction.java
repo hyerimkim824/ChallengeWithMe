@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.xuser.vo.XuserVO;
 
-public class UpdateMyPhotoFormAction implements Action{
+public class InfoModifyFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -18,7 +18,7 @@ public class UpdateMyPhotoFormAction implements Action{
 		
 		XuserVO xuser = dao.getMyInfo(us_num);
 		request.setAttribute("xuser", xuser);
-		return "mypage/updatemyphotoform.jsp";
+		return "mypage/infomodifyform.jsp";
 	}
 
 }

@@ -51,6 +51,7 @@ public class MyPageDAO {
 	            xuser.setImg(rs.getString("us_img"));
 	            xuser.setEmail(rs.getString("us_email"));
 	            xuser.setName(rs.getString("us_name"));
+	            xuser.setZipcode(rs.getString("us_zipcode"));
 	            xuser.setAddress1(rs.getString("us_address1"));
 	            xuser.setAddress2(rs.getString("us_address2"));
 	        }
@@ -141,6 +142,36 @@ public class MyPageDAO {
 			ps.setLong(2, us_num);
 			
 			ps.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 개인정보 수정
+	public void updateXuser(XuserVO xuser)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "UPDATE user_detail SET us_nickname=?, us_email=?, us_birth=?, us_tel=?, us_gen=?, "
+					+ "us_zipcode=?, us_address1=?, us_address2=?, us_rdate=SYSDATE WHERE us_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, xuser.getNickname());
+			ps.setString(2, xuser.getEmail());
+			ps.setString(3, xuser.getBirth());
+			ps.setString(4, xuser.getTel());
+			ps.setInt(5, xuser.getGen());
+			ps.setString(6, xuser.getZipcode());
+			ps.setString(7, xuser.getAddress1());
+			ps.setString(8, xuser.getAddress2());
+			ps.setLong(9, xuser.getUs_num());
+			ps.executeUpdate();
+			
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {

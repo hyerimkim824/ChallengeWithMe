@@ -187,6 +187,10 @@ form.mypage-form2{
 	padding-top: 30px;
 	align-content: center;
 	width: 70px;
+	font-weight: bold;
+}
+.nick{
+	display: inline-block;
 }
 .level{
 	margin-left: 10px;

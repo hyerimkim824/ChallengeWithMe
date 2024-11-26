@@ -47,7 +47,7 @@
 					</div>
 					<div>
 						<h3>닉네임</h3>
-						<span class="nick"><b>${ xuser.nickname }님</b></span>
+						<span class="nick">${ xuser.nickname }님</span>
 					</div>
 				</div>
 			</div>
@@ -128,11 +128,11 @@
 				<div class="mydetail-result">
 					<ul>
 						<li><span>${ xuser.nickname }</span></li>
-						<li><input type="button" value="닉네임 변경"></li>
+						<li><input type="button" value="닉네임 변경" onclick="location.href='${ pageContext.request.contextPath }/mypage/infoModifyForm.do'"></li>
 						<li><span>${ xuser.email }</span></li>
-						<li><input type="button" value="이메일 변경"></li>
+						<li><input type="button" value="이메일 변경" onclick="location.href='${ pageContext.request.contextPath }/mypage/infoModifyForm.do'"></li>
 						<li><span>${ xuser.id }</span></li>
-						<li><input type="button" value="비밀번호 변경"></li>
+						<li><input type="button" value="비밀번호 변경" onclick="location.href='${ pageContext.request.contextPath }/mypage/infoModifyForm.do'"></li>
 						<li><input type="button" value="회원탈퇴" style="background-color: #e04e4e"></li>
 					</ul>
 				</div>
@@ -255,7 +255,7 @@
 <script type="text/javascript">
 	function addIframe(){
 		var iframe = document.createElement('iframe')
-		iframe.src = '${ pageContext.request.contextPath }/mypage/UpdateMyPhotoForm.do'
+		iframe.src = '${ pageContext.request.contextPath }/mypage/updateMyPhotoForm.do'
 		iframe.width= '300'
 		iframe.height = '390'
 		iframe.frameborder = '0'
