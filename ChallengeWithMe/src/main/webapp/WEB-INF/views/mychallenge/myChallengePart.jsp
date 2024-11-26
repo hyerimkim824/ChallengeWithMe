@@ -83,12 +83,34 @@
 
 		</div>
 	
-		
+		<h3 id="participate_ch">참여 챌린지</h3>
 		<div class="part-image">
-		<h3>참여 챌린지</h3>
-		<img src="${pageContext.request.contextPath}/images/study.jpg"
-									width="200" height="200" class="part-photo-ex">
+	
+			<a href ='${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do'>
+			<img src="${pageContext.request.contextPath}/images/study.jpg" width="200" height="200" class="part-photo-ex">
+			</a>		
+		<table id="detail_table">
+			
+			<tr>
+				<th colspan="3">My 참여 챌린지 레포트</th>	
+			</tr>
+			<tr>
+				<td>인원수</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			
+			<tr>
+				<td>달성률</td>
+				<td>2</td>
+				<td>3</td>
+			</tr>
+			
+			</table>
+
+						
 		</div>
+		
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

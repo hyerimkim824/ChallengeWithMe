@@ -56,6 +56,8 @@
 
 
 
+
+
 /* 프로필--------------------------- */
 .mychallenge-div {
   margin-left: 50px; /* 왼쪽 여백 100px */
@@ -93,10 +95,55 @@
 	
 }
 
-.part-image{
 
-    float: right; /* 오른쪽 정렬 */
-    margin-right: 500px; /* 오쪽 여백 */
+
+/*------------테이블*/
+#gen_ch {
+            text-align: center; /* 가로 가운데 정렬 */
+        }
+
+.part-information {
+            display: flex;
+            gap:30px;
+            flex-direction: row;/* 가로 가운데 정렬 */
+            align-items: center;
+            margin-left: 50px; 
+            	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
+        width:85%;
+        }
+
+#detail_table{
+	border-collapse: collapse;
+    width: 400px;
+
+    
 }
+
+/*----------------------------------------*/
+
+#participate_ch{
+	text-align: center; 
+}
+	
+
+.part-image{
+display: flex;
+width:70%;  
+flex-direction: row;/* 가로 가운데 정렬 */
+gap:30px;
+align-items: center;
+margin-left: 100px; 
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);	
+}
+
+
+/*-------------------------------------------------*/
+#proved_button{
+	width:200px;
+	height:100px;
+	background:#FFE066;
+	font-size: 30px;
+}
+
 
 
