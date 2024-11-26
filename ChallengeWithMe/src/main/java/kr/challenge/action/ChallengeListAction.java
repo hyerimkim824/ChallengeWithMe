@@ -30,6 +30,7 @@ public class ChallengeListAction implements Action{
 		
 		String category = request.getParameter("category");
 		
+		System.out.println("==================전달받은 카테고리 번호: "+category);
 		
 		
 		ChallengeDAO chall_dao = ChallengeDAO.getInstance();

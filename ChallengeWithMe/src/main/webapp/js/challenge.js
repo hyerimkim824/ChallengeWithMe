@@ -4,7 +4,7 @@ $(function(){
 	
 	
 	$('.dropdown-item').click(function(e) {
-		e.preventDefault(); // 기본 동작 방지
+		
 
 		// 클릭된 항목의 data-category 값을 가져옴
 		let category = $(this).data('category');
@@ -14,22 +14,15 @@ $(function(){
 		
 		
 		
-		if($(this).hasClass('list-dd'))	
-		{
-			 $('#list_cat').text(categoryName);	
-			 $.ajax({
-				url: 'challengeList.do',
-				type: 'POST',
-				data: {category:category}
-				
-			 });
-		}
-		else if($(this).hasClass('create-dd')){
+		
+		if($(this).hasClass('create-dd')){
+			e.preventDefault(); // 기본 동작 방지
 			$('#cate_num').val(category);
 			$('.create-dd-btn').text(categoryName);
 			$('#cat-warn').hide();
 			
 		}else if($(this).hasClass('auth-dd')){
+			e.preventDefault(); // 기본 동작 방지
 			$('#ah_num').val(auth);
 			$('#auth_btn').text(categoryName);
 		}
