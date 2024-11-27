@@ -29,7 +29,14 @@ public class ChallengeListAction implements Action{
 	    if (us_num == null) {
 	        return "redirect:/xuser/registerXuserForm.do";
 	    }
-
+	    String visi = request.getParameter("visi");
+	    Integer visiChecked = null;
+	    if(visi == null) {
+	    	visiChecked = 0;
+	    }else {
+	    	visiChecked = Integer.parseInt(visi);
+	    }
+	    
 	    String category = request.getParameter("category");
 	    String pageNum = request.getParameter("pageNum");
 

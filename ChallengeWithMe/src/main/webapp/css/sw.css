@@ -111,6 +111,13 @@
 	
 }
 
+.dropdown-container{
+	display:flex;
+}
+
+.dd2{
+	margin-left:3%;
+}
 
 .search-container{
 	display: flex;
@@ -170,6 +177,10 @@
     border:none;
     margin-left:2%;
     border-left:1px solid #EEEEEE;
+}
+
+.search-field input:focus{
+	outline: none;
 }
 
 .ch-top-container{

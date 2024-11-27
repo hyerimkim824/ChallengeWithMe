@@ -48,13 +48,14 @@
 				<option value="1">제목</option>
 				<option value="2">작성자</option>
 			</select>
-			<input type="hidden" id="keyfield_val" value="" name="keyfield"> 
 			
 			<input type="text" class="search-field" name="keyword"> 
 			<input type="hidden" name="category" value="${category}"> 
 			<!-- <input type="submit" class="submit-form" value="검색"> -->
 		</form>
-		<div class="dropdown">
+		<div class="space50-div"></div>
+		<div class="dropdown-container">
+			<div class="dropdown dd1">
 			<button class="btn dropdown-toggle" type="button" id="list_cat"
 				style="background-color: #FFE066" data-bs-toggle="dropdown"
 				aria-expanded="true">
@@ -78,12 +79,31 @@
 
 			</ul>
 		</div>
+		
+		<div class="dropdown dd2">
+			<button class="btn dropdown-toggle" type="button" id="list_visi"
+				style="background-color: #FFE066" data-bs-toggle="dropdown"
+				aria-expanded="true">
+				<c:if test="${visi_checked == 0}">
+					공개
+				</c:if>
+				<c:if test="${visi_checked != 0}">
+					비공개
+				</c:if>
+			</button>
+
+			<ul class="dropdown-menu" style="background-color: #FFFAE5">
+				<li><a class="dropdown-item" id="chall_visi" href="challengeList.do?visi=0">공개</a></li>
+				<li><a class="dropdown-item" id="chall_unvisi" href="challengeList.do?visi=1">비공개</a></li>
+			</ul>
+		</div>
+		</div>
 		<div class="space100-div"></div>
 		<div class="ch-container">
 			<c:if test="${count > 0}">
 				<c:forEach var="list" items="${chall_list}">
 
-
+					
 					<div class="ch-item">
 
 						<div class="item-header">
@@ -157,7 +177,7 @@
 			<c:if test="${count == 0}">
 				<div class="align-center">표시할 챌린지가 없습니다!!!!!!!!!</div>
 			</c:if>
-
+			
 
 		</div>
 		<div class="page-div align-center">${page}</div>
