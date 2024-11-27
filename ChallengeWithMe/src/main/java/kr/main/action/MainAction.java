@@ -1,9 +1,13 @@
 package kr.main.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.challenge.dao.ChallengeDAO;
+import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
 
 public class MainAction implements Action{
@@ -23,7 +27,11 @@ public class MainAction implements Action{
       request.setAttribute("us_num", user_num);
       request.setAttribute("admin", admin);
       
+      ChallengeDAO chall_dao = ChallengeDAO.getInstance();
       
+      List<ChallengeVO> chall_list = chall_dao.showPopularChallenge();
+      
+      request.setAttribute("chall_list", chall_list);
       
       
       //JSP 경로 반환

@@ -28,54 +28,61 @@
 
 		<div class="space100-div"></div>
 		<div class="ch-top-container">
-			<div class="dropdown">
-				<button class="btn dropdown-toggle" type="button" id="list_cat"
-					style="background-color: #FFE066" data-bs-toggle="dropdown"
-					aria-expanded="true">
-					<c:if test="${!empty cat_name}">
-					${cat_name}
-				</c:if>
-					<c:if test="${empty cat_name}">
-					전체
-				</c:if>
-				</button>
 
-				<ul class="dropdown-menu" style="background-color: #FFFAE5">
-					<li><a class="dropdown-item list-dd" id="cat_all"
-						data-category="0" href="challengeList.do?">전체</a></li>
-					<li><a class="dropdown-item list-dd" id="cat_health"
-						data-category="1" href="challengeList.do?category=1">건강</a></li>
-					<li><a class="dropdown-item list-dd" id="cat_food"
-						data-category="2" href="challengeList.do?category=2">식습관</a></li>
-					<li><a class="dropdown-item list-dd" id="cat_develop"
-						data-category="3" href="challengeList.do?category=3">자기계발</a></li>
-
-				</ul>
+			<div class="official-status-container">
+				<button class="official-status-btn user-ch">사용자 챌린지</button>
+				<button class="official-status-btn admin-ch" type="button"
+					onclick="location.href='challengeOfficialList.do'">공식 챌린지</button>
 			</div>
-			
+
 			<button class="btn ch-create" style="background-color: #FFE066"
 				onclick="location.href='challengeCreateForm.do'" type="button">
 				<p>챌린지 개설</p>
 			</button>
 		</div>
-		<div class="space200-div">
-			<div class="search-container align-center">
-				<form id="search_form" action="challengeList.do" method="get">
-					<input type="radio" value="1" name="keyfield">제목
-					<input type="radio" value="2" name="keyfield">닉네임
-					<input type="text" name="keyword">
-					<input type="hidden" name="category" value="${category}">
-					<input type="submit" value="전송">
-				</form>
-			</div>
+		<div class="space50-div"></div>
+		<form id="search_form" class="search-container shadow-effect" action="challengeList.do" method="get">
+			
+			<select class="search-select" name="keyfield">
+				<option value="0">전체</option>
+				<option value="1">제목</option>
+				<option value="2">작성자</option>
+			</select>
+			<input type="hidden" id="keyfield_val" value="" name="keyfield"> 
+			
+			<input type="text" class="search-field" name="keyword"> 
+			<input type="hidden" name="category" value="${category}"> 
+			<!-- <input type="submit" class="submit-form" value="검색"> -->
+		</form>
+		<div class="dropdown">
+			<button class="btn dropdown-toggle" type="button" id="list_cat"
+				style="background-color: #FFE066" data-bs-toggle="dropdown"
+				aria-expanded="true">
+				<c:if test="${!empty cat_name}">
+					${cat_name}
+				</c:if>
+				<c:if test="${empty cat_name}">
+					전체
+				</c:if>
+			</button>
+
+			<ul class="dropdown-menu" style="background-color: #FFFAE5">
+				<li><a class="dropdown-item list-dd" id="cat_all"
+					data-category="0" href="challengeList.do?">전체</a></li>
+				<li><a class="dropdown-item list-dd" id="cat_health"
+					data-category="1" href="challengeList.do?category=1">건강</a></li>
+				<li><a class="dropdown-item list-dd" id="cat_food"
+					data-category="2" href="challengeList.do?category=2">식습관</a></li>
+				<li><a class="dropdown-item list-dd" id="cat_develop"
+					data-category="3" href="challengeList.do?category=3">자기계발</a></li>
+
+			</ul>
 		</div>
-		<div class="official-status-container">
-			<button class="official-status-btn user-ch">사용자 챌린지</button>
-			<button class="official-status-btn admin-ch" type="button" onclick="location.href='challengeOfficialList.do'">공식 챌린지</button>
-		</div>
+		<div class="space100-div"></div>
 		<div class="ch-container">
 			<c:if test="${count > 0}">
 				<c:forEach var="list" items="${chall_list}">
+
 
 					<div class="ch-item">
 
@@ -83,11 +90,15 @@
 							<div class="ch-category">${list.cate_name}</div>
 							<c:if test="${list.heart_status}">
 								<div class="item-heart" data-chnum="${list.ch_num}">
-									<img src="${pageContext.request.contextPath}/images/red-heart.png" width="15px" height="15px">
+									<img
+										src="${pageContext.request.contextPath}/images/red-heart.png"
+										width="15px" height="15px">
 								</div>
 							</c:if>
 							<c:if test="${!list.heart_status}">
-								<div class="item-heart" data-chnum="${list.ch_num}"><img src="${pageContext.request.contextPath}/images/heart.png" width="15px" height="15px">
+								<div class="item-heart" data-chnum="${list.ch_num}">
+									<img src="${pageContext.request.contextPath}/images/heart.png"
+										width="15px" height="15px">
 								</div>
 							</c:if>
 						</div>
@@ -141,12 +152,12 @@
 							</div>
 						</a>
 					</div>
-
 				</c:forEach>
 			</c:if>
 			<c:if test="${count == 0}">
 				<div class="align-center">표시할 챌린지가 없습니다!!!!!!!!!</div>
 			</c:if>
+
 
 		</div>
 		<div class="page-div align-center">${page}</div>

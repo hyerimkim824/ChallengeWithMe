@@ -7,20 +7,28 @@
 <meta charset="UTF-8">
 <title>메인</title>
 
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/main.css" type="text/css">
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		<div class="space50-div"></div>
+		<div class="space100-div"></div>
 		<div class="m-title-container align-center">
 			<h1>작심삼일? 이제는 끝!</h1>
 		</div>
+		<div class="space150-div"></div>
 		<div class="m-header1-container">
 			<div class="header1-box box1">
 				<div class="header-item item1 align-left">꼬박꼬박은?</div>
-				<div class="header-item item2">꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다. 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요</div>
-				<div class="header-item item3"><button value="챌린지 시작하기"></button></div>
+				<div class="header-item item2">
+					꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다<br> 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요
+				</div>
+				<div class="header-item item3">
+					<button class="item3-btn" type="button"
+						onclick="location.href='${pageContext.request.contextPath}/challenge/challengeMain.do'">챌린지
+						시작하기</button>
+				</div>
 			</div>
 			<div class="header1-box box2">
 				<c:if test="${us_num != null && admin == 0}">
@@ -49,13 +57,15 @@
 								</div>
 
 							</div>
-							<div class="left3"><div class="info-link">나의배찌 -></div></div>
+							<div class="left3">
+								<div class="info-link">나의배찌 -></div>
+							</div>
 						</div>
 						<hr class="vertical">
 						<div class="card-right">
 							<div class="right1">
 								<div class="right1-box1">
-									<img src="../images/face.png" >
+									<img src="../images/face.png">
 									<div class="right-user">
 										<p>환영합니다</p>
 										<p>${us_nickname}님</p>
@@ -63,80 +73,154 @@
 								</div>
 							</div>
 							<div class="right2">
-									<ul>
-										<li><label>참여중인 챌린지</label>3개</li>
-										<li><label>완료한 챌린지</label>6개</li>
-										<li><label>랭크 점수</label>897점</li>
-									</ul>
+								<ul>
+									<li><label>참여중인 챌린지</label>3개</li>
+									<li><label>완료한 챌린지</label>6개</li>
+									<li><label>랭크 점수</label>897점</li>
+								</ul>
 							</div>
-							<div class="right3"><div class="info-link">마이페이지 -></div></div>
+							<div class="right3">
+								<div class="info-link">마이페이지 -></div>
+							</div>
 						</div>
 					</div>
 				</c:if>
 			</div>
 		</div>
+		<div class="space50-div"></div>
 		<hr>
 		<div class="space50-div"></div>
 		<div class="m-content1-container">
+			<div class="space50-div"></div>
 			<div class="m-content1-title">누구나 할 수 있습니다!</div>
-			<div class="content1-box box1 ">
-				<div class="c1b1-item item1 shadow-effect">
+			<div class="content1-box c1-box1 ">
+				<div class="c1b1-item itema1 shadow-effect">
 					<div class="c1b1-title shadow-effect">달성률 100%</div>
 					<div class="c1b1-content">계획해놨던 목표 제대로 끝까지 완료하고싶은 사람</div>
 				</div>
-				<div class="c1b1-item item2 shadow-effect">
+				<div class="c1b1-item itema2 shadow-effect">
 					<div class="c1b1-title shadow-effect">챌린지 소개</div>
 					<div class="c1b1-content">매일 같이 물 먹어요!</div>
 				</div>
-				<div class="c1b1-item item3 shadow-effect">
+				<div class="c1b1-item itema3 shadow-effect">
 					<div class="c1b1-title shadow-effect">참여 챌린지</div>
 					<div class="c1b1-content">매일 새로운 챌린지가 오픈! 매일  습관을 만들고 싶은 사람</div>
 				</div>
-				<div class="c1b1-item item4 shadow-effect">
+				<div class="c1b1-item itema4 shadow-effect">
 					<div class="c1b1-title shadow-effect">챌린지 소개</div>
 					<div class="c1b1-content">매일 같이 물 먹어요!</div>
 				</div>
 			</div>
-			<div class="content1-box box2">
-				<div class="c1b2-item item1">
-					<p>현재 챌린지 수</p>
-					<p>100개</p>
+			<div class="content1-box c1-box2">
+				<div class="c1b2-item itemb1">
+					<div class="p1">현재 챌린지 수</div>
+					<div class="p2">100개</div>
 				</div>
-				<div class="c1b2-item item2">
-					<p>누적 참여 후기</p>
-					<p>1360개</p>
+				<div class="c1b2-item itemb2">
+					<div class="p1">누적 참여 후기</div>
+					<div class="p2">1360개</div>
 				</div>
-				<div class="c1b2-item item3">
-					<p>누적 완료 챌린지</p>
-					<p>630개</p>
+				<div class="c1b2-item itemb3">
+					<div class="p1">누적 완료 챌린지</div>
+					<div class="p2">630개</div>
 				</div>
 			</div>
 
 		</div>
+		<div class="space150-div"></div>
+		<hr>
 		<div class="m-content2-container">
-			<div>어떻게 쓰는건가요</div>
-			<div>
-				<div class="content2-box1">함께하는 챌린지!</div>
-				<div class="content2-box2">
-					<div>
-						<button>챌린지</button>
+			<div class="c2-title">어떻게 쓰는건가요</div>
+			<div class="content2-box">
+				<div class="c2b1-item itemc1">
+					<div class="p1">
+						<span>|</span> 함께하는 챌린지!
+					</div>
+					<div class="p2">아침 7시, 완료해야 하는 챌린지를 알려드립니다. 주어진 시간안에 인증해야
+						합니다!</div>
+				</div>
+				<div class="c2b1-item itemc2">
+					<div class="itemc2-btn">
+						<button class="clicked">챌린지</button>
 						<button>일정표</button>
 						<button>커뮤니티</button>
 						<button>후기</button>
 					</div>
-					<div>
-						content2 내용
-					</div>
+					<div class="c2b1-item itemc3 shadow-effect">content2 내용</div>
 				</div>
 			</div>
 		</div>
 		<div class="m-content3-container">
-		content3
+			<div class="c3-title">공식 챌린지</div>
+			<div class="c3-content"></div>
 		</div>
 		<div class="m-content4-container">
-		content4
+			<div class="c4-header">
+				<div class="c4-title">사용자 챌린지</div>
+				<div class="linkToChall" onclick="location.href='${pageContext.request.contextPath}/challenge/challengeList.do?'">챌린지 바로가기-></div>
+			</div>
+			<div class="c4-content">
+				<c:forEach var="list" items="${chall_list}">
+					<div class="ch-item">
+
+						<div class="item-header">
+							<div class="ch-category">${list.cate_name}</div>
+						</div>
+						<a
+							href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">
+							<div class="ch-background">
+								<c:if test="${empty list.ch_img}">
+									<c:choose>
+										<c:when test="${list.cate_num == 1}">
+											<img class="ch-bgImg" src="../images/health.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 2}">
+											<img class="ch-bgImg" src="../images/food.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 3}">
+											<img class="ch-bgImg" src="../images/self-develop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:otherwise>
+											<img class="ch-bgImg" src="../images/face.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${!empty list.ch_img}">
+									<img class="ch-bgImg"
+										src="${pageContext.request.contextPath}/upload/${list.ch_img}"
+										style="max-width: 100%; max-height: 100%;">
+								</c:if>
+								<p class="ch-title">${list.ch_title}</p>
+								<div class="ch-dueDate">D-${list.dateDifference}</div>
+							</div>
+							<div class="ch-info">
+								<div class="ch-people">
+									<img class="people-img"
+										src="${pageContext.request.contextPath}/images/person.svg">
+									<div class="info-val">${list.ch_person}/${list.ch_max}</div>
+								</div>
+								<div class="ch-like">
+									<img class="like-img"
+										src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
+									<div class="info-val">${list.ch_like}</div>
+								</div>
+								<div class="ch-view">
+									<img class="view-img"
+										src="${pageContext.request.contextPath}/images/eye.svg">
+									<div class="info-val">${list.ch_view}</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
 		</div>
 
+		<div class="space150-div"></div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

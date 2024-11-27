@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +25,11 @@
 	<div class="page-main">
 		<div class="space100-div"></div>
 		<div class="ch-top-container">
+			<div class="official-status-container">
+				<button class="official-status-btn user-ch" type="button"
+					onclick="location.href='challengeList.do'">사용자 챌린지</button>
+				<button class="official-status-btn admin-ch">공식 챌린지</button>
+			</div>
 			<button class="btn ch-create" style="background-color: #FFE066"
 				onclick="location.href='challengeCreateForm.do'" type="button">
 				<p>챌린지 개설</p>
@@ -31,29 +37,30 @@
 		</div>
 		<div class="space200-div">
 			<div class="search-container align-center">
-				<form id="search_form" action="challengeList.do" method="get">
+				<form id="search_form" action="challengeOfficialList.do"
+					method="get">
 					<input type="radio" value="1" name="keyfield">제목 <input
 						type="radio" value="2" name="keyfield">닉네임 <input
-						type="text" name="keyword"> <input type="hidden"
-						name="category" value="${category}"> <input type="submit"
+						type="text" name="keyword"> <input type="submit"
 						value="전송">
 				</form>
 			</div>
 		</div>
-		<div class="official-status-container">
-			<button class="official-status-btn user-ch" type="button"
-				onclick="location.href='challengeList.do'">사용자 챌린지</button>
-			<button class="official-status-btn admin-ch">공식 챌린지</button>
-		</div>
+
 		<div class="space100-div"></div>
 		<div class="och-container">
-			<div class="och-item shadow-effect"></div>
-			<div class="och-item shadow-effect"></div>
-			<div class="och-item shadow-effect"></div>
-			<div class="och-item shadow-effect"></div>
-			<div class="och-item shadow-effect"></div>
+			<c:if test="${count > 0}">
+				<c:forEach var="list" items="${chall}">
+					<div class="och-item shadow-effect">${list.ch_title}</div>
+					<hr>
+				</c:forEach>
+			</c:if>
+			<c:if test="${count==0}">
+				<div class="align-center">진행 중인 공식 챌린지가 없습니다</div>
+			</c:if>
 		</div>
 		<div class="space100-div"></div>
+		<div class="page-div align-center">${page}</div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

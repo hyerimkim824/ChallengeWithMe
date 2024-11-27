@@ -25,8 +25,14 @@
 					<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
 					<div id="visi_text">공개</div>
 					<input type="hidden" name="visi" id="visiState" value="1">
-    				
 				</div>
+				<c:if test="${admin == 9}">
+					<div>
+						<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
+						<div id="visi_text">공식</div>
+						<input type="hidden" name="visi" id="visiState" value="1">
+					</div>
+				</c:if>
 			</div>
 			<div class="chc-two">
 				<p>챌린지를 만들어주세요</p>

@@ -45,7 +45,7 @@ public class ChallengeListAction implements Action{
 	    ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 	    List<ChallengeVO> chall_list = null;
 
-	    int count = category == null || category.isEmpty() ? chall_dao.getListCount(keyfield, keyword, null) : chall_dao.getListCount(keyfield, keyword, category);
+	    int count = category == null || category.isEmpty() ? chall_dao.getListCount(keyfield, keyword, null, 0) : chall_dao.getListCount(keyfield, keyword, category, 0);
 
 	    PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 15, 10, "challengeList.do");
 
@@ -67,8 +67,8 @@ public class ChallengeListAction implements Action{
 	        }
 
 	        // 전체 카테고리 또는 특정 카테고리 필터에 따른 목록 불러오기
-	        chall_list = category == null ? chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null)
-	                                      : chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category);
+	        chall_list = category == null ? chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0)
+	                                      : chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0);
 	    }else {
 	        chall_list = new ArrayList<>(); 
 	    }
@@ -82,7 +82,6 @@ public class ChallengeListAction implements Action{
 	    }
 	    request.setAttribute("category", category);
 	    request.setAttribute("count", count);
-	    request.setAttribute("like_list", like_list);
 	    request.setAttribute("chall_list", chall_list);
 	    request.setAttribute("page", page.getPage());
 	    return "/challenge/challenge_list.jsp";
