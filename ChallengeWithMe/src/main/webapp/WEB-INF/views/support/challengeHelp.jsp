@@ -113,7 +113,7 @@
         <div class="section">
             <div class="section-title">추가 도움이 필요하세요? 🐇</div>
             <div class="section-content">
-                더 궁금한 점이 있다면 <a href="inquiryList.jsp" style="color: #ff9900;">고객센터</a>를 방문하거나 문의를 남겨주세요. <br>
+                더 궁금한 점이 있다면 <a href="List.do" style="color: #ff9900;">고객센터</a>를 방문하거나 <a href="SupportWrite.do" style="color: #ff9900;">문의하기</a>를 남겨주세요. <br>
                 저희가 도와드릴게요! 🐥✨
             </div>
         </div>
@@ -121,7 +121,7 @@
         <!-- 버튼 -->
         <div class="btn-group">
             <button class="btn" onclick="window.history.back();">이전 페이지</button>
-            <button class="btn" onclick="location.href='challengeMain.jsp';">챌린지 메인으로 이동</button>
+            <button class="btn" onclick="location.href='${ pageContext.request.contextPath }/mychallenge/myChallengePart.do'">챌린지 메인으로 이동</button>
         </div>
     </div>
 </body>

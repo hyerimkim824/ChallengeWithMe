@@ -11,7 +11,7 @@ import kr.controller.Action;
 import kr.support.dao.SupportDAO;
 import kr.support.vo.SupportVO;
 
-public class UpdateAction implements Action {
+public class FeedBackUpdateAction implements Action {
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -30,7 +30,7 @@ public class UpdateAction implements Action {
 			// 🐇 2. 요청 방식(GET/POST)에 따라 처리 분기
 			if (request.getMethod().equalsIgnoreCase("GET")) {
 				// GET 요청인 경우 작성 폼으로 이동
-				return "support/update.jsp";
+				return "support/feedBackupdate.jsp";
 			}
 			// 🐰  요청 파라미터에서 데이터 가져오기
 			String title = request.getParameter("title");
@@ -116,7 +116,7 @@ public class UpdateAction implements Action {
 		            return "support/invalidAccess.jsp"; // 서버 오류 페이지로 이동
 		        } 
 			        // 문의 목록 페이지로 리다이렉트
-			        return "redirect:/support/List.do";  // **리다이렉트** 후 더 이상 처리할 필요 없음
+			        return "redirect:/support/FeedBackList.do";  // **리다이렉트** 후 더 이상 처리할 필요 없음
 }
 	
 }

@@ -105,4 +105,8 @@ public class PagingUtil {
 	public int getEndRow() {
 		return endRow;
 	}
+	public Object getTotalPages() {
+		// TODO Auto-generated method stub
+		return null;
+	}
 }

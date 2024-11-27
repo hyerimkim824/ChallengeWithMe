@@ -18,7 +18,7 @@
                 <ul>
                     <li><a href="<%= request.getContextPath() %>/support/List.do">문의 내역</a></li>
                     <li><a href="<%= request.getContextPath() %>/support/FaqList.do">자주 묻는 질문</a></li>
-                    <li><a href="<%= request.getContextPath() %>/support/refundGuide.do">환불 안내</a></li>
+                    <li><a href="<%= request.getContextPath() %>/support/RefundGuide.do">환불 안내</a></li>
                 </ul>
             </nav>
         </header>

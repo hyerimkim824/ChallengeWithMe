@@ -74,6 +74,11 @@
         a:hover {
             text-decoration: underline;
         }
+          .section-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
     </style>
 </head>
 <body>
@@ -121,7 +126,7 @@
         <div class="section">
             <div class="section-title">도움이 필요하신가요? 🐇</div>
             <div class="section-content">
-                추가 질문이 있다면 <a href="supportMain.jsp">고객센터</a>를 방문하거나 <a href="supportWriteForm.jsp">문의하기</a>를 통해 연락주세요. <br>
+                추가 질문이 있다면 <a href="List.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 남겨주세요. <br>
                 저희가 도와드릴게요! 🐥✨
             </div>
         </div>

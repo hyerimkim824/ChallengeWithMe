@@ -50,6 +50,6 @@ public class WriteReplyAction implements Action {
         System.out.println("🐰 댓글이 성공적으로 저장되었습니다: " + replyContent);
 
         // 5. 댓글 작성 완료 후 해당 문의 상세 페이지로 리다이렉트 🐰
-        return "redirect:/support/detail.do?sup_num=" + supNum;
+        return "redirect:/support/Detail.do?sup_num=" + supNum;
     }
 }

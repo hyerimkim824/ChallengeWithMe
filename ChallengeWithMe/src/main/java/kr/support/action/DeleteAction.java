@@ -13,11 +13,11 @@ public class DeleteAction implements Action {
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // 1. 세션에서 로그인 정보 확인 🐇
         HttpSession session = request.getSession();
-        Long userNum = (Long) session.getAttribute("user_num");
+        Long userNum = (Long) session.getAttribute("us_num");
 
         if (userNum == null) {
             // 로그인이 되어 있지 않으면 로그인 필요 안내 페이지로 이동 🐰
-            return "support/loginRequired.jsp";
+            return "/support/loginRequired.jsp";
         }
 
         // 2. 삭제할 문의 번호 가져오기 🐇
@@ -54,7 +54,7 @@ public class DeleteAction implements Action {
 
         if (!isDeleted) {
             // 삭제 실패 시 에러 페이지로 이동 🐰
-            return "support/deletionFailed.jsp";
+            return "deleteFailed.jsp";
         }
 
         // 5. 완료 후 문의 리스트 페이지로 이동 🐇

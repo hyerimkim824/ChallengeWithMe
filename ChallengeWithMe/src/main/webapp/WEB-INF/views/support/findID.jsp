@@ -11,7 +11,7 @@
     <!-- 고객센터 헤더 -->
     <header>
         <h1>고객센터</h1>
-        <form action="searchFAQ.do" method="get">
+        <form action="Search.do" method="get">
             <input type="text" name="query" placeholder="자주묻는 질문 검색">
             <button type="submit">검색</button>
         </form>
@@ -20,20 +20,20 @@
     <!-- 상단 메뉴 -->
     <nav>
         <ul>
-            <li><a href="inquiryList.do">문의 내역</a></li>
-            <li><a href="faqList.do">자주묻는 질문</a></li>
-            <li><a href="voice.do">고객의 소리</a></li>
+            <li><a href="List.do">문의 내역</a></li>
+            <li><a href="FaqList.do">자주묻는 질문</a></li>
+            <li><a href="FeedBack.do">고객의 소리</a></li>
         </ul>
     </nav>
 
     <!-- 좌측 메뉴 -->
     <aside>
         <ul>
-            <li><a href="faqList.do">자주묻는질문</a></li>
-            <li><a href="findID.do">로그인 및 계정</a></li>
-            <li><a href="refundGuide.do">결제 및 환불</a></li>
-            <li><a href="challenge.do">꼬박꼬박 챌린지</a></li>
-            <li><a href="community.do">꼬박꼬박 커뮤니티</a></li>
+            <li><a href="FaqList.do">자주묻는질문</a></li>
+            <li><a href="LoginaAcount.do">로그인 및 계정</a></li>
+            <li><a href="RefundGuide.do">결제 및 환불</a></li>
+            <li><a href="ChallengeHelp.do">꼬박꼬박 챌린지</a></li>
+            <li><a href="CommunityHelp.do">꼬박꼬박 커뮤니티</a></li>
         </ul>
     </aside>
 
@@ -67,9 +67,9 @@
     <!-- 하단 메뉴 -->
     <footer>
         <ul>
-            <li><a href="challengeMain.do">챌린지 홈</a></li>
-            <li><a href="writeInquiry.do">1:1문의</a></li>
-            <li><a href="myPage.do">마이페이지</a></li>
+            <li><a href="ChallengeMain.do">챌린지 홈</a></li>
+            <li><a href="SupportWrite.do">1:1문의</a></li>
+            <li><a href="MyPage.do">마이페이지</a></li>
             <li><a href="notice.do">공지사항</a></li>
         </ul>
     </footer>

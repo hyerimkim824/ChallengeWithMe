@@ -19,7 +19,7 @@
 
         /* 🐇 헤더 스타일 */
         .header {
-            background-color: #4caf50;
+            background-color: #ffcc00;
             color: white;
             padding: 10px 20px;
             text-align: center;

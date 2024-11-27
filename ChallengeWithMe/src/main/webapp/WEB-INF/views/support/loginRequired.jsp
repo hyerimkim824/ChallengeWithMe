@@ -51,7 +51,7 @@
     <div class="container">
         <h1>로그인이 필요합니다</h1>
         <p>해당 페이지를 이용하려면 로그인이 필요합니다.<br>아래 버튼을 클릭하여 로그인 페이지로 이동해 주세요!</p>
-        <a href="login.do" class="button">로그인 페이지로 이동</a>
+       <a href="<%=request.getContextPath()%>/xuser/login.do" class="button">로그인 페이지로 이동</a>
     </div>
 </body>
 </html>

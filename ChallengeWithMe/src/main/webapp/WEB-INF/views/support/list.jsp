@@ -21,7 +21,6 @@
             margin: 0;
             padding: 10px;
             color: #333;
-           
         }
 
         /* 헤더 */
@@ -95,73 +94,38 @@
             color: #fff;
         }
 
-        /* 메인 콘텐츠 스타일 */
-        main {
-            background-color: #fff;
+        /* 메인 콘텐츠 */
+        .content {
+            flex-grow: 1;
             padding: 20px;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-        flex-grow: 1;
-            padding: 20px;
-        }
-        
-
-         .content h2 {
-            font-size: 28px;
-            font-weight: bold;
-            color: #333;
-            margin-bottom: 20px;
-            border-bottom: 2px solid #ffcc00;
-            padding-bottom: 10px;
-            font-size: 1.5em;
+            background-color: #ffffff;
         }
 
-        .detail-table {
+        .list-table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-top: 20px;
         }
 
-        .detail-table th, .detail-table td {
-            padding: 10px;
+        .list-table th, .list-table td {
             border: 1px solid #ddd;
+            padding: 10px;
             text-align: left;
         }
 
-        .detail-table th {
+        .list-table th {
             background-color: #fdd835;
             color: #333;
-            font-weight: bold;
         }
 
-        .detail-table tr:nth-child(even) {
-            background-color: #fff9c4;
-        }
- /* 버튼 스타일 */
-        .buttons {
-            text-align: center;
-            
+        .list-table tr:nth-child(even) {
+            background-color: #f9f9f9;
         }
 
-        .buttons .button {
-            display: inline-block;
-            text-decoration: none;
-            color: #fff;
-            background-color: #ffcc00;
-            padding: 10px 20px;
-            margin: 10px;
-            border-radius: 5px;
-            font-weight: bold;
-            transition: all 0.3s ease;
+        .list-table tr:hover {
+            background-color: #fffde7;
         }
 
-        .buttons .button:hover {
-            background-color: #ff9900;
-        }
-             /* 비밀번호 입력 폼 스타일 */
-        .password-form {
-            margin-top: 20px;
-            text-align: center;
-        }
         /* 🐤 페이징 스타일 */
         .pagination {
             text-align: center;
@@ -251,21 +215,6 @@
     text-decoration: none;
     cursor: pointer;
 }
-/* 표의 첫 번째 열의 너비를 줄이는 CSS */
-.detail-table th:nth-child(1), .detail-table td:nth-child(1) {
-    width: 150px; /* 원하는 너비로 설정 */
-    word-wrap: break-word; /* 텍스트가 길어지면 줄바꿈이 되게 설정 */
-    white-space: normal;  /* 텍스트가 줄 바꿈 되게 설정 */
-}
-.img-preview {
-    max-width: 100%;
-    max-height: 300px;
-    border: 1px solid #ddd;
-    padding: 5px;
-    margin-top: 10px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
 
     </style>
     <script>
@@ -281,8 +230,6 @@
             var modal = document.getElementById("myModal");
             modal.style.display = "none";
         }
- 
-
     </script>
 </head>
 <body>
@@ -313,66 +260,63 @@
             <a href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박 커뮤니티</a>
         </div>
 
-           <!-- 메인 콘텐츠 -->
-        <main>
-            <section class="content">
-                <h2>문의 상세 정보 </h2>
-                <table class="detail-table">
-                    <tr>
-                        <th>문의 제목</th>
-                        <td>${support.sup_title}</td>
-                    </tr>
-                    <tr>
+        <!-- 🐤 콘텐츠 -->
+        <div class="content">
+            <h2>문의 내역</h2>
+            <table class="list-table">
+                <thead>
+                    <tr>  
+                        <th>번호</th>
                         <th>문의 유형</th>
-                        <td>${support.sup_pick}</td> <!-- 문의 유형을 문자열로 표시 -->
+                        <th>문의 제목</th>
+                        <th>작성자</th> <!-- 작성자 닉네임 추가 -->
+                        <th>문의 날짜</th>
+                        <th>상태</th>
                     </tr>
-                    <tr>
-                        <th>작성자</th>
-                        <td>${support.us_nickname}</td> <!-- 작성자 닉네임 표시 -->
-                    </tr>
-                    <tr>
-                        <th>문의 내용</th>
-                        <td><pre>${support.sup_content}</pre></td>
-                    </tr>
-                    <tr>
-                        <th>작성일</th>
-                        <td><fmt:formatDate value="${support.sup_date}" pattern="yyyy-MM-dd HH:mm:ss"/></td> <!-- 작성일 포맷 -->
-                    </tr>
-                    <!-- 첨부 파일 목록을 테이블에 추가 -->
-                    <tr>
-                        <th>첨부 파일</th>
-                        <td>
-                            <c:if test="${!empty support.sup_img}">
-                            <img src="${pageContext.request.contextPath}/upload/${support.sup_img}" alt="첨부 파일" class="img-preview"/>
-                            
-                                <a href="<%=request.getContextPath()%>/upload/${support.sup_img}" download>파일 다운로드 📂</a>
-                            </c:if>
-                            <c:if test="${empty support.sup_img}">
-                                <span> 첨부 파일이 없습니다 🐰</span>
-                            </c:if>
-                        </td>
-                    </tr>
-                </table>
+                </thead>
+                <tbody>
+                    <!-- 문의 내역 데이터 출력 -->
+                    <c:forEach var="inquiry" items="${list}">
+                        <tr>
+                            <td>${inquiry.sup_num}</td>
+                            <td>${inquiry.supPickString}</td> <!-- 유형 조건 -->
+                            <td>
+                                <!-- 비공개 게시물일 경우 팝업창 띄우기 -->
+                                <c:if test="${inquiry.sup_visi == 1 and us_num!=inquiry.us_num}">
+                                    <a href="javascript:void(0);" onclick="showPrivatePostMessage()">${inquiry.sup_title}</a>
+                                </c:if>
+                                <c:if test="${inquiry.sup_visi == 0 or (inquiry.sup_visi == 1 and us_num==inquiry.us_num)}">
+                                    <a href="Detail.do?sup_num=${inquiry.sup_num}">${inquiry.sup_title}</a>
+                                </c:if>
+                            </td>
+                            <td>${inquiry.us_nickname}</td> <!-- 작성자 닉네임 표시 -->
+                            <td><fmt:formatDate value="${inquiry.sup_date}" pattern="yyyy-MM-dd" /></td>
+                            <td>
+                            	<c:if test="${inquiry.sup_visi==0}">공개</c:if>
+                            	<c:if test="${inquiry.sup_visi==1}">비공개</c:if>
+                            </td>
+                        </tr>
+                    </c:forEach>
+                    <c:if test="${empty list}">
+                        <tr>
+                            <td colspan="6">문의 내역이 없습니다.</td>
+                        </tr>
+                    </c:if>
+                </tbody>
+            </table>
 
-                <c:if test="${not empty error}">
-                    <div class="password-form">
-                        <form method="post" action="Detail.do">
-                            <label for="sup_pwd_input">비공개 비밀번호</label>
-                            <input type="password" id="sup_pwd_input" name="sup_pwd" placeholder="비밀번호를 입력하세요" required>
-                            <button type="submit">비밀번호 확인</button>
-                        </form>
-                    </div>
-                </c:if>
+            <!-- 게시글 작성 버튼 -->
+            <div style="text-align: right; margin: 20px 0.5%;">
+                <a href="SupportWriteForm.do" style="display: inline-block; text-decoration: none; color: #333; background-color: #fff; padding: 10px 20px; border-radius: 5px; font-size: 14px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                    1:1문의 작성 💌
+                </a>
+            </div>
 
-                <div class="buttons">
-                    <a href="<%=request.getContextPath()%>/support/List.do" class="button">문의 내역</a>
-                    <a href="<%=request.getContextPath()%>/support/UpdateForm.do?sup_num=${support.sup_num}" class="button">수정하기</a>
-                    <a href="<%=request.getContextPath()%>/support/Delete.do?sup_num=${support.sup_num}" class="button">삭제하기</a>
-                
-                </div>
-            </section>
-        </main>
-
+            <!-- 🐤 페이징 -->
+            <div class="pagination">
+                ${totalPages}
+            </div>
+        </div>
     </div>
 
     <!-- 푸터 -->
