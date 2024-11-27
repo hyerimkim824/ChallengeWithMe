@@ -3,6 +3,11 @@ $(function(){
     let currentPage;
     let count;
 
+	
+
+	
+	
+	
     /* ================================
      * 댓글 목록
      * ================================ */
@@ -46,10 +51,10 @@ $(function(){
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 수정" class="modify-btn">';
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 삭제" class="delete-btn">';
                     }
-                    output += '<hr size="1" noshade width="100%">';
+                    output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<div class="sub-item">';
                     output += '<p>' + item.com_content + '</p>';
-                    output += '<hr size="1" noshade width="100%">';
+                    output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '</div>';
                     output += '</div>';
 
@@ -71,7 +76,7 @@ $(function(){
             },
             error: function() {
                 $('#loading').hide();
-                alert('네트워크 오류 발생 뿡');
+                alert('네트워크 오류 발생');
             }
         });
     }
@@ -111,7 +116,7 @@ $(function(){
 					alert('댓글 등록 오류 발생');
 				}
 			},error:function(){
-				alert('네트워크 오류 발생ㅗㅗㅗ');
+				alert('네트워크 오류 발생');
 			}
 		});
 		//기본 이벤트 제거
@@ -143,7 +148,7 @@ $(function(){
 		modifyUI += '<input type="submit" value="수정">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
-		modifyUI += '<hr size="1" noshade width="96%">';
+		modifyUI += '<hr class="custom-hr" size="1" noshade width="96%">';
 		modifyUI += '</form>';
 								 	
 		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 숨김 
@@ -203,7 +208,7 @@ $(function(){
 	 			}
 	 		},
 	 		error:function(){
-	 			alert('네트워크 오류 발생ㅎ');
+	 			alert('네트워크 오류 발생');
 	 		}
 	 	});
 	 	//기본 이벤트 제거
@@ -257,11 +262,11 @@ $(function(){
 	 				}else if(param.result == 'wrongAccess'){
 	 					alert('타인의 글을 삭제할 수 없습니다.');
 	 				}else{
-	 					alert('댓글 삭제 오류 발생!');
+	 					alert('댓글 삭제 오류 발생');
 	 				}
 	 			},
 	 			error:function(){
-	 				alert('네트워크 오류 발생ㅣㅣㅣ');
+	 				alert('네트워크 오류 발생');
 	 			}
 	 		});
 	 	});

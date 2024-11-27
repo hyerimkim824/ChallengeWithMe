@@ -24,7 +24,7 @@ public class ListAction implements Action{
 		PostDAO dao = PostDAO.getInstance();
 		int count = dao.getPostCount(keyfield,keyword);
 		
-	//int comm_count = dao.getListPostReply(start,end,post_num);
+		//int comm_count = dao.getListPostReply(start,end,post_num);
 		//int like_count = dao.getLikeCount(post_num);
 		
 		

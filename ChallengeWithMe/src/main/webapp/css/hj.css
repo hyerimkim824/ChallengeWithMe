@@ -1,14 +1,168 @@
 @charset "UTF-8";
 
-/* 커뮤니티 글 목록*/
-.list-page-main{
-	background:#FFE066;
-	
+.custom-hr {
+    border: none; /* 기본 테두리 제거 */
+    height: 0.2px; /* 선 두께 설정 */
+    background: rgb(216, 216, 216); /* 선의 색상 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
+    width: 100%; /* 너비 */
 }
+
+
+/* 커뮤니티 글 목록*/
+
+.list-page-main{
+	width:80%;
+	margin:150px auto;
+	background:#FFE066;
+	border-radius: 20px;
+}
+
+.content-main{
+	display: flex;
+	justify-content: space-between; /* 양쪽 정렬 */
+	padding:20px 0 0 0;
+}
+.main-title{
+	padding:0 0 0 35px;
+}
+
+
+.search-and-button {
+	padding:0 27px 0 0;
+    display: flex;
+    justify-content: flex-end; /* 오른쪽 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    gap: 20px; /* 검색바와 버튼 사이 간격 */
+}
+
+.writeButton{
+	background-color: #f8f9fa;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
+}
+
+/* 전체 검색 박스 컨테이너 */
+.search {
+	height:20px;
+	list-style:none;
+    display: flex; /* 요소를 가로로 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    background-color: #f8f9fa;
+    border-radius: 10px; /* 둥근 테두리 */
+    padding: 5px 5px; /* 안쪽 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */ 
+    max-width: 500px; /* 검색창 최대 너비 */
+    margin: 5px auto; /* 가운데 정렬 */
+    outline: none;
+}
+
+.search-filter{
+	width:20%;
+}
+.search-box{
+	width:70%;
+}
+
+#keyword{
+	width:100px;
+}
+
+.search-filter select{
+	width:100px;
+}
+
+/* 드롭다운 스타일 */
+.search select {
+    border: none; /* 기본 테두리 제거 */
+    background: transparent; 
+    font-size: 14px; /* 글꼴 크기 */
+    padding: 5px; /* 안쪽 여백 */
+    margin-right: 10px; /* 오른쪽 간격 */
+    outline: none; /* 클릭 시 파란 테두리 제거 */
+    appearance: none; /* 기본 화살표 숨김 */
+    cursor: pointer; /* 클릭 가능한 느낌 */
+   
+}
+
+/* 검색 입력창 스타일 */
+.search input[type="search"] {
+    flex: 1; /* 남은 공간 채우기 */
+    width:150px;
+    border: none; /* 테두리 제거 */
+    background: transparent; 
+    font-size: 14px; /* 글꼴 크기 */
+    padding: 5px; /* 안쪽 여백 */
+    outline: none; /* 클릭 시 파란 테두리 제거 */
+}
+
+/* 돋보기 버튼 */
+.magnigierButton{
+	border: none; /* 테두리 제거 */
+    background: transparent; /* 배경 투명화 */
+    cursor: pointer; /* 클릭 가능한 느낌 */
+    padding: 5px; /* 안쪽 여백 */
+    margin-left: 5px; /* 왼쪽 간격 */
+}
+.search button img {
+    width: 18px; /* 돋보기 아이콘 크기 */
+    height: 18px;
+}
+
+
+.post-list{
+    align-items: center; /* 수직 가운데 정렬 */
+    border-radius: 20px;
+    background-color: #fff; /* 배경색 */
+    padding: 10px 20px; /* 내부 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    width:90%;
+    margin:3% auto;
+    height:90px;
+}
+
+
+.main-title{
+	font-size: 20px;
+}
+
 
 .post-list{
 	background:white;
+	margin:7% auto;
 }
+
+.post-list-header{
+	display:flex;
+	justify-content: space-between; /* 양쪽 정렬 */
+	align-items: center; /* 세로 중앙 정렬 */
+}
+
+.post-list-header1{
+	display:flex;
+	align-items: center; /* 세로 중앙 정렬 */
+}
+.post-list-view{
+	padding:0 35px 0 0;
+}
+
+.list-paging{
+	 margin-bottom: 150px; 
+}
+
+.my-photo{
+	border-radius:50%;
+	width:40px;
+	height:40px;
+}
+
+
 
 /* 커뮤니티 글 상세*/
 .detail-background{
@@ -18,15 +172,25 @@
 
 .detail-main{
 	background:white;
+	margin: 50px;
+	margin-bottom: 150px; 
+}
+
+.detail-header ul{
+	list-style:none;
+	display: flex;
+	
 }
 
 .detail-header{
 	background:green;
+	
 }
 
 .detail-photo{
 	max-width:300px;
 }
+
 
 /* 커뮤니티 글 등록*/
 .writeform-main{

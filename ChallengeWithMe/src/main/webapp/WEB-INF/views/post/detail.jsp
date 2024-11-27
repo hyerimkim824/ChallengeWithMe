@@ -7,7 +7,6 @@
 <head>
 <meta charset="UTF-8">
 <title>글 상세</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/style.css" type="text/css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/post.like.js"></script>
@@ -47,7 +46,7 @@
 			
 			<%--detail.do화면상 좋아요 개수 --%>
 			<div id="likecount">
-				<img src="${pageContext.request.contextPath}/images/heart.png" width="13" height="13">
+				<img src="${pageContext.request.contextPath}/images/chat-square-heart.svg" width="14" height="14">
 				<span id="output_likecount">
 				</span>
 			</div>
@@ -68,23 +67,21 @@
 			</li>
 		</ul>
 		</div>
-			<hr size="1" noshade="noshade" width="100%">
-		
-	
+			<hr class="custom-hr"  noshade="noshade" width="100%">
 	<div>
 		<h4>${post.post_title}</h4>
 	</div>
 
 	<div>
-		<hr size="1" noshade="noshade" width="100%">
+		<hr class="custom-hr"  noshade="noshade" width="100%">
 		<c:if test="${!empty post.post_img}">
 		<div class="content">
 			<img src="${pageContext.request.contextPath}/upload/${post.post_img}" class="detail-photo">
 		</div>
 		</c:if>
-		<hr size="1" noshade="noshade" width="100%">
+		<hr class="custom-hr"  noshade="noshade" width="100%">
 		<p>${post.post_content}</p>
-		<hr size="1" noshade="noshade" width="100%">
+		<hr class="custom-hr"  noshade="noshade" width="100%">
 	</div>
 	
 	<div class="post-detail">
@@ -105,8 +102,8 @@
 		<c:if test="${us_num != post.us_num}"></c:if>
 		
 			<input type="button" value="글 목록" onclick="location.href='list.do'">
-			<input type="button" value="고객의소리" onclick="location.href='/support/FeedBackForm.do'">
-			<hr size="1" noshade="noshade" width="100%">
+			<input type="button" value="고객의소리" onclick="location.href='${pageContext.request.contextPath}/support/FeedBackForm.do'">
+			<hr class="custom-hr"  noshade="noshade" width="100%">
 	</div>
 	
 	<%-- 댓글 시작 --%>
@@ -127,15 +124,17 @@
 		</div>
 		
 	<%-- 댓글 페이징 --%>
-		<div id="output"></div>
-		<div class="paging-button" style="display:none;">
-			<input type="button" value="다음글 보기">
-		</div>
-		<div id="loading" style="display:none;">
-			<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40">
+		<div id="output">
+			<div class="paging-button" style="display:none;">
+				<input type="button" value="다음글 보기">
+			</div>
+			<div id="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40">
+			</div>
 		</div>
 	</div>
 </div>
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
 
