@@ -74,15 +74,21 @@ $(function(){
 		};		
 	});
 	
-	function showImg(){
-		if(!$('#photoPath').val() == ""){
-			$('#previewImage').show();
-			$('#previewImage').attr('src',$('#photoPath').val());
-			$('.image-reselectBtn').show();
-			$('.image-text').hide();
-			$('#imageBtn').hide();
-		}
-	}
+	
+	
+	$('.image-reselectBtn').click(function(e) {
+		e.preventDefault();
+	    $('#previewImage').hide(); 
+	    $('#previewImage').attr('src', ''); 
+
+	   
+	    $('#fileInput').val(''); 
+
+	    
+	    $(this).hide(); 
+	    $('.image-text').show();
+	    $('#imageBtn').show(); 
+	});
 	
 	$(document).on('click', '.item-heart', function () {
 		
@@ -143,5 +149,19 @@ $(function(){
 		}
 	});
 	
+	function showOfficialBtnColor(){
+		const currentUrl = window.location.href;
+
+		// 조건에 따라 버튼 CSS 변경
+		if (currentUrl.includes("/challenge/challengeList.do")) {
+		    $('.user-ch').css('background-color', '#FFE066');
+			$('.admin-ch').css('background-color', 'white');
+		} else if (currentUrl.includes("/challenge/challengeOfficialList.do")) {
+			$('.user-ch').css('background-color', 'white');
+			$('.admin-ch').css('background-color', '#FFE066');
+		}
+	}
+	
+	showOfficialBtnColor();
 	
 });

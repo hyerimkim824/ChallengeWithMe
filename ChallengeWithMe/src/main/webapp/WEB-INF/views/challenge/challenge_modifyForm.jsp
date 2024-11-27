@@ -21,44 +21,22 @@
 	
 	<div class="page-main">
 	
-
+		<form id="ch_modify_form" action="challengeModify.do" method="post">
+		<input type="hidden" name="ch_num" value="${chall.ch_num}">
 		<div class="chc-one">
-			<div class="chc-title"><b>챌린지 정보</b></div>
-			<div class="chc-visi">
-				<c:if test="${chall.ch_visi == 0}">
-					<img id="visi_img"
-						src="${pageContext.request.contextPath}/images/unlock.svg">
-					<div id="visi_text">공개</div>
-				</c:if>
-				<c:if test="${chall.ch_visi == 1}">
-					<img id="visi_img"
-						src="${pageContext.request.contextPath}/images/lock.svg">
-					<div id="visi_text">비공개</div>
-				</c:if>
-			</div>
-			<a href="${pageContext.request.contextPath}/challenge/challengeModifyForm.do?ch_num=${chall.ch_num}"><div class="align-center">챌린지 수정</div></a>
+			<div class="chc-title"><b>챌린지 수정</b></div>
+			
 			<a href="${pageContext.request.contextPath}/challenge/challengeList.do"><div class="linkToList align-center">목록으로</div></a>
 		</div>
 		<div class="chc-three">
 			<div class="chd-catname align-center">${chall.cate_name}</div>
-			<div class="chd-auth">
-				#
-				<c:out value="${auth_name[chall.ahDetail_num]}" />
-			</div>
+			
 		</div>
 
 		<div class="chc-four">
 			<div class="chd-four-header">
 				<div class="chd-title">참가 챌린지 명: ${chall.ch_title}</div>
-				<div class="like-container align-center">
-					<c:if test="${chall.heart_status}">
-						<img src="${pageContext.request.contextPath}/images/red-heart.png" width="30px" height="30px">
-					</c:if>
-					<c:if test="${!chall.heart_status}">
-						<img src="${pageContext.request.contextPath}/images/heart.png" width="30px" height="30px">
-					</c:if>
-					
-				</div>
+				
 			</div>
 			<div class="nickname-container">
 				<c:if test="${us_img == null}">
@@ -77,17 +55,19 @@
 				<div class="img-container">
 					<img class="chd-img" src="../images/food.jpg">
 				</div>
+				
 				<div class="chc-info">
 					<div class="chc-desc shadow-effect">
 						<div class="info-title">챌린지 소개</div>
-						<textarea id="chc_desc" class="ta1" placeholder="소개 글을 입력해주세요"
-							maxlength="900" disabled>${chall.ch_desc}</textarea>
+						<textarea id="chc_desc" class="ta1" name="ch_desc" placeholder="소개 글을 입력해주세요"
+							maxlength="900">${chall.ch_desc}</textarea>
 					</div>
 					<div class="chc-authm shadow-effect">
 						<div class="info-title">인증방법</div>
-						<textarea class="ta1" maxlength="500" disabled>${chall.auth_desc}</textarea>
+						<textarea class="ta1" name="auth_desc" maxlength="500">${chall.auth_desc}</textarea>
 					</div>
 				</div>
+				
 			</div>
 			<div class="chd-six">
 				<div class="chd-extra-info shadow-effect">
@@ -131,17 +111,11 @@
 		</div>
 
 		
-		<c:if test="${!joined}">
-			<div class="chc-end align-center">
-				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 참가</a>
-			</div>
-		</c:if>
-		<c:if test="${joined}">
-			<div class="chc-end align-center">
-				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 포기</a>
-			</div>
-		</c:if>
+		<div class="chc-end align-center">
+			<input class="submit-btn align-center" type="submit" value="챌린지 수정">
+		</div>
 		
+		</form>
 	</div>
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />

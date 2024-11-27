@@ -74,7 +74,7 @@
 				
 					<div class="image">
 						<img id="previewImage" src="" alt="이미지 미리보기" />
-						<button class="image-reselectBtn">사진 재선택</button>
+						<button type="button" class="image-reselectBtn">사진 재선택</button>
 						<p class="image-text"><b>이미지 등록</b></p>
 						<div class="chc-imageBtn">
 							<input type="file" name="img" id="fileInput" accept="image/*" style="display:none;" />

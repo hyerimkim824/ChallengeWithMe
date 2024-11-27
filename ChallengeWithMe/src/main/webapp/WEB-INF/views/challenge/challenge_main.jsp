@@ -32,8 +32,10 @@
 			
 			</div>
 			<div class="ch-menu">
+			<a href="${pageContext.request.contextPath}/challenge/challengeOfficialList.do">
 				<img class="ch-img"
 					src="${pageContext.request.contextPath}/images/face.png">
+			</a>
 				<p>공식 챌린지 참여</p>
 			</div>
 

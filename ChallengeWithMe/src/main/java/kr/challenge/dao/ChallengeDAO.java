@@ -42,15 +42,14 @@ public class ChallengeDAO {
 			}
 
 			// 카테고리 조건 처리
-			if (cate_num != null) {
-				sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cat.cate_num=?";
+			if (cate_num != null && !"0".equals(cate_num)) {
+			    sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cat.cate_num=?";
 			}
 
 			// 최종 SQL 생성
 			sql = "SELECT COUNT(*) FROM chall c "
-					+ "JOIN user_detail us ON c.us_num = us.us_num "
-					+ "JOIN cate cat ON c.cate_num = cat.cate_num" + sub_sql;
-
+			        + "JOIN user_detail us ON c.us_num = us.us_num "
+			        + "JOIN cate cat ON c.cate_num = cat.cate_num" + sub_sql;
 			// PreparedStatement 생성
 			pstmt = conn.prepareStatement(sql);
 
@@ -96,13 +95,13 @@ public class ChallengeDAO {
 
 			}
 
-			if (cat_num != null) {
-				sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cate.cate_num=?";
+			if (cat_num != null && !"0".equals(cat_num)) {
+			    sub_sql += (sub_sql.isEmpty() ? " WHERE" : " AND") + " cate.cate_num=?";
 			}
 
 			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, us.us_nickname, rownum AS rnum"
-					+ " FROM chall JOIN cate ON chall.cate_num = cate.cate_num JOIN user_detail us ON chall.us_num = us.us_num" + sub_sql
-					+ " ORDER BY ch_num DESC) WHERE rnum >= ? AND rnum <= ?";
+			        + " FROM chall JOIN cate ON chall.cate_num = cate.cate_num JOIN user_detail us ON chall.us_num = us.us_num" + sub_sql
+			        + " ORDER BY ch_num DESC) WHERE rnum >= ? AND rnum <= ?";
 			pstmt = conn.prepareStatement(sql);
 
 			if (keyword != null && !"".equals(keyword)) {
@@ -208,7 +207,9 @@ public class ChallengeDAO {
 
 		return list;
 	}
-
+	
+	
+	
 	//챌린지 개설
 	public void createChallenge(ChallengeVO vo) throws Exception{
 		Connection conn = null;
@@ -365,6 +366,29 @@ public class ChallengeDAO {
 		}
 
 
+	}
+	
+	public void updateChallenge(String ch_desc, String auth_desc, Long ch_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+
+			conn = DBUtil.getConnection();
+			sql = "UPDATE chall SET ch_desc=?, auth_desc=? WHERE ch_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, ch_desc);
+			pstmt.setString(2, auth_desc);
+			pstmt.setLong(3, ch_num);
+
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
 	}
 
 

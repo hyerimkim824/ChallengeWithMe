@@ -42,7 +42,7 @@
 
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
 					<li><a class="dropdown-item list-dd" id="cat_all"
-						data-category="0" href="challengeList.do">전체</a></li>
+						data-category="0" href="challengeList.do?">전체</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_health"
 						data-category="1" href="challengeList.do?category=1">건강</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_food"
@@ -52,13 +52,29 @@
 
 				</ul>
 			</div>
+			
 			<button class="btn ch-create" style="background-color: #FFE066"
 				onclick="location.href='challengeCreateForm.do'" type="button">
 				<p>챌린지 개설</p>
 			</button>
 		</div>
+		<div class="space200-div">
+			<div class="search-container align-center">
+				<form id="search_form" action="challengeList.do" method="get">
+					<input type="radio" value="1" name="keyfield">제목
+					<input type="radio" value="2" name="keyfield">닉네임
+					<input type="text" name="keyword">
+					<input type="hidden" name="category" value="${category}">
+					<input type="submit" value="전송">
+				</form>
+			</div>
+		</div>
+		<div class="official-status-container">
+			<button class="official-status-btn user-ch">사용자 챌린지</button>
+			<button class="official-status-btn admin-ch" type="button" onclick="location.href='challengeOfficialList.do'">공식 챌린지</button>
+		</div>
 		<div class="ch-container">
-			<c:if test="${!empty chall_list}">
+			<c:if test="${count > 0}">
 				<c:forEach var="list" items="${chall_list}">
 
 					<div class="ch-item">
@@ -128,8 +144,8 @@
 
 				</c:forEach>
 			</c:if>
-			<c:if test="${empty chall_list}">
-				표시할 챌린지가 없습니다.
+			<c:if test="${count == 0}">
+				<div class="align-center">표시할 챌린지가 없습니다!!!!!!!!!</div>
 			</c:if>
 
 		</div>
