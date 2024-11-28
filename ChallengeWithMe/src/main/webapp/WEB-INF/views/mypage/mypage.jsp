@@ -48,6 +48,8 @@
 					<div>
 						<h3>닉네임</h3>
 						<span class="nick">${ xuser.nickname }님</span>
+						<input class="mysetting" type="button" value="개인설정"
+						onclick="location.href='mySettingForm.do'">
 					</div>
 				</div>
 			</div>
@@ -56,6 +58,7 @@
 				<div id="iframe-container"></div>
 			</div>
 			<!-- 각종 챌린지 성과 -->
+			<div class="chall-prize-container">
 			<div class="chall">
 				<h3>챌린지 기록</h3>
 				<div class="result1">
@@ -98,6 +101,7 @@
 					</ul>
 				</div>
 			</div>
+			</div>
 		</div>
 		</form>
                       </div>
@@ -132,8 +136,8 @@
 						<li><span>${ xuser.email }</span></li>
 						<li><input type="button" value="이메일 변경" onclick="location.href='${ pageContext.request.contextPath }/mypage/infoModifyForm.do'"></li>
 						<li><span>${ xuser.id }</span></li>
-						<li><input type="button" value="비밀번호 변경" onclick="location.href='${ pageContext.request.contextPath }/mypage/infoModifyForm.do'"></li>
-						<li><input type="button" value="회원탈퇴" style="background-color: #e04e4e"></li>
+						<li><input type="button" value="비밀번호 변경" onclick="location.href='modifyPwdForm.do'"></li>
+						<li><input type="button" value="회원탈퇴" style="background-color: #e04e4e" onclick="location.href='deleteUserForm.do'"></li>
 					</ul>
 				</div>
 			</div>
@@ -247,7 +251,8 @@
 						</div>
 					</div>	
 					<div class="info-rightbtn">
-						<input type="button" value="자세히 보기 &#8594">
+						<input type="button" value="자세히 보기 &#8594"
+						onclick="location.href='myBadgeListForm.do'">
 					</div>
 				</div>
 			</div>
@@ -257,7 +262,7 @@
 		var iframe = document.createElement('iframe')
 		iframe.src = '${ pageContext.request.contextPath }/mypage/updateMyPhotoForm.do'
 		iframe.width= '300'
-		iframe.height = '390'
+		iframe.height = '370'
 		iframe.frameborder = '0'
 		iframe.allowfullscreen = false
 		

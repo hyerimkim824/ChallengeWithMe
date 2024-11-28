@@ -179,4 +179,83 @@ public class MyPageDAO {
 		}
 	}
 	
+	// 비밀번호 수정
+	public void updatePwd(String pwd, long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "UPDATE user_detail SET us_pw=? WHERE us_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, pwd);
+			ps.setLong(2, us_num);
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 회원탈퇴
+	public void deleteUser(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
+			
+			sql = "UPDATE SET xuser SET us_ban=2 WHERE us_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			sql = "DELETE FROM user_detail WHERE us_num=?";
+			ps2 = con.prepareStatement(sql);
+			ps2.setLong(1, us_num);
+			
+			con.commit();
+		} catch (Exception e) {
+			con.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps2, null);
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 좋아요 챌린지 목록
+	public List<String> selectChallLike(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<String> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT c.ch_title FROM chall c "
+					+ "JOIN chall_like l ON c.ch_num = l.ch_num WHERE l.us_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<String>();
+			while(rs.next()) {
+				String like = rs.getString("ch_title");
+				list.add(like);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
 }

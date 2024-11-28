@@ -5,6 +5,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	const select2 = document.querySelector('.card-3d-wrapper')
 	const iframe = document.getElementById('iframe-container')
 	const photo_btn = document.getElementById('photo_btn')
+	const container = document.querySelector('.chall-prize-container')
 	let iframecreated = false
 
 	form1.addEventListener('click', function(event) {
@@ -21,6 +22,7 @@ document.addEventListener('DOMContentLoaded', () => {
 	photo_btn.addEventListener('click', function(){
 		if(!iframecreated){
 			iframe.style.display = 'flex'
+			container.style.display = 'none'
 			iframecreated = true;
 			
 		} else{
@@ -28,6 +30,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			iframe.removeChild(iframe.firstElementChild)
 			}
 			iframe.style.display = 'none'
+			container.style.display = 'block'
 			iframecreated = false;
 		}
 	})

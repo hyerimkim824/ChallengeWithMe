@@ -107,8 +107,8 @@ $(document).ready(function() {
 		list-style: none;
 	}
 	img{
-		width: 200px;
-		height: 200px;
+		width: 180px;
+		height: 180px;
 		border-radius: 100px;
 		border: 2px solid #666666;
 	}

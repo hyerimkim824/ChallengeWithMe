@@ -1,0 +1,55 @@
+ul{
+	list-style: none;
+	padding: 0 0;
+}
+
+.box{
+	 display: flex; /* Flexbox 활성화 */
+     flex-direction: column; /* 자식들을 세로로 배치 */
+     justify-content: center; /* 수직 정렬 */
+     align-items: center; /* 수평 정렬 */
+}
+
+.box-h1{
+	margin-top: 100px;
+}
+
+.badge-box{
+	position: relative;
+	border: 2px solid;
+	border-radius: 10px;
+	border-color: #c8c8c8;
+	width: 1075px;
+	height: 1350px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	display: flex;
+    flex-direction: column;
+}
+
+.badge-box img{
+	width: 200px;
+	height: 200px;
+	border: 3px solid;
+	border-radius: 30px;
+	margin-bottom: 20px;
+}
+
+.badge-box span{
+	text-align: center;
+}
+
+.badge-box ul{
+	display: flex;
+	margin: 30px 30px 0px 30px;
+}
+
+.badge-box li{
+	display: flex;
+	flex-direction: column; /* 자식들을 세로로 배치 */
+    justify-content: center; /* 수직 정렬 */
+	width: 200px;
+	height: 250px;
+	margin-right: 70px;
+	margin-bottom: 60px;
+}

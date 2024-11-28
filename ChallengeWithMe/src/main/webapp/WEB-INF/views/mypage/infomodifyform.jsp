@@ -10,7 +10,9 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
-
+	let nickChecked = 0
+	let emailChecked = 0
+	
 			// 닉네임 중복체크
 		$('#nick_check').click(function(){
 			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
@@ -27,15 +29,19 @@ $(function() {
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'nickNotFound'){
+						nickChecked = 1
 						$('#message_nick').css('color', '#000000').text('등록 가능한 닉네임입니다.')
 					}else if(param.result == 'nickDuplicated'){
+						nickChecked = 0
 						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
 						$('#nick').val('').focus()
 					}else{
+						nickChecked = 0
 						alert('닉네임 중복 체크 오류 발생')
 					}
 				},
 				error:function(){
+					nickChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -56,15 +62,19 @@ $(function() {
 				dataType:'json',
 				success:function(param){
 					if(param.result == 'emailNotFound'){
+						emailChecked = 1
 						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
 					}else if(param.result == 'emailDuplicated'){
+						emailChecked = 0
 						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
 						$('#email').val('').focus()
 					}else{
+						emailChecked = 0
 						alert('이메일 가입 체크 오류 발생')
 					}
 				},
 				error:function(){
+					emailChecked = 0
 					alert('네트워크 오류 발생')
 				}
 			})
@@ -72,11 +82,13 @@ $(function() {
 		
 		// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
 		$('#register_from2 #nick').keydown(function(){
+			nickChecked = 0
 			$('#message_nick').text('')
 		})
 		
 		// 이메일 이미 가입 안내 메시지 초기화 및 이메일 값 초기화
 		$('#register_from2 #email').keydown(function(){
+			emailChecked = 0
 			$('#message_email').text('')
 		})
 		
@@ -107,6 +119,11 @@ $(function() {
 		            item.focus();
 		            return false;
 		        }
+		        
+		        if(items[i].id === 'nick' && nickChecked == 0){
+		        	alert('닉네임 중복체크를 해주세요')
+		        	return false
+		        }
 
 		        // 이메일 유효성 검사
 		        if (item.id === 'email' && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(item.value)) {
@@ -114,6 +131,11 @@ $(function() {
 		            item.value = '';
 		            item.focus();
 		            return false;
+		        }
+		        
+		        if(items[i].id === 'email' && emailChecked == 0){
+		        	alert('이메일 중복체크를 해주세요')
+		        	return false
 		        }
 		        // 우편번호 유효성 검사
 		        if (item.id === 'zipcode' && !/^[0-9]{5,5}$/.test(item.value)) {
@@ -141,7 +163,7 @@ $(function() {
 			<div class="form-container2" id="detail-container">
 			    <form id="register_form2" action="${ pageContext.request.contextPath }/mypage/infoModify.do" method="post">
 			      <h1>개인정보</h1>
-			      <input type="text" id="nick" name="nick" maxlength="6" class="check" placeholder="닉네임" />
+			      <input type="text" id="nick" name="nick" maxlength="6" class="check" placeholder="닉네임" value="${ xuser.nickname }"/>
 			      <span id="message_nick"></span>
 			      <input type="button" id="nick_check" value="중복체크">
 			      <div class="radio-group">
@@ -154,15 +176,15 @@ $(function() {
 			    		<span>여자</span>
 			  		</label>
 				</div>
-			      <input type="email" id="email" name="email" class="check" placeholder="이메일" />
+			      <input type="email" id="email" name="email" class="check" placeholder="이메일" value="${ xuser.email }"/>
 			      <span id="message_email"></span>
 			      <input type="button" id="email_check" value="중복체크">
-			      <input type="date" id="birth" name="birth" class="check" placeholder="생년월일" />
-			      <input type="text" id="tel" name="tel" maxlength="11" class="check" placeholder="전화번호" />
-			      <input type="text" name="zipcode" id="zipcode" maxlength="5" class="check" autocomplete="off" placeholder="우편번호" />
+			      <input type="date" id="birth" name="birth" class="check" placeholder="생년월일" value="${ xuser.birth }"/>
+			      <input type="text" id="tel" name="tel" maxlength="11" class="check" placeholder="전화번호" value="${ xuser.tel }"/>
+			      <input type="text" name="zipcode" id="zipcode" maxlength="5" class="check" autocomplete="off" placeholder="우편번호" value="${ xuser.zipcode }"/>
 			      <input type="button" onclick="execDaumPostcode()" value="우편번호 찾기">
-			      <input type="text" name="address1" id="address1" maxlength="30" class="check" placeholder="주소" />
-			      <input type="text" name="address2" id="address2" maxlength="30" class="check" placeholder="나머지주소" />
+			      <input type="text" name="address1" id="address1" maxlength="30" class="check" placeholder="주소" value="${ xuser.address1 }"/>
+			      <input type="text" name="address2" id="address2" maxlength="30" class="check" placeholder="나머지주소" value="${ xuser.address2 }"/>
 			      <input type="password" name="pwd" id="pwd" maxlength="16" class="check" placeholder="비밀번호" />
 			      <input type="submit" value="정보수정">
 			      <input class="main" type="button" value="마이페이지"

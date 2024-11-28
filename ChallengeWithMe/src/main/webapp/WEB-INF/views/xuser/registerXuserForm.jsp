@@ -10,6 +10,10 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(function() {
+	let idChecked = 0
+	let nickChecked = 0
+	let emailChecked = 0
+	
 	$('#login_form').submit(function(){
 		if($('#logid').val().trim()==''){
 			alert('아이디를 입력하세요!')
@@ -22,7 +26,131 @@ $(function() {
 			return false
 		}
 	})
-	
+
+		// 아이디 중복체크
+		$('#id_check').click(function(){
+			if(!/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
+				alert('아이디는 영문 숫자 포함 4 ~ 12자로 작성해주세요.')
+				$('#id').val('').focus()
+				return
+			}
+			
+			// 서버 통신
+			$.ajax({
+				url:'checkDuplicatedId.do',
+				type:'post',
+				data:{id:$('#id').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'idNotFound'){
+						idChecked = 1
+						$('#message_id').css('color', '#000000').text('등록 가능한 ID입니다.')
+					}else if(param.result == 'idDuplicated'){
+						idChecked = 0
+						$('#message_id').css('color', 'red').text('중복된 ID입니다.')
+						$('#id').val('').focus()
+					}else{
+						idChecked = 0
+						alert('아이디 중복 체크 오류 발생')
+					}
+				},
+				error:function(){
+					idChecked = 0
+					alert('네트워크 오류 발생')
+				}
+			})
+		})
+			// 닉네임 중복체크
+		$('#nick_check').click(function(){
+			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
+				alert('닉네임은 한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
+				$('#nick').val('').focus()
+				return
+			}
+			
+			// 서버 통신
+			$.ajax({
+				url:'checkDuplicatedNick.do',
+				type:'post',
+				data:{nick:$('#nick').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'nickNotFound'){
+						nickChecked = 1
+						$('#message_nick').css('color', '#000000').text('등록 가능한 닉네임입니다.')
+					}else if(param.result == 'nickDuplicated'){
+						nickChecked = 0
+						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
+						$('#nick').val('').focus()
+					}else{
+						nickChecked = 0
+						alert('닉네임 중복 체크 오류 발생')
+					}
+				},
+				error:function(){
+					nickChecked = 0
+					alert('네트워크 오류 발생')
+				}
+			})
+		})
+		
+		// 이메일 중복체크
+		$('#email_check').click(function(){
+			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())){
+				alert('이메일 형식에 맞게 작성해주세요.')
+				$('#email').val('').focus()
+				return
+			}
+			// 서버 통신
+			$.ajax({
+				url:'checkEmail.do',
+				type:'post',
+				data:{email:$('#email').val()},
+				dataType:'json',
+				success:function(param){
+					if(param.result == 'emailNotFound'){
+						emailChecked = 1
+						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
+					}else if(param.result == 'emailDuplicated'){
+						emailChecked = 0
+						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
+						$('#email').val('').focus()
+					}else{
+						emailChecked = 0
+						alert('이메일 가입 체크 오류 발생')
+					}
+				},
+				error:function(){
+					emailChecked = 0
+					alert('네트워크 오류 발생')
+				}
+			})
+		})
+		
+		// 아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
+		$('#register_from #id').keydown(function(){
+			idChecked = 0
+			$('#message_id').text('')
+		})
+		
+		// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
+		$('#register_from #nick').keydown(function(){
+			nickChecked = 0
+			$('#message_nick').text('')
+		})
+		
+		// 이메일 이미 가입 안내 메시지 초기화 및 이메일 값 초기화
+		$('#register_from #email').keydown(function(){
+			emailChecked = 0
+			$('#message_email').text('')
+		})
+		
+		// 회원 정보 등록 유효성 체크
+		$('#register_form2').submit(function (e) {
+		    e.preventDefault(); // 기본 제출 동작 방지
+		    
+		   
+		});
     $('#submit_all').click(function(e) {
         e.preventDefault(); // 기본 버튼 동작 방지
         
@@ -32,7 +160,7 @@ $(function() {
 
 	        // 필드가 비어 있는지 확인
 	        if (item.value.trim() === '') {
-	            alert(item.placeholder + '을(를) 입력해주세요.');
+	            alert(item.placeholder + ' 을(를) 입력해주세요.');
 	            item.focus();
 	            return false;
 	        }
@@ -43,6 +171,10 @@ $(function() {
 	            item.value = '';
 	            item.focus();
 	            return false;
+	        }
+	        if(items[i].id === 'id' && idChecked == 0){
+	        	alert('아이디 중복체크를 해주세요')
+	        	return false
 	        }
 
 	        // 비밀번호 유효성 검사
@@ -71,6 +203,12 @@ $(function() {
 	            item.focus();
 	            return false;
 	        }
+	        
+	        if(items[i].id === 'nick' && nickChecked == 0){
+	        	alert('닉네임 중복체크를 해주세요')
+	        	return false
+	        }
+	       
 
 	        // 이메일 유효성 검사
 	        if (item.id === 'email' && !/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(item.value)) {
@@ -78,6 +216,11 @@ $(function() {
 	            item.value = '';
 	            item.focus();
 	            return false;
+	        }
+	        
+	        if(items[i].id === 'email' && emailChecked == 0){
+	        	alert('이메일 중복체크를 해주세요')
+	        	return false
 	        }
 	        // 우편번호 유효성 검사
 	        if (item.id === 'zipcode' && !/^[0-9]{5,5}$/.test(item.value)) {
@@ -114,118 +257,6 @@ $(function() {
         });
     });
 });
-
-	$(function() {
-		// 아이디 중복체크
-		$('#id_check').click(function(){
-			if(!/^[A-Za-z0-9]{4,12}$/.test($('#id').val())){
-				alert('아이디는 영문 숫자 포함 4 ~ 12자로 작성해주세요.')
-				$('#id').val('').focus()
-				return
-			}
-			
-			// 서버 통신
-			$.ajax({
-				url:'checkDuplicatedId.do',
-				type:'post',
-				data:{id:$('#id').val()},
-				dataType:'json',
-				success:function(param){
-					if(param.result == 'idNotFound'){
-						$('#message_id').css('color', '#000000').text('등록 가능한 ID입니다.')
-					}else if(param.result == 'idDuplicated'){
-						$('#message_id').css('color', 'red').text('중복된 ID입니다.')
-						$('#id').val('').focus()
-					}else{
-						alert('아이디 중복 체크 오류 발생')
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생')
-				}
-			})
-		})
-			// 닉네임 중복체크
-		$('#nick_check').click(function(){
-			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
-				alert('닉네임은 한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
-				$('#nick').val('').focus()
-				return
-			}
-			
-			// 서버 통신
-			$.ajax({
-				url:'checkDuplicatedNick.do',
-				type:'post',
-				data:{nick:$('#nick').val()},
-				dataType:'json',
-				success:function(param){
-					if(param.result == 'nickNotFound'){
-						$('#message_nick').css('color', '#000000').text('등록 가능한 닉네임입니다.')
-					}else if(param.result == 'nickDuplicated'){
-						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
-						$('#nick').val('').focus()
-					}else{
-						alert('닉네임 중복 체크 오류 발생')
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생')
-				}
-			})
-		})
-		
-		// 이메일 중복체크
-		$('#email_check').click(function(){
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())){
-				alert('이메일 형식에 맞게 작성해주세요.')
-				$('#email').val('').focus()
-				return
-			}
-			// 서버 통신
-			$.ajax({
-				url:'checkEmail.do',
-				type:'post',
-				data:{email:$('#email').val()},
-				dataType:'json',
-				success:function(param){
-					if(param.result == 'emailNotFound'){
-						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
-					}else if(param.result == 'emailDuplicated'){
-						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
-						$('#email').val('').focus()
-					}else{
-						alert('이메일 가입 체크 오류 발생')
-					}
-				},
-				error:function(){
-					alert('네트워크 오류 발생')
-				}
-			})
-		})
-		
-		// 아이디 중복 안내 메시지 초기화 및 아이디 중복 값 초기화
-		$('#register_from #id').keydown(function(){
-			$('#message_id').text('')
-		})
-		
-		// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
-		$('#register_from #nick').keydown(function(){
-			$('#message_nick').text('')
-		})
-		
-		// 이메일 이미 가입 안내 메시지 초기화 및 이메일 값 초기화
-		$('#register_from #email').keydown(function(){
-			$('#message_email').text('')
-		})
-		
-		// 회원 정보 등록 유효성 체크
-		$('#register_form2').submit(function (e) {
-		    e.preventDefault(); // 기본 제출 동작 방지
-		    
-		   
-		});
-	})
 </script>
 </head>
 <body>
