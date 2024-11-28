@@ -3,6 +3,12 @@ $(function(){
 	let visi = true;
 	
 	
+	
+	function setDefault(){
+		$('#visiState').val("0");
+		$('#join_code').hide();	
+	}
+	
 	$('.dropdown-item').click(function(e) {
 		
 
@@ -33,12 +39,14 @@ $(function(){
 		if (visi) {
 		    $('#visi_img').attr('src', '../images/lock.svg');
 		    $('#visi_text').html("비공개");
-			$('#visiState').val(0);
+			$('#visiState').val("1");
+			$('#join_code').show();
 		    visi = false;
 		} else {
 		    $('#visi_img').attr('src', '../images/unlock.svg');
 		    $('#visi_text').html("공개");
-			$('#visiState').val(1);
+			$('#visiState').val("0");
+			$('#join_code').hide();
 		    visi = true;
 		}
 	});   
@@ -47,6 +55,11 @@ $(function(){
 	$('#imageBtn').click(function(e){
 		e.preventDefault();
 		$('#fileInput').click();
+	});
+	
+	//검색버튼 클릭
+	$('.search-submitBtn').click(function(){
+		$('#search_form').submit();
 	});
 		
 			
@@ -80,7 +93,7 @@ $(function(){
 		e.preventDefault();
 	    $('#previewImage').hide(); 
 	    $('#previewImage').attr('src', ''); 
-
+	
 	   
 	    $('#fileInput').val(''); 
 
@@ -155,14 +168,29 @@ $(function(){
 		// 조건에 따라 버튼 CSS 변경
 		if (currentUrl.includes("/challenge/challengeList.do")) {
 		    $('.user-ch').css('background-color', '#FFE066');
-			$('.admin-ch').css('background-color', 'white');
+			$('.admin-ch').css('background-color', '#FFFACD');
 		} else if (currentUrl.includes("/challenge/challengeOfficialList.do")) {
-			$('.user-ch').css('background-color', 'white');
+			$('.user-ch').css('background-color', '#FFFACD');
 			$('.admin-ch').css('background-color', '#FFE066');
 		}
 	}
 	
+	//인증 방식 선택 후 세부 사항 태그
+	$('.auth-dd').click(function(){ 
+		if($(this).attr('id') === 'auth_time'){
+			$('#time_auth').show();
+			$('#game_auth').hide();
+		}else if($(this).attr('id') === 'auth_game'){
+			$('#time_auth').hide();
+			$('#game_auth').show();
+		}else{
+			$('#time_auth').hide();
+			$('#game_auth').hide();
+		}
+	});   
 	
+	
+	setDefault();
 	showOfficialBtnColor();
 	
 });

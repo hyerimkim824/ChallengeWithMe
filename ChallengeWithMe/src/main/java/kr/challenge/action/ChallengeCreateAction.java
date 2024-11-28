@@ -37,6 +37,7 @@ public class ChallengeCreateAction implements Action{
 		System.out.println("10.최대인원: " + request.getParameter("max"));
 		System.out.println("11.인증주기: " + request.getParameter("chc_authd"));
 		System.out.println("12.인증방법: " + request.getParameter("ah_num"));
+		System.out.println("13.참가코드: " + request.getParameter("join_code"));
 		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
@@ -59,6 +60,7 @@ public class ChallengeCreateAction implements Action{
 		int ch_authd = Integer.parseInt(request.getParameter("chc_authd")); 
 		int ahDetail_num = Integer.parseInt(request.getParameter("ah_num"));
 		String auth_desc = request.getParameter("auth_desc");
+		String join_code = request.getParameter("join_code");
 		
 		
 		ChallengeVO vo = new ChallengeVO();
@@ -83,6 +85,10 @@ public class ChallengeCreateAction implements Action{
 		vo.setCh_authd(ch_authd);
 		vo.setAh_num(ahDetail_num);
 		vo.setAuth_desc(auth_desc);
+		if(visi == 1) {
+			vo.setJoin_code(join_code);
+		}
+		
 		dao.createChallenge(vo);
 		
 		

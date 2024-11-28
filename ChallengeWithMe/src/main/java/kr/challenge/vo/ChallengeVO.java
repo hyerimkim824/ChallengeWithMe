@@ -25,6 +25,7 @@ public class ChallengeVO {
 	private int ch_authd;
 	private int ahDetail_num;
 	private String auth_desc;
+	private String join_code;
 	
 	private String us_nickname;
 	private String us_img;
@@ -182,6 +183,14 @@ public class ChallengeVO {
 	public void setAh_num(int ah_num) {
 		this.ahDetail_num = ah_num;
 	}
+	
+	public String getJoin_code() {
+		return join_code;
+	}
+	public void setJoin_code(String join_code) {
+		this.join_code = join_code;
+	}
+	
 	
 	public void calDate_diff() {
 		try {

@@ -32,28 +32,59 @@
 			</div>
 			<button class="btn ch-create" style="background-color: #FFE066"
 				onclick="location.href='challengeCreateForm.do'" type="button">
-				<p>챌린지 개설</p>
+				챌린지 개설
 			</button>
 		</div>
-		<div class="space200-div">
-			<div class="search-container align-center">
-				<form id="search_form" action="challengeOfficialList.do"
-					method="get">
-					<input type="radio" value="1" name="keyfield">제목 <input
-						type="radio" value="2" name="keyfield">닉네임 <input
-						type="text" name="keyword"> <input type="submit"
-						value="전송">
-				</form>
-			</div>
-		</div>
+		<div class="space50-div"></div>
+		<form id="search_form" class="search-container shadow-effect"
+			action="challengeOfficialList.do" method="get">
+
+			<select class="search-select" name="keyfield">
+				<option value="0">전체</option>
+				<option value="1">제목</option>
+			</select> <input type="text" class="search-field" name="keyword">
+			<img class="search-submitBtn" src="../images/magnifier.png">
+			<input type="submit" id="submit_form" class="submit-form" value="검색">
+		</form>
+		<div class="space50-div"></div>
 
 		<div class="space100-div"></div>
 		<div class="och-container">
 			<c:if test="${count > 0}">
 				<c:forEach var="list" items="${chall}">
-					<div class="och-item shadow-effect">${list.ch_title}</div>
+					<div class="och-item shadow-effect">
+						<div class="link-div"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}'"></div>
+						<div class="och-detail">
+							<div class="och-detailItem">
+								<img src="../images/chat-square-heart.svg">
+								${list.ch_like}
+							</div>
+							<div class="och-detailItem">
+								<img src="../images/eye.svg"> ${list.ch_view}
+							</div>
+						</div>
+						<c:if test="${pv_chall.heart_status}">
+							<div class="item-heart" data-chnum="${list.ch_num}">
+								<img
+									src="${pageContext.request.contextPath}/images/red-heart.png"
+									width="30px" height="30px">
+							</div>
+						</c:if>
+						<c:if test="${!pv_chall.heart_status}">
+							<div class="item-heart" data-chnum="${list.ch_num}">
+								<img src="${pageContext.request.contextPath}/images/heart.png"
+									width="30px" height="30px">
+							</div>
+						</c:if>
+						<div class="och-title">${list.ch_title}</div>
+						<div class="och-date">${list.ch_start}~${list.ch_end}</div>
+						<img class="och-backgroundImg" src="../images/health.jpg">
+
+					</div>
 					<hr>
 				</c:forEach>
+
 			</c:if>
 			<c:if test="${count==0}">
 				<div class="align-center">진행 중인 공식 챌린지가 없습니다</div>

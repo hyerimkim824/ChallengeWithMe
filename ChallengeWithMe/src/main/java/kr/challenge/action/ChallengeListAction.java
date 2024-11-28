@@ -25,13 +25,14 @@ public class ChallengeListAction implements Action{
 		
 		HttpSession session = request.getSession();
 	    Long us_num = (Long)session.getAttribute("us_num");
+	    String join_code = request.getParameter("ch_code");
 	    
 	    if (us_num == null) {
 	        return "redirect:/xuser/registerXuserForm.do";
 	    }
 	    String visi = request.getParameter("visi");
 	    Integer visiChecked = null;
-	    if(visi == null) {
+	    if(visi == null || visi == "") {
 	    	visiChecked = 0;
 	    }else {
 	    	visiChecked = Integer.parseInt(visi);
@@ -52,7 +53,7 @@ public class ChallengeListAction implements Action{
 	    ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 	    List<ChallengeVO> chall_list = null;
 
-	    int count = category == null || category.isEmpty() ? chall_dao.getListCount(keyfield, keyword, null, 0) : chall_dao.getListCount(keyfield, keyword, category, 0);
+	    int count = category == null || category.isEmpty() ? chall_dao.getListCount(keyfield, keyword, null, 0, visiChecked) : chall_dao.getListCount(keyfield, keyword, category, 0, visiChecked);
 
 	    PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 15, 10, "challengeList.do");
 
@@ -74,8 +75,8 @@ public class ChallengeListAction implements Action{
 	        }
 
 	        // 전체 카테고리 또는 특정 카테고리 필터에 따른 목록 불러오기
-	        chall_list = category == null ? chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0)
-	                                      : chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0);
+	        chall_list = category == null ? chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0, visiChecked)
+	                                      : chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0, visiChecked);
 	    }else {
 	        chall_list = new ArrayList<>(); 
 	    }
@@ -87,10 +88,20 @@ public class ChallengeListAction implements Action{
 	            }
 	        }
 	    }
+	    
+	    if(join_code != null) {
+	    	ChallengeVO pv_chall = chall_dao.getPrivateChallenge(join_code);
+	    	request.setAttribute("join_code", join_code);
+	    	request.setAttribute("pv_chall", pv_chall);
+	    }
+	    
+	    request.setAttribute("visi_checked", visiChecked);
 	    request.setAttribute("category", category);
 	    request.setAttribute("count", count);
 	    request.setAttribute("chall_list", chall_list);
+	   
 	    request.setAttribute("page", page.getPage());
+	    
 	    return "/challenge/challenge_list.jsp";
 	}
 

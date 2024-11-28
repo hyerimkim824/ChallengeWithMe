@@ -43,7 +43,7 @@ public class ChallengeOfficialListAction implements Action{
 	    List<ChallengeVO> chall_list = null;
 	    
 	    //챌린지 개수 + 페이지 
-	    int count = chall_dao.getListCount(keyfield, keyword, null, 1);
+	    int count = chall_dao.getListCount(keyfield, keyword, null, 1, 0);
 	    PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 3, 10, "challengeOfficialList.do");
 	    
 	    //챌린지 좋아요 정보
@@ -52,7 +52,7 @@ public class ChallengeOfficialListAction implements Action{
 	    
 	    if (count > 0) {
 	    	
-	        chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 1);
+	        chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 1, 0);
 	    }else {
 	        chall_list = new ArrayList<>(); 
 	    }

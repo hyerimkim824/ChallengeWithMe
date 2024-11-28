@@ -24,14 +24,10 @@
 				<div class="chc-visi">
 					<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
 					<div id="visi_text">공개</div>
-					<input type="hidden" name="visi" id="visiState" value="1">
 				</div>
+				<input type="hidden" name="visi" id="visiState" value="0">
 				<c:if test="${admin == 9}">
-					<div>
-						<img id="visi_img" src="${pageContext.request.contextPath}/images/unlock.svg">
-						<div id="visi_text">공식</div>
-						<input type="hidden" name="visi" id="visiState" value="1">
-					</div>
+					<div>공식 챌린지</div>
 				</c:if>
 			</div>
 			<div class="chc-two">
@@ -122,9 +118,7 @@
 									<li><a class="dropdown-item auth-dd" id="auth_game" data-auth="5">게임
 											인증</a></li>
 									<li><a class="dropdown-item auth-dd" id="auth_report"
-										data-auth="5">가계부 인증</a></li>
-									<li><a class="dropdown-item auth-dd" id="auth_zoom" data-auth="6">줌
-											인증</a></li>
+										data-auth="6">가계부 인증</a></li>
 								</ul>
 								<input type="hidden" id="ah_num" name="ah_num">
 							</div>
@@ -136,13 +130,26 @@
 			</div>
 			<p class="warning auth-warn">인증방식이 선택되지 않았습니다!</p>
 			<div class="chc-six">
+				<div class="auth-info shadow-effect" id="time_auth">
+					<div class="authInfo-title">시간 인증</div>
+					<label>인증 시작시간</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required>
+				</div>
+				<div class="auth-info game-info shadow-effect" id="game_auth">
+					<div class="authInfo-title">게임 인증</div>
+					<div><img width="50px" height="50px"><p>구구단</p></div>
+					<div><img width="50px" height="50px"><p>구구단</p></div>
+					<div><img width="50px" height="50px"><p>구구단</p></div>
+					<div><img width="50px" height="50px"><p>구구단</p></div>
+					<input type="hidden" name="game">
+					
+				</div>
 				<div class="extra-info shadow-effect">
 					<ul>
 						<li><label>최소인원</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required></li>
 						<li><label>최대인원</label> <input type="number" name="max" class="extra-input" id="max" placeholder="클릭 후 입력" required></li>
 						<li><label>고정 예치금</label> <input type="number" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력" required></li>
 						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)" required></li>
-						<li><label>참여 코드</label> EXAMPLE CODE</li>
+						<li id="join_code"><label>참여 코드</label><input style="color:blue" id="join_code_input" name="join_code" value="${join_code}"></li>
 					</ul>
 				</div>
 				<div class="auth-method shadow-effect">
@@ -155,7 +162,6 @@
 						<li><label>QR코드 인증</label><div class="info-detail shadow-effect">QR코드 : 일정 시간 내에 QR코드를 통해 인증</div></li>
 						<li><label>게임 인증</label><div class="info-detail shadow-effect">간단한 아침 기상용게임(e.g 구구단 문제 등)</div></li>
 						<li><label>가계부 인증</label><div class="info-detail shadow-effect">간단한 가계부 작성(e.g 소비,저축,지출)</div></li>
-						<li><label>줌 인증</label><div class="info-detail shadow-effect">줌 링크 공유를 통한 챌린지 인증</div></li>
 					</ul>
 				</div>
 			</div>
