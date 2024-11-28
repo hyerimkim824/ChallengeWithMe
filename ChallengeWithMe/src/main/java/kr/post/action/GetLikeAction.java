@@ -34,7 +34,7 @@ public class GetLikeAction implements Action{
 		Long us_num=(Long)session.getAttribute("us_num");
 		PostDAO dao = PostDAO.getInstance();
 		if(us_num==null) {
-			mapAjax.put("status", "noLike");
+			mapAjax.put("result", "logout");
 		}else {
 			PostLikeVO postlike = dao.selectLike(new PostLikeVO(post_num,us_num));
 			

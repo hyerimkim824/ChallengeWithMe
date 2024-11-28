@@ -53,7 +53,7 @@
 <%-- 제목, 내용 --%>
 	<div class="updateform-header">
     	<label for="post_title">제목 입력</label>
-    	<input type="text" name= "post_title" id="post_title" value="${post.post_title}" class="input-check">
+    	<input type="text" maxlength="30" name= "post_title" id="post_title" value="${post.post_title}" class="input-check">
 	</div>
 		<hr size="1" noshade="noshade" width="100%">
 	<div>

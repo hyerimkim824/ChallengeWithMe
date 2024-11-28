@@ -1,4 +1,5 @@
 $(function(){
+	
 	/* ================================
 	 * 좋아요 선택 여부와 선택한 총 개수 읽기
 	 * ================================ */
@@ -13,7 +14,7 @@ $(function(){
 				displayLike(param);
 			},
 			error:function(){
-				alert('네트워크 오류 발생???');
+				alert('네트워크 오류 발생');
 			}
 		});
 	}
@@ -28,17 +29,15 @@ $(function(){
 			type:'post',
 			data:{post_num:$('#output_like').attr('data-num')},
 			dataType:'json',
-				success:function(param){
-				if(param.result=='logout'){
-					alert('로그인 후 좋아요를 눌러주세요');
-				}else if(param.result=='success'){
-					displayLike(param);
-				}else{
-					alert('좋아요 등록 또는 삭제 오류 발생');
-				}
+			success:function(param){
+			if(param.result=='success'){
+				displayLike(param);
+			}else{
+				alert('좋아요 등록 또는 삭제 오류 발생');
+			}
 			},
 			error:function(){
-				alert('네트워크 오류 발생ㅛㅛㅛ');
+				alert('네트워크 오류 발생');
 			}
 		});
 	 });
@@ -51,10 +50,11 @@ $(function(){
 		let output;
 		if(param.status == 'yesLike'){
 			//좋아요 선택
-			output = '../images/red-heart.png';
-			}else{
+			console.log("yeslog 클릭돔");
+			output = '../images/hj_fill-heart.png';
+			}else {
 			//좋아요 미선택	
-			output = '../images/heart.png';
+			output = '../images/hj_heart.png';
 		    }
 			//문서 객체에 설정
 			$('#output_like').attr('src', output);

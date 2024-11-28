@@ -56,9 +56,9 @@ public class WriteLikeAction implements Action{
 			if(db_like!=null) {//좋아요가 눌러져있는 경우
 				//좋아요 삭제
 				dao.deletetLike(likeVO);
-				mapAjax.put("status", "nolike");
+				mapAjax.put("status", "noLike");
 			}else {//좋아요가 눌러있지 않은 경우
-				mapAjax.put("status", "yeslike");
+				mapAjax.put("status", "yesLike");
 			}
 			
 			mapAjax.put("result", "success");

@@ -1,11 +1,13 @@
 @charset "UTF-8";
 
+/* 커뮤니티 공통*/
 .custom-hr {
-    border: none; /* 기본 테두리 제거 */
-    height: 0.2px; /* 선 두께 설정 */
-    background: rgb(216, 216, 216); /* 선의 색상 */
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* 그림자 효과 */
-    width: 100%; /* 너비 */
+    border: none;
+    height: 1px;
+    background: rgb(216, 216, 216); /* 기본 선 색상 */
+    position: relative;
+    width: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 효과 */
 }
 
 
@@ -37,7 +39,7 @@
 }
 
 .writeButton{
-	background-color: #f8f9fa;
+	background-color: #fff;
 	border-radius: 10px;
 	border: none; /* 테두리 제거 */
     cursor: pointer; 
@@ -52,7 +54,7 @@
 	list-style:none;
     display: flex; /* 요소를 가로로 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
-    background-color: #f8f9fa;
+    background-color: #fff;
     border-radius: 10px; /* 둥근 테두리 */
     padding: 5px 5px; /* 안쪽 여백 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
@@ -87,7 +89,12 @@
     outline: none; /* 클릭 시 파란 테두리 제거 */
     appearance: none; /* 기본 화살표 숨김 */
     cursor: pointer; /* 클릭 가능한 느낌 */
-   
+}
+.search-filter option{
+	border:none;
+	background:#fff8e1;
+	margin-left:3%;	
+	outline: none;
 }
 
 /* 검색 입력창 스타일 */
@@ -109,11 +116,11 @@
     padding: 5px; /* 안쪽 여백 */
     margin-left: 5px; /* 왼쪽 간격 */
 }
+
 .search button img {
     width: 18px; /* 돋보기 아이콘 크기 */
     height: 18px;
 }
-
 
 .post-list{
     align-items: center; /* 수직 가운데 정렬 */
@@ -123,19 +130,12 @@
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
     width:90%;
-    margin:3% auto;
+    margin:5% auto;
     height:90px;
 }
 
-
 .main-title{
 	font-size: 20px;
-}
-
-
-.post-list{
-	background:white;
-	margin:7% auto;
 }
 
 .post-list-header{
@@ -152,6 +152,13 @@
 	padding:0 35px 0 0;
 }
 
+.post-list-view{
+	font-size:13px;
+	display:flex;
+	align-items:center;
+	gap:5px;
+}
+
 .list-paging{
 	 margin-bottom: 150px; 
 }
@@ -162,39 +169,209 @@
 	height:40px;
 }
 
-
-
-/* 커뮤니티 글 상세*/
-.detail-background{
-	background:#FFE066;
+.post-list-nickname{
+	padding:0 0 0 20px;
+}
+.post-list-date{
+	padding:0 0 0 10px;
 }
 
+.post-list-bottom{
+	padding:6px 0 0 0px;
+}
+
+/*---------------------- 커뮤니티 글 상세-------------------------*/
+.detail-background{
+	background:#FFE066;
+	margin:150px auto;
+	width:80%;
+	border-radius: 20px;
+}
+
+/* 닉네임,좋아요 누를 하트 */
+.header{
+	display:flex;
+	justify-content: space-between;
+	align-items:center;
+	padding:25px 0 0 0;
+}
+
+.nickname{
+	padding:0 0 0 80px ;
+	line-height: 2;
+	color:black;
+    text-shadow: 2px 2px 4px rgba(255, 255,255, 0.5); /* 기본 그림자 */
+}
+
+.highlight-nickname{
+	font-size: 20px; /* 닉네임과 님 부분의 크기 */
+    font-weight: bold; /* 굵게 처리 */
+}
+
+/* 좋아요 누를 하트 */
+#output_like{
+	width:30px;
+	height:30px;
+	cursor:pointer; 
+	padding:0 100px 0 0 ;
+}
 
 .detail-main{
 	background:white;
-	margin: 50px;
+	margin: 30px;
 	margin-bottom: 150px; 
+	border-radius: 20px;
+	padding:0 20px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+/* 전체, 좋아요 하트 갯수 포함 */
+.detail-header{
+	display:flex;
+	justify-content: space-between;
+	align-items: center;
+	
+}
+/* 프로필 사진,닉네임,날짜 */
+.user-info{
+	display:flex;
+	align-items:center;
+	padding: 0 0 0 25px;
+	gap:25px;
+	list-style:none;
 }
 
-.detail-header ul{
+/* 프로필 사진 */
+.detail-header ul li.post-detail-img{
+	border-radius:50%;
+	width:40px;
+	height:40px;
+}
+
+/* 날짜 */
+.detail-header ul li.post-detail-date{
 	list-style:none;
 	display: flex;
-	
 }
 
-.detail-header{
-	background:green;
-	
+/* 좋아요,댓글개수,조회수 */
+.like-reply-view{
+	display:flex;
+	justify-content: right; 
+	align-items:center;
+	gap:10px;
+	list-style:none;
+	padding:0 25px 0 0;
+}
+
+
+/* 조회수 */
+.detail-header li.post-view{
+	display: flex;
+	align-items:center;
 }
 
 .detail-photo{
 	max-width:300px;
 }
 
+.post-title{
+	padding:0 0 0 25px;
+}
 
-/* 커뮤니티 글 등록*/
+.img-content{
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:3% auto;
+}
+.content{
+	padding:0 0 0 25px;
+}
+
+/* 수정 삭제 글목록 고객의 소리 버튼 */
+.post-detail{
+	padding:20px 0 20px 20px;
+	display:flex;
+	justify-content: center;
+	gap:25px;
+}
+
+.post-detail input[type="button"]{
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    
+}
+
+/* 댓글 */
+.post-reply{
+	padding:15px 0 25px 25px;
+	display:flex;
+	flex-direction: column; /* 세로 정렬 */
+	row-gap : 25px;
+}
+
+textarea#re_content.rep-content{
+	background:#FFFACD;
+	border:#FFE066;
+	border-radius:10px;
+	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* 아래쪽 그림자 */
+                0px 1px 3px rgba(0, 0, 0, 0.06); /* 부드러운 추가 그림자 */
+    margin-bottom:25px;
+}
+
+.align-right{
+	margin-bottom:25px;
+}
+.align-right input[type="submit"]{
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    position: absolute;
+    right: 17%;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+/* post_reply.js */
+.item{
+	background: #fff;
+	border-radius: 10px;
+	margin:25px;
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* 아래쪽 그림자 */
+                0px 1px 3px rgba(0, 0, 0, 0.06); /* 부드러운 추가 그림자 */
+    border: none; /* 테두리 제거 */
+    outline: none; /* 포커스 아웃라인 제거 */
+}
+
+.item img{
+	background: pink;
+}
+
+.item h4{
+	background: green;
+}
+
+.com_modifydate{
+	background: blue;
+}
+
+
+
+/*--------------------------- 커뮤니티 글 등록-----------------------*/
 .writeform-main{
 	background:#FFE066;
+	
 }
 
 

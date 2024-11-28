@@ -3,7 +3,7 @@ $(function(){
     let currentPage;
     let count;
 
-    /* ================================
+	/* ================================
      * 댓글 목록
      * ================================ */
     // 댓글 목록
@@ -49,7 +49,6 @@ $(function(){
                     output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<div class="sub-item">';
                     output += '<p>' + item.com_content + '</p>';
-                    output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '</div>';
                     output += '</div>';
 

@@ -88,7 +88,7 @@
 							<%-- 조회수 --%>
 							<div class="post-list-header2">
 								<span class="post-list-view">
-								<img src="${pageContext.request.contextPath}/images/eye.svg" width="15" height="15">
+								<img src="${pageContext.request.contextPath}/images/eye.svg" width="13" height="13">
 								<c:if test="${!empty post.post_view}">
 								${post.post_view}
 								</c:if>
@@ -101,7 +101,7 @@
 							<hr class="custom-hr"  noshade="noshade" width="100%">
 						
 						<div class="post-list-bottom">
-							<a href="detail.do?post_num=${post.post_num}">${post.post_title}</a>
+							<a href="detail.do?post_num=${post.post_num}">제목 : ${post.post_title}</a>
 						</div>
 					</div>
 				</c:forEach>
