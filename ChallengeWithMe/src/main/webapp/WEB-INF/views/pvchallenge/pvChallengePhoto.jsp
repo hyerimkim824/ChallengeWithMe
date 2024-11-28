@@ -18,6 +18,7 @@
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetime.js"></script>
 <script type="text/javascript">
 	$(function() {
 		$('#photo_btn').click(function() {
@@ -80,7 +81,7 @@
 					if (param.result == 'logout') {
 						alert('로그인 후 사용하세요!');
 					} else if (param.result == 'success') {
-						alert('프로필 사진이 수정되었습니다.');
+						alert('인증 사진이 수정되었습니다.');
 						//수정된 이미지 정보 저장
 						photo_path = $('.my-photo').attr('src');
 						$('#photo').val('');
@@ -116,6 +117,17 @@
 	<div class="page-main">
 	<div class="content-main">
 		<h2>사진 인증</h2>
+		
+		
+		<!-- 타이머 관련 -->
+		 <!-- 타이머 시작 버튼 -->
+    <!-- 타이머 상태 표시 -->
+    <div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>
+    
+    <!-- 타이머 표시 -->
+    <div class="timer" id="timerDisplay"></div>
+    
+		</div>
 		<div class="mypage-div">
 			<h3>인증사진</h3>
 			<ul>
@@ -163,7 +175,7 @@
 		</div>-->
 		
 	</div>
-</div>ㄴ
+</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

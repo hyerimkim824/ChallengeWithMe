@@ -44,7 +44,11 @@
 			
 			<input type="button" value="챌린지 인증" id="proved_button"
 				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengePhoto.do'">
-			
+			<input type="button" value="챌린지 인증2" id="proved_button"
+				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeTime.do'">
+			<input type="button" value="챌린지 인증3" id="proved_button"
+				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeWriting.do'">
+					
 			</div>
 		</div>
 	</div>

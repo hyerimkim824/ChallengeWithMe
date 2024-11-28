@@ -119,7 +119,7 @@ public class MyChallengeDAO {
 			//커넥션풀로부터 커넥션 할당
 			 conn = DBUtil.getConnection();
 			 
-			 sql = "SELECT ch_proved FROM AUTH WHERE us_num=? ";
+			 sql = "SELECT ch_proved1 FROM AUTH WHERE us_num=? ";
 			 
 			 //preparedStatement 객체 생성
 			 pstmt= conn.prepareStatement(sql);
@@ -131,7 +131,7 @@ public class MyChallengeDAO {
 			 
 			 while(rs.next()) {
 	
-				 list.add(rs.getInt("ch_proved"));
+				 list.add(rs.getInt("ch_proved1"));
 				 
 			 }
 			 

@@ -11,8 +11,9 @@ public class PvChallengeVO {
 	//인증 게시판 정보
 	private int ah_num; //인증글 고유 번호 (인증문구 작성시에 사용)
 	private String ah_img; //인증 이미지
-	private int ch_proved;//인증 여부
-	private Date ah_date; //인증 날짜
+	private int ch_proved;//인증 여부 1 : 인증, 0 : 인증 x
+	private String ah_date; //인증 날짜
+	//private Date 인증 시간 변수 필요
 	
 	public long getCh_num() {
 		return ch_num;
@@ -50,10 +51,10 @@ public class PvChallengeVO {
 	public void setCh_proved(int ch_proved) {
 		this.ch_proved = ch_proved;
 	}
-	public Date getAh_date() {
+	public String getAh_date() {
 		return ah_date;
 	}
-	public void setAh_date(Date ah_date) {
+	public void setAh_date(String ah_date) {
 		this.ah_date = ah_date;
 	}
 
