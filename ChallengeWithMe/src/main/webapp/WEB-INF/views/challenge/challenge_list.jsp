@@ -76,7 +76,15 @@
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-category="3"
 						href="challengeList.do?category=3&visi=${visi_check}">자기계발</a></li>
-
+					<li><a class="dropdown-item list-dd" id="cat_develop"
+						data-category="4"
+						href="challengeList.do?category=4&visi=${visi_check}">기상</a></li>
+					<li><a class="dropdown-item list-dd" id="cat_develop"
+						data-category="5"
+						href="challengeList.do?category=5&visi=${visi_check}">경제</a></li>
+					<li><a class="dropdown-item list-dd" id="cat_develop"
+						data-category="6"
+						href="challengeList.do?category=6&visi=${visi_check}">금연/금주</a></li>
 				</ul>
 			</div>
 
