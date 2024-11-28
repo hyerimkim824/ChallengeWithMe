@@ -264,7 +264,7 @@ $(function() {
 	<div class="container-wrapper">
 		<div class="container" id="container">
 		  <div class="form-container sign-up-container">
-		    <form action="#" id="register_form1">
+		    <form id="register_form1">
 		      <h1>회원가입</h1>
 		      <div class="input-group">
 			      <input type="text" id="id" name="id" maxlength="12" autocomplete="off" class="check" placeholder="아이디">
@@ -283,7 +283,7 @@ $(function() {
 			      <input type="button" id="nick_check" value="중복체크">
 		      </div>
 		      <span id="message_nick"></span>
-		      <button class="detail" id="detail">정보입력</button>
+		      <input type="button" class="detail" id="detail" value="정보입력">
 		    </form>
 		  </div>
 		  <div class="form-container sign-in-container">

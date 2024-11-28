@@ -13,6 +13,10 @@
 	<div class="box">
 		<div class="box-h1">
 		<h1>꼬박꼬박 뱃지 리스트</h1>
+		<div class="info-rightbtn">
+		<input type="button" value="마이페이지"
+		onclick="location.href='${ pageContext.request.contextPath }/mypage/mypage.do'">
+		</div>
 		</div>
 		<div class="badge-box">
 			<ul>

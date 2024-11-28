@@ -25,7 +25,7 @@
 		<div class="mypage-wrapper">
 			<!-- 앞면 헤더 -->
 			<div>
-				<input class="hole" type="button">
+				<input class="hole">
 				<input class="checkbox" type="checkbox" id="checkbox" style="display: none">
 				<img class="logo" src="${ pageContext.request.contextPath }/images/logo.png">
 			</div>
@@ -262,8 +262,9 @@
 		var iframe = document.createElement('iframe')
 		iframe.src = '${ pageContext.request.contextPath }/mypage/updateMyPhotoForm.do'
 		iframe.width= '300'
-		iframe.height = '370'
-		iframe.frameborder = '0'
+		iframe.height = '350'
+		iframe.style.border = '2px solid'
+			iframe.setAttribute('scrolling', 'no')
 		iframe.allowfullscreen = false
 		
 		document.getElementById('iframe-container').appendChild(iframe)

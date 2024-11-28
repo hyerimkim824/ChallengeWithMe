@@ -91,10 +91,13 @@ $(document).ready(function() {
 })
 </script>
 <style type="text/css">
+    body {
+	    display: flex;
+	    align-items: center; /* 수직 가운데 정렬 */
+	    margin: 0;
+    }
 	.overlay{
 		display: felx;
-		width: 100%;
-		height: 100%;
 	}
 	.container{
 		position: absolute;

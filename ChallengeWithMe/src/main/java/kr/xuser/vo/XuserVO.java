@@ -23,6 +23,8 @@ public class XuserVO {
 	private String address1;
 	private String address2;
 	private String zipcode;
+	private int alarm;
+
 
 	// 비밀번호 일치 여부 체크
 	public boolean isCheckedPassword(String userPasswd) {
@@ -31,6 +33,14 @@ public class XuserVO {
 			return true;
 		}
 		return false;
+	}
+	
+	public int getAlarm() {
+		return alarm;
+	}
+	
+	public void setAlarm(int alarm) {
+		this.alarm = alarm;
 	}
 
 	public String getZipcode() {

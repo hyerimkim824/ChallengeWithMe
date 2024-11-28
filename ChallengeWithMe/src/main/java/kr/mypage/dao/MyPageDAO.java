@@ -54,6 +54,7 @@ public class MyPageDAO {
 	            xuser.setZipcode(rs.getString("us_zipcode"));
 	            xuser.setAddress1(rs.getString("us_address1"));
 	            xuser.setAddress2(rs.getString("us_address2"));
+	            xuser.setAlarm(rs.getInt("us_alarm"));
 	        }
 	    } catch (Exception e) {
 	        throw new Exception(e);
@@ -211,7 +212,7 @@ public class MyPageDAO {
 			con = DBUtil.getConnection();
 			con.setAutoCommit(false);
 			
-			sql = "UPDATE SET xuser SET us_ban=2 WHERE us_num=?";
+			sql = "UPDATE xuser SET us_ban=2 WHERE us_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, us_num);
 			
@@ -248,8 +249,57 @@ public class MyPageDAO {
 			rs = ps.executeQuery();
 			list = new ArrayList<String>();
 			while(rs.next()) {
-				String like = rs.getString("ch_title");
+				String like = rs.getString(1);
 				list.add(like);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
+	
+	public void updateAlarm(long us_num, int us_alarm)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "UPDATE user_detail SET us_alarm=? WHERE us_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, us_alarm);
+			ps.setLong(2, us_num);
+			
+			ps.executeUpdate();
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	public List<Long> getLikeChallNum(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Long> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT ch_num FROM chall_like WHERE us_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<Long>();
+			while(rs.next()) {
+				Long ch_num = rs.getLong(1);
+				list.add(ch_num);
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
