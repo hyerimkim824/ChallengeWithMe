@@ -1,9 +1,12 @@
 package kr.pvchallenge.action;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 
@@ -11,7 +14,12 @@ public class PvChallengeWritingGetAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-	
+		
+		
+		HttpSession session = request.getSession();
+		
+		
+		
 		ArrayList<String> wise = new ArrayList<String>();
 		
 		wise.add("공부 안하면 더울 때 더운데서 일하고 추울 때 추운데서 일한다.");
@@ -23,13 +31,13 @@ public class PvChallengeWritingGetAction implements Action{
 		wise.add("일찍 일어나는 새가 피곤하다.");
 		wise.add("일찍 일어난 벌레는 잡아 먹힌다.");
 		wise.add("내 너 그럴줄 알았다. 알았으면 제발 미리 말을 해줘라!");
-		wise.add("성공은 1%의 재능과 99%의 빽");
+		wise.add("성공은 1%의 재능과 99%의 빽");		
+		
+		session.setAttribute("wiselist", wise);
+		
+		return "pvchallenge/pvChallengeWriting.jsp";
 		
 		
-		
-		
-		
-		return null;
 	}
 
 }
