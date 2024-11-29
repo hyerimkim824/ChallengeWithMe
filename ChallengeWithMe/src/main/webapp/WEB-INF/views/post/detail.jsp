@@ -20,6 +20,7 @@
 	<div class = header>
 		<h4 class=nickname>도전을 멈추지 않는<br>
 			   <span class="highlight-nickname">${post.us_nickname} 님</span>의 이야기</h4>
+		<input type="button" class="post-title-list-button" value="커뮤니티 목록" onclick="location.href='list.do'">
 		<%-- 좋아요 이미지 -> post.like.js로 연결--%>
 		<span class="like">
 		<img id="output_like" data-num="${post.post_num}" src="${pageContext.request.contextPath}/images/hj_heart.png" width="17" height="17">
@@ -38,7 +39,7 @@
 				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 				</c:if>
 			</li> 
-			<li class="post-detail-nickname">${post.us_nickname}</li> 
+			<li class="post-detail-nickname">${post.us_nickname} 님</li> 
 			<li class="post-detail-date">
 				<c:if test="${!empty post.post_modifydate}">
 				수정일 : <fmt:formatDate value="${post.post_modifydate}" pattern="yyyy-MM-dd HH시 mm분" />
@@ -73,8 +74,9 @@
 		
 		</div>
 			<hr class="custom-hr"  noshade="noshade" width="100%">
-	<div>
+	<div class="">
 		<h4 class=post-title>${post.post_title}</h4>
+		
 	</div>
 
 	<div>
@@ -84,7 +86,7 @@
 			<img src="${pageContext.request.contextPath}/upload/${post.post_img}" class="detail-photo">
 		</div>
 		</c:if>
-		<hr class="custom-hr"  noshade="noshade" width="100%">
+		
 		<p class="content">${post.post_content}</p>
 		<hr class="custom-hr"  noshade="noshade" width="100%">
 	</div>
@@ -117,8 +119,7 @@
 			<form id="re_form" action="writeReply.do" method="post">
 				<input type="hidden" id="post_num" name="post_num" value="${post.post_num}">
 				<textarea rows="5" cols="100" id="re_content" name="com_content" class="rep-content"
-				<c:if test="${empty us_num}">disabled="disabled"</c:if>>
-				<c:if test="${empty us_num}">댓글 작성은 로그인 후 가능합니다.</c:if></textarea>
+				<c:if test="${empty us_num}">disabled="disabled"</c:if>><c:if test="${empty us_num}">댓글 작성은 로그인 후 가능합니다.</c:if></textarea>
 				<c:if test="${!empty us_num}"><div id="re_first"><span class="letter-count"></span>
 				</div>
 				<div id="re_second" class="align-right">
@@ -130,12 +131,13 @@
 			<hr class="custom-hr"  noshade="noshade" width="100%">
 		
 	<%-- 댓글 페이징 --%>
-		<div id="output">
-			<div class="paging-button" style="display:none;">
-				<input type="button" value="다음글 보기">
-			</div>
-			<div id="loading" style="display:none;">
-				<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40">
+		<div id="output"></div>
+		<div class="paging-button" style="display:none;">
+			<input type="button" value="다음글 보기">
+		</div>
+			<div id="paging" class="paging"> 
+				<div id="loading" style="display:none;">
+				<img src="${pageContext.request.contextPath}/images/loading.gif" width="40" height="40">
 			</div>
 		</div>
 	</div>

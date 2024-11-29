@@ -58,9 +58,12 @@
 				</ul>
 			</form>
 	<%-- 목록 및 글 작성 버튼 --%>
+				<div class="search-and-button2">
 					<c:if test="${!empty us_num}">
 						<input type="button" value="글 작성" class="writeButton" onclick="location.href='writeForm.do'">
+						<input type="button" value="사용 가이드" class="helpButton" onclick="location.href='${pageContext.request.contextPath}/support/CommunityHelp.do'">
 					</c:if>
+				</div>
 			</div>
 		</div>
 	
@@ -106,10 +109,11 @@
 					</div>
 				</c:forEach>
 			</c:if>
+		<div class=list-paging>
+		${page}
+		</div>
 	</div>
-	<div class=list-paging>
-	페이징
-	</div>
+	
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

@@ -68,8 +68,9 @@
    	<input type="file" name=post_img id=post_img accept="image/*">
    	<c:if test="${!empty post.post_img}">
    		<div id="update-photo">
-   			(${post.post_img})파일이 등록되어있습니다.
-   			<img src="${pageContext.request.contextPath}/upload/${post.post_img}" width="100">
+   			파일 명 : (${post.post_img})
+   			<!-- <img src="${pageContext.request.contextPath}/upload/${post.post_img}" width="100"> -->
+   			
    			<input type="button" value="사진 삭제" id="photo_del">
    			<script type="text/javascript">
    				$('#photo_del').click(function(){

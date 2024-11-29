@@ -17,7 +17,7 @@ $(function(){
         $.ajax({
             url: 'listReply.do',
             type: 'post',
-            data: { pageNum: pageNum, rowCount: rowCount, post_num: $('#post_num').val() },
+            data: {pageNum: pageNum, rowCount: rowCount, post_num: $('#post_num').val()},
             dataType: 'json',
             success: function(param) {
                 // 로딩 이미지 감추기
@@ -31,21 +31,26 @@ $(function(){
 
                 $(param.list).each(function(index, item) {
                     let output = '<div class="item">';
-                    output += item.us_img;
-                    output += '<h4>' + item.us_nickname + '</h4>';
-					output += '<div class="sub-item">';
-                    if (item.com_modifydate) {
-                        output += '<span class="modify-date">최근 수정일 : ' + item.com_modifydate + '</span>';
-                    } else {
-                        output += '<span class="modify-date">등록일 : ' + item.com_date + '</span>';
-                    }
-					
-                    // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
-                    if (param.us_num == item.us_num) {
+					if (item.com_modifydate) {
+					output += '<span class="modify-date">최근 수정일 : ' + item.com_modifydate + '</span>';
+					} else {
+					output += '<span class="modify-date">등록일 : ' + item.com_date + '</span>';
+					}
+					output += '<div class="image-nickname">';
+					output += '<img src="../upload/' + item.us_img +'" width="40px" height="40px" style="border-radius: 50%">';
+                    output += '<h4>' + item.us_nickname + '님</h4>';
+					output += '</div>';
+					 // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+					 output += '<div class="sub-item">';
+					 if (param.us_num == item.us_num) {
                         // 로그인한 회원번호와 작성자 회원번호 일치
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 수정" class="modify-btn">';
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 삭제" class="delete-btn">';
                     }
+					
+                   
+					
+                   
                     output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<div class="sub-item">';
                     output += '<p>' + item.com_content + '</p>';
@@ -56,29 +61,26 @@ $(function(){
                     $('#output').append(output);
                 });
 
-                // page button 처리 -> 고쳐야함
+              
 				//page button 처리
 				if(currentPage>=Math.ceil(count/rowCount)){
-				//다음 페이지가 없음
-				$('.paging-button').hide();
+					//다음 페이지가 없음
+					$('.paging-button').hide();
 				}else{
-				//다음 페이지가 존재
-				$('.paging-button').show();
-				}	
-				
-			
-            },
+					//다음 페이지가 존재
+					$('.paging-button').show();
+				}		
+			},
             error: function() {
                 $('#loading').hide();
                 alert('네트워크 오류 발생');
             }
         });
     }
-
-    // 페이지 처리 이벤트 연결 (다음 댓글 보기 버튼 클릭 시 데이터 추가)
-    $('.paging-button input').click(function() {
-        selectList(currentPage + 1);
-    });
+	//페이지 처리 이벤트 연결(다음 댓글 보기 버튼 클릭시 데이터 추가)
+	$('.paging-button input').click(function(){
+		selectList(currentPage + 1);
+	});
 
     /* ================================
      * 댓글 등록
@@ -136,7 +138,7 @@ $(function(){
 		//댓글 수정폼 UI
 		let modifyUI = '<form id="mre_form">';
 		modifyUI += '<input type="hidden" name="com_num" id="mre_num" value="'+re_num+'">';
-		modifyUI += '<textarea rows="3" cols="50" name="com_content" id="mre_content" class="rep-content">'+content+'</textarea>';
+		modifyUI += '<textarea rows="5" cols="80" name="com_content" id="mre_content" class="rep-content">'+content+'</textarea>';
 		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI += '<div id="mre_second" class="align-right">';
 		modifyUI += '<input type="submit" value="수정">';

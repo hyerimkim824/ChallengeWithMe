@@ -452,8 +452,6 @@ public class PostDAO {
 				}
 			}
 			pstmt.setLong(2, vo.getPost_num());
-			
-			
 			//SQL문 실행
 			pstmt.executeUpdate();
 			
@@ -511,7 +509,6 @@ public class PostDAO {
 			if(rs.next()) {
 				count = rs.getInt(1);
 			}
-			
 		}catch(Exception e) {
 			throw new Exception(e);
 		}finally {
@@ -519,7 +516,6 @@ public class PostDAO {
 		}
 		return count;
 	}
-	
 	
 	//댓글 목록
 	public List<PostCommVO> getListPostReply(int start, int end, long post_num) throws Exception{
@@ -650,7 +646,6 @@ public class PostDAO {
 		}
 		
 	}
-	//댓글 개수 관리
 }
 
 
