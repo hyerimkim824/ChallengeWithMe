@@ -19,7 +19,7 @@
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 </head>
-
+ 
 <script type="text/javascript">
 function wiseFunction() {
     $.ajax({

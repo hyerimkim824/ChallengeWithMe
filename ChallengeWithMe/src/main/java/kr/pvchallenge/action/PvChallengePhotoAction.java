@@ -12,7 +12,7 @@ public class PvChallengePhotoAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        
+         
         // 세션에서 사용자 번호(us_num)를 가져옴
         HttpSession session = request.getSession();
         Long us_num = (Long) session.getAttribute("us_num");

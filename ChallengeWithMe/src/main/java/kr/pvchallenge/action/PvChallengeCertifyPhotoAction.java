@@ -20,7 +20,7 @@ public class PvChallengeCertifyPhotoAction implements Action {
         request.setCharacterEncoding("utf-8");
         
         HttpSession session = request.getSession();
-        
+         
         // 세션에서 유저 번호와 챌린지 번호 가져오기
         Long us_num = (Long) session.getAttribute("us_num");
         Long ch_num = (Long) session.getAttribute("ch_num");

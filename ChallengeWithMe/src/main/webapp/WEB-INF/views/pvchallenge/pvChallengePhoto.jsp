@@ -167,7 +167,7 @@
 				<c:forEach var="board" items="${boardList}">
 				<tr>
 					<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}" target="_blank">${fn:substring(board.title,0,26)}</a></td>
-					<td>${board.id}</td>
+	 				<td>${board.id}</td>
 					<td>${board.reg_date}</td>
 				</tr>	
 				</c:forEach>

@@ -51,4 +51,4 @@ public class UpdateMyPvPhotoAction implements Action{
 		
 	}
 
-}
+} 

@@ -81,4 +81,4 @@ public class PvChallengeWritingGetAction implements Action{
 	    return StringUtil.parseJSON(request, mapAjax);
 	}
 
-}
+} 
