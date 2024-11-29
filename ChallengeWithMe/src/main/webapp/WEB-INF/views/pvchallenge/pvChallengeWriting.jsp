@@ -18,6 +18,7 @@
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetimeWriting.js"></script>	
 </head>
  
 <script type="text/javascript">
@@ -27,19 +28,27 @@ function wiseFunction() {
         type: 'POST',                   // 요청 방식
         dataType: 'json',               // 서버 응답 데이터 형식
         data: {
-            username: $('#username').val() // 전송할 파라미터 추가
+            wise: $('#wise').val() // 전송할 파라미터 추가
         },
         success: function (param) {
             console.log(param); // 서버 응답 전체를 로그로 출력하여 구조 확인
             if (param && param.ran_wise) {
                 const ran_wise = param.ran_wise;
                 console.log("받은 명언:", ran_wise);
-                $('#wise-container').html(`<p>랜덤 명언: ${ran_wise}</p>`);
+                let modifyUI = "";
+                
+                
+                modifyUI= ran_wise;
+                
+                $('.wise').append(modifyUI);
+                
+                
                 // 나머지 처리
             } else {
                 console.error("서버 응답에 ran_wise가 없습니다.");
                 alert("명언을 가져오는 데 실패했습니다.");
             }
+            
         },
         error: function (xhr, status, error) {
             console.error("AJAX 요청 실패:", status, error);
@@ -56,14 +65,19 @@ $(document).ready(function () {
 
 <body>
     <h1>문구 인증 챌린지</h1>
+    <!-- 타이머 관련 -->
+            <div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>
+            <div class="timer" id="timerDisplay"></div>
     
-    <div class = "wise"></div>
+    <div class = "wise">인증 명언 : </div>
     
-    <form action="${pageContext.request.contextPath}/pvchallenge/pvChallengeWriting.do" method="get">
-        <label for="username">Username:</label>
-        <input type="text" id="username" name="username">
-        <button type="submit">Submit</button>
+    <form >
+        <label for="username">문구 따라쓰기 :</label>
+        <input type="text" id="wise" name="wise">
+        <button type="submit">작성완료</button>
     </form>
+    
+    <div class = "wise_success"> 인증 여부 :  </div>
     
     
 </body>

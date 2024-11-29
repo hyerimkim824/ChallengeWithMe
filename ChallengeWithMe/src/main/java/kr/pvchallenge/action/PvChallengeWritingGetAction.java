@@ -43,7 +43,7 @@ public class PvChallengeWritingGetAction implements Action{
 	    // 결과를 담을 Map 생성
 	    Map<String, String> mapAjax = new HashMap<String, String>();
 	    // 로그인 확인
-	    if (us_num == null || ch_num == null) {
+	    if (us_num == null ) {
 	        // 로그인하지 않은 경우
 	        mapAjax.put("result", "logout");
 	    }else {
@@ -59,7 +59,7 @@ public class PvChallengeWritingGetAction implements Action{
 
 	        
 	        // 클라이언트에서 전달된 사용자 이름 가져오기
-	        String username = request.getParameter("username");
+	        String username = request.getParameter("wise");
 	        System.out.println(username);
 
 	        // 사용자 입력과 명언 비교
@@ -69,6 +69,7 @@ public class PvChallengeWritingGetAction implements Action{
 	            // DB 업데이트
 	            PvChallengeDAO dao = PvChallengeDAO.getInstance();
 	            dao.updatePvInfo3(us_num, ch_num);
+	            
 	        } else {
 	          mapAjax.put("result", "fail");
 	        }
