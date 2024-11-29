@@ -42,13 +42,18 @@
 			
 			<div>
 			
-			<input type="button" value="챌린지 인증" id="proved_button"
+			<input type="button" value="챌린지 인증(사진인증)" id="proved_button"
 				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengePhoto.do'">
-			<input type="button" value="챌린지 인증2" id="proved_button"
+			<input type="button" value="챌린지 인증2(시간인증)" id="proved_button"
 				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeTime.do'">
-			<input type="button" value="챌린지 인증3" id="proved_button"
+			<input type="button" value="챌린지 인증3(문구인증)" id="proved_button"
 				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeWriting.do'">
-					
+			<input type="button" value="챌린지 인증4(게임)" id="proved_button"
+				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeGame.do'">
+				<input type="button" value="챌린지 인증5(QR)" id="proved_button"
+				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeQR.do'">
+				<input type="button" value="챌린지 인증6(가계부)" id="proved_button"
+				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeAccountbook.do'">	
 			</div>
 		</div>
 	</div>

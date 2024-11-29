@@ -64,6 +64,7 @@ $(document).ready(function () {
 </script>
 
 <body>
+<jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>문구 인증 챌린지</h1>
     <!-- 타이머 관련 -->
             <div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>
@@ -78,6 +79,9 @@ $(document).ready(function () {
     </form>
     
     <div class = "wise_success"> 인증 여부 :  </div>
+    
+    
+<jsp:include page="/WEB-INF/views/common/footer.jsp" />
     
     
 </body>

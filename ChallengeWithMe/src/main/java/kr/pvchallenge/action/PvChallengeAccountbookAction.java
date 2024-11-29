@@ -5,14 +5,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import kr.controller.Action;
 
-public class PvChallengeGameAction implements Action{
+public class PvChallengeAccountbookAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		
-		return "pvchallenge/pvChallengeGame.jsp";
+		return "pvchallenge/pvChallengeAccountbook.jsp";
 	}
 
 }
- 

@@ -151,3 +151,44 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 
+/*----------게임 휠---------------*/
+
+/* 돌림판 스타일 */
+        .wheel {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            border: 10px solid #000;
+            position: relative;
+            overflow: hidden;
+        }
+        .wheel .segment {
+            position: absolute;
+            width: 50%;
+            height: 50%;
+            background-color: #f0f0f0;
+            text-align: center;
+            line-height: 150px;
+            font-size: 20px;
+            font-weight: bold;
+            transform-origin: 100% 100%;
+        }
+        /* 화살표 스타일 */
+.game_arrow{
+    position: absolute;
+    top: -30px; /* 돌림판 위쪽에 배치 */
+    left: 50%; /* 가로 중앙 정렬 */
+    transform: translateX(-50%); /* 가로 중앙 정렬을 위한 이동 */
+    width: 0; /* 삼각형 너비 */
+    height: 0; /* 삼각형 높이 */
+    border-left: 10px solid transparent; /* 삼각형 왼쪽 */
+    border-right: 10px solid transparent; /* 삼각형 오른쪽 */
+    border-bottom: 30px solid red; /* 삼각형 아래쪽 (화살표 색) */
+}
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+

@@ -1,6 +1,17 @@
 package kr.pvchallenge.action;
 
-public class PvChallengeQRAction {
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import kr.controller.Action;
+
+public class PvChallengeQRAction implements Action{
+
+	@Override
+	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		
+		return "pvchallenge/pvChallengeQR.jsp";
+	}
 
 }
  
