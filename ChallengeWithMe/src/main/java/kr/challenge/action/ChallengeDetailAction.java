@@ -22,6 +22,7 @@ public class ChallengeDetailAction implements Action{
 		Long us_num = (Long)session.getAttribute("us_num");
 		
 		
+		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
 		long ch_num = Long.parseLong(request.getParameter("ch_num"));
@@ -33,6 +34,7 @@ public class ChallengeDetailAction implements Action{
 		MyPageDAO mp_dao = MyPageDAO.getInstance();
 		
 		XuserVO user = mp_dao.getMyInfo(chall.getUs_num());
+		Integer us_bal = Integer.parseInt(user.getWallet());
 		
 		String us_nickname = user.getNickname();
 		
@@ -49,6 +51,7 @@ public class ChallengeDetailAction implements Action{
 		
 		boolean joined = p_dao.isJoined(us_num, ch_num);
 		
+		request.setAttribute("us_bal", us_bal);
 		request.setAttribute("chall", chall);
 		request.setAttribute("us_nickname", us_nickname);
 		request.setAttribute("auth_name", auth_name);

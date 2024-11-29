@@ -1,6 +1,11 @@
 @charset "UTF-8";
 
 /*---------------------- 공통 CSS -----------------------*/
+.page-main{
+	width:80%;
+	margin:0 auto;
+}
+
 .align-center{
 	display:flex;
 	justify-content:center;
@@ -10,6 +15,9 @@
 .empty-space100{
 	height:100px;
 }
+.empty-space200{
+	height:200px;
+}
 
 .shadow-effect{
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -18,139 +26,236 @@
 
 /*---------------------- 게임 페이지 --------------------- */
 
-.challenge-title{
-	font-size:3rem;
-	font-weight:bold;
-	display:flex;
-	text-align:center;
-}
-
-.title-blank{
-	width:33%;
-	display:flex;
-	align-items:center;
-}
-
-.blank-deco{
+.auth-title{
+	height:15vw;
 	width:100%;
-	height:50%;
-	background:#FFE066;
-	
-}
-
-.title{
-	width:34%;
-}
-
-
-.game-area{
-	width:60%;
-	height:700px;
-	margin:0 auto;
-	display:flex;
-	flex-direction:column;
-	align-items:center;
-	justify-content:center;
-	background:#FFE066;
-	border:none;
-	border-radius:10px;
-	position:relative;
+	font-size:3vw;
+	font-weight:bold;
 }
 
 .game-name{
-	text-align:center;
-	font-size:2rem;
+	position:absolute;
+	font-size:2vw;
 	font-weight:bold;
-	height:15%;
+	top:5%;
 	width:100%;
+
 }
 
-.name-deco{
-	background:white;
-	width:50%;
-	height:80%;
-	border-radius:20px;
-	border:2px solid black;
+.game-board{
+	width:100%;
+	height:900px;
+	display:flex;
+	align-items:center;
+	position:relative;
 }
 
-.game-contents{
-	width:95%;
-	height:80%;
-	margin:auto;
+/* 조이스틱 왼쪽  */
+.leftgb{
+	width:15%;
+	height:30vw;
+	background:#FFE066;
+	border-radius:30px 5px 5px 30px;
+}
+
+.left-deco1{
+	width:100%;
+	height:10vw;
+
+	display:flex;
+	align-items:center;
+}
+
+.left-deco1 .joystick{
+	width:6vw;
+	height:6vw;
+	background:#262b37;
+	border-radius:50%;
+	margin:0 auto;
+}
+
+.left-deco2{
+	width:100%;
+	height:15vw;
+	display:flex;
+	align-items:center;
+}
+
+.left-deco2 .joystick{
+	width:8vw;
+	height:8vw;
+	background:#262b37;
+	border-radius:50%;
+	margin:0 auto;
+	position:relative;
+}
+
+.arrow{
+	
+	background:#FFE066;
+}
+
+.top, .left-right, .bottom{
+	width:70%;
+	display:flex;
+	justify-content:center;
+	align-items:center;
+	margin:0 auto;
+	
+}
+
+.top{
+	margin-top:10%;
+	height:35%;
+}
+
+.left-right{
+	height:15%;
+}
+
+.bottom{
+	height:35%;
+}
+
+.up{
+	width:1vw;
+	height:2vw;
+	border-radius:50px 50px 90px 90px;
+}
+.left{
+	width:2vw;
+	height:1vw;
+	border-radius:50px 90px 90px 50px;
+}
+.right{
+	width:2vw;
+	height:1vw;
+	border-radius:90px 50px 50px 90px;
+}
+.down{
+	width:1vw;
+	height:2vw;
+	border-radius:90px 90px 50px 50px;
+}
+
+
+
+/* 조이스틱 메인  */
+.maingb{
+	width:70%;
+	height:30vw;
+	background:#262b37;
+	display:flex;
+	align-items:center;
+	border-radius:5px;
+}
+
+.main-board{
+	width:96%;
+	height:94%;
 	background:white;
 	border-radius:10px;
-	position:absolute;
+	margin:auto;
 }
 
-#game_form{
-	width:100%;
-	height:100%;
-	
+
+/* 조이스틱 오른쪽  */
+.rightgb{
+	width:15%;
+	height:30vw;
+	background:#FFE066;
+	border-radius:5px 30px 30px 5px;
 }
 
-.guideline{
-	
-	
-	width:60%;
-	height:15%;
-	display:flex;
-	align-items:center;
-	font-size:20px;
-	margin-left:5%;
-}
-
-.content-box{
-	width:100%;
-	height:85%;
-	
+.right-deco1{
+	width:10vw;
+	height:4.6vw;
+	background:#262b37;
+	margin:5% auto;
+	border-radius:20px;	
 	position:relative;
+	
+}
+
+.right-btn{
+	width:80%;
+	height:2vw;
+	margin:5% auto;
 	display:flex;
 	align-items:center;
+	justify-content:center;
 }
 
-.question-box{
-	
-	margin-left:5%;
-}
-
-li{
-	list-style:none;
-	height:50px;
-	position:relative;
-	display:flex;
-	align-items:center;
-	
-	margin-top:5%;
-}
-
-label{
-	width:250px;
-	height:45px;
-	display:inline-block;
+.rbtn{
+	width:1.8vw;
+	height:1vw;
+	background: #FFE066;
+	border-radius:10px;
+	border:2px solid black;
+	margin:0 auto;
 	text-align:center;
-	vertical-align:middle;
-	line-height: 45px;
-	border-radius: 10px 0 0 10px;
+	font-size:0.7vw;
+	font-weight:bold;
+	text-shadow:0.5px 0.5px 1px white;
+}
+
+.right-joystick {
+	width:60%;
+	background:#262b37;
+	margin:0 auto;
+	height:50%;
+	border-radius:50%;
+}
+
+.r1, .r2, .r3{
+	height:2vw;	
+	display:flex;
+	align-items:center;
+	justify-content:center;
+	margin:0 auto;
+	position:relative;
+	line-height:1.5vw;
+	
+}
+
+.btn1, .btn2, .btn3, .btn4{
+	background:#FFE066;
+	text-align:center;
+	font-size:0.7vw;
+	font-weight:bold;
+	text-shadow:0.5px 0.5px 1px white;
+}
+
+.r1{
+	margin-top:10%;
+}
+
+.r2 .btn2{
+	position: absolute;
+	left:10%;
+}
+
+.r2 .btn3{
+	position: absolute;
+	right:10%;
+}
+
+.round{
+	width:1.5vw;
+	height:1.5vw;
+	border-radius:50%;
 }
 
 .submit-btn{
-	position:absolute;
-	width:180px;
-	height:180px;
-	background:#1C21B0;
-	border-radius:50%;
-	font-size:22px;
+	width:5vw;
+	height:5vw;
+	border:2px solid black;
+	border-radius:20px;
+	margin:0 auto;
+	background:#262b37;
+	font-size:1vw;
 	color:white;
 	font-weight:bold;
-	right:10%;
-	top:40%;
-	text-shadow:2px 2px 1px black;
-	box-shadow: 2px 2px 3px #101246;
-}
-
-
-input{
-	height:40px;
-	width:80px;
+	cursor:pointer;
 }
 

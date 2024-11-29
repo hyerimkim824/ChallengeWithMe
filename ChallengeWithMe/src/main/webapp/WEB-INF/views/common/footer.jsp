@@ -15,7 +15,7 @@
    </c:if>
       <!-- 유저 계정으로 로그인된 경우 -->
    <c:if test="${!empty us_num}">
-      <a href="${pageContext.request.contextPath}/support/SupportWrite.do">1:1 문의</a>
+      <a href="${pageContext.request.contextPath}/support/SupportMain.do">고객센터</a>
       <a  href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지</a>
       [<span>${ us_id }</span>]
       <a href="${pageContext.request.contextPath}/xuser/logout.do">로그아웃</a>

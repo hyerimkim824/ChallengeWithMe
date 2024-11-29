@@ -10,40 +10,69 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
-		<div class="empty-space100"></div>
-		<div class="challenge-title">
-			<div class="title-blank">
-				<div class="blank-deco"></div>
-			</div>
-			<div class="title">챌린지 인증 게임</div>
-			<div class="title-blank">
-				<div class="blank-deco"></div>
-			</div>
-		</div>
-		<div class="empty-space100"></div>
-		<div class="game-area">
-			<div class="game-name align-center">
-			<div class="name-deco align-center">연산 게임</div>
-			</div>
-			<div class="game-contents">
-				<form id="game_form">
-					<div class="guideline">Q.연산 문제를 해결하세요</div>
-					<div class="content-box">
-						<div class="question-box">
-							<ul>
-								<li><label class="item-label">7 x 19 = ?</label><input type="text"></li>
-								<li><label class="item-label">13 x (3 + 9) - 10 = ?</label><input type="text"></li>
-								<li><label class="item-label">27 - 8 x 3 = ?</label><input type="text"></li>
-								<li><label class="item-label">64 % (7 - 3) = ?</label><input type="text"></li>
-							</ul>
+		
+		<div class="auth-title align-center">챌린지 게임 인증</div>
+		<hr>
+		
+		<div class="game-board">
+			<div class="game-name align-center">연산 게임</div>
+			<div class="leftgb shadow-effect">
+				<div class="left-deco1">
+					<div class="joystick shadow-effect"></div>
+				</div>
+				<div class="left-deco2">
+					<div class="joystick shadow-effect">
+						<div class="top">
+							<div class="arrow up shadow-effect"></div>
 						</div>
+						<div class="left-right">
+							<div class="arrow left shadow-effect"></div>
+							<div class="arrow right shadow-effect"></div>
+						</div>
+						<div class="bottom">
+							<div class="arrow down shadow-effect"></div>
+						</div>
+						
 					</div>
-					<input class="submit-btn" type="submit" value="해결!">
-				</form>
-			
+				</div>
+			</div>
+			<div class="maingb shadow-effect">
+				<div class="main-board"></div>
+			</div>
+			<div class="rightgb shadow-effect">
+				
+				<div class="right-deco1 shadow-effect">
+					<div class="right-btn">
+						<div class="rbtn">1</div>
+						<div class="rbtn">2</div>
+						<div class="rbtn">3</div>
+					</div>
+					<div class="right-btn">
+						<div class="rbtn">4</div>
+						<div class="rbtn">5</div>
+						<div class="rbtn">6</div>
+					</div>
+				</div>
+				<div class="left-deco2">
+					<div class="right-joystick shadow-effect">
+						<div class="r1">
+							<div class="round btn1 shadow-effect">A</div>
+						</div>
+						<div class="r2">
+							<div class="round btn2 shadow-effect">B</div>
+							<div class="round btn3 shadow-effect">C</div>
+						</div>
+						<div class="r3">
+							<div class="round btn4 shadow-effect">D</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="submit-answer">
+					<div class="submit-btn align-center">확인</div>
+				</div>
 			</div>
 		</div>
-		<div class="empty-space100"></div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

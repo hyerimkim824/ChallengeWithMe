@@ -87,7 +87,7 @@
 				</c:if>
 			</div>
 		</div>
-		<div class="space50-div"></div>
+		<div class="space100-div"></div>
 		<hr>
 		<div class="space50-div"></div>
 		<div class="m-content1-container">

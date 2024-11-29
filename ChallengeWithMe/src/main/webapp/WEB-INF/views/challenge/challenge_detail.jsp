@@ -18,7 +18,31 @@
 <body>
 	
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-	
+	<div class="confirm-join">
+		<c:if test="${us_bal >= chall.trans_bal}">
+			<div class="confirm-box shadow-effect align-center">
+				<div class="confirm-txt">예치금 ${chall.trans_bal}원이 차감됩니다. 참가하시겠습니까?</div>
+				<div class="current-bal"><label class="bal-label">현재 잔고</label> ${us_bal}원</div>
+				<div class="left-bal"><label class="bal-label">예치 금액</label> ${chall.trans_bal}원</div>
+				<div class="left-bal"><label class="bal-label">참가 후 잔액</label> ${us_bal - chall.trans_bal}원</div>
+				<div class="confirm-div">
+					<button class="cbtn back-btn" id="cbtn_back">취소</button>
+					<button class="cbtn confirm-btn" id="cbtn_confirm" onclick="location.href='${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}&price=${chall.trans_bal}'">참가</button>
+				</div>
+			</div>
+		</c:if>
+		<c:if test="${us_bal < chall.trans_bal}">
+			<div class="confirm-box shadow-effect align-center">
+				<div class="confirm-txt">잔고 금액이 부족합니다</div>
+				<div class="current-bal"><label class="bal-label">현재 잔고</label><span class="warning-text"> ${us_bal}원</span></div>
+				<div class="left-bal"><label class="bal-label">예치금</label> ${chall.trans_bal}원</div>
+				<div class="confirm-div">
+					<button class="cbtn back-btn" id="cbtn_back">돌아가기</button>
+					<button class="cbtn confirm-btn" id="cbtn_confirm">금액 충전</button>
+				</div>
+			</div>
+		</c:if>
+	</div>
 	<div class="page-main">
 	
 
@@ -133,7 +157,7 @@
 		
 		<c:if test="${!joined}">
 			<div class="chc-end align-center">
-				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 참가</a>
+				<a class="submit-btn align-center" id="chd_submit" type="button" <%-- href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}" --%>>챌린지 참가</a>
 			</div>
 		</c:if>
 		<c:if test="${joined}">
@@ -141,8 +165,9 @@
 				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 포기</a>
 			</div>
 		</c:if>
-		
+	
 	</div>
+		
 	
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>

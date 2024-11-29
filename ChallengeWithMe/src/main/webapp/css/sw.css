@@ -68,6 +68,10 @@
 	display:none;
 }
 
+.warning-text{
+	color:red;
+}
+
 /* 챌린지 메인 */
 .challenge_title{
 	display:flex;
@@ -1170,5 +1174,61 @@ li{
 	height:88%;
 	top:12%;
 	z-index:3;
+}
+
+.confirm-join{
+	position:absolute;
+	width:100vw;
+	height:100vw;
+	background:rgba(255, 255, 255, 0.7);
+	z-index:10;	
+	display:none;
+	align-items:center;
+	justify-content:center;
+	
+}
+
+.confirm-box{
+	width:40vw;
+	height:30vw;
+	background:white;
+	border-radius:20px;
+	flex-direction:column;
+	
+}
+.confirm-txt{
+	font-size:1.5vw;
+	font-weight:bold;
+	height:8vw;
+	margin-top:3%;
+	display:flex;
+	align-items:center;
+}
+
+
+.current-bal, .left-bal{
+	height:1.5vw;
+	width:80%;
+	margin-top:5%;
+	font-size:1vw;
+	font-weight:bold;
+}
+
+.bal-label{
+	width:8vw;
+}
+
+.confirm-div{
+	margin-top:10%;
+}
+
+
+.cbtn{
+	width:6vw;
+	height:2.3vw;
+	background:#FFE066;
+	border-radius:10px;
+	margin:20% auto;
+	border:none;
 }
 

@@ -189,6 +189,17 @@ $(function(){
 		}
 	});   
 	
+	$('#chd_submit').click(function(){
+		$('.confirm-join').css('display','flex');
+		$('.confirm-join').show();
+		
+	});
+	
+	$('#cbtn_back').click(function(){
+		$('.confirm-join').css('display','none');
+		$('.confirm-join').hide();
+	});
+	
 	
 	setDefault();
 	showOfficialBtnColor();
