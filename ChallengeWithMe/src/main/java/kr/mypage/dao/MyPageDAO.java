@@ -74,7 +74,7 @@ public class MyPageDAO {
 		
 		try {
 			con = DBUtil.getConnection();
-			sql = "select c.cate_name  from pref p join cate c on p.cate_num = c.cate_num WHERE p.us_num = ?";
+			sql = "select c.cate_name  from pref p join cate c on p.cate_num = c.cate_num WHERE p.us_num = ? ORDER BY uscat_date desc";
 			
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, us_num);
@@ -215,10 +215,12 @@ public class MyPageDAO {
 			sql = "UPDATE xuser SET us_ban=2 WHERE us_num=?";
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, us_num);
+			ps.executeUpdate();
 			
 			sql = "DELETE FROM user_detail WHERE us_num=?";
 			ps2 = con.prepareStatement(sql);
 			ps2.setLong(1, us_num);
+			ps2.executeUpdate();
 			
 			con.commit();
 		} catch (Exception e) {

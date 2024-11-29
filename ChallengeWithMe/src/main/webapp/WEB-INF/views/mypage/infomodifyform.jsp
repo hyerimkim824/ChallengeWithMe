@@ -12,14 +12,21 @@
 $(function() {
 	let nickChecked = 0
 	let emailChecked = 0
+	const nick = "${ xuser.nickname }"
+	const email = "${ xuser.email }"
 	
 			// 닉네임 중복체크
 		$('#nick_check').click(function(){
-			if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
-				alert('닉네임은 한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
-				$('#nick').val('').focus()
-				return
-			}
+			const nickInput = $('#nick').val()
+			if(nick === nickInput){
+				nickChecked = 1
+				$('#message_nick').css('color', '#000000').text('변경 가능한 닉네임입니다.')
+			}else{
+				if(!/^[가-힣A-Za-z0-9]{2,15}$/.test($('#nick').val())){
+					alert('닉네임은 한글 영문 숫자 포함 2 ~ 15자로 작성해주세요.')
+					$('#nick').val('').focus()
+					return
+				}
 			
 			// 서버 통신
 			$.ajax({
@@ -30,7 +37,7 @@ $(function() {
 				success:function(param){
 					if(param.result == 'nickNotFound'){
 						nickChecked = 1
-						$('#message_nick').css('color', '#000000').text('등록 가능한 닉네임입니다.')
+						$('#message_nick').css('color', '#000000').text('변경 가능한 닉네임입니다.')
 					}else if(param.result == 'nickDuplicated'){
 						nickChecked = 0
 						$('#message_nick').css('color', 'red').text('중복된 닉네임입니다.')
@@ -45,15 +52,23 @@ $(function() {
 					alert('네트워크 오류 발생')
 				}
 			})
+			}
 		})
+		
+	
 		
 		// 이메일 중복체크
 		$('#email_check').click(function(){
-			if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())){
-				alert('이메일 형식에 맞게 작성해주세요.')
-				$('#email').val('').focus()
-				return
-			}
+			const emailInput = $('#email').val()
+			if(email === emailInput){
+				emailChecked = 1
+				$('#message_email').css('color', '#000000').text('변경 가능한 이메일입니다.')
+			}else {
+				if(!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test($('#email').val())){
+					alert('이메일 형식에 맞게 작성해주세요.')
+					$('#email').val('').focus()
+					return
+				}
 			// 서버 통신
 			$.ajax({
 				url:'${ pageContext.request.contextPath }/xuser/checkEmail.do',
@@ -63,14 +78,14 @@ $(function() {
 				success:function(param){
 					if(param.result == 'emailNotFound'){
 						emailChecked = 1
-						$('#message_email').css('color', '#000000').text('가입 가능한 이메일입니다.')
+						$('#message_email').css('color', '#000000').text('변경 가능한 이메일입니다.')
 					}else if(param.result == 'emailDuplicated'){
 						emailChecked = 0
-						$('#message_email').css('color', 'red').text('이미 가입된 이메일입니다.')
+						$('#message_email').css('color', 'red').text('이미 등록된 이메일입니다.')
 						$('#email').val('').focus()
 					}else{
 						emailChecked = 0
-						alert('이메일 가입 체크 오류 발생')
+						alert('이메일 변경 체크 오류 발생')
 					}
 				},
 				error:function(){
@@ -78,9 +93,12 @@ $(function() {
 					alert('네트워크 오류 발생')
 				}
 			})
+			}
 		})
 		
-		// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
+
+		
+				// 닉네임 중복 안내 메시지 초기화 및 닉네임 중복 값 초기화
 		$('#register_from2 #nick').keydown(function(){
 			nickChecked = 0
 			$('#message_nick').text('')

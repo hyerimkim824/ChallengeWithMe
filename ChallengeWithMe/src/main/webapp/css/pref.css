@@ -1,0 +1,11 @@
+.content-wrapper{
+	display: flex;
+  	justify-content: center;
+}
+
+.content-head{
+	display: flex;
+ 	flex-direction: column;   /* 아이템들을 수직 방향으로 배치 */
+  	justify-content: center;  /* 수직 중앙 정렬 */
+  	text-align: center;
+}

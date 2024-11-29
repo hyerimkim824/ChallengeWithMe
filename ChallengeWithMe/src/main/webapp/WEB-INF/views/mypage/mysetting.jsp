@@ -81,8 +81,10 @@ document.addEventListener("DOMContentLoaded", function () {
 						<img src="${ pageContext.request.contextPath }/images/person.svg" width="25px" height="25px">
 						<span>친구 초대</span>
 						<div class="invite">
-						<input id="left" type="image" src="${ pageContext.request.contextPath }/images/kakao.png" width="25px" height="25px">
-						<input id="right" type="image" src="${ pageContext.request.contextPath }/images/instar.png" width="25px" height="25px">
+						<input id="left" type="image" src="${ pageContext.request.contextPath }/images/kakao.png" width="25px" height="25px"
+						onclick="window.open('https://www.kakaocorp.com/page/service/service/KakaoTalk', '_blank')">
+						<input id="right" type="image" src="${ pageContext.request.contextPath }/images/instar.png" width="25px" height="25px"
+						onclick="window.open('https://www.instagram.com/', '_blank')">
 						</div>
 					</li>
 					<li class="middle-content">

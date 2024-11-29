@@ -25,7 +25,7 @@
 		<div class="mypage-wrapper">
 			<!-- 앞면 헤더 -->
 			<div>
-				<input class="hole">
+				<input class="hole" type="button">
 				<input class="checkbox" type="checkbox" id="checkbox" style="display: none">
 				<img class="logo" src="${ pageContext.request.contextPath }/images/logo.png">
 			</div>
@@ -174,10 +174,10 @@
 			<!-- 선호 카테고리 -->
 			<div class="pref-wrapper">
 				<div class="pref-pref">
-					<h3>선호 카테고리</h3><input type="button" value="카테고리 변경">
+					<h3>선호 카테고리</h3><input type="button" value="카테고리 변경" onclick="location.href='changePrefForm.do'">
 				</div>
 				<div class="pref-result">
-					<ul>
+					<ul class="flex-wrap-list">
 					<c:forEach var="pref" items="${ preName }">
 						<li>${ pref }</li>
 					</c:forEach>
