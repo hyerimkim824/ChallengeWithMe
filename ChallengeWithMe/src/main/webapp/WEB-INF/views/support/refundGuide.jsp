@@ -3,155 +3,137 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html lang="ko">
+
+<html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>환불 가이드</title>
+    <title>환불 방법 및 절차</title>
     <style>
-        /* 🐇 전체 페이지 스타일 */
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
         }
-
-        /* 🐇 헤더 스타일 */
-        .header {
-            background-color: #ffcc00;
-            color: white;
-            padding: 10px 20px;
-            text-align: center;
-        }
-
-        .header h1 {
-            margin: 0;
-            font-size: 24px;
-        }
-
-        /* 🐇 컨테이너 스타일 */
         .container {
-            max-width: 1200px;
+            width: 80%;
             margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
+            background-color: #fff;
+            border-radius: 10px;
             box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border-radius: 8px;
+            padding: 20px;
         }
-
-        /* 🐇 환불 가이드 리스트 스타일 */
-        .refund-guide-list {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .refund-guide-list li {
-            padding: 10px;
-            border-bottom: 1px solid #ddd;
-        }
-
-        .refund-guide-list li:last-child {
-            border-bottom: none;
-        }
-
-        .refund-guide-list .title {
+        .header {
+            font-size: 24px;
             font-weight: bold;
-            color: #4caf50;
-        }
-
-        .refund-guide-list .date {
-            font-size: 14px;
-            color: #888;
-        }
-
-        .refund-guide-list .content {
-            margin-top: 10px;
-            font-size: 16px;
             color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
         }
-
-        /* 🐇 페이징 스타일 */
-        .pagination {
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            color: #555;
+            margin-bottom: 10px;
+        }
+        .section-content {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        ul li {
+            margin-bottom: 10px;
+            list-style: disc;
+            font-size: 14px;
+        }
+        .btn-group {
             text-align: center;
             margin-top: 20px;
         }
-
-        .pagination a {
-            margin: 0 5px;
-            text-decoration: none;
-            color: #333;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
+        .btn {
+            padding: 10px 20px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #fff;
+            background-color: #4CAF50;
+            border: none;
             border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
         }
-
-        .pagination a:hover {
-            background-color: #4caf50;
-            color: white;
+        .btn:hover {
+            background-color: #45a049;
         }
-
-        .pagination .current {
-            background-color: #4caf50;
-            color: white;
-            border: 1px solid #4caf50;
+        a {
+            color: #4CAF50;
+            text-decoration: none;
         }
-
-        /* 🐇 푸터 스타일 */
-        footer {
-            text-align: center;
-            margin-top: 20px;
-            color: #888;
-            font-size: 14px;
+        a:hover {
+            text-decoration: underline;
         }
     </style>
 </head>
 <body>
-    <!-- 🐇 헤더 -->
-    <div class="header">
-        <h1>환불 방법 안내</h1>
-    </div>
-
-    <!-- 🐇 컨테이너 -->
     <div class="container">
-        <h2>환불 방법 및 절차</h2>
-        <p>아래의 내용을 확인하시고, 환불 절차를 따라 주세요. 문제가 발생하면 고객센터로 문의해 주세요. 😊</p>
+        <div class="header">환불 방법 및 절차 가이드 🐥✨</div>
 
-        <!-- 🐇 환불 가이드 리스트 -->
-        <ul class="refund-guide-list">
-            <c:forEach var="refund" items="${refundList}">
-                <li>
-                    <div class="title"><c:out value="${refund.sup_title}" /></div>
-                    <div class="date">작성일: <fmt:formatDate value="${refund.sup_date}" pattern="yyyy-MM-dd" /></div>
-                    <div class="content"><c:out value="${refund.sup_content}" /></div>
-                </li>
-            </c:forEach>
-            <c:if test="${empty refundList}">
-                <li>환불 안내 내용이 없습니다. 😢</li>
-            </c:if>
-        </ul>
+        <!-- 환불 소개 -->
+        <div class="section">
+            <div class="section-title">환불은 어떻게 받을 수 있나요? 🐇</div>
+            <div class="section-content">
+                환불은 결제하신 금액에 대해 정당한 사유가 있을 경우 다시 돌려받는 절차를 말합니다. <br>
+                정확한 환불 요청 방법과 정책을 아래에서 확인하세요. 💰
+            </div>
+        </div>
 
-        <!-- 🐇 페이징 -->
-        <div class="pagination">
-            <c:if test="${currentPage > 1}">
-                <a href="?page=1">처음</a>
-                <a href="?page=${currentPage - 1}">이전</a>
-            </c:if>
+        <!-- 환불 요청 방법 -->
+        <div class="section">
+            <div class="section-title">환불 요청 방법 🐥</div>
+            <div class="section-content">
+                환불을 요청하려면 다음 단계를 따라주세요:
+                <ul>
+                    <li>1️⃣ <strong>로그인:</strong> 먼저 계정으로 로그인하세요.</li>
+                    <li>2️⃣ <strong>고객센터 접속:</strong> <a href="List.do">고객센터</a> 메뉴로 이동하세요.</li>
+                    <li>3️⃣ <strong>문의 등록:</strong> <a href="SupportWrite.do">문의하기</a> 버튼을 눌러 요청을 등록하세요.</li>
+                    <li>4️⃣ <strong>확인 및 진행:</strong> 고객센터에서 환불 가능 여부를 검토한 후 절차를 안내드립니다.</li>
+                </ul>
+            </div>
+        </div>
 
-            <c:forEach begin="1" end="${totalPages}" var="page">
-                <a href="?page=${page}" class="${page == currentPage ? 'current' : ''}">${page}</a>
-            </c:forEach>
+        <!-- 환불 정책 -->
+        <div class="section">
+            <div class="section-title">환불 정책 🐰</div>
+            <div class="section-content">
+                <ul>
+                    <li>✅ 결제 후 7일 이내 요청 시 환불이 가능합니다.</li>
+                    <li>✅ 일부 사용한 서비스는 사용량에 따라 환불 금액이 조정될 수 있습니다.</li>
+                    <li>✅ 프로모션 상품은 환불이 제한될 수 있습니다.</li>
+                    <li>✅ 환불 요청 시, 결제 수단에 따라 처리 시간이 상이할 수 있습니다.</li>
+                </ul>
+            </div>
+        </div>
 
-            <c:if test="${currentPage < totalPages}">
-                <a href="?page=${currentPage + 1}">다음</a>
-                <a href="?page=${totalPages}">마지막</a>
-            </c:if>
+        <!-- 추가 도움 -->
+        <div class="section">
+            <div class="section-title">도움이 필요하신가요? 🐇</div>
+            <div class="section-content">
+                환불과 관련하여 추가로 궁금한 점이 있으시면 <a href="List.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 통해 문의해주세요. <br>
+                언제든 도와드리겠습니다! 🐥✨
+            </div>
+        </div>
+
+        <!-- 버튼 -->
+        <div class="btn-group">
+            <button class="btn" onclick="window.history.back();">이전 페이지</button>
+            <button class="btn" onclick="location.href='communityMain.jsp';">메인으로 이동</button>
         </div>
     </div>
-
-    <!-- 🐇 푸터 -->
-    <footer>
-        ⓒ 꼬박꼬박 챌린지 고객센터
-    </footer>
 </body>
 </html>

@@ -47,10 +47,10 @@ public class SupportDAO {
                 support.setUs_num(rs.getLong("us_num"));
                 result.add(support);
                 
-                // 수정된 부분: 작성자 닉네임 설정
+                // 작성자 닉네임 설정
                 support.setUs_nickname(getWriterNickname(support.getSup_num()));  
                 
-                // 수정된 부분: 문의 유형을 문자열로 설정
+                // 문의 유형을 문자열로 설정
                 support.setSup_pick(getSupPickString(support.getSup_pick()));
                 
             }
@@ -161,54 +161,7 @@ public class SupportDAO {
         return support;
     }
 
- // 🐰 6. 게시글 검색하기 (제목이나 내용에 키워드가 포함된 경우)
-    public List<SupportVO> searchSupports(String keyword, int page, int pageSize) throws Exception {
-        List<SupportVO> result = new ArrayList<>();
-        // SQL 쿼리: 제목과 내용에서 키워드를 포함한 게시글을 검색
-        String sql = "SELECT * FROM support WHERE sup_title LIKE ? OR sup_content LIKE ? ORDER BY sup_date DESC OFFSET ? ROWS FETCH NEXT ? ROWS ONLY";
-
-        // keyword가 null이나 빈 값일 경우, 검색을 처리할 수 없으므로 예외 처리
-        if (keyword == null || keyword.trim().isEmpty()) {
-            throw new IllegalArgumentException("검색어를 입력해야 합니다! 🐇");
-        }
-
-        try (Connection con = DBUtil.getConnection(); 
-             PreparedStatement ps = con.prepareStatement(sql)) {
-
-            // PreparedStatement 설정
-            ps.setString(1, "%" + keyword + "%");
-            ps.setString(2, "%" + keyword + "%");
-            ps.setInt(3, (page - 1) * pageSize);  // OFFSET: 시작 행
-            ps.setInt(4, pageSize);  // FETCH NEXT: 페이지 크기 (한 번에 가져올 행 수)
-            
-            try (ResultSet rs = ps.executeQuery()) {
-                // 결과가 있을 경우, 리스트에 추가
-                while (rs.next()) {
-                    SupportVO support = new SupportVO();
-                    support.setSup_num(rs.getLong("sup_num"));
-                    support.setSup_title(rs.getString("sup_title"));
-                    support.setSup_content(rs.getString("sup_content"));
-                    support.setSup_pick(rs.getString("sup_pick")); // 적절한 타입으로 처리
-                    support.setSup_date(rs.getDate("sup_date"));  // DATETIME으로 처리 // DATETIME이면 getTimestamp 사용
-                    support.setSup_visi(rs.getInt("sup_visi")); // BOOLEAN 처리
-                    support.setSup_pwd(rs.getLong("sup_pwd"));
-                    support.setUs_num(rs.getLong("us_num"));
-                    
-                    result.add(support);
-                }
-            } catch (SQLException e) {
-                // SQLException 처리: 디버깅용 메시지 출력 및 예외 던지기
-                e.printStackTrace();
-                throw new SQLException("게시글 검색 중 오류가 발생했습니다! 🐇", e);
-            }
-        } catch (SQLException e) {
-            // DB 연결 오류 처리
-            e.printStackTrace();
-            throw new SQLException("DB 연결 오류가 발생했습니다! 🐇", e);  // 예외 전파
-        }
-
-        return result;  // 검색된 게시글 리스트 반환
-    }
+ 
 
     // 🐰 7. 댓글 추가하기
     public void insertReply(ReplyVO reply) {
@@ -247,22 +200,40 @@ public class SupportDAO {
         return list.subList(fromIndex, toIndex);
     }
 
-    // 🐰 10. 문의 데이터 수정하기
-    public void updateSupport(SupportVO support) {
-        for (SupportVO storedSupport : supports) {
-            if (storedSupport.getSup_num() == support.getSup_num()) {
-                storedSupport.setSup_pick(support.getSup_pick());
-                storedSupport.setSup_title(support.getSup_title());
-                storedSupport.setSup_content(support.getSup_content());
-                storedSupport.setSup_visi(support.getSup_visi());
-                storedSupport.setSup_img(support.getSup_img());
-                storedSupport.setSup_pwd(support.getSup_pwd()); // 비공개 비밀번호 수정
-                System.out.println("문의 데이터가 성공적으로 수정되었습니다! 🎉");
-                return;
+ // 🐰 10. 문의 데이터 수정하기
+    public void updateSupport(SupportVO support) throws Exception {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "UPDATE support SET sup_title = ?, sup_content = ?, sup_pick = ?, sup_date = ?, sup_visi = ?, sup_pwd = ?, sup_img = ? WHERE sup_num = ?";
+
+        try {
+            con = DBUtil.getConnection(); // DB 연결
+            ps = con.prepareStatement(sql);
+
+            // PreparedStatement에 값 세팅
+            ps.setString(1, support.getSup_title());  // 제목
+            ps.setString(2, support.getSup_content()); // 내용
+            ps.setString(3, support.getSup_pick());    // 문의 유형
+            ps.setDate(4, new java.sql.Date(System.currentTimeMillis())); // 수정 날짜
+            ps.setInt(5, support.getSup_visi());    // 공개 여부
+            ps.setLong(6, support.getSup_pwd());       // 비밀번호
+            ps.setString(7, support.getSup_img());     // 파일 경로 추가 (첨부파일)
+            ps.setLong(8, support.getSup_num());       // 수정할 데이터의 ID (sup_num)
+
+            // SQL 쿼리 실행
+            int result = ps.executeUpdate();
+
+            if (result == 0) {
+                throw new SQLException("수정할 데이터가 존재하지 않습니다! 🐇");
             }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("문의 수정 중 오류가 발생했습니다! 🐇",e);
+        } finally {
+            DBUtil.executeClose(null, ps, con); // DB 연결 및 자원 닫기
         }
-        throw new IllegalArgumentException("해당 ID의 데이터를 찾을 수 없습니다! 😭");
     }
+
 
  // 🐰 11. 전체 문의 데이터 페이징 처리해서 가져오기 (DB에서)
     public List<SupportVO> getAllSupports(int start, int end) throws Exception {
@@ -379,130 +350,7 @@ public class SupportDAO {
 
 
 
- // 🐰 20. FeedBack 저장 메서드
-    public void saveFeedBack(FeedBackVO feedback) throws Exception {
-        Connection con = null;
-        PreparedStatement ps = null;
-        String sql = "INSERT INTO feedback(sup_num, sup_title, sup_content, sup_pick, us_num,sup_visi, sup_pwd, sup_img) "
-                   + "VALUES (sup_seq.nextval, ?, ?, ?, ?, ?, ?, ? )";
-
-        try {
-            con = DBUtil.getConnection(); // DB 연결
-            ps = con.prepareStatement(sql);
-
-            // PreparedStatement에 값 세팅
-            ps.setString(1, feedback.getSup_title());  // 제목
-            ps.setString(2, feedback.getSup_content()); // 내용
-            ps.setString(3, feedback.getSup_pick());    // 문의 유형
-            ps.setLong(4, feedback.getUs_num());        // 작성자 번호
-            ps.setInt(5, feedback.getSup_visi());    // 공개 여부
-            ps.setLong(6, feedback.getSup_pwd());       // 비밀번호
-            ps.setString(7, feedback.getSup_img());     // 파일 경로 추가 (첨부파일)
-
-            // SQL 쿼리 실행 (데이터 삽입)
-            ps.executeUpdate();
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("문의 등록 중 오류가 발생했습니다! 🐇");
-        } finally {
-            DBUtil.executeClose(null, ps, con); // DB 연결 및 자원 닫기
-        }
-    }
-
-
- // 🐰 21. 피드백 목록 가져오기
-    public List<FeedBackVO> getFeedBackList(int start, int end) throws Exception{
-        List<FeedBackVO> result = new ArrayList<>();
-        String sql = "SELECT * FROM (SELECT a.*, rownum rnum "
-                + "FROM (SELECT * FROM feedback JOIN user_detail USING(us_num) " 
-                + "ORDER BY sup_num DESC) a) "
-                + "WHERE rnum >= ? AND rnum <= ?";
-
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-             ps.setInt(1, start);
-             ps.setInt(2, end);
-             
-            ResultSet rs = ps.executeQuery();
-            while (rs.next()) {
-            	FeedBackVO feedback = new FeedBackVO();
-            	feedback.setSup_num(rs.getLong("sup_num"));
-            	feedback.setSup_title(rs.getString("sup_title"));
-            	feedback.setSup_content(rs.getString("sup_content"));
-            	feedback.setSup_pick(rs.getString("sup_pick"));
-            	feedback.setSup_date(rs.getDate("sup_date"));
-            	feedback.setSup_visi(rs.getInt("sup_visi"));  
-            	feedback.setSup_pwd(rs.getLong("sup_pwd"));
-            	feedback.setUs_num(rs.getLong("us_num"));
-            	feedback.setUs_nickname(rs.getString("us_nickname"));
-                result.add(feedback);
-            }
-        } catch (SQLException e) {
-            // SQLException 처리: 디버깅용 메시지 출력 및 예외 던지기
-            e.printStackTrace();
-            throw new SQLException("게시글 검색 중 오류가 발생했습니다! 🐇", e);
-        }
-
-        return result;
-    }
  
- // 🐰 22. 피드백 개수 가져오기
-   
-    public int getFeedBackCount() throws Exception {
-        String sql = "SELECT COUNT(*) FROM support";
-        int count = 0;
-
-        try (Connection conn = DBUtil.getConnection();
-             PreparedStatement ps = conn.prepareStatement(sql)) {
-
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                count = rs.getInt(1);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("전체 문의 개수를 가져오는 중 오류가 발생했습니다! 🐇");
-        }
-
-        return count;
-    }
-    
-    
-
- // 5. 피드 게시글 상세 보기 
-    public FeedBackVO getFeedBackById(long supNum) throws Exception {
-        String sql = "SELECT * FROM feedback JOIN user_detail USING(us_num) WHERE sup_num = ?";
-        FeedBackVO feedback = null;
-        
-        try (Connection con = DBUtil.getConnection(); 
-             PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setLong(1, supNum);
-            ResultSet rs = ps.executeQuery();
-            if (rs.next()) {
-                feedback = new FeedBackVO();
-                feedback.setSup_num(rs.getLong("sup_num"));
-                feedback.setSup_title(rs.getString("sup_title"));
-                feedback.setSup_content(rs.getString("sup_content"));
-                feedback.setSup_pick(rs.getString("sup_pick"));
-                feedback.setSup_date(rs.getDate("sup_date"));
-                feedback.setSup_visi(rs.getInt("sup_visi"));
-                feedback.setSup_pwd(rs.getLong("sup_pwd"));
-                feedback.setUs_num(rs.getLong("us_num"));
-                feedback.setSup_img(rs.getString("sup_img"));
-                feedback.setUs_nickname(rs.getString("us_nickname"));  // 닉네임 설정
-                
-             // 문의 유형을 문자열로 변환하여 설정
-                String pickString = getSupPickString(feedback.getSup_pick());
-                feedback.setSup_pick(pickString);  // 문자열로 설정
-
-                
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-            throw new SQLException("문의 상세 정보를 가져오는 중 오류가 발생했습니다! 🐇");
-        }
-        return feedback;
-    }
 
  // 🐰 23. 검색된 문의 데이터의 개수를 반환
     public int getSupportSearchCount(String keyword) {
@@ -639,6 +487,62 @@ public class SupportDAO {
             default: return "알 수 없음";
         }
     }
+    //18. searchSupports 메서드
+    public List<SupportVO> searchSupports(String keyword, int startRow, int endRow) throws Exception {
+    	List<SupportVO> result = new ArrayList<>();
+        String sql = "SELECT * FROM (SELECT a.*, rownum rnum "
+                + "FROM (SELECT * FROM support JOIN user_detail USING(us_num) WHERE sup_title LIKE '%' || ? || '%' OR sup_content LIKE '%' || ? || '%'" 
+                + "ORDER BY sup_num DESC) a) "
+                + "WHERE rnum >= ? AND rnum <= ?";
+
+        try (Connection conn = DBUtil.getConnection();
+             PreparedStatement ps = conn.prepareStatement(sql)) {
+        	 ps.setString(1, keyword);
+        	 ps.setString(2, keyword);
+             ps.setInt(3, startRow);
+             ps.setInt(4, endRow);
+             
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                SupportVO support = new SupportVO();
+                support.setSup_num(rs.getLong("sup_num"));
+                support.setSup_title(rs.getString("sup_title"));
+                support.setSup_content(rs.getString("sup_content"));
+                support.setSup_pick( rs.getString("sup_pick"));
+                support.setSup_date(rs.getDate("sup_date"));
+                support.setSup_visi(rs.getInt("sup_visi"));  
+                support.setSup_pwd(rs.getLong("sup_pwd"));
+                support.setUs_num(rs.getLong("us_num"));
+                support.setUs_nickname(rs.getString("us_nickname"));
+                result.add(support);
+                System.out.println(result);
+            }
+        } catch (SQLException e) {
+            // SQLException 처리: 디버깅용 메시지 출력 및 예외 던지기
+            e.printStackTrace();
+            throw new SQLException("게시글 검색 중 오류가 발생했습니다! 🐇", e);
+        }
+
+        return result;
+    }
+    //19. getSearchSupportCount 메서드
+    public int getSearchSupportCount(String keyword) throws Exception {
+        String sql = "SELECT COUNT(*) FROM support WHERE sup_title LIKE '%' || ? || '%' OR sup_content LIKE '%' || ? || '%'";
+        try (Connection con = DBUtil.getConnection();
+             PreparedStatement ps = con.prepareStatement(sql)) {
+
+            ps.setString(1, "%" + keyword + "%");
+            ps.setString(2, "%" + keyword + "%");
+
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        }
+        return 0;
+    }
+    
 }
 
 

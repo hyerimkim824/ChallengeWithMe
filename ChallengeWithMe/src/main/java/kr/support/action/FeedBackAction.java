@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 
 import kr.controller.Action;
+import kr.support.dao.FeedBackDAO;
 import kr.support.dao.SupportDAO;
 import kr.support.vo.FeedBackVO;
 import kr.support.vo.SupportVO;
@@ -55,7 +56,7 @@ public class FeedBackAction implements Action {
             return "support/emptyField.jsp"; // 에러 페이지로 이동
         }
     
-        // 🐇 6. **SupportVO 객체 생성** 및 데이터 설정
+        // 🐇 6. **FeedBackVO 객체 생성** 및 데이터 설정
         FeedBackVO feedback = new FeedBackVO();
         feedback.setSup_title(title.trim());
         feedback.setSup_pick(type); // 문의 유형
@@ -85,7 +86,7 @@ public class FeedBackAction implements Action {
         }
 
         // 🐇 7. **DAO를 통해 데이터베이스에 저장**
-        SupportDAO dao = SupportDAO.getInstance();
+        FeedBackDAO dao = FeedBackDAO.getInstance();
         try {
             // 데이터베이스에 문의 저장
             dao.saveFeedBack(feedback);

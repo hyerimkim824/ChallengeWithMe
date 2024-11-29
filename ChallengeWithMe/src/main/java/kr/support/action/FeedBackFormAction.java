@@ -24,6 +24,6 @@ public class FeedBackFormAction implements Action {
             request.setAttribute("error", "로그인 후 글을 작성할 수 있습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/xuser/loginForm.jsp";
         }
-            return "support/feedBack.jsp";
+            return "support/feedBackUpdate.jsp";
     }
 }

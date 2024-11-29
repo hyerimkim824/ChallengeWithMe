@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import kr.util.PagingUtil;
 import kr.controller.Action;
-import kr.support.dao.SupportDAO;
+import kr.support.dao.FeedBackDAO;
 import kr.support.vo.FeedBackVO;
 import java.util.List;
 
@@ -21,7 +21,7 @@ public class FeedBackListAction implements Action {
         int pageSize = 10;
 
         // SupportDAO를 이용해서 데이터 가져오기
-        SupportDAO dao = SupportDAO.getInstance();
+        FeedBackDAO dao =FeedBackDAO.getInstance();
 
         // 전체 게시글 수 가져오기 (피드백 개수 계산용)
         int totalCount = dao.getFeedBackCount();
@@ -49,7 +49,23 @@ public class FeedBackListAction implements Action {
             }
         }
         
-        System.out.println("feedbackList : " + feedbackList); 
+        // 팝업창에서 전달된 비밀번호 확인 로직 추가
+        String supNumParam = request.getParameter("sup_num"); // 게시글 번호
+        String supPwd = request.getParameter("sup_pwd"); // 팝업창에서 입력된 비밀번호
+
+        if (supNumParam != null && supPwd != null) {
+            long supNum = Long.parseLong(supNumParam); // 게시글 번호 파싱
+            boolean isPasswordValid = dao.validatePrivatePwd(supNum, supPwd); // 비밀번호 확인 로직 호출
+
+            if (isPasswordValid) {
+                // 비밀번호가 맞으면 상세 페이지로 이동
+                return "redirect:/support/FeedBackDetail.do?sup_num=" + supNum;
+            } else {
+                // 비밀번호가 틀리면 에러 메시지를 추가하고 리스트로 복귀
+                request.setAttribute("error", "비밀번호가 일치하지 않습니다! 🐇");
+                return "support/feedBackList.jsp"; // 팝업에서 바로 리스트로 복귀
+            }
+        }
         // 뷰에 필요한 데이터를 request에 저장
         request.setAttribute("feedbackList", feedbackList); // 피드백 리스트
         request.setAttribute("currentPage", page); // 현재 페이지 번호

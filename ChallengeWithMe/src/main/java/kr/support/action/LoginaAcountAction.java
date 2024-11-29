@@ -13,7 +13,7 @@ public class LoginaAcountAction implements Action {
         try {
           
 
-            return "support/loginaAcount.jsp"; // JSP 페이지로 이동
+            return "support/loginAcount.jsp"; // JSP 페이지로 이동
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "데이터 처리 중 오류가 발생했습니다. 🐇");

@@ -50,7 +50,23 @@ public class ListAction implements Action {
                 support.setSup_content("작성자 본인만 확인할 수 있는 게시물입니다."); // 비공개 게시물에 메시지 추가
             }
         }
+        // 팝업창에서 전달된 비밀번호 확인 로직 추가
+        String supNumParam = request.getParameter("sup_num"); // 게시글 번호
+        String supPwd = request.getParameter("sup_pwd"); // 팝업창에서 입력된 비밀번호
 
+        if (supNumParam != null && supPwd != null) {
+            long supNum = Long.parseLong(supNumParam); // 게시글 번호 파싱
+            boolean isPasswordValid = dao.validatePrivatePwd(supNum, supPwd); // 비밀번호 확인 로직 호출
+
+            if (isPasswordValid) {
+                // 비밀번호가 맞으면 상세 페이지로 이동
+                return "redirect:/support/Detail.do?sup_num=" + supNum;
+            } else {
+                // 비밀번호가 틀리면 에러 메시지를 추가하고 리스트로 복귀
+                request.setAttribute("error", "비밀번호가 일치하지 않습니다! 🐇");
+                return "support/list.jsp"; // 팝업에서 바로 리스트로 복귀
+            }
+        }
         // 뷰에 필요한 데이터를 request에 저장
         request.setAttribute("list", list);
         request.setAttribute("totalPages", totalPages.getPage());

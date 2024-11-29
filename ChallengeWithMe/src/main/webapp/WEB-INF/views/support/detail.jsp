@@ -268,31 +268,20 @@
 
 
     </style>
-    <script>
-        // 비공개 게시물 클릭 시 모달을 띄우는 함수
-        function showPrivatePostMessage() {
-            // 모달 표시
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
-        }
-
-        // 모달 닫기 함수
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
- 
-
-    </script>
+   
 </head>
 <body>
     <!-- 🐤 헤더 -->
     <div class="header">
         <h1>고객센터</h1>
         <div class="search-bar">
-            <input type="text" placeholder="자주 묻는 질문 검색">
-            <button>검색</button>
-        </div>
+        <form action="Search.do" method="get" style="display: flex; align-items: center;">
+            <!-- 검색어 입력 -->
+            <input type="text" name="keyword" placeholder="자주 묻는 질문 검색" style="flex: 1; padding: 5px; border: 1px solid #ccc; border-radius: 5px;" required>
+            <!-- 검색 버튼 -->
+            <button type="submit" style="padding: 5px 10px; background-color: #fdd835; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px;">검색</button>
+        </form>
+    </div>
     </div>
 
     <!-- 네비게이션 -->
@@ -348,7 +337,7 @@
                                 <a href="<%=request.getContextPath()%>/upload/${support.sup_img}" download>파일 다운로드 📂</a>
                             </c:if>
                             <c:if test="${empty support.sup_img}">
-                                <span> 첨부 파일이 없습니다 🐰</span>
+                                <span> 첨부 파일이 없습니다</span>
                             </c:if>
                         </td>
                     </tr>

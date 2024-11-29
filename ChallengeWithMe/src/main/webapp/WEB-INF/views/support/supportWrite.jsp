@@ -331,15 +331,17 @@ width: 55%
 <body>
 
 	<!-- 🐤 헤더 -->
-	<div class="header">
-		<h1>고객센터</h1>
-		<div class="search-bar">
-		
-			<input type="text" placeholder="자주 묻는 질문 검색">
-			
-			<button>검색</button>
-		</div>
-	</div>
+<div class="header">
+    <h1>고객센터</h1>
+    <div class="search-bar">
+        <form action="Search.do" method="get" style="display: flex; align-items: center;">
+            <!-- 검색어 입력 -->
+            <input type="text" name="keyword" placeholder="자주 묻는 질문 검색" style="flex: 1; padding: 5px; border: 1px solid #ccc; border-radius: 5px;" required>
+            <!-- 검색 버튼 -->
+            <button type="submit" style="padding: 5px 10px; background-color: #fdd835; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px;">검색</button>
+        </form>
+    </div>
+</div>
 
 	<div class="nav">
 		<a href="${pageContext.request.contextPath}/support/List.do">문의 내역</a>

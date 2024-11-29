@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.support.dao.SupportDAO;
+import kr.support.vo.SupportVO;
 
 
 public class UpdateFormAction implements Action {
@@ -24,7 +26,16 @@ public class UpdateFormAction implements Action {
             request.setAttribute("error", "로그인 후 글을 작성할 수 있습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/xuser/loginForm.jsp";
         }
-            return "support/supportWrite.jsp";
+        
+        
+        	long sup_num = Long.parseLong(request.getParameter("sup_num"));
+        	
+        	SupportDAO dao = SupportDAO.getInstance();
+        	SupportVO vo = dao.getSupportById(sup_num);
+        	
+        	request.setAttribute("support", vo);
+        	
+            return "support/updateForm2.jsp";
     }
 }
 

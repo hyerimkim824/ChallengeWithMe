@@ -7,7 +7,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
-
+import kr.support.dao.FeedBackDAO;
+import kr.support.vo.FeedBackVO;
 
 public class FeedBackUpdateFormAction implements Action {
 
@@ -24,12 +25,19 @@ public class FeedBackUpdateFormAction implements Action {
             request.setAttribute("error", "로그인 후 글을 작성할 수 있습니다. 로그인 페이지로 이동합니다.");
             return "redirect:/xuser/loginForm.jsp";
         }
-            return "support/feedBackWrite.jsp";
-    }
+            long sup_num = Long.parseLong(request.getParameter("sup_num"));
+        	
+        	FeedBackDAO dao = FeedBackDAO.getInstance();
+        	FeedBackVO vo = dao.getFeedBackById(sup_num);
+        	
+        	request.setAttribute("feedBack", vo);
+   
+    return "support/feedBackUpdate.jsp";
+
 }
 
 
-
+}
 
 
 

@@ -8,22 +8,17 @@
 <html>
 <head>
     <title>문의 내역</title>
-    <style>
-        /* 공통 스타일 */
+     <style>
+        /* 🐤 전체 스타일 */
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            background-color: #fff9c4;
         }
 
-        h1, h2 {
-            margin: 0;
-            padding: 10px;
-            color: #333;
-        }
-
-        /* 헤더 */
+        /* 🐤 헤더 스타일 */
+ 
         .header {
             background-color: #ffeb3b;
             padding: 10px 20px;
@@ -31,19 +26,42 @@
             justify-content: space-between;
             align-items: center;
         }
-
-        .header input[type="text"] {
+          h1, h2 {
+            margin: 0;
+            padding: 10px;
+            color: #333;
+        }
+   .header input[type="text"] {
             padding: 5px;
             border: 1px solid #ccc;
             border-radius: 5px;
         }
-
-        .header button {
+           .header button {
             padding: 5px 10px;
             background-color: #fdd835;
             border: none;
             cursor: pointer;
             border-radius: 5px;
+        }
+        
+  
+
+        .header a {
+            display: inline-block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            font-size: 14px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .header a:hover {
+            background-color: #ffcc00;
+            color: #fff;
         }
 
         /* 네비게이션 */
@@ -126,6 +144,7 @@
             background-color: #fffde7;
         }
 
+
         /* 🐤 페이징 스타일 */
         .pagination {
             text-align: center;
@@ -156,8 +175,7 @@
             border-radius: 5px;
             border: none;
         }
-
-        /* 푸터 */
+          /* 푸터 */
         .footer {
             clear: both;
             text-align: center;
@@ -171,75 +189,104 @@
             padding: 5px 10px;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
+        
+         .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
         }
-
-      /* 팝업창 스타일 */
-.modal {
-    display: none; /* 기본적으로 숨겨둔다 */
-    position: fixed; /* 고정 위치 */
-    z-index: 1; /* 다른 콘텐츠 위에 보이게 */
-    left: 0;
-    top: 0;
-    width: 100%; /* 전체 화면 */
-    height: 100%; /* 전체 화면 */
-    overflow: auto; /* 필요 시 스크롤 */
-    background-color: rgba(0,0,0,0.5); /* 배경을 반투명하게 */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%; /* 80% 너비 */
-    max-width: 500px;
-    border-radius: 8px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-}
-
-/* 닫기 버튼 스타일 */
-.close {
-    color: #aaa;
-    font-size: 28px;
-    font-weight: bold;
-    position: absolute;
-    top: 10px;
-    right: 25px;
-}
-
-.close:hover,
-.close:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
-
+        .modal-content {
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .modal-content h3 {
+            margin: 0 0 15px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .modal-content input[type="password"] {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .modal-content button {
+            padding: 8px 20px;
+            background-color: #ffcc00;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-content button:hover {
+            background-color: #ffa000;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            color: #888;
+            cursor: pointer;
+        }
+        .modal-content .close:hover {
+            color: #333;
+        }
     </style>
-    <script>
-        // 비공개 게시물 클릭 시 모달을 띄우는 함수
-        function showPrivatePostMessage() {
-            // 모달 표시
-            var modal = document.getElementById("myModal");
-            modal.style.display = "block";
-        }
+      <script>
+   // 팝업 모달 제어 🐰✨
+      function showPasswordModal(supNum) {
+          const modal = document.getElementById("passwordModal");
+          modal.style.display = "flex";
+          document.getElementById("supNumInput").value = supNum;
+      }
 
-        // 모달 닫기 함수
-        function closeModal() {
-            var modal = document.getElementById("myModal");
-            modal.style.display = "none";
-        }
+      function closePasswordModal() {
+          document.getElementById("passwordModal").style.display = "none";
+      }
+
+      function submitPassword() {
+          const supNum = document.getElementById("supNumInput").value;
+          const supPwd = document.getElementById("supPwdInput").value;
+
+          if (supPwd.trim() === "") {
+              alert("비밀번호를 입력해주세요 🐰");
+              return;
+          }
+
+          const form = document.getElementById("passwordForm");
+          form.action = 'Detail.do';
+          form.submit();
+      }
     </script>
 </head>
 <body>
     <!-- 🐤 헤더 -->
     <div class="header">
         <h1>고객센터</h1>
-        <div class="search-bar">
-            <input type="text" placeholder="자주 묻는 질문 검색">
-            <button>검색</button>
-        </div>
+         <div class="search-bar">
+        <form action="Search.do" method="get" style="display: flex; align-items: center;">
+            <!-- 검색어 입력 -->
+            <input type="text" name="keyword" placeholder="자주 묻는 질문 검색" style="flex: 1; padding: 5px; border: 1px solid #ccc; border-radius: 5px;" required>
+            <!-- 검색 버튼 -->
+            <button type="submit" style="padding: 5px 10px; background-color: #fdd835; border: none; cursor: pointer; border-radius: 5px; margin-left: 10px;">검색</button>
+        </form>
+    </div>
     </div>
 
     <!-- 네비게이션 -->
@@ -260,58 +307,73 @@
             <a href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박 커뮤니티</a>
         </div>
 
-        <!-- 🐤 콘텐츠 -->
-        <div class="content">
-            <h2>문의 내역</h2>
-            <table class="list-table">
-                <thead>
-                    <tr>  
-                        <th>번호</th>
+        <!-- 🐤 피드백 테이블 -->
+     <div class="content">
+       <h2>1:1 문의 목록</h2>
+        <table class="list-table">
+         <thead>
+            <tr>
+                     <th>번호</th>
                         <th>문의 유형</th>
                         <th>문의 제목</th>
                         <th>작성자</th> <!-- 작성자 닉네임 추가 -->
                         <th>문의 날짜</th>
                         <th>상태</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- 문의 내역 데이터 출력 -->
-                    <c:forEach var="inquiry" items="${list}">
-                        <tr>
-                            <td>${inquiry.sup_num}</td>
-                            <td>${inquiry.supPickString}</td> <!-- 유형 조건 -->
-                            <td>
-                                <!-- 비공개 게시물일 경우 팝업창 띄우기 -->
-                                <c:if test="${inquiry.sup_visi == 1 and us_num!=inquiry.us_num}">
-                                    <a href="javascript:void(0);" onclick="showPrivatePostMessage()">${inquiry.sup_title}</a>
-                                </c:if>
-                                <c:if test="${inquiry.sup_visi == 0 or (inquiry.sup_visi == 1 and us_num==inquiry.us_num)}">
-                                    <a href="Detail.do?sup_num=${inquiry.sup_num}">${inquiry.sup_title}</a>
-                                </c:if>
-                            </td>
-                            <td>${inquiry.us_nickname}</td> <!-- 작성자 닉네임 표시 -->
-                            <td><fmt:formatDate value="${inquiry.sup_date}" pattern="yyyy-MM-dd" /></td>
-                            <td>
-                            	<c:if test="${inquiry.sup_visi==0}">공개</c:if>
-                            	<c:if test="${inquiry.sup_visi==1}">비공개</c:if>
-                            </td>
-                        </tr>
-                    </c:forEach>
-                    <c:if test="${empty list}">
-                        <tr>
-                            <td colspan="6">문의 내역이 없습니다.</td>
-                        </tr>
-                    </c:if>
-                </tbody>
-            </table>
+            </tr>
+        </thead>
+        <tbody>
+          <c:forEach var="support" items="${list}">
+                    <tr>
+                        <td>${support.sup_num}</td>
+                        <td>${support.supPickString}</td> <!-- 유형 조건 -->
+                      
+                          <td>
+    <!-- 비공개 게시물일 경우 팝업창 띄우기 -->
+    
+    <c:if test="${support.sup_visi == 1}">
+        <a href="javascript:void(0);" onclick="showPasswordModal(${support.sup_num})">
+            ${support.sup_title}
+        </a>
+    </c:if>
 
+    <!-- 공개 게시물일 경우 -->
+    <c:if test="${support.sup_visi == 0}">
+        <a href="Detail.do?sup_num=${support.sup_num}">${support.sup_title}</a>
+    </c:if>
+</td>
+                        <td>${support.us_nickname}</td> <!-- 작성자 닉네임 표시 -->
+                        <td><fmt:formatDate value="${support.sup_date}" pattern="yyyy-MM-dd" /></td>
+                        <td>
+                        	<c:if test="${support.sup_visi==0}">공개</c:if>
+                        	<c:if test="${support.sup_visi==1}">비공개</c:if>
+                        </td>
+                    </tr>
+                </c:forEach>
+                <c:if test="${empty supportList}">
+                    <tr>
+                        
+                    </tr>
+                </c:if>
+            </tbody>
+        </table>
             <!-- 게시글 작성 버튼 -->
             <div style="text-align: right; margin: 20px 0.5%;">
-                <a href="SupportWriteForm.do" style="display: inline-block; text-decoration: none; color: #333; background-color: #fff; padding: 10px 20px; border-radius: 5px; font-size: 14px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
+                <a href="SupportWrite.do" style="display: inline-block; text-decoration: none; color: #333; background-color: #fff; padding: 10px 20px; border-radius: 5px; font-size: 14px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); transition: all 0.3s ease;">
                     1:1문의 작성 💌
                 </a>
             </div>
-
+ <!-- 🐤 비밀번호 입력 팝업 -->
+    <div id="passwordModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePasswordModal()">&times;</span>
+        <h3>비공개 게시물입니다 🤫</h3>
+        <form id="passwordForm" method="post">
+            <input type="hidden" id="supNumInput" name="sup_num">
+            <input type="password" id="supPwdInput" name="sup_pwd" placeholder="비밀번호를 입력하세요">
+            <button type="button" onclick="submitPassword()">확인</button>
+        </form>
+    </div>
+</div>
             <!-- 🐤 페이징 -->
             <div class="pagination">
                 ${totalPages}
@@ -327,14 +389,7 @@
         <a href="${pageContext.request.contextPath}/common/notice.do">공지사항</a>
     </div>
 
-   <!-- 팝업 모달 -->
-<div id="myModal" class="modal">
-    <div class="modal-content">
-        <span class="close" onclick="closeModal()">&times;</span>
-        <p>작성자 본인만 확인할 수 있는 게시물입니다. 🐇</p>
-        <!-- 안내 메시지 추가 -->
-        <p>본 게시물은 다른 사용자가 확인할 수 없습니다. 본인만 확인 가능합니다.</p>
-    </div>
+  
 </div>
 </body>
 </html>

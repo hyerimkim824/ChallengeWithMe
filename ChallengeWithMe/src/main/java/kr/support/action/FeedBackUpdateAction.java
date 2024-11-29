@@ -8,8 +8,9 @@ import java.nio.file.Paths;
 import java.sql.SQLException;
 
 import kr.controller.Action;
-import kr.support.dao.SupportDAO;
-import kr.support.vo.SupportVO;
+import kr.support.dao.FeedBackDAO;
+import kr.support.vo.FeedBackVO;
+
 
 public class FeedBackUpdateAction implements Action {
 
@@ -30,7 +31,7 @@ public class FeedBackUpdateAction implements Action {
 			// 🐇 2. 요청 방식(GET/POST)에 따라 처리 분기
 			if (request.getMethod().equalsIgnoreCase("GET")) {
 				// GET 요청인 경우 작성 폼으로 이동
-				return "support/feedBackupdate.jsp";
+				return "support/feedBackUpdate.jsp";
 			}
 			// 🐰  요청 파라미터에서 데이터 가져오기
 			String title = request.getParameter("title");
@@ -78,24 +79,24 @@ public class FeedBackUpdateAction implements Action {
 	        }
 		
 
-			 SupportVO support = new SupportVO();
-		        support.setSup_title(title.trim());
-		        support.setSup_content(content.trim());
-		        support.setSup_pick(type); // 문의 유형
-		        support.setUs_num(userNum); // 작성자 번호
-		        support.setSup_img(filePath); // **첨부된 파일 경로 저장**
+			 FeedBackVO feedBack = new FeedBackVO();
+			 feedBack.setSup_title(title.trim());
+			 feedBack.setSup_content(content.trim());
+			 feedBack.setSup_pick(type); // 문의 유형
+			 feedBack.setUs_num(userNum); // 작성자 번호
+			 feedBack.setSup_img(filePath); // **첨부된 파일 경로 저장**
 
 		        boolean isPublic = !"1".equals(visi); // 공개 여부를 체크 (1이면 비공개, 아니면 공개)
 
 		        if (isPublic) {
-		            support.setSup_visi(0); // 공개
-		            support.setSup_pwd(0); // 공개 상태에서는 비밀번호를 0으로 설정
+		        	feedBack.setSup_visi(0); // 공개
+		        	feedBack.setSup_pwd(0); // 공개 상태에서는 비밀번호를 0으로 설정
 		        } else {
-		            support.setSup_visi(1); // 비공개
+		        	feedBack.setSup_visi(1); // 비공개
 		            if (supPwd != null && !supPwd.trim().isEmpty()) {
 		                try {
 		                    long password = Long.parseLong(supPwd); // 비밀번호를 long 타입으로 변환
-		                    support.setSup_pwd(password); // 비공개 비밀번호 설정
+		                    feedBack.setSup_pwd(password); // 비공개 비밀번호 설정
 		                } catch (NumberFormatException e) {
 		                    request.setAttribute("error", "비공개 비밀번호는 숫자 4자리로 입력해주세요. 🐇");
 		                    return "support/emptyField.jsp"; // 비밀번호가 숫자가 아닐 때 에러 처리
@@ -106,10 +107,10 @@ public class FeedBackUpdateAction implements Action {
 		            }
 		        }
 		        // 🐇 7. **DAO를 통해 데이터베이스에 저장**
-		        SupportDAO dao = SupportDAO.getInstance();
+		        FeedBackDAO dao = FeedBackDAO.getInstance();
 		        try {
 		            // 데이터베이스에 문의 저장
-		            dao.createInquiry(support);
+		            dao.saveFeedBack(feedBack);
 		        } catch (SQLException e) {
 		            e.printStackTrace(); // 디버깅용
 		            request.setAttribute("error", "데이터베이스 처리 중 오류가 발생했습니다. 🐇");

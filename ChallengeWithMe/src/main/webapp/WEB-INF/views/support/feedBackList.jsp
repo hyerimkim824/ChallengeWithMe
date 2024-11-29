@@ -49,7 +49,7 @@
 
         .header a {
             display: inline-block;
-            margin-top: 10px;
+            margin-top: 8px;
             text-decoration: none;
             color: #333;
             background-color: #fff;
@@ -193,13 +193,96 @@
         .footer a:hover {
             text-decoration: underline;
         }
+         .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background-color: #fff9c4;
+            padding: 20px;
+            border-radius: 15px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+        }
+        .modal-content h3 {
+            margin: 0 0 15px;
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .modal-content input[type="password"] {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+        }
+        .modal-content button {
+            padding: 8px 20px;
+            background-color: #ffcc00;
+            border: none;
+            color: white;
+            font-weight: bold;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .modal-content button:hover {
+            background-color: #ffa000;
+        }
+        .modal-content .close {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 18px;
+            color: #888;
+            cursor: pointer;
+        }
+        .modal-content .close:hover {
+            color: #333;
+        }
     </style>
+     <script>
+  // 팝업 모달 제어 🐰✨
+     function showPasswordModal(supNum) {
+         const modal = document.getElementById("passwordModal");
+         modal.style.display = "flex";
+         document.getElementById("supNumInput").value = supNum;
+     }
+
+     function closePasswordModal() {
+         document.getElementById("passwordModal").style.display = "none";
+     }
+
+     function submitPassword() {
+         const supNum = document.getElementById("supNumInput").value;
+         const supPwd = document.getElementById("supPwdInput").value;
+
+         if (supPwd.trim() === "") {
+             alert("비밀번호를 입력해주세요 🐰");
+             return;
+         }
+
+         const form = document.getElementById("passwordForm");
+         form.action = 'FeedBackList.do';
+         form.submit();
+     }
+    </script>
 </head>
 <body>
     <!-- 🐤 헤더 -->
     <div class="header">
         <h1>고객센터</h1>
-        <a href="List.do">고객센터 홈으로 🏡</a>
+        <a href="SupportMain.do">고객센터 홈으로 🏡</a>
     </div>
      <!-- 네비게이션 -->
     <div class="nav">
@@ -236,15 +319,21 @@
                     <tr>
                         <td>${feedback.sup_num}</td>
                         <td>${feedback.supPickString}</td> <!-- 유형 조건 -->
-                        <td>
-                            <!-- 비공개 게시물일 경우 팝업창 띄우기 -->
-                            <c:if test="${feedback.sup_visi == 1 and us_num!=feedback.us_num}">
-                                <a href="javascript:void(0);" onclick="showPrivatePostMessage()">${feedback.sup_title}</a>
-                            </c:if>
-                            <c:if test="${feedback.sup_visi == 0 or (feedback.sup_visi == 1 and us_num==feedback.us_num)}">
-                                <a href="FeedBackDetail.do?sup_num=${feedback.sup_num}">${feedback.sup_title}</a>
-                            </c:if>
-                        </td>
+                      
+                          <td>
+    <!-- 비공개 게시물일 경우 팝업창 띄우기 -->
+    
+    <c:if test="${feedback.sup_visi == 1}">
+        <a href="javascript:void(0);" onclick="showPasswordModal(${feedback.sup_num})">
+            ${feedback.sup_title}
+        </a>
+    </c:if>
+
+    <!-- 공개 게시물일 경우 -->
+    <c:if test="${feedback.sup_visi == 0}">
+        <a href="FeedBackDetail.do?sup_num=${feedback.sup_num}">${feedback.sup_title}</a>
+    </c:if>
+</td>
                         <td>${feedback.us_nickname}</td> <!-- 작성자 닉네임 표시 -->
                         <td><fmt:formatDate value="${feedback.sup_date}" pattern="yyyy-MM-dd" /></td>
                         <td>
@@ -274,6 +363,19 @@
         box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
         transition: all 0.3s ease;
     ">고객의 소리 작성 💌</a>
+</div>
+
+      <!-- 🐤 비밀번호 입력 팝업 -->
+    <div id="passwordModal" class="modal">
+    <div class="modal-content">
+        <span class="close" onclick="closePasswordModal()">&times;</span>
+        <h3>비공개 게시물입니다 🤫</h3>
+        <form id="passwordForm" method="post">
+            <input type="hidden" id="supNumInput" name="sup_num">
+            <input type="password" id="supPwdInput" name="sup_pwd" placeholder="비밀번호를 입력하세요">
+            <button type="button" onclick="submitPassword()">확인</button>
+        </form>
+    </div>
 </div>
 
     
