@@ -20,28 +20,51 @@
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 </head>
 
+<script type="text/javascript">
+function wiseFunction() {
+    $.ajax({
+        url: 'pvChallengeWritingGet.do', // 서버 엔드포인트
+        type: 'POST',                   // 요청 방식
+        dataType: 'json',               // 서버 응답 데이터 형식
+        data: {
+            username: $('#username').val() // 전송할 파라미터 추가
+        },
+        success: function (param) {
+            console.log(param); // 서버 응답 전체를 로그로 출력하여 구조 확인
+            if (param && param.ran_wise) {
+                const ran_wise = param.ran_wise;
+                console.log("받은 명언:", ran_wise);
+                $('#wise-container').html(`<p>랜덤 명언: ${ran_wise}</p>`);
+                // 나머지 처리
+            } else {
+                console.error("서버 응답에 ran_wise가 없습니다.");
+                alert("명언을 가져오는 데 실패했습니다.");
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX 요청 실패:", status, error);
+            alert("서버 요청 중 오류가 발생했습니다.");
+        }
+    });
+}
+
+// 페이지 로드 시 명언 가져오기
+$(document).ready(function () {
+    wiseFunction();
+});
+</script>
+
 <body>
     <h1>문구 인증 챌린지</h1>
-    <h1>랜덤 숫자 생성기</h1>
-    <p>버튼을 눌러 랜덤 숫자를 생성하세요.</p>
-    <p id="randomNumber">여기에 랜덤 숫자가 표시됩니다.</p>
-    <button onclick="generateRandomNumber()">랜덤 숫자 생성</button>
-
-    <!-- Java에서 전달된 wiselist를 HTML 리스트로 출력 -->
-    <ul id="wiseList">
-        <c:forEach var="saying" items="${wiselist}">
-            <li>${saying}</li>
-        </c:forEach>
-    </ul>
-
-    <script>
-        // 랜덤 숫자 생성 함수
-        function generateRandomNumber() {
-            // 1~100 사이의 랜덤 숫자 생성
-            const randomNum = Math.floor(Math.random() * 100) + 1;
-            // 랜덤 숫자를 표시
-            document.getElementById('randomNumber').textContent = `랜덤 숫자: ${randomNum};
-        }
-    </script>
+    
+    <div class = "wise"></div>
+    
+    <form action="${pageContext.request.contextPath}/pvchallenge/pvChallengeWriting.do" method="get">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username">
+        <button type="submit">Submit</button>
+    </form>
+    
+    
 </body>
 </html>
