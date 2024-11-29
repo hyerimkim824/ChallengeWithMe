@@ -138,31 +138,57 @@ public class XuserDAO {
 		return false;
 	}
 	
-	// 닉네임 중복 체크
-	public boolean checkNick(String nick) throws Exception {
+	// 잔고 업데이트
+	public boolean updateWallet(long us_num, String us_wallet) throws Exception {
 	    Connection con = null;
 	    PreparedStatement ps = null;
-	    ResultSet rs = null;
 	    String sql = null;
 
 	    try {
 	        con = DBUtil.getConnection();
-	        sql = "SELECT * FROM user_detail WHERE us_nickname=?";
+	        sql = "UPDATE xuser SET us_wallet=? WHERE us_num=?";
 	        
 	        ps = con.prepareStatement(sql);
-	        ps.setString(1, nick);
+	        ps.setString(1, us_wallet);
+	        ps.setLong(2, us_num);
 	        
-	        rs = ps.executeQuery();
-	        if (rs.next()) {
-	            // 닉네임이 이미 존재하면 true 반환
-	            return true;
-	        }
+	        ps.executeUpdate();
+	        
 	    } catch (Exception e) {
 	        throw new Exception(e);
 	    } finally {
-	        DBUtil.executeClose(rs, ps, con);
+	        DBUtil.executeClose(null, ps, con);
 	    }
 	    return false;
 	}
+	
+	// 닉네임 중복 체크
+		public boolean checkNick(String nick) throws Exception {
+		    Connection con = null;
+		    PreparedStatement ps = null;
+		    ResultSet rs = null;
+		    String sql = null;
+
+		    try {
+		        con = DBUtil.getConnection();
+		        sql = "SELECT * FROM user_detail WHERE us_nickname=?";
+		        
+		        ps = con.prepareStatement(sql);
+		        ps.setString(1, nick);
+		        
+		        rs = ps.executeQuery();
+		        if (rs.next()) {
+		            // 닉네임이 이미 존재하면 true 반환
+		            return true;
+		        }
+		    } catch (Exception e) {
+		        throw new Exception(e);
+		    } finally {
+		        DBUtil.executeClose(rs, ps, con);
+		    }
+		    return false;
+		}
+	
+	
 	
 }

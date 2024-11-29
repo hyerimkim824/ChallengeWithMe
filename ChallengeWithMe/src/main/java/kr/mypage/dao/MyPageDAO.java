@@ -310,4 +310,9 @@ public class MyPageDAO {
 		}
 		return list;
 	}
+	
+	public void updatePref(String pref)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+	}
 }
