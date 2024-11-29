@@ -925,6 +925,34 @@ li{
 	border:none;
 }
 
+.game-list{
+	
+	display:flex;
+	align-items:center;
+	width:100%;
+	
+}
+
+.game-item{
+	margin:0 2%;
+	cursor:pointer;
+}
+
+.game-item:hover{
+	scale:1.1;
+}
+
+.game-item img{
+	border-radius:50%;
+	border:1px solid white;	
+}
+
+.game-name{
+	margin-top:10%;
+	text-align:center;
+}
+
+
 /* 경고 css */
 .cat-warn{
 	margin-left:10%;

@@ -50,6 +50,9 @@
 						<li><a class="dropdown-item create-dd" id="cat_health" data-category="1">건강</a></li>
 						<li><a class="dropdown-item create-dd" id="cat_food" data-category="2">식습관</a></li>
 						<li><a class="dropdown-item create-dd" id="cat_develop" data-category="3">자기계발</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_wakeup" data-category="1">기상</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_economy" data-category="2">경제</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_moderation" data-category="3">금연/금주</a></li>
 					</ul>
 					<input type="hidden" id="cate_num" name="cate_num">
 				</div>
@@ -134,12 +137,26 @@
 					<div class="authInfo-title">시간 인증</div>
 					<label>인증 시작시간</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required>
 				</div>
-				<div class="auth-info game-info shadow-effect" id="game_auth">
+				<div class="auth-info shadow-effect" id="game_auth">
 					<div class="authInfo-title">게임 인증</div>
-					<div><img width="50px" height="50px"><p>구구단</p></div>
-					<div><img width="50px" height="50px"><p>구구단</p></div>
-					<div><img width="50px" height="50px"><p>구구단</p></div>
-					<div><img width="50px" height="50px"><p>구구단</p></div>
+					<div class="game-list">
+						<div class="game-item">
+							<img width="80px" height="80px">
+							<div class="game-name">구구단</div>
+						</div>
+						<div class="game-item">
+							<img width="80px" height="80px">
+							<div class="game-name">수학 문제</div>
+						</div>
+						<div class="game-item">
+							<img width="80px" height="80px">
+							<div class="game-name">구구단</div>
+						</div>
+						<div class="game-item">
+							<img width="80px" height="80px">
+							<div class="game-name">구구단</div>
+						</div>
+					</div>
 					<input type="hidden" name="game">
 					
 				</div>
