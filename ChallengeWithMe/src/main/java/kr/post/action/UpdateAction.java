@@ -29,8 +29,6 @@ public class UpdateAction implements Action{
 		PostDAO dao = PostDAO.getInstance();
 		PostVO db_post = dao.getpost(post_num);
 		
-		
-		
 		//로그인한 회원번호와 작성자 회원번호 일치 여부 체크
 		if(us_num != db_post.getUs_num()) {
 			return "common/notice.jsp";
@@ -41,7 +39,6 @@ public class UpdateAction implements Action{
 		post.setPost_num(post_num);
 		post.setPost_content(request.getParameter("post_content"));
 		post.setPost_img(FileUtil.uploadFile(request, "post_img"));
-		//수정 날짜 작성 유무 생각해보기 post.setPost_modifydate(request.get);
 		post.setPost_title(request.getParameter("post_title"));
 	
 		dao.modifyPost(post);

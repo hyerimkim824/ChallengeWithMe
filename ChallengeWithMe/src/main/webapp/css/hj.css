@@ -207,6 +207,7 @@
 	margin:150px auto;
 	width:80%;
 	border-radius: 20px;
+	height: auto; /* 내부 콘텐츠에 맞게 높이를 자동 조정 */
 }
 
 /* 닉네임,좋아요 누를 하트 */
@@ -251,7 +252,7 @@
 	display:flex;
 	justify-content: space-between;
 	align-items: center;
-	
+	padding:10px 0 0 0;
 }
 /* 프로필 사진,닉네임,날짜 */
 .user-info{
@@ -270,15 +271,20 @@
 }
 
 /* 날짜 */
-.detail-header ul li.post-detail-date{
+.user-info2{
 	list-style:none;
 	display: flex;
+	font-size: 13px;
+	color:grey;
+	justify-content: flex-end;
+	padding:0 24px 0 0;
+	
 }
 
 /* 좋아요,댓글개수,조회수 */
 .like-reply-view{
 	display:flex;
-	justify-content: right; 
+	justify-content: flex-end;; 
 	align-items:center;
 	gap:10px;
 	list-style:none;
@@ -301,18 +307,8 @@
     align-items: center; /* 세로 정렬 */
 }
 .post-title{
-	padding:0 0 0 25px;
-}
-.post-title-list-button{
-	margin:20px;
-	background-color: #FFE066;
-	border-radius: 10px;
-	border: none; /* 테두리 제거 */
-    cursor: pointer; 
-    width:100px;
-    height:30px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
-                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+	padding:20px 25px;
+	
 }
 
 .img-content{
@@ -399,18 +395,35 @@ textarea#re_content.rep-content{
 
 
 .image-nickname{
-	background: green;
 	display: flex;
 	align-items:left;
 }
 .item span{
-	background: blue;
-	
+	font-size: 13px;
+	color:grey;
+	position:absolute;
+	right:20%;
 }
 
-.item input[type="button"]{
-	background: red;
+.modify-delete-button{
+	display: flex;
+	justify-content: flex-end;
+	gap:15px;
+	padding:0 0 15px 0;
 }
+.item input[type="button"]{
+	right:20%;
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:80px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+
 #mre_content.rep-content{
 	max-width:100%;
 	height:auto;
@@ -427,12 +440,174 @@ textarea#re_content.rep-content{
 	padding:50px 350px 70px 450px;
 }
 
+.paging-button input[type="button"]{
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    position: absolute;
+    right: 15.5%;
+    margin:15px;
+}
 
-
-/*--------------------------- 커뮤니티 글 등록-----------------------*/
-.writeform-main{
-	background:#FFE066;
-	
+.top{
+	display: inline-flex; /* 요소를 플렉스 박스로 변경 */
+    justify-content: center; /* 가로 중앙 정렬 */
+    align-items: center; /* 세로 중앙 정렬 */
+    font-size:14px;
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    position: absolute;
+    left: 15.5%;
+    margin:15px;
+    
 }
 
 
+/*--------------------------- 커뮤니티 글 등록-----------------------*/
+.upadteform-title{
+	padding: 45px 35px 20px 35px;
+}
+.writeform-background{
+	background:#FFE066;
+	margin:150px auto;
+	width:80%;
+	border-radius: 20px;
+	height: auto; /* 내부 콘텐츠에 맞게 높이를 자동 조정 */
+}
+
+.writeform-main{
+	background:white;
+	margin: 30px;
+	border-radius: 20px;
+	padding:0 20px;
+	height: 600px; 
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+.writeform-main2{
+	display:flex;
+    align-items:center;
+    justify-content: space-between; /* 양쪽 정렬 */
+	background:white;
+	border-radius: 20px;
+	margin: 30px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    height:60px;
+    
+}
+
+.post_img{
+	background-color: white;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+/* 파일 선택 버튼 */
+label[for="post_img"] {
+    display: inline-block;
+    font-size:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+/* 숨겨진 파일 선택 input */
+input[type="file"] {
+    display: none; /* 화면에서 숨김 */
+}
+
+/* 사진 삭제 버튼 */
+#photo_del {
+    display: inline-block;
+    background-color: white;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+#update_form{
+	padding:20px 0 0 0;
+	
+}
+
+.updateform-title{
+	padding:80px 0 0 35px;
+}
+.updateform-header{
+	padding:20px 0 10px 35px;
+	display:flex;
+	align-items:center;
+}
+.updateform-header2{
+	padding:20px 0 20px 35px;
+}
+
+.updateform-header .updateform-nickname{
+	padding:0 0 0 10px;
+}
+.input-check{
+	border: none; /* 테두리 제거 */
+}
+
+textarea#post_content{
+	width:87%;
+	height:320px;
+	background: #f7f7f7;
+	padding:20px;
+	border-radius: 10px;
+	margin:30px;
+	
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* 아래쪽 그림자 */
+                0px 1px 3px rgba(0, 0, 0, 0.06); /* 부드러운 추가 그림자 */
+    border: none; /* 테두리 제거 */
+    outline: none; /* 포커스 아웃라인 제거 */
+}
+.submit-button{
+	display:flex;
+	justify-content: flex-end; /* 오른쪽 정렬 */
+	padding:10px 30px 35px 0;
+	gap:20px;
+}
+#submit-btn{
+	background-color: white;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+#cancel-btn{
+	background-color: white;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:100px;
+    height:30px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}

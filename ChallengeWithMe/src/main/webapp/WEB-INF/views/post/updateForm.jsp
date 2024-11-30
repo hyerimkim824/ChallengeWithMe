@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>커뮤니티 글 작성</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/hj.css" type="text/css">
+<script type="text/javascript"
+	src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 	$(function(){
 		//게시판 유효성 체크
@@ -29,50 +31,51 @@
 
 </head>
 <body>
-<jsp:include page="/WEB-INF/views/common/header.jsp"/>
+	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-<div class=writeform-main>
-<h4>글 수정하기</h4>
-<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
-			<!-- 숨겨진 필드로 post_num 전달 -->
-    		<input type="hidden" name="post_num" value="${post.post_num}">
+	<div class="writeform-background">
+		<h4 class="updateform-title">당신의 글을 편집해보세요. 📝</h4>
+			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
+				<!-- 숨겨진 필드로 post_num 전달 -->
+				<div class="writeform-main">
+				<input type="hidden" name="post_num" value="${post.post_num}">
 
+				<%-- 프로필 사진 유저닉네임 날짜 좋아요 댓글개수 조회수 표시 --%>
+					<div class="updateform-header">
+						<c:if test="${!empty us_img}">
+							<img src="${pageContext.request.contextPath}/upload/${us_img}"
+								width="40" height="40" class="my-photo">
+						</c:if>
+						<c:if test="${empty us_img}">
+							<img src="${pageContext.request.contextPath}/images/face.png"
+								width="40" height="40" class="my-photo">
+						</c:if>
+						<span class="updateform-nickname">${us_nickname}님</span>
+					</div>
+					<hr class="custom-hr" noshade="noshade" width="100%">
+					<%-- 제목, 내용 --%>
+					<div class="updateform-header2">
+						<label for="post_title">제목 : </label> <input type="text"
+							maxlength="30" name="post_title" id="post_title"
+							value="${post.post_title}" class="input-check">
+					</div>
+					<hr class="custom-hr" noshade="noshade" width="100%">
+					<div>
+						<textarea name="post_content" id="post_content" rows="10"
+							cols="75">${post.post_content}</textarea>
+					</div>
+				</div>
+		
 
-<%-- 프로필 사진 유저닉네임 날짜 좋아요 댓글개수 조회수 표시 --%>
-<div>
-	<div class="updateform-header">
-		<c:if test="${!empty us_img}">
-		<img src="${pageContext.request.contextPath}/upload/${us_img}" width="40" height="40" class="my-photo">
-		</c:if>
-		<c:if test="${empty us_img}">
-		<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-		</c:if>
-		<span class="updateform-nickname">${us_nickname}</span>
-	</div>
-		<hr size="1" noshade="noshade" width="100%">
-<%-- 제목, 내용 --%>
-	<div class="updateform-header">
-    	<label for="post_title">제목 입력</label>
-    	<input type="text" maxlength="30" name= "post_title" id="post_title" value="${post.post_title}" class="input-check">
-	</div>
-		<hr size="1" noshade="noshade" width="100%">
-	<div>
-   		<label for="post_content">내용 입력</label>
-   		<textarea name= "post_content" id="post_content"  rows="10" cols="75" >${post.post_content}</textarea>
-		<hr size="1" noshade="noshade" width="100%">
-	</div>
-	
-<%-- 이미지 첨부--%>
-	
-   	<label for="post_img">이미지</label>
-   	<input type="file" name=post_img id=post_img accept="image/*">
-   	<c:if test="${!empty post.post_img}">
-   		<div id="update-photo">
-   			파일 명 : (${post.post_img})
-   			<!-- <img src="${pageContext.request.contextPath}/upload/${post.post_img}" width="100"> -->
-   			
-   			<input type="button" value="사진 삭제" id="photo_del">
-   			<script type="text/javascript">
+		<%-- 이미지 첨부--%>
+		<div class="writeform-main2">
+			<label for="post_img" class="post_img">첨부파일 수정</label> <input type="file" name=post_img
+				id=post_img accept="image/*">
+			<c:if test="${!empty post.post_img}">
+				<div id="update-photo">
+					(${post.post_img})
+					<input type="button" value="사진 삭제" id="photo_del">
+					<script type="text/javascript">
    				$('#photo_del').click(function(){
    					let choice = confirm('삭제하시겠습니까?');
    					if(choice){
@@ -99,21 +102,18 @@
    					};
    				});
    			</script>
-   		</div>
-   	</c:if>
-   		
-   		
-   		
-   		
-	
-</div>
-	<div>
-		<button type="submit" id="submit-btn">글 등록</button>
-		<button type="button" id="cancle-btn" onclick="location.href='list.do'">취소</button>
+				</div>
+			</c:if>
+		</div>
+		
+		<div class="submit-button">
+			<button type="submit" id="submit-btn">글 등록</button>
+			<button type="button" id="cancel-btn"
+				onclick="location.href='list.do'">취소</button>
+		</div>
+		</form>
 	</div>
-</form>
-</div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
 

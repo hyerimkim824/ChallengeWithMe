@@ -41,16 +41,15 @@ $(function(){
                     output += '<h4>' + item.us_nickname + '님</h4>';
 					output += '</div>';
 					 // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크
+		
 					 output += '<div class="sub-item">';
 					 if (param.us_num == item.us_num) {
                         // 로그인한 회원번호와 작성자 회원번호 일치
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 수정" class="modify-btn">';
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 삭제" class="delete-btn">';
-                    }
+						}
 					
-                   
-					
-                   
+	   
                     output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<div class="sub-item">';
                     output += '<p>' + item.com_content + '</p>';
@@ -141,7 +140,7 @@ $(function(){
 		modifyUI += '<textarea rows="5" cols="80" name="com_content" id="mre_content" class="rep-content">'+content+'</textarea>';
 		modifyUI += '<div id="mre_first"><span class="letter-count">300/300</span></div>';
 		modifyUI += '<div id="mre_second" class="align-right">';
-		modifyUI += '<input type="submit" value="수정">';
+		modifyUI += '<input type="submit" value="수정" class="re-modify">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
 		modifyUI += '<hr class="custom-hr" size="1" noshade width="96%">';

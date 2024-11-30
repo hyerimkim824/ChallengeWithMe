@@ -29,7 +29,6 @@ public class UpdateFormAction implements Action{
 			//detail.jsp onclick에서 post_num을 받아왔기 때문에 parameter값으로 post_num사용 가능
 			long post_num = Long.parseLong(request.getParameter("post_num"));
 			
-			
 			PostDAO Dao = PostDAO.getInstance();
 			PostVO post = Dao.getpost(post_num);
 
@@ -45,7 +44,6 @@ public class UpdateFormAction implements Action{
 			request.setAttribute("us_img", us_img);
 			request.setAttribute("us_nickname", us_nickname);
 			request.setAttribute("post", post);
-
 			
 		}
 			return "/post/updateForm.jsp";

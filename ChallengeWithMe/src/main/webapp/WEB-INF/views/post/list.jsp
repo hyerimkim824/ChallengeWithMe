@@ -69,7 +69,7 @@
 	
 	<%-- 게시글 --%>
 			<c:if test="${count==0}">
-				<div class="result-display">작성한 게시물이 없습니다.</div>
+				<div class="result-display">첫 번째 게시물을 작성해보세요!</div>
 			</c:if>
 
 	
