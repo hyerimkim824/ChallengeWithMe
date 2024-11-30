@@ -83,7 +83,7 @@
 
 		</div>
 		
-		<h3 id="gen_ch">My 개설 챌린지</h3>
+		<h3 id="gen_ch">My 개설 챌린지</h3>${ch_list}
 	
 		<div class ="part-information">
 		

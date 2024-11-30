@@ -18,13 +18,18 @@
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetimeWriting.js"></script>	
+	
 </head>
  
 
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>QR 인증</h1>
+    
+<% 
+    String chNum = request.getParameter("ch_num");
+    out.println("Received ch_num: " + chNum);
+%>
     
     <div><br><br><br><br><br><br><br><br><br><br><br><br></div>
     <div><br><br><br><br><br><br><br><br><br><br><br><br></div>

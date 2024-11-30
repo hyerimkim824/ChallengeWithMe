@@ -65,6 +65,11 @@ $(document).ready(function () {
 
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
+<% 
+    String chNum = request.getParameter("ch_num");
+    out.println("Received ch_num: " + chNum);
+%>
     <h1>문구 인증 챌린지</h1>
     <!-- 타이머 관련 -->
             <div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>

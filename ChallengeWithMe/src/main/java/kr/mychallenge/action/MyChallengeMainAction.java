@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.mychallenge.dao.MyChallengeDAO;
+import kr.mychallenge.vo.MyChallengeVO;
 
 public class MyChallengeMainAction  implements Action{
 
@@ -16,14 +17,21 @@ public class MyChallengeMainAction  implements Action{
 
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
+		// 로그인 된 경우
+		MyChallengeDAO dao = MyChallengeDAO.getInstance();
 
 		if (us_num == null) {
 			// 로그인 되지 않은 경우
 			return "redirect:/xuser/registerXuserForm.do";
-		}
-
-		// 로그인 된 경우
-		MyChallengeDAO dao = MyChallengeDAO.getInstance();
+		}else {
+			
+			
+			List<MyChallengeVO> ch_list = null; 
+			
+			ch_list = dao.getListCh(us_num);
+			
+			request.setAttribute("ch_list", ch_list);
+		
 
 		// 회원번호별 챌린지 참여 개수 정보
 		Long partNum = dao.participateNum(us_num); // participateNum 호출
@@ -60,11 +68,8 @@ public class MyChallengeMainAction  implements Action{
 		
 		request.setAttribute("list_prefer", list2);
 		
-		
-		
-		
-		
-		 
+		}
+	 
 
 		return "mychallenge/myChallengeMain.jsp";
 

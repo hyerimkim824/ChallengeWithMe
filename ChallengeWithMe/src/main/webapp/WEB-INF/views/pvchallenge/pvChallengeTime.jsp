@@ -173,7 +173,10 @@
 <body>
     <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>시간 인증</h1>
-
+<% 
+    String chNum = request.getParameter("ch_num");
+    out.println("Received ch_num: " + chNum);
+%>
     <div class="page-main">
         <div class="content-main">
             <h2>시간 인증</h2>

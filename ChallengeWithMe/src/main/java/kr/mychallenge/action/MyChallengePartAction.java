@@ -1,16 +1,40 @@
 package kr.mychallenge.action;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
+import kr.mychallenge.dao.MyChallengeDAO;
+import kr.mychallenge.vo.MyChallengeVO;
 
 public class MyChallengePartAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
-		return "mychallenge/myChallengePart.jsp";
-	}
+		HttpSession session = request.getSession();
+		Long us_num = (Long)session.getAttribute("us_num");
+		// 로그인 된 경우
+		MyChallengeDAO dao = MyChallengeDAO.getInstance();
 
+		if (us_num == null) {
+			// 로그인 되지 않은 경우
+			return "redirect:/xuser/registerXuserForm.do";
+		}else {
+			
+			
+			List<MyChallengeVO> ch_list = null; 
+			
+			ch_list = dao.getListCh(us_num);
+			
+			request.setAttribute("ch_list", ch_list);
+	
+	
+	}
+		
+		return "mychallenge/myChallengePart.jsp";
+		}
 }

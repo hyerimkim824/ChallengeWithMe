@@ -28,8 +28,7 @@ public class PvChallengeWritingGetAction implements Action{
 
 	    // 랜덤 명언 리스트 생성
 	    List<String> wise = Arrays.asList(
-	        "공부 안하면 더울 때 더운데서 일하고 추울 때 추운데서 일한다.",
-	        "시작은 반이 아니다. 시작일뿐이다.",
+ 	        "시작은 반이 아니다. 시작일뿐이다.",
 	        "늦었다고 생각할 때가 정말 늦은 것이다. 당장 시작해라.",
 	        "가는 말이 고우면 얕본다",
 	        "참일 인 세번이면 호구다.",

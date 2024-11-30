@@ -38,7 +38,6 @@ function hideFunction(id) {
 	<div class="page-main">
 		<h2>마이 챌린지 메인 페이지</h2>
 		<div class="mychallenge-content-main">
-
 			<div class="mychallenge-div">
 				<h4>프로필 사진</h4>
 				<ul>
@@ -58,7 +57,7 @@ function hideFunction(id) {
 				<h4>마이 챌린지</h4>
 				<table id=my_challenge>
 					<tr>
-						<th>참가중</th>
+						<th>참가중 </th>
 						<th>완료</th>
 						<th>개설</th>
 					</tr>
@@ -126,6 +125,15 @@ function hideFunction(id) {
 			<div id="get" class="ch-button">
 				<h4>현재 참여 챌린지 달성률</h4>
 				${list}
+				<c:forEach var="ch_list" items="${list}">
+			<tr>
+				<td>${board.board_num}</td>
+				<td><a href="detail.do?board_num=${board.board_num}">${board.title}</a></td>
+				<td>${board.id}</td>
+				<td>${board.reg_date}</td>
+				<td>${board.hit}</td>
+			</tr>
+			</c:forEach>
 
 				<h4>한달 평균 챌린지 달성률</h4>
 				<h4>1년 평균 챌린지 달성률</h4>

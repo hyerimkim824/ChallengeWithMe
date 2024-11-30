@@ -8,6 +8,7 @@ import java.time.Period;
 import java.util.ArrayList;
 import java.util.List;
 
+
 import kr.mychallenge.vo.MyChallengeVO;
 import kr.util.DBUtil;
 
@@ -20,6 +21,48 @@ public class MyChallengeDAO {
 		return instance;
 	}
 	private MyChallengeDAO() {}
+	
+	
+	//유저별 challenge리스트 가져오기
+	public List<MyChallengeVO> getListCh(long us_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyChallengeVO> list = null;
+		String sql = null;
+		
+		try {
+			
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT CHALL.ch_num FROM CHALL WHERE CHALL.us_num = ?";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 바인딩
+			pstmt.setLong(1, us_num);
+			
+			rs= pstmt.executeQuery();
+			list = new ArrayList<MyChallengeVO>();
+			while(rs.next()) {
+				MyChallengeVO mychall = new MyChallengeVO();
+				mychall.setCh_num(rs.getLong("ch_num"));
+				list.add(mychall);
+			}
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+		
+	
+		
+	}
 	
 	/*//프로필 사진 넣기 & 수정
 	public void updateMyPhoto(String us_img, long us_num)throws Exception{
@@ -43,6 +86,8 @@ public class MyChallengeDAO {
 		
 	}
 	*/
+	
+	//챌린지별 인증 count
 	//참가수(연간누적)
 	public long participateNum(long us_num)throws Exception{
 		
@@ -80,6 +125,7 @@ public class MyChallengeDAO {
 
 	}
 	//참가수(한달 평균)
+
 	
 	//달성률(챌린지 1개 달성률)
 	public List<Integer> AchieveOne(long us_num)throws Exception{

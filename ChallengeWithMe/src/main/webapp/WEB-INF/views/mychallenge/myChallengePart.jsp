@@ -74,6 +74,7 @@
 
 
 		</div>
+		
 		<div class="align-left"> 
 
 			<input type="button" value="참여 챌린지" id="part_ch_btn"
@@ -84,9 +85,11 @@
 		</div>
 	
 		<h3 id="participate_ch">참여 챌린지</h3>
-		<div class="part-image">
+		<c:forEach var="ch_list" items="${ch_list}">
 	
-			<a href ='${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do'>
+		<div  class="part-image">
+			<p>"${ch_list.ch_num}"</p>
+			<a href='${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${ch_list.ch_num}'>
 			<img src="${pageContext.request.contextPath}/images/study.jpg" width="200" height="200" class="part-photo-ex">
 			</a>		
 		<table id="detail_table">
@@ -95,7 +98,7 @@
 				<th colspan="3">My 참여 챌린지 레포트</th>	
 			</tr>
 			<tr>
-				<td>인원수</td>
+				<td>인원수 </td>
 				<td>2</td>
 				<td>3</td>
 			</tr>
@@ -110,6 +113,7 @@
 
 						
 		</div>
+		</c:forEach>
 		
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

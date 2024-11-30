@@ -16,47 +16,66 @@
 <head>
 <meta charset="UTF-8">
 <title>참여 챌린지</title>
+
+
 </head>
+
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
+
 <h1>개설 챌린지</h1>
 
-<div class ="page-main">
-	<div class="mychallenge-content-detail">
-			<div class="mychallenge-div">
-				<h4>프로필 사진</h4>
-				<ul>
-					<li>
-						<c:if test="${empty xuser.photo}">
-								<img src="${pageContext.request.contextPath}/images/face.png"
-									width="150" height="150" class="my-photo">
-							</c:if> 
-							<c:if test="${!empty xuser.photo}">
-								<img
-									src="${pageContext.request.contextPath}/upload/${xuser.photo}"
-									width="150" height="150" class="my-photo">
-							</c:if>
-						</li>
-				</ul>
-			</div>
-			
-			<div>
-			
-			<input type="button" value="챌린지 인증(사진인증)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengePhoto.do'">
-			<input type="button" value="챌린지 인증2(시간인증)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeTime.do'">
-			<input type="button" value="챌린지 인증3(문구인증)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeWriting.do'">
-			<input type="button" value="챌린지 인증4(게임)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeGame.do'">
-				<input type="button" value="챌린지 인증5(QR)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeQR.do'">
-				<input type="button" value="챌린지 인증6(가계부)" id="proved_button"
-				onclick="location.href='${pageContext.request.contextPath}/pvchallenge/pvChallengeAccountbook.do'">	
-			</div>
-		</div>
-	</div>
+<% 
+    String chNum = request.getParameter("ch_num");
+    session.setAttribute("ch_num", chNum); 
+%>
+<div class="page-main">
+    <div class="mychallenge-content-detail">
+        <div class="mychallenge-div">
+            <h4>프로필 사진</h4>
+            <ul>
+                <li>
+                    <c:if test="${empty xuser.photo}">
+                        <img src="${pageContext.request.contextPath}/images/face.png"
+                             width="150" height="150" class="my-photo">
+                    </c:if> 
+                    <c:if test="${!empty xuser.photo}">
+                        <img src="${pageContext.request.contextPath}/upload/${xuser.photo}"
+                             width="150" height="150" class="my-photo">
+                    </c:if>
+                </li>
+            </ul>
+        </div>
+
+        <div>
+            <!-- 각각의 버튼에 대해 a 태그를 사용하여 GET 방식으로 ch_num을 전달 -->
+            <a href="../pvchallenge/pvChallengePhoto.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증(사진인증)" id="proved_button">
+            </a>
+
+            <a href="../pvchallenge/pvChallengeTime.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증2(시간인증)" id="proved_button">
+            </a>
+
+            <a href="../pvchallenge/pvChallengeWriting.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증3(문구인증)" id="proved_button">
+            </a>
+
+            <a href="../pvchallenge/pvChallengeGame.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증4(게임)" id="proved_button">
+            </a>
+
+            <a href="../pvchallenge/pvChallengeQR.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증5(QR)" id="proved_button">
+            </a>
+
+            <a href="../pvchallenge/pvChallengeExpense.do?ch_num=${ch_num}">
+                <input type="button" value="챌린지 인증6(가계부)" id="proved_button">
+            </a>
+        </div>
+    </div>
+</div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

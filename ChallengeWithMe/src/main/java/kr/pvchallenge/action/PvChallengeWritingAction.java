@@ -42,6 +42,8 @@ public class PvChallengeWritingAction implements Action{
         session.setAttribute("ch_proved", challengeInfo.getCh_proved());
         session.setAttribute("ah_date", challengeInfo.getAh_date());
         session.setAttribute("ah_img", challengeInfo.getAh_img());
+        
+ 
 		
 		
 		return "pvchallenge/pvChallengeWriting.jsp";

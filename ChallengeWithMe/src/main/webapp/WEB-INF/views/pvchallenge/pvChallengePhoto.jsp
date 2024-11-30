@@ -111,6 +111,12 @@
 </script>
 </head>
 <body>
+<% 
+    String chNum = request.getParameter("ch_num");
+    out.println("Received ch_num: " + chNum);
+%>
+
+
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<h1>사진 인증</h1>
 	

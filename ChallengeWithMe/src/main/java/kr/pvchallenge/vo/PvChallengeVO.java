@@ -11,7 +11,49 @@ public class PvChallengeVO {
 	//인증 게시판 정보
 	private int ah_num; //인증글 고유 번호 (인증문구 작성시에 사용)
 	private String ah_img; //인증 이미지
-	private int ch_proved;//인증 여부 1 : 인증, 0 : 인증 x
+	private int ch_proved1;//인증 여부 1 : 인증, 0 : 인증 x
+	public int getCh_proved1() {
+		return ch_proved1;
+	}
+	public void setCh_proved1(int ch_proved1) {
+		this.ch_proved1 = ch_proved1;
+	}
+	public int getCh_proved2() {
+		return ch_proved2;
+	}
+	public void setCh_proved2(int ch_proved2) {
+		this.ch_proved2 = ch_proved2;
+	}
+	public int getCh_proved3() {
+		return ch_proved3;
+	}
+	public void setCh_proved3(int ch_proved3) {
+		this.ch_proved3 = ch_proved3;
+	}
+	public int getCh_proved4() {
+		return ch_proved4;
+	}
+	public void setCh_proved4(int ch_proved4) {
+		this.ch_proved4 = ch_proved4;
+	}
+	public int getCh_proved5() {
+		return ch_proved5;
+	}
+	public void setCh_proved5(int ch_proved5) {
+		this.ch_proved5 = ch_proved5;
+	}
+	public int getCh_proved6() {
+		return ch_proved6;
+	}
+	public void setCh_proved6(int ch_proved6) {
+		this.ch_proved6 = ch_proved6;
+	}
+	private int ch_proved2;
+	private int ch_proved3;
+	private int ch_proved4;
+	private int ch_proved5;
+	private int ch_proved6;
+
 	private String ah_date; //인증 날짜
 	//private Date 인증 시간 변수 필요
 	
@@ -46,10 +88,10 @@ public class PvChallengeVO {
 		this.ah_img = ah_img;
 	}
 	public int getCh_proved() {
-		return ch_proved;
+		return ch_proved1;
 	}
 	public void setCh_proved(int ch_proved) {
-		this.ch_proved = ch_proved;
+		this.ch_proved1 = ch_proved;
 	}
 	public String getAh_date() {
 		return ah_date;
