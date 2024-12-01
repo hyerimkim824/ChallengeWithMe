@@ -18,7 +18,7 @@
 	margin:150px auto;
 	background:#FFE066;
 	border-radius: 20px;
-	height:1100px;
+	height:auto;
 }
 
 .content-main{
@@ -28,6 +28,13 @@
 }
 .main-title{
 	padding:0 0 0 35px;
+}
+
+.result-display{
+	display:flex;
+	justify-content:center;
+	margin-top:50px;
+	color:grey;
 }
 
 .search-and-button {
@@ -180,8 +187,9 @@
 }
 
 .list-paging{
-	 margin-bottom: 100px; 
-	 background-color:blue;
+	 padding:75px 0; 
+	 display:flex;
+	 justify-content:center;
 }
 
 .my-photo{
@@ -368,7 +376,7 @@ textarea#re_content.rep-content{
 	border-radius: 10px;
 	border: none; /* 테두리 제거 */
     cursor: pointer; 
-    width:100px;
+    width:80px;
     height:30px;
     position: absolute;
     right: 17%;
@@ -377,8 +385,8 @@ textarea#re_content.rep-content{
 }
 
 /* post_reply.js */
+/* 댓글 전체 폼 */
 .item{
-	background: #fff;
 	padding:20px;
 	border-radius: 10px;
 	margin:30px;
@@ -393,11 +401,11 @@ textarea#re_content.rep-content{
 	margin:1.5%;
 }
 
-
 .image-nickname{
 	display: flex;
 	align-items:left;
 }
+/* 댓글 폼 날짜 */
 .item span{
 	font-size: 13px;
 	color:grey;
@@ -405,15 +413,30 @@ textarea#re_content.rep-content{
 	right:20%;
 }
 
+/* 수정 댓글폼 300/300 */
+#mre_first span{
+	font-size: 13px;
+	color:grey;
+    padding:0 0 20px 40px; 
+}
+
 .modify-delete-button{
 	display: flex;
 	justify-content: flex-end;
 	gap:15px;
-	padding:0 0 15px 0;
 }
-.item input[type="button"]{
-	right:20%;
-	background-color: #FFE066;
+
+
+/* 댓글 수정 삭제 버튼 및 내용 보여짐 */
+.sub-item{
+}
+
+/* 댓글 수정 삭제 버튼  */
+.sub-item input[type="button"] {
+    float: right;                 /* 버튼만 오른쪽으로 이동 */
+    margin-left: 20px;            /* 버튼 간 간격 추가 */
+    margin-bottom: 20px;  
+    background-color: #ffe066;
 	border-radius: 10px;
 	border: none; /* 테두리 제거 */
     cursor: pointer; 
@@ -423,7 +446,30 @@ textarea#re_content.rep-content{
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
 }
 
+/* 댓글 수정 폼 버튼 정렬 */
+#mre_second {
+    display: flex;                /* 버튼들을 가로로 정렬 */
+    padding: 10px 20px -10px 0;       /* 버튼과 상단 내용 간의 간격 추가 */
+}
 
+#mre_second input[type="submit"],
+#mre_second input[type="button"] {
+	
+    background-color: #FFE066;    /* 버튼 배경색 */
+    margin:2%;
+    border-radius: 10px;          /* 둥근 모서리 */
+    border: none;                 /* 테두리 제거 */
+    cursor: pointer;              /* 포인터로 변경 */
+    width: 80px;                  /* 버튼 너비 */
+    height: 30px;                 /* 버튼 높이 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+           
+}
+
+
+
+/* 댓글 수정폼 */
 #mre_content.rep-content{
 	max-width:100%;
 	height:auto;
@@ -432,7 +478,7 @@ textarea#re_content.rep-content{
 	border-radius:10px;
 	box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* 아래쪽 그림자 */
                 0px 1px 3px rgba(0, 0, 0, 0.06); /* 부드러운 추가 그림자 */
-    margin:20px 45px;
+    margin:20px 45px 0 45px;
 }
 
 #paging {
@@ -474,11 +520,11 @@ textarea#re_content.rep-content{
 }
 
 
-/*--------------------------- 커뮤니티 글 등록-----------------------*/
+/*--------------------------- updateform 글 작성-----------------------*/
 .upadteform-title{
 	padding: 45px 35px 20px 35px;
 }
-.writeform-background{
+.updateform-background{
 	background:#FFE066;
 	margin:150px auto;
 	width:80%;
@@ -486,7 +532,7 @@ textarea#re_content.rep-content{
 	height: auto; /* 내부 콘텐츠에 맞게 높이를 자동 조정 */
 }
 
-.writeform-main{
+.updateform-main{
 	background:white;
 	margin: 30px;
 	border-radius: 20px;
@@ -496,7 +542,7 @@ textarea#re_content.rep-content{
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
 }
 
-.writeform-main2{
+.updateform-main2{
 	display:flex;
     align-items:center;
     justify-content: space-between; /* 양쪽 정렬 */
@@ -506,7 +552,7 @@ textarea#re_content.rep-content{
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
     height:60px;
-    
+    padding:0 20px;
 }
 
 .post_img{
@@ -529,7 +575,7 @@ label[for="post_img"] {
 }
 
 /* 숨겨진 파일 선택 input */
-input[type="file"] {
+.updateform-main2 input[type="file"] {
     display: none; /* 화면에서 숨김 */
 }
 
@@ -590,6 +636,8 @@ textarea#post_content{
 	padding:10px 30px 35px 0;
 	gap:20px;
 }
+
+
 #submit-btn{
 	background-color: white;
 	border-radius: 10px;
@@ -611,3 +659,94 @@ textarea#post_content{
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
 }
+
+
+/*--------------------------- writeform 글 작성-----------------------*/
+
+.writeform-title{
+	padding: 45px 35px 20px 35px;
+}
+.writeform-background{
+	background:#FFE066;
+	margin:150px auto;
+	width:80%;
+	border-radius: 20px;
+	height: auto; /* 내부 콘텐츠에 맞게 높이를 자동 조정 */
+}
+
+.writeform-main{
+	background:white;
+	margin: 30px;
+	border-radius: 20px;
+	padding:0 20px;
+	height: 600px; 
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+}
+
+.writeform-main2{
+	display:flex;
+    align-items:center;
+    justify-content: space-between; /* 양쪽 정렬 */
+	background:white;
+	border-radius: 20px;
+	margin: 30px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    height:60px;
+    padding:0 20px;
+}
+
+.writeform-header{
+	padding:20px 0 10px 35px;
+	display:flex;
+	align-items:center;
+}
+.writeform-header2{
+	padding:20px 0 20px 35px;
+}
+
+.writeform-header .writeform-nickname{
+	padding:0 0 0 10px;
+}
+/* 제목 입력 폼 */
+.input-check{
+	border: none; /* 테두리 제거 */
+}
+
+textarea#post_content{
+	width:87%;
+	height:320px;
+	background: #f7f7f7;
+	padding:20px;
+	border-radius: 10px;
+	margin:30px;
+	
+    border-radius: 10px; /* 둥근 모서리 */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1), /* 아래쪽 그림자 */
+                0px 1px 3px rgba(0, 0, 0, 0.06); /* 부드러운 추가 그림자 */
+    border: none; /* 테두리 제거 */
+    outline: none; /* 포커스 아웃라인 제거 */
+}
+
+.writeform-main2 input[type="file"]{
+	padding: 0 600px 0 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -116,9 +116,8 @@
 				</c:if>
 				<c:if test="${us_num != post.us_num}"></c:if>
 
-				<input type="button" value="커뮤니티 목록"
-					value="고객의소리"
-					onclick="location.href='${pageContext.request.contextPath}/support/FeedBackForm.do'">
+				<input type="button" value="고객의소리" onclick="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">
+				<input type="button" value="커뮤니티 목록" onclick="location.href='list.do'">
 			</div>
 			<hr class="custom-hr" noshade="noshade" width="100%">
 
@@ -150,8 +149,8 @@
 			<div id="output"></div>
 			<div class="paging-button" style="display: none;">
 				<input type="button" value="다음글 보기"> 
-				<a class="top" href="detail.do?post_num=${post.post_num}">상단으로</a>
 			</div>
+				<a class="top" href="detail.do?post_num=${post.post_num}">상단으로</a>
 			<div id="paging" class="paging">
 				<div id="loading" style="display: none;">
 					<img src="${pageContext.request.contextPath}/images/loading.gif"

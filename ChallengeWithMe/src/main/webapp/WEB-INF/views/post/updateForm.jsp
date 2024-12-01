@@ -33,11 +33,11 @@
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-	<div class="writeform-background">
+	<div class="updateform-background">
 		<h4 class="updateform-title">당신의 글을 편집해보세요. 📝</h4>
 			<form id="update_form" action="update.do" method="post" enctype="multipart/form-data">
 				<!-- 숨겨진 필드로 post_num 전달 -->
-				<div class="writeform-main">
+				<div class="updateform-main">
 				<input type="hidden" name="post_num" value="${post.post_num}">
 
 				<%-- 프로필 사진 유저닉네임 날짜 좋아요 댓글개수 조회수 표시 --%>
@@ -68,7 +68,7 @@
 		
 
 		<%-- 이미지 첨부--%>
-		<div class="writeform-main2">
+		<div class="updateform-main2">
 			<label for="post_img" class="post_img">첨부파일 수정</label> <input type="file" name=post_img
 				id=post_img accept="image/*">
 			<c:if test="${!empty post.post_img}">

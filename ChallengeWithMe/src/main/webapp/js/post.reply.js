@@ -45,13 +45,11 @@ $(function(){
 					 output += '<div class="sub-item">';
 					 if (param.us_num == item.us_num) {
                         // 로그인한 회원번호와 작성자 회원번호 일치
-                        output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 수정" class="modify-btn">';
+						output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 수정" class="modify-btn">';
                         output += ' <input type="button" data-com_num="' + item.com_num + '" value="댓글 삭제" class="delete-btn">';
 						}
-					
-	   
-                    output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<div class="sub-item">';
+					output += '<hr class="custom-hr" size="1" noshade width="100%">';
                     output += '<p>' + item.com_content + '</p>';
                     output += '</div>';
                     output += '</div>';
@@ -143,7 +141,6 @@ $(function(){
 		modifyUI += '<input type="submit" value="수정" class="re-modify">';
 		modifyUI += ' <input type="button" value="취소" class="re-reset">';
 		modifyUI += '</div>';
-		modifyUI += '<hr class="custom-hr" size="1" noshade width="96%">';
 		modifyUI += '</form>';
 								 	
 		//이전에 이미 수정하는 댓글이 있을 경우 수정버튼을 클릭하면 숨김 

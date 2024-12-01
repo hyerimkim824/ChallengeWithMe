@@ -65,10 +65,10 @@ public class PostDAO {
 			conn = DBUtil.getConnection();
 			//검색처리
 			if(keyword!=null && !"".equals(keyword)) {
-				if(keyfield.equals("1")) sub_sql += " WHERE LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2")) sub_sql += " WHERE u.us_nickname LIKE '%' || ? || '%'";
-				else if(keyfield.equals("3")) sub_sql += " WHERE p.post_title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("4")) sub_sql += " WHERE p.post_content LIKE '%' || ? || '%'";
+				//if(keyfield.equals("1")) sub_sql += " WHERE LIKE '%' || ? || '%'";
+				if(keyfield.equals("1")) sub_sql += "WHERE p.post_title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += "WHERE u.us_nickname LIKE '%' || ? || '%'";
+				else if(keyfield.equals("3")) sub_sql += "WHERE p.post_content LIKE '%' || ? || '%'";
 			}
 			//sql문 작성
 			sql = "SELECT COUNT(*) FROM post p JOIN user_detail u ON p.us_num = u.us_num" + sub_sql;
@@ -108,11 +108,11 @@ public class PostDAO {
 			
 			//sql문 작성
 			if(keyword != null && !"".equals(keyword)) {
-				//1 : 작성자 닉네임, 2 : 제목, 3 : 내용
-				if(keyfield.equals("1")) sql_sub += " WHERE LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2")) sql_sub += " WHERE us_nickname LIKE '%' || ? || '%'";
-				else if(keyfield.equals("3")) sql_sub += " WHERE post_title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("4")) sql_sub += " WHERE post_content LIKE '%' || ? || '%'";
+				//1 : 제목, 2 : 작성자 닉네임, 3 : 내용
+				//if(keyfield.equals("1")) sql_sub += " WHERE LIKE '%' || ? || '%'";
+				if(keyfield.equals("1")) sql_sub += "WHERE post_title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sql_sub += "WHERE us_nickname LIKE '%' || ? || '%'";
+				else if(keyfield.equals("3")) sql_sub += "WHERE post_content LIKE '%' || ? || '%'";
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
@@ -294,7 +294,7 @@ public class PostDAO {
 			//오토커밋 해제
 			conn.setAutoCommit(false);
 			//SQL문 작성
-			sql = "DELETE FROM post where post_num=?";
+			sql = "DELETE FROM post WHERE post_num=?";
 			//?에 데이터 바인딩
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setLong(1, post_num);
@@ -308,7 +308,7 @@ public class PostDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt3, null);
 			DBUtil.executeClose(null, pstmt2, null);
-			DBUtil.executeClose(null, pstmt, null);
+			DBUtil.executeClose(null, pstmt, conn);
 		}
 	}
 	
