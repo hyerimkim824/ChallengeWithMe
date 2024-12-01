@@ -55,6 +55,7 @@ public class MyPageDAO {
 	            xuser.setAddress1(rs.getString("us_address1"));
 	            xuser.setAddress2(rs.getString("us_address2"));
 	            xuser.setAlarm(rs.getInt("us_alarm"));
+	            xuser.setAdmin(rs.getInt("admin"));
 	        }
 	    } catch (Exception e) {
 	        throw new Exception(e);
