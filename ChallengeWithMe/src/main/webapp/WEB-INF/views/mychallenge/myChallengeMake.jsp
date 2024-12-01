@@ -40,35 +40,52 @@
 						</li>
 				</ul>
 			</div>
+			
+			<h3 id="gen_ch">My 개설 챌린지</h3>
+		
+		<div class="gen-part-img">
+			    <h3 id="participate_ch">개설 챌린지</h3>
+		<c:forEach var="ch_list" items="${ch_list}">
+	
+		<div  class="part-image">
+			<p>"${ch_list.ch_num}"</p>
+			<a href='${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${ch_list.ch_num}'>
+			<img src="${pageContext.request.contextPath}/images/study.jpg" width="200" height="200" class="part-photo-ex">
+			</a>		
+
+						
+		</div>
+		</c:forEach>
 	
 
-			<div class="align-right">
-				<h4>마이 챌린지</h4>
-				<table id=my_challenge>
+			<table id="info-table">
+
 					<tr>
-						<th>참가중</th>
-						<th>완료</th>
-						<th>개설</th>
+						<th colspan="2">MY 챌린지 참여/개설 정보</th>
 					</tr>
-					<!--  
-							후에 db에서 가져옴
-							<c:forEach var="board" items="${boardList}">
-								<tr>
-									<td><a
-										href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}"
-										target="_blank">${fn:substring(board.title,0,26)}</a></td>
-									<td>${board.id}</td>
-									<td>${board.reg_date}</td>
-								</tr>
-							</c:forEach>
-							-->
 					<tr>
-						<th>1</th>
-						<th>0</th>
-						<th>0</th>
+						<td>시작전</td>
+						<td>${partTable1.part_count}</td>
 					</tr>
 
+					<tr>
+						<td>참여 중</td>
+						<td>${partTable2.part_count}</td>
+					</tr>
+					
+					<tr>
+						<td>포기</td>
+						<td>${partTable3.part_count}</td>
+					</tr>
+					
+					<tr>
+						<td>개설</td>
+						<td>${partTable1.chall_count}</td>
+					</tr>
+		
+
 				</table>
+
 
 			</div>
 
@@ -83,48 +100,14 @@
 
 		</div>
 		
-		<h3 id="gen_ch">My 개설 챌린지</h3>${ch_list}
+	
+		
+		
 	
 		<div class ="part-information">
 		
-			<div class="gen-part-img">
-			    <h4>개설 챌린지 수정하기</h4>
-				<a href ='../challenge/challengeDetail.do?ch_num=20'>
 			
-				<img src="${pageContext.request.contextPath}/images/food.jpg" width="190" height="190" class="part-photo-ex">
-				</a>					
-			</div>
-			<table id="detail_table">
-			
-			<tr>
-				<th colspan="3">개설 챌린지 정보</th>	
-			</tr>
-			<tr>
-				<td>인원수</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>예치금</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>평균 달성률</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>인증방법</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>챌린지 기간</td>
-				<td>2</td>
-				<td>3</td>
-			</tr>
-			</table>
+		
 		</div>
 	</div>
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

@@ -24,16 +24,12 @@ public class MyChallengePartAction implements Action{
 			// 로그인 되지 않은 경우
 			return "redirect:/xuser/registerXuserForm.do";
 		}else {
+			List<MyChallengeVO> part_list = null; 
 			
+			part_list = dao.getListPart(us_num);
 			
-			List<MyChallengeVO> ch_list = null; 
-			
-			ch_list = dao.getListCh(us_num);
-			
-			request.setAttribute("ch_list", ch_list);
-	
-	
-	}
+			session.setAttribute("part_list", part_list);
+		}
 		
 		return "mychallenge/myChallengePart.jsp";
 		}

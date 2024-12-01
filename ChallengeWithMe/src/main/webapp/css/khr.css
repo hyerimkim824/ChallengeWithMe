@@ -2,83 +2,9 @@
 
 
 
-.page-main .align-left #part_ch_btn{
-	 margin-left: 50px;
-	width:150px;
-	height:80px;
-	font-size:20px;
-	align-items:left;
-	background:#FFE066;
-	
-	margin:20px;
-	background-color: #FFE066;
-	border-radius: 10px;
-	border: none; /* 테두리 제거 */
-    cursor: pointer; 
-    width:140px;
-	height:70px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
-                0 4px 6px rgba(0, 0, 0, 0.05);/* 부드러운 그림자 */
-
-	
-	
-}
-.page-main .align-left #gen_ch_btn{
-	  margin-left: 50px;
-	width:150px;
-	height:80px;
-	font-size:20px;
-	align-items:left;
-	background:#FFE066;
-	
-	margin:20px;
-	background-color: #FFE066;
-	border-radius: 10px;
-	border: none; /* 테두리 제거 */
-    cursor: pointer; 
-    width:140px;
-	height:70px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
-                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
-
-	
-}
-
-/*마이 챌린지 메인 테이블*/
-.page-main .mychallenge-content-main .align-right{
-	border-collapse: collapse;
-    width: 200px;
-    margin-left: auto; /* 테이블 오른쪽 정렬 */
-    margin-right: 300px;
-   
-}
-
-.page-main .mychallenge-content-main{
-	 display: flex;
-	 margin-left: 50px;
-	
-
-}
-
-/*마이 챌린지 참여 테이블*/
-.page-main .mychallenge-content-part .align-right{
-	border-collapse: collapse;
-    width: 200px;
-    margin-left: auto; /* 테이블 오른쪽 정렬 */
-    margin-right: 300px;
-   
-}
-
-.page-main .mychallenge-content-part{
-	 display: flex;
-	 margin-left: 50px;
-	
-
-}
-
-
-
-
+/*--------------------------
+          공통 부분
+---------------------------*/
 
 /* 프로필--------------------------- */
 .mychallenge-div {
@@ -99,74 +25,324 @@
   display: block;
   margin: 0;
 }
-/*--------------------------- */
 
 
-.page-main .ch-button{
-	  display: none;
-	 
-	   /* 초기 상태 숨김 */
-}
 
-.page-main #mybutton{
 
-	 margin:20px;
+/*--------------------------
+     마이 챌린지 페이지 메인
+---------------------------*/
+
+#part_ch_btn{
+	 margin-left: 50px;
+	width:150px;
+	height:80px;
+	font-size:20px;
+	align-items:left;
+	background:#FFE066;
+	
+	margin:20px;
 	background-color: #FFE066;
 	border-radius: 10px;
 	border: none; /* 테두리 제거 */
     cursor: pointer; 
-    width:130px;
-    height:50px;
-    font-size:15px;
+    width:140px;
+	height:70px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05);/* 부드러운 그림자 */
+
+	
+	
+}
+#gen_ch_btn{
+	  margin-left: 50px;
+	width:150px;
+	height:80px;
+	font-size:20px;
+	align-items:left;
+	background:#FFE066;
+	
+	margin:20px;
+	background-color: #FFE066;
+	border-radius: 10px;
+	border: none; /* 테두리 제거 */
+    cursor: pointer; 
+    width:140px;
+	height:70px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+
+	
+}
+
+/*메인 페이지 가로 정렬*/
+.page-main .mychallenge-content-main{
+	 display: flex;
+	 margin-left: 50px;
+	
+
+}
+
+/* 페이지 레이아웃에 맞춰 테이블 오른쪽에 배치 */
+/* 부모 요소에 display: flex;를 추가하여 가로로 정렬 */
+.mychallenge-content-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* 상단 정렬 */
+    gap: 20px; /* 요소 간 간격을 설정 */
+}
+
+/* 프로필 사진에 적당한 여백 추가 */
+.mychallenge-div {
+    flex-basis: 30%; /* 프로필 사진의 너비를 30%로 설정 */
+}
+
+/* 테이블에 대한 스타일 설정 */
+.align-right {
+    flex-basis: 65%; /* 테이블의 너비를 65%로 설정 */
+}
+
+/* 테이블 스타일 */
+#simple_info_table {
+    width: 100%;
+    max-width: 400px; /* 최대 너비 제한 */
+    border-collapse: collapse;
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* 헤더 스타일 */
+#simple_info_table thead {
+    background-color: #e0e0e0;
+    text-align: center;
+    font-weight: bold;
+}
+
+#simple_info_table th {
+    padding: 10px; /* 헤더 셀 안쪽 여백 */
+    font-size: 16px;
+    color: #333;
+}
+
+/* 테이블 바디 스타일 */
+#simple_info_table tbody {
+    background-color: #ffffff;
+}
+
+#simple_info_table td {
+    padding: 8px 10px; /* 셀 안쪽 여백 */
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 마지막 행의 구분선 제거 */
+#simple_info_table tr:last-child td {
+    border-bottom: none;
+}
+
+/* 호버 효과 */
+#simple_info_table tbody tr:hover {
+    background-color: #f5f5f5;
+}
+
+/* 첫 번째 열 스타일 */
+#simple_info_table td:first-child {
+    font-weight: bold;
+}
+
+/*왼쪽에 있어야 할 것들*/
+/* 공통 스타일 */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.align-left {
+    margin: 20px auto;
+    padding: 20px;
+    width: 90%;
+    max-width: 1200px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* 버튼 컨테이너 */
+/* 부모 요소를 가로 정렬로 설정 */
+.align-left {
+    display: flex; /* 가로 정렬 */
+    align-items: flex-start; /* 상단 정렬 */
+    gap: 20px; /* 요소 간 간격 */
+    padding: 20px;
+}
+
+/* 공통 버튼 스타일 */
+.common-button {
+    display: flex;
+    flex-direction: column; /* 세로 정렬 */
+    gap: 10px; /* 버튼 간 간격 */
+    align-items: center;
+    padding: 10px;
+    background-color: #f5f5f5;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+/* 챌린지 리포트 스타일 */
+.ch-report {
+    flex: 1; /* 남은 공간을 차지 */
+    padding: 15px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.ch-report h2 {
+    margin-top: 0;
+    font-size: 20px;
+    text-align: center;
+}
+
+.ch-report button {
+    display: block;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ch-report button:hover {
+    background-color: #45a049;
+}
+
+/* 챌린지 리포트 내 섹션 */
+.ch-button {
+    margin-top: 15px;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+
+/*--------참여 챌린지 챌린지 리포트 버튼-----*/
+
+.page-main .ch-button{
+	  display: none;  /* 초기 상태 숨김 */
+}
 	 
-	
+
+/* .ch-report 내부의 버튼들을 가로로 정렬 */
+.ch-report {
+    display: flex;
+    flex-direction: column; /* 기본은 세로 방향 */
+    align-items: flex-start; /* 왼쪽 정렬 */
+}
+
+.ch-report button {
+    display: inline-block; /* 버튼들을 가로로 정렬 */
+    margin-right: 10px; /* 버튼 간의 간격 */
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.ch-report button:hover {
+    background-color: #45a049;
+}
+
+/* .ch-report 안의 mybutton들만 가로로 정렬 */
+.ch-report .button-container {
+    display: flex; /* 가로로 정렬 */
+    gap: 10px; /* 버튼 간의 간격 */
 }
 
 
+/*--------------------------
+     마이 챌린지 페이지 참여
+---------------------------*/
 
-/*------------테이블*/
-#gen_ch {
-            text-align: center; /* 가로 가운데 정렬 */
-        }
-
-.part-information {
-            display: flex;
-            gap:30px;
-            flex-direction: row;/* 가로 가운데 정렬 */
-            align-items: center;
-            margin-left: 50px; 
-            	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
-        width:85%;
-        }
-
-#detail_table{
-	border-collapse: collapse;
-    width: 400px;
-
-    
+/* 페이지 전체 스타일 */
+.page-main {
+    display: flex;
+    flex-direction: column;  /* 세로로 정렬 */
+    gap: 20px;
 }
 
-/*----------------------------------------*/
-
-#participate_ch{
-	text-align: center; 
-}
-	
-
-.part-image{
-display: flex;
-width:70%;  
-flex-direction: row;/* 가로 가운데 정렬 */
-gap:30px;
-align-items: center;
-margin-left: 100px; 
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);	
+/* 프로필 사진과 테이블을 가로로 정렬 */
+.mychallenge-content-main {
+    display: flex;
+    justify-content: space-between;  /* 두 요소를 양쪽으로 정렬 */
+    gap: 20px;  /* 요소 간격 설정 */
 }
 
+/* 프로필 사진 */
+.mychallenge-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 
-/*-------------------------------------------------*/
+/* 이미지들을 가로로 정렬 */
+.part-image-wrapper {
+    display: flex;
+    flex-wrap: wrap; /* 화면이 좁아지면 자동으로 줄바꿈 */
+    gap: 20px;
+    justify-content: flex-start; /* 아이템을 왼쪽 정렬 */
+}
+
+/* 각 이미지의 스타일 */
+.part-image {
+    width: 200px;
+    text-align: center;
+}
+
+.part-photo-ex {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* 버튼들을 가로로 정렬 */
+.button-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px;
+}
+
+/* 각 버튼 스타일 */
+#part_ch_btn, #gen_ch_btn {
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+/*--------------------------
+     마이 챌린지 페이지 참여 디테일
+---------------------------*/
+
 #proved_button{
 	width:200px;
 	height:100px;
@@ -179,7 +355,9 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
 	gap:100px;
 }
 
-
+/*--------------------------
+     마이 챌린지 페이지 참여 디테일- 게임 인증
+---------------------------*/
 /*----------게임 휠---------------*/
 
 /* 돌림판 스타일 */
@@ -214,10 +392,12 @@ box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
     border-right: 10px solid transparent; /* 삼각형 오른쪽 */
     border-bottom: 30px solid red; /* 삼각형 아래쪽 (화살표 색) */
 }
-        button {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 16px;
-            cursor: pointer;
+        
+button {
+	
+	margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
         }
 

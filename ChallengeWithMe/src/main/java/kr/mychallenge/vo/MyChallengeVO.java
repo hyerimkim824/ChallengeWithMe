@@ -14,8 +14,32 @@ public class MyChallengeVO {
 	private String ch_visibility;
 	private long trance_decimal;
 	private String ch_status; //챌린지 상태
-	private String auth_num; //인증 방식
+	private String auth_desc;
 	
+	public String getAuth_desc() {
+		return auth_desc;
+	}
+	public void setAuth_desc(String auth_desc) {
+		this.auth_desc = auth_desc;
+	}
+	public int getCate_num() {
+		return cate_num;
+	}
+	public void setCate_num(int cate_num) {
+		this.cate_num = cate_num;
+	}
+
+	private int cate_num;
+	
+	
+	private String p_stat;//참여 상황
+	
+	public String getP_stat() {
+		return p_stat;
+	}
+	public void setP_stat(String p_stat) {
+		this.p_stat = p_stat;
+	}
 	public long getAh_num() {
 		return ah_num;
 	}
@@ -45,7 +69,7 @@ public class MyChallengeVO {
 	private String us_img;
 	
 	//auth table 정보
-	private long ah_num; //인증 글 고유 번호
+	private long ah_num; //인증 글 고유 번호->chall 테이블로 생각하자
 	private int ch_proved; //인증 여부
 	private String ah_img; //인증 사진
 	private String ah_date; //인증 날짜

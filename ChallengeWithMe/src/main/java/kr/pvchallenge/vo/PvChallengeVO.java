@@ -12,6 +12,14 @@ public class PvChallengeVO {
 	private int ah_num; //인증글 고유 번호 (인증문구 작성시에 사용)
 	private String ah_img; //인증 이미지
 	private int ch_proved1;//인증 여부 1 : 인증, 0 : 인증 x
+	
+	private int check_num;
+	public int getCheck_num() {
+		return check_num;
+	}
+	public void setCheck_num(int check_num) {
+		this.check_num = check_num;
+	}
 	public int getCh_proved1() {
 		return ch_proved1;
 	}

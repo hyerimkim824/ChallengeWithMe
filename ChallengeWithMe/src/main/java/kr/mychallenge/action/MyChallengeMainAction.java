@@ -1,6 +1,7 @@
 package kr.mychallenge.action;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -10,7 +11,7 @@ import kr.controller.Action;
 import kr.mychallenge.dao.MyChallengeDAO;
 import kr.mychallenge.vo.MyChallengeVO;
 
-public class MyChallengeMainAction  implements Action{
+public class MyChallengeMainAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -32,15 +33,31 @@ public class MyChallengeMainAction  implements Action{
 			
 			request.setAttribute("ch_list", ch_list);
 		
-
+		//저반적인 참여정보 테이블을 위한 객체
+		Map<String,Integer> partTable1 = dao.getListPartInfo(us_num,"시작 전");
+		Map<String,Integer> partTable2 = dao.getListPartInfo(us_num,"진행 중");
+		Map<String,Integer> partTable3 = dao.getListPartInfo(us_num,"포기");
+		Map<String,Integer> partTable4 = dao.getListPartInfo(us_num,"완료");
+		
+		request.setAttribute("partTable1",partTable1);
+		request.setAttribute("partTable2",partTable2);
+		request.setAttribute("partTable3",partTable3);
+		request.setAttribute("partTable4",partTable4);
+		
+	//평균 참여 정보
+		//Map<String, Integer> list_partNum = dao.achieveAVG(us_num);
+		//request.setAttribute("list_partNum", list_partNum);
 		// 회원번호별 챌린지 참여 개수 정보
-		Long partNum = dao.participateNum(us_num); // participateNum 호출
-
-		request.setAttribute("partNum", partNum);
+	
+		
 		
 		/*달성률
 		 *   
 		 */
+		Map<String, Integer> list_month = dao.achieveMonth(us_num);
+		request.setAttribute("list_month", list_month);
+		
+		
 		 
 		//String ch_start = (String)session.getAttribute("20");
 		//String ch_end = (String)session.getAttribute("30");
@@ -48,30 +65,47 @@ public class MyChallengeMainAction  implements Action{
 		List<Integer> list = null;
 		
 		
-		list = dao.AchieveOne(us_num);
+	
+		
+		list = dao.achieveOne(us_num,"2024-11-10","2024-11-25");
 		System.out.println(list);
+		
 		
 		
 		request.setAttribute("list", list);
 		request.setAttribute("listLength", (int)list.size());
 		
 		/*달성률
-		 * 
+		 * 한달평균
 		 */
 		
-		List<Integer> list2 = null;
+		// 사용자 입력 파라미터 받아오기
 		
-		
-		list2 = dao.preference(us_num);
-		System.out.println(list);
-		
-		
-		request.setAttribute("list_prefer", list2);
-		
+		 // 세션에서 ch_num을 가져옵니다.
+	   
 		}
+		//전체 참여 및 개설리스트 보여주기
+		
+		List<MyChallengeVO> ch_list = null; 
+		
+		ch_list = dao.getListCh(us_num);
+		
+		request.setAttribute("ch_list", ch_list);
+		
+       List<MyChallengeVO> part_list = null; 
+		
+		ch_list = dao.getListCh(us_num);
+		
+		request.setAttribute("part_list", part_list);
+
+		
+		
 	 
 
 		return "mychallenge/myChallengeMain.jsp";
+		
+		
+		
 
 
 	}

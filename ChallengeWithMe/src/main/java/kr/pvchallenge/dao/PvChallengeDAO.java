@@ -21,43 +21,54 @@ public class PvChallengeDAO {
 	public void insertPv(PvChallengeVO pvchall) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
+	    ResultSet rs = null;
 	    String sql = null;
+	    int result = 0;
 
 	    try {
-	        // 커넥션 풀로부터 커넥션 할당
 	        conn = DBUtil.getConnection();
 
-	        // SQL문 작성 (Insert query)
-	        sql = "INSERT INTO auth (ah_num, ah_img, ch_proved1, ah_date, us_num, ch_num, ch_proved2, ch_proved3, ch_proved4, ch_proved5) "
-	            + "VALUES (?, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
+	        // 중복 확인
+	        String checkSql = "SELECT COUNT(*) FROM auth WHERE us_num = ? AND TRUNC(ah_date) = TRUNC(SYSDATE)";
+	        pstmt = conn.prepareStatement(checkSql);
+	        pstmt.setLong(1, pvchall.getUs_num());
+	        rs = pstmt.executeQuery();
 
-	        // PreparedStatement 객체 생성
+	        if (rs.next() && rs.getInt(1) > 0) {
+	        	
+	        	result = 1;
+	            
+	        }
+
+	        // 기존 Statement 닫기
+	        pstmt.close();
+	        
+	        if(result !=1) {
+
+	        // 삽입 SQL
+	        sql = "INSERT INTO auth (ah_num, ah_img, ch_proved1, ah_date, us_num, ch_num, ch_proved2, ch_proved3, ch_proved4, ch_proved5) "
+	            + "VALUES (auth_seq.nextval, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
 	        pstmt = conn.prepareStatement(sql);
 
 	        // ?에 데이터 바인딩
-	        pstmt.setInt(1, pvchall.getAh_num());  // ah_num
-	        pstmt.setString(2, pvchall.getAh_img());  // ah_img
-	        pstmt.setInt(3, pvchall.getCh_proved1());  // ch_proved1
-	        pstmt.setLong(4, pvchall.getUs_num());  // us_num (assuming it's Long, use setLong)
-	        pstmt.setLong(5, pvchall.getCh_num());  // ch_num (assuming it's Long, use setLong)
-	        pstmt.setInt(6, pvchall.getCh_proved2());  // ch_proved2
-	        pstmt.setInt(7, pvchall.getCh_proved3());  // ch_proved3
-	        pstmt.setInt(8, pvchall.getCh_proved4());  // ch_proved4
-	        pstmt.setInt(9, pvchall.getCh_proved5());  // ch_proved5
+	        pstmt.setString(1, pvchall.getAh_img());
+	        pstmt.setInt(2, pvchall.getCh_proved1());
+	        pstmt.setLong(3, pvchall.getUs_num());
+	        pstmt.setLong(4, pvchall.getCh_num());
+	        pstmt.setInt(5, pvchall.getCh_proved2());
+	        pstmt.setInt(6, pvchall.getCh_proved3());
+	        pstmt.setInt(7, pvchall.getCh_proved4());
+	        pstmt.setInt(8, pvchall.getCh_proved5());
 
-	        // SQL문 실행
-	        pstmt.executeUpdate();
-	        
+	        // 삽입
+	        pstmt.executeUpdate();}
+
 	    } catch (Exception e) {
 	        throw new Exception("Error while inserting PvChallenge data: " + e.getMessage(), e);
 	    } finally {
-	        // Connection, PreparedStatement 종료
-	        DBUtil.executeClose(null, pstmt, conn);
+	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
-	
-		
 	}
-	
 	
 	
 	//인증 사진 insert

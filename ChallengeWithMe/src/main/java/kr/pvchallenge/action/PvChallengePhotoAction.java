@@ -24,7 +24,7 @@ public class PvChallengePhotoAction implements Action {
 	        // 사용자 번호를 이용하여 도전 정보 조회
 	        PvChallengeDAO dao = PvChallengeDAO.getInstance();
 	        PvChallengeVO challengeInfo = dao.getPvInfoAll(us_num);
-	
+	/*
 	        // 도전 정보가 없으면 오류 페이지로 리다이렉트
 	        if (challengeInfo == null) {
 	            request.setAttribute("errorMessage", "도전 정보가 없습니다.");
@@ -52,20 +52,25 @@ public class PvChallengePhotoAction implements Action {
 	            return "pvchallenge/errorPage.jsp";  // 오류 페이지로 이동
 	        }
 	
+	*/
 	       // long ch_num = Long.parseLong(chNumParam);  // 파라미터에서 도전 번호 추출
+	        
+	        
 	
 	        // PvChallengeVO 객체 생성 및 필드 설정
 	        PvChallengeVO pvchall = new PvChallengeVO();
-	        pvchall.setAh_num(challengeInfo.getAh_num());  // 동적으로 설정된 ah_num 값 사용
-	        pvchall.setAh_img(challengeInfo.getAh_img());  // challengeInfo에서 이미지 값 설정
+	       
+	        pvchall.setAh_img("11");  // challengeInfo에서 이미지 값 설정
 	        pvchall.setCh_proved1(0);  // 처음에는 증명값 0
 	        pvchall.setUs_num(us_num);  // 사용자 번호
-	        pvchall.setCh_num(13);  // 도전 번호
+	        pvchall.setCh_num(14);  // 도전 번호
 	        pvchall.setCh_proved2(0);  // 기본값 0
 	        pvchall.setCh_proved3(0);  // 기본값 0
 	        pvchall.setCh_proved4(0);  // 기본값 0
 	        pvchall.setCh_proved5(0);  // 기본값 0
-	
+	        
+	        
+	        
 	        // PvChallengeDAO에 도전 정보 삽입
 	        dao.insertPv(pvchall);
 	        return "pvchallenge/pvChallengePhoto.jsp";
