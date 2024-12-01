@@ -37,11 +37,31 @@
 						<div class="card-left">
 							<div class="left1">
 								<div class="left1Img align-center">
-									<img src="../images/Level5.png">
+									<c:choose>
+										<c:when test="${list.cate_num == 1}">
+											<img src="../images/Level1.png">
+										</c:when>
+										<c:when test="${list.cate_num == 2}">
+											<img src="../images/Level2.png">
+										</c:when>
+										<c:when test="${list.cate_num == 3}">
+											<img src="../images/Level3.png">
+										</c:when>
+										<c:when test="${list.cate_num == 4}">
+											<img src="../images/Level4.png">
+										</c:when>
+										<c:when test="${list.cate_num == 5}">
+											<img src="../images/Level5.png">
+										</c:when>
+										<c:otherwise>
+											<img src="../images/Level1.png">
+										</c:otherwise>
+									</c:choose>
+									
 								</div>
 								<div>
 									<p>나의 등급</p>
-									<p>Lv3</p>
+									<p>Lv${rank}</p>
 								</div>
 							</div>
 							<div class="left2">
@@ -71,15 +91,15 @@
 									<img src="../images/face.png">
 									<div class="right-user">
 										<p>환영합니다</p>
-										<p>${us_nickname}님</p>
+										<p>${xuser.nickname}님</p>
 									</div>
 								</div>
 							</div>
 							<div class="right2">
 								<ul>
-									<li><label>참여중인 챌린지</label>3개</li>
-									<li><label>완료한 챌린지</label>6개</li>
-									<li><label>랭크 점수</label>897점</li>
+									<li><label>참여중인 챌린지</label>${ score_vo.join_num - score_vo.complete_num - score_vo.quit_amount}개</li>
+									<li><label>완료한 챌린지</label>${score_vo.complete_num}개</li>
+									<li><label>랭크 점수</label>${score_vo.us_score}점</li>
 								</ul>
 							</div>
 							<div class="right3">

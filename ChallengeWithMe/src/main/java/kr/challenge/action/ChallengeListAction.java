@@ -141,6 +141,8 @@ public class ChallengeListAction implements Action{
 	    	request.setAttribute("pv_chall", pv_chall);
 	    }
 	    
+	    
+	    
 	    request.setAttribute("visi_checked", visiChecked);
 	    request.setAttribute("status", status);
 	    request.setAttribute("category", category);

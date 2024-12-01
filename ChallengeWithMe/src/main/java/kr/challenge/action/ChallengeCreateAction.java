@@ -3,11 +3,11 @@ package kr.challenge.action;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.servlet.http.Part;
 
 import kr.challenge.dao.ChallengeDAO;
 import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
+import kr.score.action.RefreshUserScore;
 import kr.util.FileUtil;
 
 public class ChallengeCreateAction implements Action{
@@ -102,6 +102,9 @@ public class ChallengeCreateAction implements Action{
 			vo.setAuth5_game(game);
 		}
 		dao.createChallenge(vo);
+		
+		RefreshUserScore us_score = new RefreshUserScore();
+		us_score.refresh(us_num);
 		
 		
 		request.setAttribute("notice_msg", "챌린지를 성공적으로 개설하였습니다");

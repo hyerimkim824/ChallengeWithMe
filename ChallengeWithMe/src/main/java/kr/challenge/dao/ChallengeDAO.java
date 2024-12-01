@@ -652,6 +652,71 @@ public class ChallengeDAO {
 		}
 		return admin;
 	}
+	
+	
+	public List<ChallengeVO> getAllChallenge()throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		List<ChallengeVO> list = null;
+		ChallengeVO vo = null;
+		
+		try {
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT * FROM chall";
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ChallengeVO>();
+			
+			while(rs.next()) {
+				vo = new ChallengeVO();
+				vo.setCh_num(rs.getLong("ch_num"));
+				vo.setCh_start(rs.getString("ch_start"));
+				vo.setCh_end(rs.getString("ch_end"));
+				vo.setCh_status(rs.getString("ch_status"));
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return list;
+	}
+	
+	public void updateStatus()throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		
+		
+		try {
+			List<ChallengeVO> list = getAllChallenge();
+			
+			conn = DBUtil.getConnection();
+			sql = "UPDATE chall SET ch_status=? WHERE ch_num=?";
+			pstmt = conn.prepareStatement(sql);
+			
+			for(ChallengeVO vo : list) {	
+				pstmt.setString(1, vo.getCh_status());
+				pstmt.setLong(2, vo.getCh_num());
+				pstmt.executeUpdate();
+			}
+			
+			
+			pstmt.executeUpdate();
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		
+	}
 
 
 

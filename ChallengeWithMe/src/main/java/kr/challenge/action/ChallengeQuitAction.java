@@ -6,6 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.participant.dao.ParticipantDAO;
+import kr.score.action.RefreshUserScore;
 
 public class ChallengeQuitAction implements Action{
 
@@ -27,6 +28,9 @@ public class ChallengeQuitAction implements Action{
 		if(isJoined) {
 			part_dao.quitChallenge(us_num, ch_num);
 		}
+		
+		RefreshUserScore us_score = new RefreshUserScore();
+		us_score.refresh(us_num);
 		
 		request.setAttribute("notice_msg", "탈퇴가 완료되었습니다.");
 		request.setAttribute("notice_url", "redirect:/challenge/challengeList.do");

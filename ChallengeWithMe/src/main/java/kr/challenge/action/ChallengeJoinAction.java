@@ -15,6 +15,7 @@ import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.participant.dao.ParticipantDAO;
 import kr.participant.vo.ParticipantVO;
+import kr.score.action.RefreshUserScore;
 import kr.trans.dao.TransDAO;
 import kr.xuser.dao.XuserDAO;
 import kr.xuser.vo.XuserVO;
@@ -25,8 +26,8 @@ public class ChallengeJoinAction implements Action{
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		
-		 HttpSession session = request.getSession(); Long us_num =
-		 (Long)session.getAttribute("us_num");
+		 HttpSession session = request.getSession(); 
+		 Long us_num = (Long)session.getAttribute("us_num");
 		 
 		 if(us_num == null) { return "redirect:/xuser/registerXuserForm.do"; }
 		 
@@ -37,15 +38,7 @@ public class ChallengeJoinAction implements Action{
 		 ChallengeDAO c_dao = ChallengeDAO.getInstance(); 
 		 ChallengeVO c_vo = c_dao.getChallengeDetail(ch_num);
 		 
-		
-		 
-		 
-		 
-		 
-		 
 		 //거래 정보
-		 
-		 
 		 AdminWalletDAO adminW_dao = AdminWalletDAO.getInstance();
 		 AdminWalletVO adminW_vo = adminW_dao.getAdminWallet();
 		 
@@ -96,10 +89,17 @@ public class ChallengeJoinAction implements Action{
 		 p_vo.setP_stat(c_vo.getCh_status());
 		 p_vo.setP_date(String.valueOf(today));
 		 
+		 
+		 
+		 
 		 //참가 데이터베이스 참가기록 추가
 		 p_dao.joinChallenge(p_vo, c_vo.getCh_status());
 		 //챌린지 데이터베이스 참가자 수 + 1
 		 c_dao.updatePeopleNum(c_vo, true);
+		 
+		 RefreshUserScore us_score = new RefreshUserScore();
+		 us_score.refresh(us_num);
+		 
 		
 		 request.setAttribute("notice_msg", "챌린지 참가 완료");
 		 request.setAttribute("notice_url", "../challenge/challengeDetail.do?ch_num="+ch_num);

@@ -37,7 +37,7 @@ public class ChallengeVO {
 	
 	private boolean heart_status;
 	
-	
+	private long totalDate;
 	private long dateDifference;
 	
 	public String getCate_name() {
@@ -218,6 +218,7 @@ public class ChallengeVO {
 	        long totalDays = ChronoUnit.DAYS.between(startDate, endDate);
 	        
 	        this.dateDifference = leftDays;  // 날짜 차이 저장
+	        this.totalDate = totalDays;
 	        
 	        if(leftDays >= 0 && leftDays > totalDays) {
 	        	this.ch_status = "before";
@@ -230,6 +231,11 @@ public class ChallengeVO {
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } 
+	}
+	
+	public long getTotalDate() {
+		calDate_diff();
+		return totalDate;
 	}
 	
 	public long getDateDifference() {
