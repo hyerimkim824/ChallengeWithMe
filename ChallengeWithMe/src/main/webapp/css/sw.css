@@ -740,6 +740,7 @@
 	display:flex;
 	align-items:center;
 	justify-content:center;
+	overflow:hidden;
 }
 
 .chc-image .image{
@@ -751,6 +752,7 @@
 	justify-content:center;
 	align-items:center;
 	margin-top:2%;
+	overflow:hidden;
 	
 }
 
@@ -759,6 +761,7 @@
 	height:100%;
 	border:2px solid black;
 	display:none;
+	overflow:hidden;
 } 
 	
 .chc-imageBtn{

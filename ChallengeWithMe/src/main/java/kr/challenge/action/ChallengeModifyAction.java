@@ -5,7 +5,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import kr.challenge.dao.ChallengeDAO;
+import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
+import kr.util.FileUtil;
 
 public class ChallengeModifyAction implements Action{
 
@@ -26,9 +28,15 @@ public class ChallengeModifyAction implements Action{
 		String ch_desc = request.getParameter("ch_desc");
 		String auth_desc = request.getParameter("auth_desc");
 		
-		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
-		dao.updateChallenge(ch_desc, auth_desc, ch_num);
+		ChallengeDAO dao = ChallengeDAO.getInstance();
+		ChallengeVO vo = dao.getChallengeDetail(ch_num);
+		
+		vo.setCh_desc(ch_desc);
+		vo.setAuth_desc(auth_desc);
+		vo.setCh_img(FileUtil.uploadFile(request, "img"));
+		
+		dao.updateChallenge(vo);
 		
 		request.setAttribute("notice_msg", "수정이 완료되었습니다");
 		request.setAttribute("notice_url", "../challenge/challengeDetail.do?ch_num="+ch_num);

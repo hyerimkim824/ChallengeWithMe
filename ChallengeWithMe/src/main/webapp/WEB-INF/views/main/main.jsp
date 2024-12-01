@@ -36,7 +36,9 @@
 					<div class="user-card shadow-effect">
 						<div class="card-left">
 							<div class="left1">
-								<img src="../images/face.png">
+								<div class="left1Img align-center">
+									<img src="../images/Level5.png">
+								</div>
 								<div>
 									<p>나의 등급</p>
 									<p>Lv3</p>
@@ -171,7 +173,7 @@
 				<div class="next-btn align-center">
 					<img src="../images/right.png" width="20vw" height="30vw">
 				</div>
-				<!-- -----------------------------슬라이더 끝----------------------------------- -->
+			<!-- -----------------------------슬라이더 끝----------------------------------- -->
 			</div>
 		</div>
 		<div class="m-content4-container">
@@ -203,8 +205,20 @@
 											<img class="ch-bgImg" src="../images/self-develop.jpg"
 												style="max-width: 100%; max-height: 100%;" />
 										</c:when>
+										<c:when test="${list.cate_num == 4}">
+											<img class="ch-bgImg" src="../images/wakeup.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 5}">
+											<img class="ch-bgImg" src="../images/economy.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 6}">
+											<img class="ch-bgImg" src="../images/stop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
 										<c:otherwise>
-											<img class="ch-bgImg" src="../images/face.jpg"
+											<img class="ch-bgImg" src="../images/face.png"
 												style="max-width: 100%; max-height: 100%;" />
 										</c:otherwise>
 									</c:choose>

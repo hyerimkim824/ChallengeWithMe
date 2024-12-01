@@ -88,7 +88,12 @@
 				</c:if>
 			</div>
 			
-			<a href="${pageContext.request.contextPath}/challenge/challengeList.do"><div class="linkToList align-center">목록으로</div></a>
+			<c:if test="${chall.official == 0}">
+				<a href="${pageContext.request.contextPath}/challenge/challengeList.do"><div class="linkToList align-center">목록으로</div></a>
+			</c:if>
+			<c:if test="${chall.official == 1}">
+				<a href="${pageContext.request.contextPath}/challenge/challengeOfficialList.do"><div class="linkToList align-center">목록으로</div></a>
+			</c:if>
 			<c:if test="${(chall.official == 0 && us_num == chall.us_num) || (chall.official == 1 && admin == 9)}">
 				<a href="${pageContext.request.contextPath}/challenge/challengeModifyForm.do?ch_num=${chall.ch_num}"><div class="modify-btn align-center">챌린지 수정</div></a>
 			</c:if>
@@ -133,7 +138,41 @@
 		<div class="chd-info-container shadow-effect">
 			<div class="chd-five">
 				<div class="img-container">
-					<img class="chd-img" src="../images/food.jpg">
+					<c:if test="${empty chall.ch_img || chall.ch_img == null}">
+						<c:choose>
+							<c:when test="${chall.cate_num == 1}">
+								<img class="ch-bgImg" src="../images/health.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:when test="${chall.cate_num == 2}">
+								<img class="ch-bgImg" src="../images/food.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:when test="${chall.cate_num == 3}">
+								<img class="ch-bgImg" src="../images/self-develop.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:when test="${chall.cate_num == 4}">
+								<img class="ch-bgImg" src="../images/wakeup.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:when test="${chall.cate_num == 5}">
+								<img class="ch-bgImg" src="../images/economy.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:when test="${chall.cate_num == 6}">
+								<img class="ch-bgImg" src="../images/stop.jpg"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:when>
+							<c:otherwise>
+								<img class="ch-bgImg" src="../images/face.png"
+									style="max-width: 100%; max-height: 100%;" />
+							</c:otherwise>
+						</c:choose>
+					</c:if>
+					<c:if test="${!empty chall.ch_img}">
+						<img class="ch-bgImg" style="max-width: 100%; max-height: 100%;" src="../upload/${chall.ch_img}">
+					</c:if>
 				</div>
 				<div class="chc-info">
 					<div class="chc-desc shadow-effect">

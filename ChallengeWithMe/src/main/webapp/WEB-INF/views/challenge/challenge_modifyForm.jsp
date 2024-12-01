@@ -21,7 +21,7 @@
 	
 	<div class="page-main">
 	
-		<form id="ch_modify_form" action="challengeModify.do" method="post">
+		<form id="ch_modify_form" action="challengeModify.do" method="post" enctype="multipart/form-data">
 		<input type="hidden" name="ch_num" value="${chall.ch_num}">
 		<div class="chc-one">
 			<div class="chc-title"><b>챌린지 수정</b></div>
@@ -52,8 +52,17 @@
 		</div>
 		<div class="chd-info-container shadow-effect">
 			<div class="chd-five">
-				<div class="img-container">
-					<img class="chd-img" src="../images/food.jpg">
+				<div class="chc-image">
+					<div class="image">
+						<img id="previewImage" src="" alt="이미지 미리보기" />
+						<button type="button" class="image-reselectBtn">사진 재선택</button>
+						<p class="image-text"><b>이미지 등록</b></p>
+						<div class="chc-imageBtn">
+							<input type="file" name="img" id="fileInput" accept="image/*" style="display:none;" />
+							<button class="imageBtn" id="imageBtn">사진 선택</button>
+						</div>
+						
+					</div>
 				</div>
 				
 				<div class="chc-info">

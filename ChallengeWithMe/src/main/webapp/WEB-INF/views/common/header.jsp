@@ -3,8 +3,10 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
+<script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
+<script src="${pageContext.request.contextPath}/js/header.js"></script>
 <div id="header">	
-	<img src="${pageContext.request.contextPath}/images/logo.png" width="25" height="25" class="nav-logo left">
+	<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" class="nav-logo left"></a>
 	
 	<!-- 유저 계정으로 로그인된 경우 -->
 	<c:if test="${!empty us_num && admin == 0}">
@@ -12,7 +14,7 @@
 			<a href="${pageContext.request.contextPath}/main/main.do">홈</a>
 			<a href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지</a>
 			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
-			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">>마이챌린지</a>
+			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">마이챌린지</a>
 		</div>
 		<div class="nav-btn">
 			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">
@@ -25,6 +27,9 @@
 	<!-- 관리자 계정으로 로그인된 경우 -->
 	<c:if test="${!empty us_num  && admin == 9}">
 		<div class="right">
+			<a href="${pageContext.request.contextPath}/main/main.do">홈</a>
+			<a href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지</a>
+			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
 			<a href="${pageContext.request.contextPath}/member/adminList.do">관리페이지</a>
 			<a>공개챌린지</a>
 		</div>
@@ -39,7 +44,14 @@
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>
-	
+	<div class="myBrief shadow-effect">
+		<div class="brief-box box1">
+			<img src="../images/face.png">
+		</div>
+		<div class="brief-box box2">
+			
+		</div>
+	</div>
 </div>
 <!-- header 끝 -->
 

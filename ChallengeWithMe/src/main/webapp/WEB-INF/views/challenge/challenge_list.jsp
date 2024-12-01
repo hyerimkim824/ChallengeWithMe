@@ -178,8 +178,20 @@
 											<img class="ch-bgImg" src="../images/self-develop.jpg"
 												style="max-width: 100%; max-height: 100%;" />
 										</c:when>
+										<c:when test="${list.cate_num == 4}">
+											<img class="ch-bgImg" src="../images/wakeup.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 5}">
+											<img class="ch-bgImg" src="../images/economy.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 6}">
+											<img class="ch-bgImg" src="../images/stop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
 										<c:otherwise>
-											<img class="ch-bgImg" src="../images/face.jpg"
+											<img class="ch-bgImg" src="../images/face.png"
 												style="max-width: 100%; max-height: 100%;" />
 										</c:otherwise>
 									</c:choose>

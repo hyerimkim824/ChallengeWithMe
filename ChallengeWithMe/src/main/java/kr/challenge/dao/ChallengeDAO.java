@@ -414,19 +414,20 @@ public class ChallengeDAO {
 
 	}
 	
-	public void updateChallenge(String ch_desc, String auth_desc, Long ch_num) throws Exception{
+	public void updateChallenge(ChallengeVO vo) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
 		try {
 
 			conn = DBUtil.getConnection();
-			sql = "UPDATE chall SET ch_desc=?, auth_desc=? WHERE ch_num=?";
+			sql = "UPDATE chall SET ch_desc=?, auth_desc=?, ch_img=? WHERE ch_num=?";
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setString(1, ch_desc);
-			pstmt.setString(2, auth_desc);
-			pstmt.setLong(3, ch_num);
+			pstmt.setString(1, vo.getCh_desc());
+			pstmt.setString(2, vo.getAuth_desc());
+			pstmt.setString(3, vo.getCh_img());
+			pstmt.setLong(4, vo.getCh_num());
 
 			pstmt.executeUpdate();
 
