@@ -262,6 +262,7 @@ public class MyPageDAO {
 		return list;
 	}
 	
+	// 알람 여부 변경
 	public void updateAlarm(long us_num, int us_alarm)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -283,6 +284,7 @@ public class MyPageDAO {
 		}
 	}
 	
+	// 좋아요 챌린지
 	public List<Long> getLikeChallNum(long us_num)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -311,8 +313,58 @@ public class MyPageDAO {
 		return list;
 	}
 	
-	public void updatePref(String pref)throws Exception{
+	// 선호카테고리 변경
+	public void updatePref(String pref, long us_num)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = null;
+		
+		String[] idArray = pref.split(",");
+		
+		try {
+			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
+			sql = "DELETE FROM PREF WHERE us_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			ps.executeUpdate();
+			
+			sql = "INSERT INTO pref (uscat_date, us_num, cate_num) "
+					+ "VALUES(SYSDATE, ?, ?)";
+			ps2 = con.prepareStatement(sql);
+			for(int i = 0; i < idArray.length; i++) {
+				ps2.setLong(1, us_num);
+				ps2.setLong(2, Long.parseLong(idArray[i]));
+				ps2.addBatch();
+			}
+			ps2.executeBatch();
+			con.commit();
+		} catch (Exception e) {
+			con.rollback();
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps2, null);
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 달성률 이미지
+	public String getAchiev(String img, long us_num, int achiev)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = null;
+		String achiev_img = "";
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "";
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps2, con);
+		}
+		return achiev_img;
 	}
 }

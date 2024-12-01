@@ -10,43 +10,48 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 <script type="text/javascript">
 $(document).ready(function() {
-    var selectedIds = [];  // 선택된 li의 id를 담을 배열
-    
-    $('.item').click(function() {
-        var selectedId = $(this).attr('id');  // 클릭된 li의 id
-        if (!selectedIds.includes(selectedId)) {  // 이미 선택된 id가 아닌 경우
-            selectedIds.push(selectedId);  // 배열에 추가
-        }
-        console.log(selectedIds);  // 선택된 id들 출력 (디버깅용)
-    });
-    
-    $('#submitBtn').click(function() {
-        // Ajax로 서버에 selectedIds 배열 전송
-        $.ajax({
-            url: '/submit',  // 요청을 보낼 URL
-            method: 'POST',
-            data: {
-                selectedIds: selectedIds.join(',')  // 배열을 쉼표로 구분해서 전송
-            },
-            success: function(response) {
-                console.log('전송 성공', response);
-            },
-            error: function(xhr, status, error) {
-                console.log('전송 실패', error);
-            }
-        });
-    });
+	var selectedIds = [];  // 선택된 li의 id를 담을 배열
 
-    
-    $('.menu-item').click(function() {
-        // 이미 선택된 항목이 있다면 제거
-        $('.menu-item').removeClass('selected');
-        
-        // 클릭된 항목에 'selected' 클래스 추가
-        $(this).addClass('selected');
-    });
+	$('.item').click(function() {
+	    var selectedId = $(this).attr('id');  // 클릭된 li의 id
+	    
+	    // 'selected' 클래스가 토글되도록
+	    $(this).toggleClass('selected');
+	    
+	    if ($(this).hasClass('selected')) {
+	        // 'selected' 클래스가 추가된 경우 배열에 id 추가
+	        if (!selectedIds.includes(selectedId)) {
+	            selectedIds.push(selectedId);
+	        }
+	    } else {
+	        // 'selected' 클래스가 제거된 경우 배열에서 id 제거
+	        var index = selectedIds.indexOf(selectedId);
+	        if (index !== -1) {
+	            selectedIds.splice(index, 1);  // 배열에서 해당 id 제거
+	        }
+	    }
+
+	    console.log(selectedIds);  // 선택된 id들 출력 (디버깅용)
+	});
+
+	$('#submitBtn').click(function() {
+	    // Ajax로 서버에 selectedIds 배열 전송
+	    $.ajax({
+	        url: '${ pageContext.request.contextPath }/mypage/changePref.do',  // 요청을 보낼 URL
+	        method: 'POST',
+	        data: {
+	            selectedIds: selectedIds.join(',')  // 배열을 쉼표로 구분해서 전송
+	        },
+	        success: function(response) {
+	        	alert('카테고리를 변경했습니다.')
+	        	window.location.href = '${ pageContext.request.contextPath }/mypage/mypage.do'
+	        },
+	        error: function(xhr, status, error) {
+	            console.log('전송 실패', error);
+	        }
+	    });
+	});
 });
-});    
 </script>
 </head>
 <body>

@@ -101,6 +101,7 @@ public class XuserDAO {
 				xuser.setPasswd(rs.getString("us_pw"));
 				xuser.setImg(rs.getString("us_img"));
 				xuser.setEmail(rs.getString("us_email"));
+				xuser.setAdmin(rs.getInt("admin"));
 			}
 		} catch (Exception e) {
 			throw new Exception(e);
