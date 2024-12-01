@@ -6,8 +6,7 @@ public class TransVO {
 	private long trans_num;
 	private Date trans_date;
 	private int trans_bal;
-	private int trans_stat;
-	private String trans_type;
+	private int trans_type;
 	private long ch_num;
 	private long to_num;
 	private long from_num;
@@ -30,16 +29,10 @@ public class TransVO {
 	public void setTrans_bal(int trans_bal) {
 		this.trans_bal = trans_bal;
 	}
-	public int getTrans_stat() {
-		return trans_stat;
-	}
-	public void setTrans_stat(int trans_stat) {
-		this.trans_stat = trans_stat;
-	}
-	public String getTrans_type() {
+	public int getTrans_type() {
 		return trans_type;
 	}
-	public void setTrans_type(String trans_type) {
+	public void setTrans_type(int trans_type) {
 		this.trans_type = trans_type;
 	}
 	public long getCh_num() {

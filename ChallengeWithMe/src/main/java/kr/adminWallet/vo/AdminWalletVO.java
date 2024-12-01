@@ -1,6 +1,6 @@
 package kr.adminWallet.vo;
 
-public class adminWalletVO {
+public class AdminWalletVO {
 	private long adw_num;
 	private int adw_bal;
 	public long getAdw_num() {

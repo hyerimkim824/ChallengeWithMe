@@ -23,6 +23,14 @@ hr{
    	      
 }
 
+.font-before{
+	color:green;
+}
+
+.font-end{
+	color:red;
+}
+
 .shadow-effect{
 	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
@@ -484,12 +492,47 @@ hr{
 	border:none;
 	margin:5% 20%;
 }
-
+/* -------------------공식 챌린지------------------------- */
 .m-content3-container{
-	background:green;
-	height:500px;
+	height:40vw;
 }
 
+.c3-content{
+
+	height:90%;
+	background:purple;
+	position:relative;
+	display:flex;
+	
+}
+
+.prev-btn, .next-btn{
+	width:8%;
+	
+}
+
+.slider-main{
+	width:84%;
+	background:white;
+	position:relative;
+}
+
+
+.slider-img{
+	object-fit: cover;
+	width:100%;
+	height:100%;
+}
+
+.official-item{
+	width:90%;
+	height:100%;
+	background:pink;
+}
+
+
+
+/* -------------------사용자 챌린지------------------------- */
 .m-content4-container{
 	
 }
@@ -505,12 +548,13 @@ hr{
 	margin-top:5%;
 }
 
-.c3-content, .c4-content{
+
+.c4-content{
 	width:100%;
 	margin-top:5%;
 	
 }
-/* -------------------사용자 챌린지------------------------- */
+
 .c4-header{
 	position:relative;
 }

@@ -27,8 +27,11 @@
 				</div>
 				<input type="hidden" name="visi" id="visiState" value="0">
 				<c:if test="${admin == 9}">
-					<div>공식 챌린지</div>
+					<div class="chc-official align-center">
+						<div id="official_text">사용자 챌린지</div>
+					</div>
 				</c:if>
+				<input type="hidden" name="official" id="officialState" value="0">
 			</div>
 			<div class="chc-two">
 				<p>챌린지를 만들어주세요</p>
@@ -135,7 +138,7 @@
 			<div class="chc-six">
 				<div class="auth-info shadow-effect" id="time_auth">
 					<div class="authInfo-title">시간 인증</div>
-					<label>인증 시작시간</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required>
+					<label>인증 시작시간</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력">
 				</div>
 				<div class="auth-info shadow-effect" id="game_auth">
 					<div class="authInfo-title">게임 인증</div>
@@ -162,10 +165,11 @@
 				</div>
 				<div class="extra-info shadow-effect">
 					<ul>
-						<li><label>최소인원</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력" required></li>
-						<li><label>최대인원</label> <input type="number" name="max" class="extra-input" id="max" placeholder="클릭 후 입력" required></li>
-						<li><label>고정 예치금</label> <input type="number" class="extra-input" id="chc_price" name="chc_price" placeholder="클릭 후 입력" required></li>
-						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)" required></li>
+						<li><label>최소인원</label> <input type="number" name="min" class="extra-input min-people" id="min" placeholder="1 ~ 10명 입력" min="1" max="10" required><span class="warning member-warn">최소 인원이 최대인원보다 크지 않게 입력해주세요</span></li>
+						<li><label>최대인원</label> <input type="number" name="max" class="extra-input max-people" id="max" placeholder="1 ~ 999명 입력" min="1" max="999" required></li>
+						<li><label>고정 예치금</label> <input type="number" class="extra-input" id="chc_price" name="chc_price" placeholder="최소 금액 1000원" min="1000" required></li>
+						<li><label>챌린지 기간</label><b> 시작: </b><input type="date" class="input-date" id="chc_start" name="start" placeholder="시작 날짜 (YY-MM-DD)" min="">    <b>종료: </b><input type="date" class="input-date" id="chc_end" name="end" placeholder="종료 날짜 (YY-MM-DD)" required></li>
+						<li class="warning duration-warn">시작 날짜가 종료 날짜보다 빨라야합니다</li>
 						<li id="join_code"><label>참여 코드</label><input style="color:blue" id="join_code_input" name="join_code" value="${join_code}"></li>
 					</ul>
 				</div>
@@ -186,7 +190,7 @@
 
 
 			<div class="chc-end align-center">
-				<input class="submit-btn" type="submit" value="개설하기">
+				<input class="submit-btn background-main" type="submit" value="개설하기">
 			</div>
 		</form>
 		<!-- =====================form 끝 ============================ -->

@@ -9,6 +9,7 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/main.css" type="text/css">
+
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -152,7 +153,26 @@
 		</div>
 		<div class="m-content3-container">
 			<div class="c3-title">공식 챌린지</div>
-			<div class="c3-content"></div>
+			<div class="c3-content">
+			<!-- ----------------------------슬라이더 시작----------------------------------- -->
+				<div class="prev-btn align-center">
+					<img src="../images/left.png" width="20vw" height="30vw">
+				</div>
+				<div class="slider-main align-center">
+					<c:forEach var="list" items="${official_list}">
+						<c:if test="${list.ch_title == ''}">
+							내용 있음
+						</c:if>
+						<c:if test="${list.ch_title != ''}">
+							내용 없음
+						</c:if>
+					</c:forEach>
+				</div>
+				<div class="next-btn align-center">
+					<img src="../images/right.png" width="20vw" height="30vw">
+				</div>
+				<!-- -----------------------------슬라이더 끝----------------------------------- -->
+			</div>
 		</div>
 		<div class="m-content4-container">
 			<div class="c4-header">
@@ -195,7 +215,17 @@
 										style="max-width: 100%; max-height: 100%;">
 								</c:if>
 								<p class="ch-title">${list.ch_title}</p>
-								<div class="ch-dueDate">D-${list.dateDifference}</div>
+								<div class="ch-dueDate align-center">
+									<c:if test="${list.dateDifference > 0 && list.ch_status != 'finished'}">
+										<div class="font-before">D-${list.dateDifference}</div>
+									</c:if>
+									<c:if test="${list.dateDifference <= 0  && list.ch_status != 'finished'}">
+										D+${list.dateDifference * -1}
+									</c:if>
+									<c:if test="${list.ch_status == 'finished'}">
+										<div class="font-end">OVER</div>
+									</c:if>
+								</div>
 							</div>
 							<div class="ch-info">
 								<div class="ch-people">

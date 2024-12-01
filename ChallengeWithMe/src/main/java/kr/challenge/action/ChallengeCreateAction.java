@@ -50,8 +50,8 @@ public class ChallengeCreateAction implements Action{
 		int person = 0;
 		int visi = Integer.parseInt(request.getParameter("visi"));
 		int trans_bal = Integer.parseInt(request.getParameter("chc_price"));
-		int official = 0; 
-		String ch_status = "before";
+		int official = Integer.parseInt(request.getParameter("official")); 
+
 		Long user_num =  us_num;
 		int cate_num =  Integer.parseInt(request.getParameter("cate_num"));
 		int max = Integer.parseInt(request.getParameter("max"));
@@ -69,14 +69,14 @@ public class ChallengeCreateAction implements Action{
 		vo.setCh_desc(desc);
 		vo.setCh_start(start);
 		vo.setCh_end(end);
-		
+		vo.calDate_diff();
 		vo.setCh_img(FileUtil.uploadFile(request, "img"));
 		vo.setCh_min(min);
 		vo.setCh_person(person);
 		vo.setCh_visi(visi);
 		vo.setTrans_bal(trans_bal);
 		vo.setOfficial(official);
-		vo.setCh_status(ch_status);
+		
 		vo.setUs_num(user_num);
 		vo.setCate_num(cate_num);
 		vo.setCh_max(max);

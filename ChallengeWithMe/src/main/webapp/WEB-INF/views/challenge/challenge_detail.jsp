@@ -19,36 +19,63 @@
 	
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="confirm-join">
-		<c:if test="${us_bal >= chall.trans_bal}">
-			<div class="confirm-box shadow-effect align-center">
-				<div class="confirm-txt">예치금 ${chall.trans_bal}원이 차감됩니다. 참가하시겠습니까?</div>
-				<div class="current-bal"><label class="bal-label">현재 잔고</label> ${us_bal}원</div>
-				<div class="left-bal"><label class="bal-label">예치 금액</label> ${chall.trans_bal}원</div>
-				<div class="left-bal"><label class="bal-label">참가 후 잔액</label> ${us_bal - chall.trans_bal}원</div>
-				<div class="confirm-div">
-					<button class="cbtn back-btn" id="cbtn_back">취소</button>
-					<button class="cbtn confirm-btn" id="cbtn_confirm" onclick="location.href='${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}&price=${chall.trans_bal}'">참가</button>
+		<c:if test="${!joined}">
+			<c:if test="${us_bal >= chall.trans_bal}">
+				<div class="confirm-box shadow-effect align-center">
+					<div class="confirm-txt">예치금 ${chall.trans_bal}원이 차감됩니다.
+						참가하시겠습니까?</div>
+					<div class="current-bal">
+						<label class="bal-label">현재 잔고</label> ${us_bal}원
+					</div>
+					<div class="left-bal">
+						<label class="bal-label">예치 금액</label> ${chall.trans_bal}원
+					</div>
+					<div class="left-bal">
+						<label class="bal-label">참가 후 잔액</label><span class="font-before"> ${us_bal - chall.trans_bal}원</span>
+					</div>
+					<div class="confirm-div">
+						<button class="cbtn back-btn" id="cbtn_back">취소</button>
+						<button class="cbtn confirm-btn background-main" id="cbtn_confirm"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}&price=${chall.trans_bal}'">참가</button>
+					</div>
 				</div>
-			</div>
+			</c:if>
+			<c:if test="${us_bal < chall.trans_bal}">
+				<div class="confirm-box shadow-effect align-center">
+					<div class="confirm-txt">잔고 금액이 부족합니다</div>
+					<div class="current-bal">
+						<label class="bal-label">현재 잔고</label><span class="warning-text">
+							${us_bal}원</span>
+					</div>
+					<div class="left-bal">
+						<label class="bal-label">예치금</label> ${chall.trans_bal}원
+					</div>
+					<div class="confirm-div">
+						<button class="cbtn back-btn" id="cbtn_back">돌아가기</button>
+						<button class="cbtn confirm-btn background-main" id="cbtn_confirm">금액 충전</button>
+					</div>
+				</div>
+			</c:if>
 		</c:if>
-		<c:if test="${us_bal < chall.trans_bal}">
+		<c:if test="${joined}">
 			<div class="confirm-box shadow-effect align-center">
-				<div class="confirm-txt">잔고 금액이 부족합니다</div>
-				<div class="current-bal"><label class="bal-label">현재 잔고</label><span class="warning-text"> ${us_bal}원</span></div>
-				<div class="left-bal"><label class="bal-label">예치금</label> ${chall.trans_bal}원</div>
-				<div class="confirm-div">
-					<button class="cbtn back-btn" id="cbtn_back">돌아가기</button>
-					<button class="cbtn confirm-btn" id="cbtn_confirm">금액 충전</button>
+					<div class="confirm-txt">정말 탈퇴하시겠습니까?</div>
+					
+					
+					<div class="confirm-div">
+						<button class="cbtn back-btn" id="cbtn_back">취소</button>
+						<button class="cbtn confirm-btn background-red" id="cbtn_confirm"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeQuit.do?ch_num=${chall.ch_num}'">탈퇴</button>
+					</div>
 				</div>
-			</div>
 		</c:if>
 	</div>
 	<div class="page-main">
 	
 
-		<div class="chc-one">
+		<div class="chd-one">
 			<div class="chc-title"><b>챌린지 정보</b></div>
-			<div class="chc-visi">
+			<div class="chd-visi">
 				<c:if test="${chall.ch_visi == 0}">
 					<img id="visi_img"
 						src="${pageContext.request.contextPath}/images/unlock.svg">
@@ -60,15 +87,22 @@
 					<div id="visi_text">비공개</div>
 				</c:if>
 			</div>
-			<a href="${pageContext.request.contextPath}/challenge/challengeModifyForm.do?ch_num=${chall.ch_num}"><div class="align-center">챌린지 수정</div></a>
+			
 			<a href="${pageContext.request.contextPath}/challenge/challengeList.do"><div class="linkToList align-center">목록으로</div></a>
+			<c:if test="${(chall.official == 0 && us_num == chall.us_num) || (chall.official == 1 && admin == 9)}">
+				<a href="${pageContext.request.contextPath}/challenge/challengeModifyForm.do?ch_num=${chall.ch_num}"><div class="modify-btn align-center">챌린지 수정</div></a>
+			</c:if>
 		</div>
 		<div class="chc-three">
 			<div class="chd-catname align-center">${chall.cate_name}</div>
 			<div class="chd-auth">
-				#
-				<c:out value="${auth_name[chall.ahDetail_num]}" />
+				#<c:out value="${auth_name[chall.ahDetail_num]}" />
 			</div>
+			<c:if test="${chall.ch_visi == 1}">
+			<div class="chd-auth">
+				#${chall.join_code}
+			</div>
+			</c:if>
 		</div>
 
 		<div class="chc-four">
@@ -129,40 +163,43 @@
 				<div class="method-title align-center shadow-effect">인증방법</div>
 				<br>
 				<br>
-				<ul>
-					<li><label>사진 인증</label>
-					<div class="info-detail shadow-effect">사진 올리기(일정 시간 내에 사진을
-							올리고 인증)</div></li>
-					<li><label>시간 인증</label>
-					<div class="info-detail shadow-effect">시간 설정 버튼(온클릭 방식으로 눌러서
-							시작과 끝을 CHECK)</div></li>
-					<li><label>문구 인증</label>
-					<div class="info-detail shadow-effect">문구따라쓰기(기상 미션 중 하나로 명언
-							따라쓰기)</div></li>
-					<li><label>QR코드 인증</label>
-					<div class="info-detail shadow-effect">QR코드 : 일정 시간 내에 QR코드를
-							통해 인증</div></li>
-					<li><label>게임 인증</label>
-					<div class="info-detail shadow-effect">간단한 아침 기상용게임(e.g 구구단
-							문제 등)</div></li>
-					<li><label>가계부 인증</label>
-					<div class="info-detail shadow-effect">간단한 가계부 작성(e.g
-							소비,저축,지출)</div></li>
-					<li><label>줌 인증</label>
-					<div class="info-detail shadow-effect">줌 링크 공유를 통한 챌린지 인증</div></li>
-				</ul>
+				<c:if test="${!joined}">
+					<ul>
+						<li><label>사진 인증</label><div class="info-detail shadow-effect">사진 올리기(일정 시간 내에 사진을
+								올리고 인증)</div></li>
+						<li><label>시간 인증</label>
+							<div class="info-detail shadow-effect">시간 설정 버튼(온클릭 방식으로 눌러서 시작과 끝을 CHECK)</div></li>
+						<li><label>문구 인증</label>
+							<div class="info-detail shadow-effect">문구따라쓰기(기상 미션 중 하나로 명언 따라쓰기)</div></li>
+						<li><label>QR코드 인증</label>
+							<div class="info-detail shadow-effect">QR코드 : 일정 시간 내에 QR코드를 통해 인증</div></li>
+						<li><label>게임 인증</label>
+							<div class="info-detail shadow-effect">간단한 아침 기상용게임(e.g 구구단 문제 등)</div></li>
+						<li><label>가계부 인증</label>
+							<div class="info-detail shadow-effect">간단한 가계부 작성(e.g 소비,저축,지출)</div></li>
+					</ul>
+				</c:if>
+				<c:if test="${joined}">
+					<ul>
+						<li><label>${this_auth_name}</label><div class="info-detail shadow-effect">${this_auth_detail}</div></li>
+					</ul>
+					<div class="align-center auth-inform">오늘의 열정을 인증해주세요</div>
+					<div class="align-center auth-link">
+						<a class="auth-btn align-center shadow-effect" href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do">인증하기</a>
+					</div>
+				</c:if>
 			</div>
 		</div>
 
 		
 		<c:if test="${!joined}">
 			<div class="chc-end align-center">
-				<a class="submit-btn align-center" id="chd_submit" type="button" <%-- href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}" --%>>챌린지 참가</a>
+				<a class="submit-btn background-main align-center" id="chd_submit" type="button">챌린지 참가</a>
 			</div>
 		</c:if>
 		<c:if test="${joined}">
 			<div class="chc-end align-center">
-				<a class="submit-btn align-center" type="button" href="${pageContext.request.contextPath}/challenge/challengeJoin.do?ch_num=${chall.ch_num}">챌린지 포기</a>
+				<a class="submit-btn background-red align-center" id="chd_submit" type="button">챌린지 포기</a>
 			</div>
 		</c:if>
 	

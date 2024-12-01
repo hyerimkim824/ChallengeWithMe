@@ -112,7 +112,7 @@
 
 		
 		<div class="chc-end align-center">
-			<input class="submit-btn align-center" type="submit" value="챌린지 수정">
+			<input class="submit-btn align-center background-main" type="submit" value="챌린지 수정">
 		</div>
 		
 		</form>

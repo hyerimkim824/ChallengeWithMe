@@ -19,6 +19,7 @@ public class ChallengeCreateFormAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		
+		
 		if(us_num == null) {
 			return "redirect:/xuser/loginForm.do";
 		}
@@ -35,9 +36,10 @@ public class ChallengeCreateFormAction implements Action{
 		
 		ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 		String join_code = chall_dao.createRandomCode();
+		int admin = chall_dao.checkAdmin(us_num);
 		
 		request.setAttribute("join_code", join_code);
-
+		request.setAttribute("admin", admin);
 		return "challenge/challenge_createForm.jsp";
 		
 		

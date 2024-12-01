@@ -51,8 +51,10 @@
 			<input type="submit" id="submit_form" class="submit-form" value="검색">
 		</form>
 		<div class="space50-div"></div>
+		
 		<div class="dropdown-container">
-			<div class="dropdown dd1">
+			<div class="filter-btn"><img src="../images/filter.svg" ></div>
+			<div class="dropdown dd1 hidden">
 				<button class="btn dropdown-toggle" type="button" id="list_cat"
 					style="background-color: #FFE066" data-bs-toggle="dropdown"
 					aria-expanded="true">
@@ -60,35 +62,35 @@
 					${cat_name}
 				</c:if>
 					<c:if test="${empty cat_name}">
-					전체
+					카테고리
 				</c:if>
 				</button>
 
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
 					<li><a class="dropdown-item list-dd" id="cat_all"
-						data-category="0" href="challengeList.do?">전체</a></li>
+						data-category="0" href="challengeList.do?">전체 챌린지</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_health"
 						data-category="1"
-						href="challengeList.do?category=1&visi=${visi_check}">건강</a></li>
+						href="challengeList.do?category=1&visi=${visi_check}&status=${status}">건강</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_food"
 						data-category="2"
-						href="challengeList.do?category=2&visi=${visi_check}">식습관</a></li>
+						href="challengeList.do?category=2&visi=${visi_check}&status=${status}">식습관</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-category="3"
-						href="challengeList.do?category=3&visi=${visi_check}">자기계발</a></li>
+						href="challengeList.do?category=3&visi=${visi_check}&status=${status}">자기계발</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-category="4"
-						href="challengeList.do?category=4&visi=${visi_check}">기상</a></li>
+						href="challengeList.do?category=4&visi=${visi_check}&status=${status}">기상</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-category="5"
-						href="challengeList.do?category=5&visi=${visi_check}">경제</a></li>
+						href="challengeList.do?category=5&visi=${visi_check}&status=${status}">경제</a></li>
 					<li><a class="dropdown-item list-dd" id="cat_develop"
 						data-category="6"
-						href="challengeList.do?category=6&visi=${visi_check}">금연/금주</a></li>
+						href="challengeList.do?category=6&visi=${visi_check}&status=${status}">금연/금주</a></li>
 				</ul>
 			</div>
 
-			<div class="dropdown dd2">
+			<div class="dropdown dd2 hidden">
 				<button class="btn dropdown-toggle" type="button" id="list_visi"
 					style="background-color: #FFE066" data-bs-toggle="dropdown"
 					aria-expanded="true">
@@ -102,18 +104,45 @@
 
 				<ul class="dropdown-menu" style="background-color: #FFFAE5">
 					<li><a class="dropdown-item" id="chall_visi"
-						href="challengeList.do?visi=0&category=${category}">공개</a></li>
+						href="challengeList.do?visi=0&category=${category}&status=${status}">공개</a></li>
 					<li><a class="dropdown-item" id="chall_unvisi"
-						href="challengeList.do?visi=1&category=${category}">비공개</a></li>
+						href="challengeList.do?visi=1&category=${category}&status=${status}">비공개</a></li>
 				</ul>
 			</div>
+			 
+			<div class="dropdown dd3 hidden">
+				<button class="btn dropdown-toggle" type="button" id="list_visi"
+					style="background-color: #FFE066" data-bs-toggle="dropdown"
+					aria-expanded="true">
+					<c:if test="${status == 'before'}">
+						시작 전
+					</c:if>
+					<c:if test="${status == 'ongoing'}">
+						진행 중
+					</c:if>
+					<c:if test="${status == 'finished'}">
+						완료
+					</c:if>
+					<c:if test="${status != 'before' && status != 'ongoing' && status != 'finished'}">
+						상태
+					</c:if>
+				</button>
+
+				<ul class="dropdown-menu" style="background-color: #FFFAE5">
+					<li><a class="dropdown-item" id="chall_before"
+						href="challengeList.do?status=before&category=${category}&visi=${visi}">시작 전</a></li>
+					<li><a class="dropdown-item" id="chall_ongoing"
+						href="challengeList.do?status=ongoing&category=${category}&visi=${visi}">진행 중</a></li>
+					<li><a class="dropdown-item" id="chall_done"
+						href="challengeList.do?status=finished&category=${category}&visi=${visi}">완료</a></li>
+				</ul>
+			</div>
+			
 		</div>
 		<div class="space100-div"></div>
 		<div class="ch-container">
 			<c:if test="${count > 0 && visi_checked == 0}">
 				<c:forEach var="list" items="${chall_list}">
-
-
 					<div class="ch-item">
 
 						<div class="item-header">
@@ -161,7 +190,18 @@
 										style="max-width: 100%; max-height: 100%;">
 								</c:if>
 								<p class="ch-title">${list.ch_title}</p>
-								<div class="ch-dueDate">D-${list.dateDifference}</div>
+								
+								<div class="ch-dueDate align-center">
+									<c:if test="${list.dateDifference > 0 && list.ch_status != 'finished'}">
+										<div class="font-before">D-${list.dateDifference}</div>
+									</c:if>
+									<c:if test="${list.dateDifference <= 0  && list.ch_status != 'finished'}">
+										D+${list.dateDifference * -1}
+									</c:if>
+									<c:if test="${list.ch_status == 'finished'}">
+										<div class="font-end">OVER</div>
+									</c:if>
+								</div>
 							</div>
 							<div class="ch-info">
 								<div class="ch-people">
@@ -258,7 +298,17 @@
 														style="max-width: 100%; max-height: 100%;">
 												</c:if>
 												<p class="ch-title">${pv_chall.ch_title}</p>
-												<div class="ch-dueDate">D-${pv_chall.dateDifference}</div>
+												<div class="ch-dueDate align-center">
+													<c:if test="${pv_chall.dateDifference > 0 && pv_chall.ch_status != 'finished'}">
+														<div class="font-before">D-${list.dateDifference}</div>
+													</c:if>
+													<c:if test="${pv_chall.dateDifference <= 0  && pv_chall.ch_status != 'finished'}">
+														D+${list.dateDifference * -1}
+													</c:if>
+													<c:if test="${pv_chall.ch_status == 'finished'}">
+														<div class="font-end">OVER</div>
+													</c:if>
+												</div>
 											</div>
 											<div class="ch-info">
 												<div class="ch-people">

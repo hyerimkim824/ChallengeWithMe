@@ -30,7 +30,10 @@ public class ChallengeModifyAction implements Action{
 		
 		dao.updateChallenge(ch_desc, auth_desc, ch_num);
 		
-		return "challenge/challenge_list.jsp";
+		request.setAttribute("notice_msg", "수정이 완료되었습니다");
+		request.setAttribute("notice_url", "../challenge/challengeDetail.do?ch_num="+ch_num);
+		 
+		return "../views/common/alert_view.jsp";
 	}
 
 }

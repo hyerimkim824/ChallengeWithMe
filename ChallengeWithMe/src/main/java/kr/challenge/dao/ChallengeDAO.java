@@ -20,7 +20,7 @@ public class ChallengeDAO {
 	}
 	private ChallengeDAO() {}
 
-	public int getListCount(String keyfield, String keyword, String cate_num, int official, int visi) throws Exception {
+	public int getListCount(String keyfield, String keyword, String cate_num, int official, int visi, String status) throws Exception {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
@@ -55,6 +55,10 @@ public class ChallengeDAO {
 			if (cate_num != null && !"0".equals(cate_num)) {
 			    sub_sql += " AND cat.cate_num=?";
 			}
+			
+			if((status != null && !"".equals(status))) {
+				sub_sql += " AND c.ch_status=?";
+			}
 
 			// 최종 SQL 생성
 			sql = "SELECT COUNT(*) FROM chall c "
@@ -76,6 +80,9 @@ public class ChallengeDAO {
 			if (cate_num != null) {
 				pstmt.setInt(cnt++, Integer.parseInt(cate_num));  // cate_num 바인딩
 			}
+			if (status != null) {
+				pstmt.setString(cnt++, status); 
+			}
 
 			// SQL 실행
 			rs = pstmt.executeQuery();
@@ -92,7 +99,7 @@ public class ChallengeDAO {
 	}
 
 	//챌린지 목록
-	public List<ChallengeVO> getList(int start, int end, String keyfield, String keyword, String cat_num, int official, int visi) throws Exception{
+	public List<ChallengeVO> getList(int start, int end, String keyfield, String keyword, String cat_num, int official, int visi, String status) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -115,6 +122,10 @@ public class ChallengeDAO {
 			if (cat_num != null && !"0".equals(cat_num)) {
 			    sub_sql += " AND cate.cate_num=?";
 			}
+			
+			if((status != null && !"".equals(status))) {
+				sub_sql += " AND chall.ch_status=?";
+			}
 
 			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, us.us_nickname, rownum AS rnum"
 			        + " FROM chall JOIN cate ON chall.cate_num = cate.cate_num JOIN user_detail us ON chall.us_num = us.us_num WHERE chall.official=? AND ch_visi=?" + sub_sql
@@ -133,6 +144,9 @@ public class ChallengeDAO {
 			}
 			if (cat_num != null) {
 				pstmt.setInt(cnt++, Integer.parseInt(cat_num));  
+			}
+			if (status != null) {
+				pstmt.setString(cnt++, status); 
 			}
 			pstmt.setInt(cnt++, start);
 			pstmt.setInt(cnt++, end);
@@ -319,6 +333,10 @@ public class ChallengeDAO {
 
 				vo.setUs_nickname(rs.getString("us_nickname"));
 				vo.setUs_img(rs.getString("us_img"));
+				
+				if(rs.getString("join_code") != null) {
+					vo.setJoin_code(rs.getString("join_code"));
+				}
 
 				vo.calDate_diff();
 			}
@@ -417,7 +435,7 @@ public class ChallengeDAO {
 		}
 	}
 	
-	public List<ChallengeVO> showPopularChallenge() throws Exception{
+	public List<ChallengeVO> showPopularChallenge(int official) throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = null;
@@ -425,8 +443,10 @@ public class ChallengeDAO {
 		List<ChallengeVO> list = null;
 		try {
 			conn= DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, rownum AS rnum FROM chall JOIN cate ON chall.cate_num=cate.cate_num WHERE chall.official=0 ORDER BY ch_view DESC) WHERE rnum >= 1 AND rnum <= 10";
+			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, rownum AS rnum FROM chall JOIN cate ON chall.cate_num=cate.cate_num WHERE chall.official=? AND chall.ch_status!='finished' ORDER BY ch_view DESC) WHERE rnum >= 1 AND rnum <= 10";
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, official);
+			
 			rs = pstmt.executeQuery();
 			
 			list = new ArrayList<ChallengeVO>();
@@ -570,6 +590,64 @@ public class ChallengeDAO {
 		}
 
 		return vo;
+	}
+	
+	public void updatePeopleNum(ChallengeVO vo, boolean isPlus) throws Exception {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		try {
+
+			int curr_person = vo.getCh_person();
+			long ch_num = vo.getCh_num();
+
+			conn = DBUtil.getConnection();
+			sql = "UPDATE chall SET ch_person=? WHERE chall.ch_num=?";
+			pstmt = conn.prepareStatement(sql);
+
+			if(isPlus) {
+				pstmt.setInt(1, curr_person+1);
+			}else {
+				if(curr_person == 0) {
+					pstmt.setInt(1, 0);
+				}else {
+					pstmt.setInt(1, curr_person-1);
+				}
+			}
+			pstmt.setLong(2, ch_num);
+
+			pstmt.executeUpdate();
+
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+	}
+	
+	//관리자 정보 가져오는 메서드 구현 되기 전 사용
+	public int checkAdmin(long us_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		int admin = 0;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT admin FROM xuser WHERE us_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, us_num);
+			
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				admin = rs.getInt("admin");
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally{
+			DBUtil.executeClose(rs, pstmt, conn);
+		}
+		return admin;
 	}
 
 

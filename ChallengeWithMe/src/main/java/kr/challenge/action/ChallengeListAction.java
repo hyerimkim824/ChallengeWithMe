@@ -31,6 +31,7 @@ public class ChallengeListAction implements Action{
 	        return "redirect:/xuser/registerXuserForm.do";
 	    }
 	    String visi = request.getParameter("visi");
+	    
 	    Integer visiChecked = null;
 	    if(visi == null || visi == "") {
 	    	visiChecked = 0;
@@ -38,7 +39,16 @@ public class ChallengeListAction implements Action{
 	    	visiChecked = Integer.parseInt(visi);
 	    }
 	    
+	    String status = request.getParameter("status");
+	    if(status == null || status == "") {
+	    	status = null;
+	    }
+	    
+	    
 	    String category = request.getParameter("category");
+	    if(category == null || category == "") {
+	    	category = null;
+	    }
 	    String pageNum = request.getParameter("pageNum");
 
 	    if (pageNum == null) pageNum = "1";
@@ -46,15 +56,34 @@ public class ChallengeListAction implements Action{
 	    String keyfield = request.getParameter("keyfield");
 	    String keyword = request.getParameter("keyword");
 
-	    System.out.println("1. category: " + category);
-	    System.out.println("2. keyfield: " + keyfield);
-	    System.out.println("3. keyword: " + keyword);
+	    System.out.println("==============================================1. category: " + category);
 
 	    ChallengeDAO chall_dao = ChallengeDAO.getInstance();
 	    List<ChallengeVO> chall_list = null;
 
-	    int count = category == null || category.isEmpty() ? chall_dao.getListCount(keyfield, keyword, null, 0, visiChecked) : chall_dao.getListCount(keyfield, keyword, category, 0, visiChecked);
-
+	    int count = 0;
+	    
+	    if (category != null && status != null) {
+	        count = chall_dao.getListCount(keyfield, keyword, category, 0, visiChecked, status);
+	        System.out.println("==============================================1");
+	    }
+	    // 카테고리만 null인 경우
+	    else if (category == null && status != null) {
+	        count = chall_dao.getListCount(keyfield, keyword, null, 0, visiChecked, status);
+	        System.out.println("==============================================2");
+	        System.out.println(status);
+	    }
+	    // 챌린지 상태만 null인 경우
+	    else if (category != null && !category.isEmpty() && status == null) {
+	        count = chall_dao.getListCount(keyfield, keyword, category, 0, visiChecked, null);
+	        System.out.println("==============================================3");
+	    }
+	    // 둘 다 null인 경우
+	    else {
+	        count = chall_dao.getListCount(keyfield, keyword, null, 0, visiChecked, null);
+	        System.out.println("==============================================4");
+	    }
+	    
 	    PagingUtil page = new PagingUtil(keyfield, keyword, Integer.parseInt(pageNum), count, 15, 10, "challengeList.do");
 
 	    ChallengeLikeDAO like_dao = ChallengeLikeDAO.getInstance();
@@ -75,8 +104,25 @@ public class ChallengeListAction implements Action{
 	        }
 
 	        // 전체 카테고리 또는 특정 카테고리 필터에 따른 목록 불러오기
-	        chall_list = category == null ? chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0, visiChecked)
-	                                      : chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0, visiChecked);
+	        chall_list = new ArrayList<>(); 
+	        
+	        //카테고리와 챌린지 상태 모두 null이 아닌 경우
+		    if(category != null && (status != null && !status.isEmpty())) {
+		    	chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0, visiChecked, status);
+		    }
+		    //카테고리만 null인 경우
+		    else if(category == null && (status != null && !status.isEmpty())) {
+		    	chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0, visiChecked, status);
+		    }
+		    //챌린지 상태만 null인 경우
+		    else if(category != null && !category.isEmpty() && (status == null || status.isEmpty())) {
+		    	chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, category, 0, visiChecked, null);
+		    }
+		    //둘다 null인 경우
+		    else {
+		    	chall_list = chall_dao.getList(page.getStartRow(), page.getEndRow(), keyfield, keyword, null, 0, visiChecked, null);
+		    }
+	    
 	    }else {
 	        chall_list = new ArrayList<>(); 
 	    }
@@ -96,6 +142,7 @@ public class ChallengeListAction implements Action{
 	    }
 	    
 	    request.setAttribute("visi_checked", visiChecked);
+	    request.setAttribute("status", status);
 	    request.setAttribute("category", category);
 	    request.setAttribute("count", count);
 	    request.setAttribute("chall_list", chall_list);

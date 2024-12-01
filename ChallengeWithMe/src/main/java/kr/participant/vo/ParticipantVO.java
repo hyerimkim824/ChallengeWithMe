@@ -1,5 +1,6 @@
 package kr.participant.vo;
 
+
 public class ParticipantVO {
 	private long us_num;
 	private long ch_num;
@@ -37,4 +38,5 @@ public class ParticipantVO {
 	public void setEnd_date(String end_date) {
 		this.end_date = end_date;
 	}
+	
 }

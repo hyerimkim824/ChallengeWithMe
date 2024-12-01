@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import kr.challenge.dao.ChallengeDAO;
 import kr.challenge.vo.ChallengeVO;
 import kr.controller.Action;
+import kr.participant.dao.ParticipantDAO;
 
 public class MainAction implements Action{
 
@@ -29,10 +30,12 @@ public class MainAction implements Action{
       
       ChallengeDAO chall_dao = ChallengeDAO.getInstance();
       
-      List<ChallengeVO> chall_list = chall_dao.showPopularChallenge();
+      
+      List<ChallengeVO> chall_list = chall_dao.showPopularChallenge(0);
+      List<ChallengeVO> official_list = chall_dao.showPopularChallenge(1);
       
       request.setAttribute("chall_list", chall_list);
-      
+      request.setAttribute("official_list", official_list);
       
       //JSP 경로 반환
       return "main/main.jsp";

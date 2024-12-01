@@ -1,6 +1,9 @@
 package kr.challenge.vo;
 
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
 import java.util.Date;
 
 public class ChallengeVO {
@@ -194,19 +197,23 @@ public class ChallengeVO {
 	
 	public void calDate_diff() {
 		try {
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+	        LocalDate today = LocalDate.now();
+	        LocalDate endDate = LocalDate.parse(this.ch_end, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+	        LocalDate startDate = LocalDate.parse(this.ch_start, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
 	        
-	        // 날짜 문자열을 Date 객체로 변환
-	        Date startDate = sdf.parse(ch_start);
-	        Date endDate = sdf.parse(ch_end);
+	        long leftDays = ChronoUnit.DAYS.between(today, startDate);
+	        long totalDays = ChronoUnit.DAYS.between(startDate, endDate);
 	        
-	        // 날짜 차이를 계산 (밀리초 단위)
-	        long diffInMillis = endDate.getTime() - startDate.getTime();
+	        this.dateDifference = leftDays;  // 날짜 차이 저장
 	        
-	        // 밀리초를 일 단위로 변환
-	        long diffInDays = diffInMillis / (1000 * 60 * 60 * 24);
+	        if(leftDays >= 0 && leftDays > totalDays) {
+	        	this.ch_status = "before";
+	        }else if(leftDays >= 0 && leftDays <= totalDays) {
+	        	this.ch_status = "ongoing";
+	        }else {
+	        	this.ch_status = "finished";
+	        }
 	        
-	        this.dateDifference = diffInDays;  // 날짜 차이 저장
 	    } catch (Exception e) {
 	        e.printStackTrace();
 	    } 
