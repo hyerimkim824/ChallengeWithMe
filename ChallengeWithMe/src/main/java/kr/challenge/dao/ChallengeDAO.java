@@ -256,7 +256,7 @@ public class ChallengeDAO {
 
 		try {
 			conn = DBUtil.getConnection();
-			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, ch_visi, trans_bal, official, ch_status, us_num, cate_num, ch_max, ch_authd, ah_num, auth_desc, join_code) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			sql = "INSERT INTO chall (ch_num, ch_title, ch_desc, ch_start, ch_end, ch_img, ch_min, ch_person, ch_visi, trans_bal, official, ch_status, us_num, cate_num, ch_max, ch_authd, ah_num, auth_desc, join_code, auth2_start, auth5_game) VALUES (chall_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			pstmt = conn.prepareStatement(sql);
 
 			pstmt.setString(1, vo.getCh_title());
@@ -277,6 +277,8 @@ public class ChallengeDAO {
 			pstmt.setInt(16, vo.getAh_num());
 			pstmt.setString(17, vo.getAuth_desc());
 			pstmt.setString(18, vo.getJoin_code());
+			pstmt.setInt(19, vo.getAuth2_start());
+			pstmt.setInt(20, vo.getAuth5_game());
 			
 			pstmt.executeUpdate();
 

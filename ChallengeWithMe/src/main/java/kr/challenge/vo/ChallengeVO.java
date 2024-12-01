@@ -29,6 +29,8 @@ public class ChallengeVO {
 	private int ahDetail_num;
 	private String auth_desc;
 	private String join_code;
+	private int auth2_start;
+	private int auth5_game;
 	
 	private String us_nickname;
 	private String us_img;
@@ -194,7 +196,18 @@ public class ChallengeVO {
 		this.join_code = join_code;
 	}
 	
-	
+	public int getAuth2_start() {
+		return auth2_start;
+	}
+	public void setAuth2_start(int auth2_start) {
+		this.auth2_start = auth2_start;
+	}
+	public int getAuth5_game() {
+		return auth5_game;
+	}
+	public void setAuth5_game(int auth5_game) {
+		this.auth5_game = auth5_game;
+	}
 	public void calDate_diff() {
 		try {
 	        LocalDate today = LocalDate.now();

@@ -211,7 +211,22 @@ $(function(){
 			$('#time_auth').hide();
 			$('#game_auth').hide();
 		}
-	});   
+	}); 
+	
+	$('.game-item').click(function(){
+		if($(this).attr('id') == 'game1'){
+			$('#game1').find('img').css('border', '2px solid black');
+			$('#game2').find('img').css('border', '1px solid white');
+			$('#game').val('1');
+		}
+		else if($(this).attr('id') == 'game2'){
+			$('#game').val('2');
+			$('#game1').find('img').css('border', '1px solid white');
+			$('#game2').find('img').css('border', '2px solid black');
+		}else{
+			alert('게임 선택 에러');
+		}
+	});
 	
 	$('#chd_submit').click(function(){
 		$('.confirm-join').css('display','flex');

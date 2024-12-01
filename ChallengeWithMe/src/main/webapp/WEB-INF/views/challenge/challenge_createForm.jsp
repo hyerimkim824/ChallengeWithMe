@@ -53,14 +53,14 @@
 						<li><a class="dropdown-item create-dd" id="cat_health" data-category="1">건강</a></li>
 						<li><a class="dropdown-item create-dd" id="cat_food" data-category="2">식습관</a></li>
 						<li><a class="dropdown-item create-dd" id="cat_develop" data-category="3">자기계발</a></li>
-						<li><a class="dropdown-item create-dd" id="cat_wakeup" data-category="1">기상</a></li>
-						<li><a class="dropdown-item create-dd" id="cat_economy" data-category="2">경제</a></li>
-						<li><a class="dropdown-item create-dd" id="cat_moderation" data-category="3">금연/금주</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_wakeup" data-category="4">기상</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_economy" data-category="5">경제</a></li>
+						<li><a class="dropdown-item create-dd" id="cat_moderation" data-category="6">금연/금주</a></li>
 					</ul>
 					<input type="hidden" id="cate_num" name="cate_num">
 				</div>
 				
-				<div class="auth-dur">인증주기 <input class="authd-input" name="chc_authd" required>일마다</div> 
+				<div class="auth-dur">인증주기 <input class="authd-input" name="chc_auth_duration" required>일마다</div> 
 			</div>
 			<p class="warning cat-warn">카테고리가 선택되지 않았습니다!</p>
 			<div class="chc-four">
@@ -138,31 +138,24 @@
 			<div class="chc-six">
 				<div class="auth-info shadow-effect" id="time_auth">
 					<div class="authInfo-title">시간 인증</div>
-					<label>인증 시작시간</label> <input type="number" name="min" class="extra-input" id="min" placeholder="클릭 후 입력">
+					<label>인증 시작시간</label> <input type="number" name="auth2_startTime" class="extra-input" id="auth2_startTime" placeholder="클릭 후 입력">
 				</div>
 				<div class="auth-info shadow-effect" id="game_auth">
 					<div class="authInfo-title">게임 인증</div>
 					<div class="game-list">
-						<div class="game-item">
+						<div class="game-item" id="game1">
 							<img width="80px" height="80px">
-							<div class="game-name">구구단</div>
+							<div class="game-name">연산게임</div>
 						</div>
-						<div class="game-item">
+						<div class="game-item" id="game2">
 							<img width="80px" height="80px">
 							<div class="game-name">수학 문제</div>
 						</div>
-						<div class="game-item">
-							<img width="80px" height="80px">
-							<div class="game-name">구구단</div>
-						</div>
-						<div class="game-item">
-							<img width="80px" height="80px">
-							<div class="game-name">구구단</div>
-						</div>
+						
 					</div>
-					<input type="hidden" name="game">
-					
+					<input type="hidden" name="game" id="game">	
 				</div>
+				
 				<div class="extra-info shadow-effect">
 					<ul>
 						<li><label>최소인원</label> <input type="number" name="min" class="extra-input min-people" id="min" placeholder="1 ~ 10명 입력" min="1" max="10" required><span class="warning member-warn">최소 인원이 최대인원보다 크지 않게 입력해주세요</span></li>

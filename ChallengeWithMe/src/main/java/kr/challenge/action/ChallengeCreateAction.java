@@ -38,6 +38,9 @@ public class ChallengeCreateAction implements Action{
 		System.out.println("11.인증주기: " + request.getParameter("chc_authd"));
 		System.out.println("12.인증방법: " + request.getParameter("ah_num"));
 		System.out.println("13.참가코드: " + request.getParameter("join_code"));
+		System.out.println("14.인증2번 시작시간: " + request.getParameter("auth2_startTime"));
+		System.out.println("15.인증5번 게임: " + request.getParameter("game"));
+		
 		
 		ChallengeDAO dao = ChallengeDAO.getInstance();
 		
@@ -57,11 +60,13 @@ public class ChallengeCreateAction implements Action{
 		int max = Integer.parseInt(request.getParameter("max"));
 		int ch_like = 0; 
 		int ch_view = 0; 
-		int ch_authd = Integer.parseInt(request.getParameter("chc_authd")); 
-		int ahDetail_num = Integer.parseInt(request.getParameter("ah_num"));
+		int ch_authd = Integer.parseInt(request.getParameter("chc_auth_duration")); 
+		int ah_num = Integer.parseInt(request.getParameter("ah_num"));
 		String auth_desc = request.getParameter("auth_desc");
 		String join_code = request.getParameter("join_code");
 		
+		String auth2_startTime = request.getParameter("auth2_startTime");
+		String auth5_game = request.getParameter("game");
 		
 		ChallengeVO vo = new ChallengeVO();
 		
@@ -83,16 +88,26 @@ public class ChallengeCreateAction implements Action{
 		vo.setCh_like(ch_like);
 		vo.setCh_view(ch_view);
 		vo.setCh_authd(ch_authd);
-		vo.setAh_num(ahDetail_num);
+		vo.setAh_num(ah_num);
 		vo.setAuth_desc(auth_desc);
 		if(visi == 1) {
 			vo.setJoin_code(join_code);
 		}
-		
+		if(auth2_startTime != null && ah_num == 2) {
+			int auth2_start = Integer.parseInt(auth2_startTime);
+			vo.setAuth2_start(auth2_start);
+		}
+		if(auth5_game != null && ah_num == 5) {
+			int game = Integer.parseInt(auth5_game);
+			vo.setAuth5_game(game);
+		}
 		dao.createChallenge(vo);
 		
 		
-		return "/challenge/challenge_create.jsp";
+		request.setAttribute("notice_msg", "챌린지를 성공적으로 개설하였습니다");
+		request.setAttribute("notice_url", "../challenge/challengeList.do");
+		 
+		return "../views/common/alert_view.jsp";
 	}
 
 }

@@ -41,7 +41,7 @@ public class ChallengeDetailAction implements Action{
 		String this_auth_detail = auth_detail[chall.getAh_num() - 1];
 		MyPageDAO mp_dao = MyPageDAO.getInstance();
 		
-		XuserVO user = mp_dao.getMyInfo(us_num);
+		XuserVO user = mp_dao.getMyInfo(chall.getUs_num());
 		Integer us_bal = Integer.parseInt(user.getWallet());
 		
 		String us_nickname = user.getNickname();
