@@ -41,10 +41,9 @@
 				<ul class = "search">
 					<li class="search-filter">
 						<select  class="keyfield" name="keyfield">
-							<!-- <option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>전체</option> -->
-							<option value="1" <c:if test="${param.keyfield==2}">selected</c:if>>제목</option>
-							<option value="2" <c:if test="${param.keyfield==3}">selected</c:if>>닉네임</option>
-							<option value="3" <c:if test="${param.keyfield==4}">selected</c:if>>내용</option>
+							<option value="1" <c:if test="${param.keyfield==1}">selected</c:if>>제목</option>
+							<option value="2" <c:if test="${param.keyfield==2}">selected</c:if>>닉네임</option>
+							<option value="3" <c:if test="${param.keyfield==3}">selected</c:if>>내용</option>
 						</select>
 					</li>
 					<li class="search-box">
@@ -76,7 +75,8 @@
 			<c:if test="${count>0}">
 				<c:forEach var="post" items="${post}">
 					<div class="post-list">
-						<div class="post-list-header">
+						<div class="post-list-date"> <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
+							<div class="post-list-header">
 							<div class="post-list-header1">
 								<c:if test="${!empty post.us_img}">
 									<img src="${pageContext.request.contextPath}/upload/${post.us_img}" width="40" height="40" class="my-photo">
@@ -85,7 +85,6 @@
 									<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
 								</c:if>
 								<div class="post-list-nickname">${post.us_nickname}</div> 
-								<div class="post-list-date"> <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
 							</div>
 							
 							<%-- 조회수 --%>

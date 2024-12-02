@@ -35,6 +35,7 @@
 		</div>
 		
 		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
+		
 	</c:if>
 	
 	<!-- 로그인되지 않은 경우 -->
@@ -44,15 +45,35 @@
 			<a href="${pageContext.request.contextPath}/xuser/registerXuserForm.do">회원가입</a>
 		</div>
 	</c:if>
-	<div class="myBrief shadow-effect">
-		<div class="brief-box box1">
-			<img src="../images/face.png">
-		</div>
-		<div class="brief-box box2">
+	
+	<div class="myBrief profileOn-background">
+		<div class="brief-box">
+				<div class="brief-box-info" style="font-size: 13px;">
+					<div class="brief-box1">
+						<p class="brief-box-img"><img src="../images/face.png"></p>
+						<input type="button"  value="프로필 수정" onclick="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">
+					</div>
+				
+					<div class="brief-box2">	
+						<p class="brief-box-nickname">님</p><br>
+						<p class="brief-box-text" >오늘도 멋진 도전을 응원합니다!💪</p>
+					</div>
+				</div>
+				<div class="brief-box3">
+					<ul class="brief-box-menu" style="font-size: 13px;">
+						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">개설한 챌린지</a></li>
+						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">잔고 잔액</a></li>
+						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">사용가이드</a></li>
+						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">고객의 소리</a></li>
+					</ul>
+				</div>	
 			
+			</div>
+		<div class="brief-rogout">로그아웃
 		</div>
 	</div>
 </div>
+
 <!-- header 끝 -->
 
 

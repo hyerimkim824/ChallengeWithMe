@@ -65,10 +65,9 @@ public class PostDAO {
 			conn = DBUtil.getConnection();
 			//검색처리
 			if(keyword!=null && !"".equals(keyword)) {
-				//if(keyfield.equals("1")) sub_sql += " WHERE LIKE '%' || ? || '%'";
-				if(keyfield.equals("1")) sub_sql += "WHERE p.post_title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2")) sub_sql += "WHERE u.us_nickname LIKE '%' || ? || '%'";
-				else if(keyfield.equals("3")) sub_sql += "WHERE p.post_content LIKE '%' || ? || '%'";
+				if(keyfield.equals("1")) sub_sql += " WHERE p.post_title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sub_sql += " WHERE u.us_nickname LIKE '%' || ? || '%'";
+				else if(keyfield.equals("3")) sub_sql += " WHERE p.post_content LIKE '%' || ? || '%'";
 			}
 			//sql문 작성
 			sql = "SELECT COUNT(*) FROM post p JOIN user_detail u ON p.us_num = u.us_num" + sub_sql;
@@ -109,10 +108,9 @@ public class PostDAO {
 			//sql문 작성
 			if(keyword != null && !"".equals(keyword)) {
 				//1 : 제목, 2 : 작성자 닉네임, 3 : 내용
-				//if(keyfield.equals("1")) sql_sub += " WHERE LIKE '%' || ? || '%'";
-				if(keyfield.equals("1")) sql_sub += "WHERE post_title LIKE '%' || ? || '%'";
-				else if(keyfield.equals("2")) sql_sub += "WHERE us_nickname LIKE '%' || ? || '%'";
-				else if(keyfield.equals("3")) sql_sub += "WHERE post_content LIKE '%' || ? || '%'";
+				if(keyfield.equals("1")) sql_sub += " WHERE post_title LIKE '%' || ? || '%'";
+				else if(keyfield.equals("2")) sql_sub += " WHERE us_nickname LIKE '%' || ? || '%'";
+				else if(keyfield.equals("3")) sql_sub += " WHERE post_content LIKE '%' || ? || '%'";
 			}
 			
 			sql = "SELECT * FROM (SELECT a.*, rownum rnum FROM"
@@ -281,7 +279,8 @@ public class PostDAO {
 			}
 	}
 	
-	//글 삭제
+	//글 삭제 
+	//부모매서드 삭제시 한번에 자식 삭제(댓글 삭제, 좋아요 삭제)
 	public void deletePost(long post_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -294,11 +293,26 @@ public class PostDAO {
 			//오토커밋 해제
 			conn.setAutoCommit(false);
 			//SQL문 작성
+			// 1. 댓글 삭제
+	        sql = "DELETE FROM comm WHERE post_num=?";
+	        //?에 데이터 바인딩
+	        pstmt = conn.prepareStatement(sql);
+	        pstmt.setLong(1, post_num);
+	        pstmt.executeUpdate();
+
+	        // 2. 좋아요 삭제
+	        sql = "DELETE FROM post_like WHERE post_num=?";
+	        //?에 데이터 바인딩
+	        pstmt2 = conn.prepareStatement(sql);
+	        pstmt2.setLong(1, post_num);
+	        pstmt2.executeUpdate();
+			
 			sql = "DELETE FROM post WHERE post_num=?";
 			//?에 데이터 바인딩
 			pstmt3 = conn.prepareStatement(sql);
 			pstmt3.setLong(1, post_num);
 			pstmt3.executeUpdate();
+			
 			//예외 발생 없이 정상적으로 모든 SQL문이 실행
 			conn.commit();
 		}catch(Exception e) {
@@ -312,8 +326,9 @@ public class PostDAO {
 		}
 	}
 	
+	
 
-	//좋아요 개수 -> 다시 적어야 함 ->왜더라...
+	//좋아요 개수
 	public int getLikeCount(long post_num)throws Exception{
 		Connection conn = null;
 		PreparedStatement pstmt = null;

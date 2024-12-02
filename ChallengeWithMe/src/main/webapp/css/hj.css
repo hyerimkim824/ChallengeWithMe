@@ -1,6 +1,6 @@
 @charset "UTF-8";
 
-/* 커뮤니티 공통*/
+/*-------------------------- 커뮤니티 공통--------------------------*/
 .custom-hr {
     border: none;
     height: 1px;
@@ -11,7 +11,8 @@
 }
 
 
-/* 커뮤니티 글 목록*/
+
+/*-------------------------- 커뮤니티 글 목록------------------------*/
 
 .list-page-main{
 	width:80%;
@@ -156,9 +157,15 @@
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
     width:90%;
     margin:5% auto;
-    height:90px;
+    height:120px;
     position: relative; /* 위치 조정을 위해 설정 */
     bottom: -30px; /
+}
+
+.post-list-date{
+	font-size: 13px;
+	color:grey;
+	float:right;
 }
 
 .main-title{
@@ -201,9 +208,7 @@
 .post-list-nickname{
 	padding:0 0 0 20px;
 }
-.post-list-date{
-	padding:0 0 0 10px;
-}
+
 
 .post-list-bottom{
 	padding:6px 0 0 0px;
@@ -234,7 +239,7 @@
 }
 
 .highlight-nickname{
-	font-size: 20px; /* 닉네임과 님 부분의 크기 */
+	font-size: 17px; /* 닉네임과 님 부분의 크기 */
     font-weight: bold; /* 굵게 처리 */
 }
 
@@ -687,7 +692,6 @@ textarea#post_content{
 .writeform-main2{
 	display:flex;
     align-items:center;
-    justify-content: space-between; /* 양쪽 정렬 */
 	background:white;
 	border-radius: 20px;
 	margin: 30px;
@@ -715,8 +719,10 @@ textarea#post_content{
 }
 
 textarea#post_content{
-	width:87%;
+	width:86%;
 	height:320px;
+	align-items:center;
+    justify-content: center;
 	background: #f7f7f7;
 	padding:20px;
 	border-radius: 10px;
@@ -729,8 +735,9 @@ textarea#post_content{
     outline: none; /* 포커스 아웃라인 제거 */
 }
 
+/* 파일선택 */
 .writeform-main2 input[type="file"]{
-	padding: 0 600px 0 0;
+	padding: 0 700px 0 0;
 }
 
 

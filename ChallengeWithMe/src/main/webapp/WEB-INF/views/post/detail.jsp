@@ -123,8 +123,8 @@
 
 			<%-- 댓글 시작 --%>
 			<div id="post-reply" class="post-reply">
-				<span class="reply"> <span class="highlight-nickname">${post.us_nickname}님</span>의
-					의견을 자유롭게 남겨주세요!
+				<span class="reply"> <span class="highlight-nickname">${us_nickname}님의</span>
+					의견을 자유롭게 남겨주세요!😊
 				</span>
 				<form id="re_form" action="writeReply.do" method="post">
 					<input type="hidden" id="post_num" name="post_num"

@@ -76,29 +76,76 @@ a{
 	margin-right:20px;
 }
 
+
+/*-------------------- 메인 myBrief profileOn---------------------*/
 .myBrief{
 	width:25vw;
-	height:10vw;
+	height:auto;
 	border-radius:10px;
 	border:none;
-	background:#FFE066;	
+	background:#f8f8f8;
 	position:absolute;
 	top:100%;
 	right:5%;
 	display:none;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), 
+                0 4px 6px rgba(0, 0, 0, 0.05); 
 }
 
 .brief-box{
-	width:100%;
-	height:50%;
-	border:1px solid black;
 	display:flex;
-	align-items:center;
+	justify-content: space-between;
+	margin:3%;
 }
-
-.brief-box img{
+.brief-box-img img{
 	width:4vw;
 	height:4vw;
 	border-radius:50%;
 	margin-left:5%;
+}
+
+.brief-box1{
+	display:flex;
+    flex-direction: column; /* 세로 정렬 */
+}
+
+.brief-box-info{
+	background:#ffffff;
+	border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    display:flex;
+    justify-content: space-between;
+    gap: 10px;
+	
+}
+
+.brief-box-info input[type="button"]{
+    background-color: #ffe066; 
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 13px; 
+    text-align: center; 
+}
+
+.brief-box-nickname{
+	background:red;
+}
+
+.brief-box3{
+	background:#ffe066;
+	border-radius:10px;
+	border-top-right-radius: 10px; 
+    border-bottom-right-radius: 10px; 
+    border-top-left-radius: 0; 
+    border-bottom-left-radius: 0;
+}
+
+.brief-rogout{
+	float:right;
+	padding:5px 10px 10px 0;
+	font-size: 12px;
+	color: grey;
+	
 }
