@@ -114,6 +114,7 @@ function hideFunction(id) {
         <h4>MY챌린지 참가수</h4>
         ${partNum}
         <h4>MY평균 챌린지 참가수</h4>
+        ${ongoingCount}
     </div>
 
     <div id="get" class="ch-button">

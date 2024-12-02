@@ -88,7 +88,8 @@
                 </a>
             </c:if>
             <c:if test="${mychall.ah_num eq 5}">
-                <a href="../pvchallenge/pvChallengeQR.do?ch_num=${ch_num}">
+                <!-- a href="../pvchallenge/pvChallengeQR.do?ch_num=${ch_num}&ah_num=${mychall.ah_num}"> -->
+                    <a href="../pvchallenge/pvChallengeQR.do?ch_num=${ch_num}">
                     <input type="button" value="챌린지 인증5(QR)" id="proved_button">
                 </a>
             </c:if>
@@ -100,7 +101,7 @@
         </div> <!--인증 챌린지까지 -->
         
         <h3>${mychall.ch_title}</h3>
-        
+        <h4>챌린지 참가 인원 : </h4>
         <h4>챌린지 달성률 : </h4>
         
         <h4>날짜 별 달성 표시 : ${list}</h4>

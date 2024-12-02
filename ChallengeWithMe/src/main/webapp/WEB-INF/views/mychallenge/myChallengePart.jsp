@@ -34,6 +34,7 @@
                         <img src="${pageContext.request.contextPath}/upload/${xuser.photo}" width="150" height="150" class="my-photo">
                     </c:if>
                 </li>
+                
             </ul>
         </div>
 
@@ -72,20 +73,28 @@
 
     <!-- 이미지가 가로로 정렬되는 부분 -->
     <div class="part-image-wrapper">
-        <c:forEach var="part_list" items="${part_list}">
-            <div class="part-image">
-                <p>${part_list.ch_num}</p>
+        <c:forEach var="part_list" items="${data.part_list}">
+    <div class="part-image">
+        <p>${part_list.ch_num}</p>
+
+        <!-- 해당하는 ch_img를 part_img_list에서 가져오기 -->
+        <c:forEach var="part_img" items="${data.part_img_list}">
+            
                 <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${part_list.ch_num}">
-                    <img src="${pageContext.request.contextPath}/images/study.jpg" class="part-photo-ex">
+                    <img src="${pageContext.request.contextPath}/upload/${part_img.ch_img}" class="part-photo-ex" alt="Challenge Image">
                 </a>
-            </div>
+      
+          
         </c:forEach>
     </div>
+</c:forEach>
+    </div>
+
 
     <!-- 버튼들을 세로로 정렬 -->
     <div class="button-wrapper">
         <input type="button" value="참여 챌린지" id="part_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
-        <input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.context.path}/mychallenge/myChallengeMake.do'">
+        <input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
     </div>
 </div>
 

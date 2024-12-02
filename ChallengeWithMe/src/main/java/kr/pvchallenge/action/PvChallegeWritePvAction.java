@@ -4,7 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import kr.board.vo.BoardVO;
+
 import kr.controller.Action;
 import kr.mychallenge.vo.MyChallengeVO;
 import kr.pvchallenge.dao.PvChallengeDAO;

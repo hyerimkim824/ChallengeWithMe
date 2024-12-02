@@ -44,9 +44,10 @@ public class MyChallengeMainAction implements Action{
 		request.setAttribute("partTable3",partTable3);
 		request.setAttribute("partTable4",partTable4);
 		
-	//평균 참여 정보
-		//Map<String, Integer> list_partNum = dao.achieveAVG(us_num);
-		//request.setAttribute("list_partNum", list_partNum);
+		
+	    //월별 참여 정보
+		int ongoingCount = dao.getOngoingCountForSpecificMonth(us_num, 2024, 11);
+		request.setAttribute("ongoingCount", ongoingCount);
 		// 회원번호별 챌린지 참여 개수 정보
 	
 		
@@ -75,15 +76,16 @@ public class MyChallengeMainAction implements Action{
 		request.setAttribute("list", list);
 		request.setAttribute("listLength", (int)list.size());
 		
-		/*달성률
-		 * 한달평균
-		 */
+
 		
 		// 사용자 입력 파라미터 받아오기
 		
 		 // 세션에서 ch_num을 가져옵니다.
 	   
 		}
+		
+		
+		
 		//전체 참여 및 개설리스트 보여주기
 		
 		List<MyChallengeVO> ch_list = null; 
@@ -92,7 +94,8 @@ public class MyChallengeMainAction implements Action{
 		
 		request.setAttribute("ch_list", ch_list);
 		
-       List<MyChallengeVO> part_list = null; 
+		
+        List<MyChallengeVO> part_list = null; 
 		
 		ch_list = dao.getListCh(us_num);
 		

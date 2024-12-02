@@ -71,6 +71,48 @@ public class MyChallengeDAO {
 	
 		
 	}
+	//유저별 이미지 가져오기
+	
+    public List<MyChallengeVO> getImg(long ch_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyChallengeVO> list = null;
+		String sql = null;
+		
+		try {
+			
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT ch_img FROM CHALL WHERE ch_num = ?";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 바인딩
+			pstmt.setLong(1, ch_num);
+			
+			rs= pstmt.executeQuery();
+			list = new ArrayList<MyChallengeVO>();
+			while(rs.next()) {
+				MyChallengeVO mychall = new MyChallengeVO();
+				mychall.setCh_img(rs.getString("ch_img"));
+				list.add(mychall);
+			}
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+		
+	
+		
+	}
+	
 	
 	//유저별 참여 관련 챌린지 리스트
 	
@@ -203,12 +245,12 @@ public class MyChallengeDAO {
 
 	}
 	//참가수(한달 평균)
-	/*public Map<String, Integer> achieveAVG(long us_num) throws Exception {
+	public int getOngoingCountForSpecificMonth(long us_num, int year, int month) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
 	    ResultSet rs = null;
 	    String sql = null;
-	    Map<String, Integer> result = new HashMap<>(); // 결과 저장용 맵
+	    int ongoingCount = 0; // 결과 저장 변수
 
 	    try {
 	        // 커넥션풀로부터 커넥션 할당
@@ -216,25 +258,30 @@ public class MyChallengeDAO {
 
 	        // SQL문 작성
 	        sql = "SELECT " +
-	              "    COUNT(*) AS total_participated, " +
-	              "    SUM(CASE WHEN p_stat = 'ongoing' THEN 1 ELSE 0 END) AS total_ongoing" +
+	              "    SUM(CASE WHEN p_stat = 'ongoing' THEN 1 ELSE 0 END) AS total_ongoing " +
 	              "FROM participant " +
 	              "WHERE us_num = ? " +
-	              "AND p_date >= ADD_MONTHS(SYSDATE, -1)"; // 날짜 열 이름 수정
+	              "AND p_date >= TO_DATE(?, 'YYYY-MM-DD') " +
+	              "AND p_date < TO_DATE(?, 'YYYY-MM-DD')"; // 특정 월의 시작과 끝 조건
+
+	        // 특정 달의 시작일과 다음 달의 시작일 계산
+	        String startDate = String.format("%d-%02d-01", year, month); // 해당 달의 시작일
+	        String endDate = String.format("%d-%02d-01", year, month + 1); // 다음 달의 시작일
 
 	        // PreparedStatement 객체 생성
 	        pstmt = conn.prepareStatement(sql);
 
 	        // ?에 바인딩
 	        pstmt.setLong(1, us_num);
+	        pstmt.setString(2, startDate);
+	        pstmt.setString(3, endDate);
 
 	        // SQL문 실행
 	        rs = pstmt.executeQuery();
 
 	        // 결과 가져오기
 	        if (rs.next()) {
-	            result.put("totalParticipated", rs.getInt("total_participated")); // 참여한 챌린지 수
-	            result.put("totalOngoing", rs.getInt("total_ongoing")); // 잔향즁인 챌린지 수
+	            ongoingCount = rs.getInt("total_ongoing"); // 해당 월의 ongoing 수
 	        }
 	    } catch (Exception e) {
 	        throw new Exception(e);
@@ -242,10 +289,8 @@ public class MyChallengeDAO {
 	        DBUtil.executeClose(rs, pstmt, conn);
 	    }
 
-	    return result; // 결과 반환
+	    return ongoingCount; // 결과 반환
 	}
-	
-	*/
 	
 	
 

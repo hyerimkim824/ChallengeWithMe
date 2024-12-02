@@ -34,7 +34,7 @@ public class MyChallengeMakeAction implements Action{
 		
 		List<MyChallengeVO> ch_list = null; 
 		
-		ch_list = dao.getListCh(us_num);
+		ch_list = dao.getListPart(us_num);
 		
 		request.setAttribute("ch_list", ch_list);
 

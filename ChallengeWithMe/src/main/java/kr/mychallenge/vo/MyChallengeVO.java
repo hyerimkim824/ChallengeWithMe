@@ -155,12 +155,7 @@ public class MyChallengeVO {
 	public void setCh_status(String ch_status) {
 		this.ch_status = ch_status;
 	}
-	public String getAuth_num() {
-		return auth_num;
-	}
-	public void setAuth_num(String auth_num) {
-		this.auth_num = auth_num;
-	}
+	
 	public long getAb_num() {
 		return ab_num;
 	}
