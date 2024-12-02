@@ -211,20 +211,35 @@
 					</div>
 					<div>
 						<!-- 나무 애니메이션 들어가는곳 -->
-						<c:if test="${ xuser.rank <= 2 }">
+						<c:if test="${ xuser.rank == 1 }">
 						<img src="${ pageContext.request.contextPath }/images/Level1.png">
 						</c:if>
-						<c:if test="${ xuser.rank > 2 && xuser.rank <= 4 }">
+						<c:if test="${ xuser.rank == 2 }">
 						<img src="${ pageContext.request.contextPath }/images/Level2.png">
 						</c:if>
-						<c:if test="${ xuser.rank > 4 &&  xuser.rank <= 6 }">
+						<c:if test="${ xuser.rank == 3 }">
 						<img src="${ pageContext.request.contextPath }/images/Level3.png">
 						</c:if>
-						<c:if test="${ xuser.rank > 6 &&  xuser.rank <= 8 }">
+						<c:if test="${ xuser.rank == 4 }">
 						<img src="${ pageContext.request.contextPath }/images/Level4.png">
 						</c:if>
-						<c:if test="${ xuser.rank > 8 &&  xuser.rank <= 10 }">
+						<c:if test="${ xuser.rank == 5 }">
 						<img src="${ pageContext.request.contextPath }/images/Level5.png">
+						</c:if>
+						<c:if test="${ xuser.rank == 6 }">
+						<img src="${ pageContext.request.contextPath }/images/Level6.png">
+						</c:if>
+						<c:if test="${ xuser.rank == 7 }">
+						<img src="${ pageContext.request.contextPath }/images/Level7.png">
+						</c:if>
+						<c:if test="${ xuser.rank == 8 }">
+						<img src="${ pageContext.request.contextPath }/images/Level8.png">
+						</c:if>
+						<c:if test="${ xuser.rank == 9 }">
+						<img src="${ pageContext.request.contextPath }/images/Level9.png">
+						</c:if>
+						<c:if test="${ xuser.rank == 10 }">
+						<img src="${ pageContext.request.contextPath }/images/Level10.png">
 						</c:if>
 					</div>
 				</div>
