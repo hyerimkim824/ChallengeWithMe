@@ -80,7 +80,25 @@ public class MyChallengeMainAction implements Action{
 		 *   
 		 */
 		Map<String, Integer> list_month = dao.achieveMonth(us_num);
-		request.setAttribute("list_month", list_month);
+		// StringBuilder로 HTML 테이블 생성
+		StringBuilder table = new StringBuilder();
+		table.append("<table border='1' id='autoTable' >");
+
+		for (Map.Entry<String, Integer> entry : list_month.entrySet()) {
+		    table.append("<tr>")
+		         .append("<td>").append(entry.getKey()).append("</td>")
+		         .append("<td>").append(entry.getValue()).append("</td>")
+		         .append("</tr>");
+		}
+
+		table.append("</table>");
+
+		// 결과를 JSP로 전달
+		request.setAttribute("tableHTML", table.toString());
+	
+		
+		
+		
 		
 		
 		 
@@ -88,12 +106,9 @@ public class MyChallengeMainAction implements Action{
 		//String ch_end = (String)session.getAttribute("30");
 		
 		List<Integer> list = null;
-		
-		
 	
-		
 		list = dao.achieveOne(us_num,"2024-11-10","2024-11-25");
-		System.out.println(list);
+		
 		
 		
 		
@@ -102,7 +117,14 @@ public class MyChallengeMainAction implements Action{
 		
 
 		
-		// 사용자 입력 파라미터 받아오기
+		//선호도 조사
+		List<Integer> pref_list = null;
+		pref_list = dao.preference(us_num);
+		request.setAttribute("pref_list", pref_list);
+		request.setAttribute("pref_list_length", pref_list.size());
+		
+		
+		
 		
 		 // 세션에서 ch_num을 가져옵니다.
 	   

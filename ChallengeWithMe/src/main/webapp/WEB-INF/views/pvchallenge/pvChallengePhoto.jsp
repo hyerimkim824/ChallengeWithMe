@@ -110,7 +110,7 @@
 	});
 </script>
 </head>
-<body>
+<body class="photo">
 <% 
     String chNum = request.getParameter("ch_num");
     out.println("Received ch_num: " + chNum);
@@ -120,8 +120,8 @@
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 		<h1>사진 인증</h1>
 	
-	<div class="page-main">
-	<div class="content-main">
+	<div class="page-main-photo">
+	<div class="content-main-photo">
 		<h2>사진 인증</h2>
 		
 		
@@ -160,25 +160,6 @@
 				</li>
 			</ul>
 		</div>
-		
-		
-		<!--  <div class="mypage-div">
-			<h3>내가 좋아하는 게시물 목록</h3>
-			<table>
-				<tr>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-				<c:forEach var="board" items="${boardList}">
-				<tr>
-					<td><a href="${pageContext.request.contextPath}/board/detail.do?board_num=${board.board_num}" target="_blank">${fn:substring(board.title,0,26)}</a></td>
-	 				<td>${board.id}</td>
-					<td>${board.reg_date}</td>
-				</tr>	
-				</c:forEach>
-			</table>
-		</div>-->
 		
 	</div>
 </div>

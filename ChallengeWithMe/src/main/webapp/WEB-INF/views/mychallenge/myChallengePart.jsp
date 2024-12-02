@@ -21,9 +21,9 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <h1>참여 챌린지</h1>
 
-<div class="page-main">
-    <div class="mychallenge-content-main">
-        <div class="mychallenge-div">
+<div class="page-main-part">
+    <div class="mychallenge-content-main-part">
+        <div class="mychallenge-div-part">
             <h4>프로필 사진</h4>
             <ul>
                 <li>
@@ -73,21 +73,23 @@
 
     <!-- 이미지가 가로로 정렬되는 부분 -->
     <div class="part-image-wrapper">
-        <c:forEach var="part_list" items="${data.part_list}">
+        
     <div class="part-image">
+    <c:forEach var="part_list" items="${part_list}">
         <p>${part_list.ch_num}</p>
-
-        <!-- 해당하는 ch_img를 part_img_list에서 가져오기 -->
-        <c:forEach var="part_img" items="${data.part_img_list}">
-            
-                <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${part_list.ch_num}">
-                    <img src="${pageContext.request.contextPath}/upload/${part_img.ch_img}" class="part-photo-ex" alt="Challenge Image">
-                </a>
-      
+    
+      <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${part_list.ch_num}">
+      <c:if test='${part_list.cate_num==1}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
+                        <c:if test='${part_list.cate_num==2}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
+                        <c:if test='${part_list.cate_num==3}'><img src="${pageContext.request.contextPath}/images/study.jpg" class="img1"></c:if>
+                         <c:if test='${part_list.cate_num==4}'><img src="${pageContext.request.contextPath}/images/wakeup.jpg" class="img1"></c:if>
+                         <c:if test='${part_list.cate_num==5}'><img src="${pageContext.request.contextPath}/images/economy.jpg" class="img1"></c:if>
+                        <c:if test='${part_list.cate_num==5}'><img src="${pageContext.request.contextPath}/images/economy.jpg" class="img1"></c:if>
           
-        </c:forEach>
+      </a>
+    </c:forEach>            
     </div>
-</c:forEach>
+
     </div>
 
 

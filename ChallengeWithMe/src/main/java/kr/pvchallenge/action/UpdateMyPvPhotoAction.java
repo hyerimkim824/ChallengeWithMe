@@ -34,7 +34,7 @@ public class UpdateMyPvPhotoAction implements Action{
 			
 		PvChallengeDAO dao = PvChallengeDAO.getInstance();
 		
-		dao.insertPvImg(photo, us_num);
+		//dao.insertPvImg(photo, us_num);
 		
 		//이전 파일 삭제 처리
 		String user_photo = (String)session.getAttribute("user_photo");

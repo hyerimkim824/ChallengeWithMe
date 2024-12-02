@@ -478,8 +478,8 @@ public class MyChallengeDAO {
 
 	        // 결과 가져오기
 	        if (rs.next()) {
-	            result.put("totalParticipated", rs.getInt("total_participated")); // 참여한 챌린지 수
-	            result.put("totalFinished", rs.getInt("total_finished")); // 완료한 챌린지 수
+	            result.put("11월 총 참가", rs.getInt("total_participated")); // 참여한 챌린지 수
+	            result.put("최종 완료 챌린지", rs.getInt("total_finished")); // 완료한 챌린지 수
 	        }
 	    } catch (Exception e) {
 	        throw new Exception(e);
@@ -604,10 +604,90 @@ public class MyChallengeDAO {
 			
 		}
 		
-		
-		
+		//chall 카테고리에서 us_num 받으면 카테고리 및 ch_num 담는 list
+		 public List<MyChallengeVO> getGenInfo(long us_num)throws Exception{
+				
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				List<MyChallengeVO> list = null;
+				String sql = null;
+				
+				try {
+					
+					//커넥션풀로부터 커넥션 할당
+					conn = DBUtil.getConnection();
+					
+					sql = "SELECT ch_num, cate_num FROM CHALL WHERE us_num = ?";
+				
+					pstmt = conn.prepareStatement(sql);
+					
+					//?에 바인딩
+					pstmt.setLong(1, us_num);
+					
+					rs= pstmt.executeQuery();
+					list = new ArrayList<MyChallengeVO>();
+					while(rs.next()) {
+						MyChallengeVO mychall = new MyChallengeVO();
+						mychall.setCh_num(rs.getLong("ch_num"));
+						mychall.setCate_num(rs.getInt("Cate_num"));
+						list.add(mychall);
+					}
+					
+					
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					DBUtil.executeClose(rs, pstmt, conn);
+				}		
+				return list;
+
+			}
+		    
+		//chall 카테고리에서 us_num 받으면 카테고리 및 ch_num 담는 list
+		 public List<MyChallengeVO> getPartInfo(long us_num)throws Exception{
+				
+				Connection conn = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+				List<MyChallengeVO> list = null;
+				String sql = null;
+				
+				try {
+					
+					//커넥션풀로부터 커넥션 할당
+					conn = DBUtil.getConnection();
+					
+					sql = "SELECT ch.ch_num, ch.cate_num FROM chall ch JOIN participant p ON ch.us_num = p.us_num WHERE p.us_num = ?";
+				
+					pstmt = conn.prepareStatement(sql);
+					
+					//?에 바인딩
+					pstmt.setLong(1, us_num);
+					
+					rs= pstmt.executeQuery();
+					list = new ArrayList<MyChallengeVO>();
+					while(rs.next()) {
+						MyChallengeVO mychall = new MyChallengeVO();
+						mychall.setCh_num(rs.getLong("ch_num"));
+						mychall.setCate_num(rs.getInt("Cate_num"));
+						list.add(mychall);
+					}
+					
+					
+				}catch(Exception e) {
+					throw new Exception(e);
+				}finally {
+					DBUtil.executeClose(rs, pstmt, conn);
+				}		
+				return list;
+
+			}
 	
 	//챌린지 디테일 정보 3(챌린지 리포트 보기)-> javascript로 구현할 가능성이 높음
+		
+		
+		
 	
 
 }

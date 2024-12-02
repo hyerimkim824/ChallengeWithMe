@@ -31,38 +31,35 @@ public class PvChallengeDAO {
 	        // 중복 확인
 	        String checkSql = "SELECT COUNT(*) FROM auth WHERE us_num = ? AND TRUNC(ah_date) = TRUNC(SYSDATE)";
 	        pstmt = conn.prepareStatement(checkSql);
-	        pstmt.setLong(1, pvchall.getUs_num());
+	        pstmt.setLong(1, pvchall.getUs_num()); // us_num 값 바인딩
 	        rs = pstmt.executeQuery();
 
 	        if (rs.next() && rs.getInt(1) > 0) {
-	        	
-	        	result = 1;
-	            
+	            result = 1; // 이미 데이터가 존재하면 result를 1로 설정
 	        }
 
 	        // 기존 Statement 닫기
 	        pstmt.close();
-	        
-	        if(result !=1) {
 
-	        // 삽입 SQL
-	        sql = "INSERT INTO auth (ah_num, ah_img, ch_proved1, ah_date, us_num, ch_num, ch_proved2, ch_proved3, ch_proved4, ch_proved5) "
-	            + "VALUES (auth_seq.nextval, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
-	        pstmt = conn.prepareStatement(sql);
+	        if (result != 1) { // 중복이 아닐 경우 데이터 삽입
+	            // 삽입 SQL
+	            sql = "INSERT INTO auth (ah_num, ah_img, ch_proved1, ah_date, us_num, ch_num, ch_proved2, ch_proved3, ch_proved4, ch_proved5) "
+	                + "VALUES (auth_seq.nextval, ?, ?, SYSDATE, ?, ?, ?, ?, ?, ?)";
+	            pstmt = conn.prepareStatement(sql);
 
-	        // ?에 데이터 바인딩
-	        pstmt.setString(1, pvchall.getAh_img());
-	        pstmt.setInt(2, pvchall.getCh_proved1());
-	        pstmt.setLong(3, pvchall.getUs_num());
-	        pstmt.setLong(4, pvchall.getCh_num());
-	        pstmt.setInt(5, pvchall.getCh_proved2());
-	        pstmt.setInt(6, pvchall.getCh_proved3());
-	        pstmt.setInt(7, pvchall.getCh_proved4());
-	        pstmt.setInt(8, pvchall.getCh_proved5());
+	            // ?에 데이터 바인딩
+	            pstmt.setString(1, pvchall.getAh_img());
+	            pstmt.setInt(2, pvchall.getCh_proved1());
+	            pstmt.setLong(3, pvchall.getUs_num()); // us_num 바인딩
+	            pstmt.setLong(4, pvchall.getCh_num()); // ch_num 바인딩
+	            pstmt.setInt(5, pvchall.getCh_proved2());
+	            pstmt.setInt(6, pvchall.getCh_proved3());
+	            pstmt.setInt(7, pvchall.getCh_proved4());
+	            pstmt.setInt(8, pvchall.getCh_proved5());
 
-	        // 삽입
-	        pstmt.executeUpdate();}
-
+	            // 삽입
+	            pstmt.executeUpdate();
+	        }
 	    } catch (Exception e) {
 	        throw new Exception("Error while inserting PvChallenge data: " + e.getMessage(), e);
 	    } finally {

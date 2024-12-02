@@ -19,12 +19,11 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<h1>참여 챌린지</h1>
+<h1>개설 챌린지</h1>
 
-<div class="page-main">
-    <div class="mychallenge-content-main">
-        <div class="mychallenge-div">
-            <h4>프로필 사진</h4>
+<div class="page-main-gen">
+    <div class="mychallenge-content-main-gen">
+        <div class="mychallenge-div-gen">
             <ul>
                 <li>
                     <c:if test="${empty xuser.photo}">
@@ -35,7 +34,40 @@
                     </c:if>
                 </li>
             </ul>
+        <table id="simple_info_table">
+            <thead>
+                <tr>
+                    <th colspan="2">MY 챌린지 참여/개설 정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>시작전</td>
+                    <td>${partTable1.part_count}</td>
+                </tr>
+                <tr>
+                    <td>참여 중</td>
+                    <td>${partTable2.part_count}</td>
+                </tr>
+                <tr>
+                    <td>포기</td>
+                    <td>${partTable3.part_count}</td>
+                </tr>
+                <tr>
+                    <td>완료</td>
+                    <td>${partTable4.part_count}</td>
+                </tr>
+                <tr>
+                    <td>개설</td>
+                    <td>${partTable1.chall_count}</td>
+                </tr>
+            </tbody>
+        </table>
+        
+        
         </div>
+        
+        <div class="align-h">
 
         <!-- 버튼들을 상단에 배치 -->
         <div class="button-wrapper">
@@ -45,14 +77,21 @@
 
         <!-- 이미지를 아래쪽에 배치 -->
         <div class="part-image-wrapper">
-            <c:forEach var="part_list" items="${part_list}">
+            <c:forEach var="ptct_list" items="${ptct_list}">
                 <div class="part-image">
-                    <p>${part_list.ch_num}</p>
-                    <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${part_list.ch_num}">
-                        <img src="${pageContext.request.contextPath}/images/study.jpg" class="part-photo-ex">
+                    <p>${ptct_list.ch_num}</p>
+                    <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${ptct_list.ch_num}">
+                        <c:if test='${ptct_list.cate_num==1}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
+                        <c:if test='${ptct_list.cate_num==2}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
+                        <c:if test='${ptct_list.cate_num==3}'><img src="${pageContext.request.contextPath}/images/study.jpg" class="img1"></c:if>
+                         <c:if test='${ptct_list.cate_num==4}'><img src="${pageContext.request.contextPath}/images/wakeup.jpg" class="img1"></c:if>
+                         <c:if test='${ptct_list.cate_num==5}'><img src="${pageContext.request.contextPath}/images/economy.jpg" class="img1"></c:if>
+                        <c:if test='${ptct_list.cate_num==5}'><img src="${pageContext.request.contextPath}/images/economy.jpg" class="img1"></c:if>
                     </a>
                 </div>
             </c:forEach>
+        </div>
+        
         </div>
 
     </div>

@@ -31,16 +31,22 @@ public class MyChallengePartAction implements Action{
 			
 			List<MyChallengeVO> part_list = null; 
 			
-			part_list = dao.getListPart(us_num);
+			part_list = dao.getPartInfo(us_num);
 			
 			request.setAttribute("part_list", part_list);
 			
 			//int ch_num = session.getParameter("ch_num");
 			
 			
-			MyChallengeVO img = dao.getImage(1);
+			//MyChallengeVO img = dao.getImage(1);
+			
+			
 			
 		
+			
+			
+			
+			
 		
 		}
 		

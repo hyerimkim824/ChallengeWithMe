@@ -113,57 +113,7 @@ function hideFunction(id) {
         <button id="mybutton" onclick="hideFunction('like')">챌린지 선호도</button>
     </div>
     
-    <canvas id="myBarChart" width="400" height="200"></canvas>
-         <script>
-        // 자바스크립트 변수에 데이터를 할당 (여기서 ${ongoingCountX}를 실제 값으로 대체)
-        var ongoingCount1 =  ${ongoingCount1};  // 예시 값
-        var ongoingCount2 =  ${ongoingCount2};  // 예시 값
-        var ongoingCount3 =  ${ongoingCount3};  // 예시 값
-        var ongoingCount4 =  ${ongoingCount4};  // 예시 값
-        var ongoingCount5 = ${ongoingCount5};  // 예시 값
-        var ongoingCount6 =  ${ongoingCount6};  // 예시 값
-        var ongoingCount7 =  ${ongoingCount7};  // 예시 값
-        var ongoingCount8 =  ${ongoingCount8};  // 예시 값
-        var ongoingCount9 =  ${ongoingCount9};  // 예시 값
-        var ongoingCount10 =  ${ongoingCount10}; // 예시 값
-        var ongoingCount11 =  ${ongoingCount11}; // 예시 값
-        var ongoingCount12 = ${ongoingCount12}; // 예시 값
-
-        // 막대 그래프를 그리기 위한 Chart.js 코드
-        var ctx = document.getElementById('myBarChart').getContext('2d');
-        var myBarChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
-                datasets: [{
-                    label: 'Ongoing Counts',
-                    data: [
-                        ongoingCount1,
-                        ongoingCount2,
-                        ongoingCount3,
-                        ongoingCount4,
-                        ongoingCount5,
-                        ongoingCount6,
-                        ongoingCount7,
-                        ongoingCount8,
-                        ongoingCount9,
-                        ongoingCount10,
-                        ongoingCount11,
-                        ongoingCount12
-                    ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // 막대 색상
-                    borderColor: 'rgba(54, 162, 235, 1)', // 테두리 색상
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true // y축 0부터 시작
-                    }
-                }
-            }
-        });
+  
     </script>
 
     <div id="part" class="ch-button">
@@ -207,8 +157,8 @@ function hideFunction(id) {
                         ongoingCount11,
                         ongoingCount12
                     ],
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // 막대 색상
-                    borderColor: 'rgba(54, 162, 235, 1)', // 테두리 색상
+                    backgroundColor:  '#FFD011', // 막대 색상
+                    borderColor: 'black', // 테두리 색상
                     borderWidth: 1
                 }]
             },
@@ -226,19 +176,77 @@ function hideFunction(id) {
 
     <div id="get" class="ch-button">
         <h4>현재 참여 챌린지 달성률</h4>
-        ${list}
+       <table id="autoTable" border="1">
+        <!-- JavaScript에서 행과 열이 추가됩니다 -->
+       </table>
+       
+       <script type="text/javascript">
+    // 리스트 데이터
+       var list = ${list};
+    // 테이블 컨테이너 선택
+       var table = document.getElementById("autoTable");
+
+       // 행 생성
+       var row = document.createElement("tr");
+
+       // 리스트를 순회하며 열(td)을 동적으로 생성
+       list.forEach(item => {
+           var cell = document.createElement("td");
+           cell.textContent = item === 0 ? "X" : "O"; // 조건에 따라 X 또는 O로 설정
+           row.appendChild(cell); // 행에 셀 추가
+       });
+
+       // 테이블에 행 추가
+       table.appendChild(row);      
+
+       </script>
         
-
         <h4>한달 평균 챌린지 달성률</h4>
-        ${list_month}
+   		 <!-- HTML 테이블 삽입 -->
+   		${tableHTML}
+		
+        
     </div>
 
-    <div id="like" class="ch-button">
-        <h4>챌린지 선호도</h4>
-        ${list_prefer}
-    </div>
+
+<%@ page import="java.util.List" %>
+
+<div id="like" class="ch-button">
+    <h4>챌린지 선호도</h4>
+
+    <%
+        List<?> prefList = (List<?>) request.getAttribute("pref_list");  // pref_list 가져오기
+        int i = 0;
+        int j = prefList.size();  // 리스트의 길이
+
+        while (i < j) {
+            String category = "";  // 카테고리를 위한 변수 선언
+            if (i == 0) {
+                category = "기상";
+            } else if (i == 1) {
+                category = "식습관";
+            } else if (i == 2) {
+                category = "독서";
+            } else if (i == 3) {
+                category = "자기계발";
+            } else if (i == 4) {
+                category = "금연, 금주";
+            } else if (i == 5) {
+                category = "자기계발";
+            }
+    %>
+            <p id="cate-like">선호 카테고리 : <%= category %></p>
+    <%
+            i++;
+        }
+    %>
+</div>
+
+
 </div>
 </div>
+</div>
+
 
 </div>
 </div>
