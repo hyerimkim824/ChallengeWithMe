@@ -38,7 +38,15 @@
 		<hr>
 		<div class="empty-space100"></div>
 		<div class="game-board">
-			<div class="game-name align-center">화살 피하기</div>
+			<c:if test="${game_num == 1}">
+				<div class="game-name align-center">화살 피하기</div>
+			</c:if>
+			<c:if test="${game_num == 2}">
+				<div class="game-name align-center">연산 게임</div>
+			</c:if>
+			<c:if test="${game_num != 1 && game_num != 2}">
+				<div class="game-name align-center">게임 선택</div>
+			</c:if>
 			<div class="leftgb shadow-effect">
 				<div class="left-deco1">
 					<div class="joystick shadow-effect"></div>
@@ -70,8 +78,15 @@
    					 	<div id="alert-div" class="hidden"></div>
 					 </c:if>
 					 <c:if test="${game_num == 2}">
-					 	<div>연산게임</div>
-					 </c:if>
+						<div id="game-area2">
+							<div class="area2-guide">정수만 입력해주세요</div>
+							<div class="empty-space100"></div>
+							<c:forEach var="i" begin="0" end="4">
+								<div class="area2-item"><label>${i+1}번.</label><span>${num1[i]}</span><span>${opt[i]}</span><span>${num2[i]}</span><input type="number" class="asw-input" id="asw${i+1}"></div>
+								<input type="hidden" id="answer${i+1}" value="${answer[i]}">
+							</c:forEach>
+						</div>
+					</c:if>
 					 <c:if test="${game_num != 1 && game_num != 2}">
 					 	<div class="no-game align-center">게임을 선택해 주세요!</div>
 					 </c:if>
@@ -107,7 +122,13 @@
 					</div>
 				</div>
 				<div class="submit-answer">
-					<div class="submit-btn align-center">인증</div>
+					<c:if test="${game_num==1}">
+						<div class="submit-btn align-center">인증</div>
+					</c:if>
+					<c:if test="${game_num==2}">
+						<div class="submit-btn2 align-center">인증</div>
+					</c:if>
+					
 				</div>
 			</div>
 		</div>

@@ -30,16 +30,28 @@ public class ChallengeGameAction implements Action{
 			int[] firstNum = new int[5];
 			int[] secondNum = new int[5];
 			String[] operator = new String[5];
+			String[] opt = new String[5];
 			int[] answer = new int[5];
 			
 			game = Integer.parseInt(request.getParameter("game_num"));
 			if(game == 2) {
 				generateRandomExpressions(firstNum, secondNum, operator, answer);
 				
+				for(int i = 0; i < opt.length; i++) {
+					if(operator[i].equals("*")) {
+						opt[i] = "X";
+					}else if(operator[i].equals("/")) {
+						opt[i] = "%";
+					}
+					else {
+						opt[i] = operator[i];
+					}
+				}
+				
 				request.setAttribute("game_num", "game_num");
 				request.setAttribute("num1", firstNum);
 				request.setAttribute("num2", secondNum);
-				request.setAttribute("operator", operator);
+				request.setAttribute("opt", opt);
 				request.setAttribute("answer", answer);
 				
 			}

@@ -52,15 +52,14 @@
 					</div>
 					<div class="confirm-div">
 						<button class="cbtn back-btn" id="cbtn_back">돌아가기</button>
-						<button class="cbtn confirm-btn background-main" id="cbtn_confirm">금액 충전</button>
+						<button class="cbtn confirm-btn background-main" id="cbtn_confirm" onclick="location.href='${pageContext.request.contextPath}/charge/deposit.do'">금액 충전</button>
 					</div>
 				</div>
 			</c:if>
 		</c:if>
 		<c:if test="${joined}">
 			<div class="confirm-box shadow-effect align-center">
-					<div class="confirm-txt">정말 탈퇴하시겠습니까?</div>
-					
+					<div class="confirm-txt">정말 탈퇴하시겠습니까?</div> 
 					
 					<div class="confirm-div">
 						<button class="cbtn back-btn" id="cbtn_back">취소</button>

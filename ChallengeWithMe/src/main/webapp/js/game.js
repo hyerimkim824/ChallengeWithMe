@@ -3,6 +3,7 @@ $(document).ready(function () {
     const $scoreBoard = $('#score');
     const $startBtn = $('#start-btn');
     const $submitBtn = $('.submit-btn'); // 제출 버튼
+	
     const $player = $('<div class="player"><img src="../images/bird.png" alt="Player" width="100%" height="100%"></div>');
     let score = 0;
     let maxScore = 0; // 최고 점수
@@ -10,7 +11,6 @@ $(document).ready(function () {
     const arrows = [];
     let gameInterval, arrowInterval;
     let facingLeft = true; // 플레이어가 왼쪽을 바라보는 상태 (초기값)
-
 
 
     // 게임 초기화 함수
@@ -116,13 +116,36 @@ $(document).ready(function () {
 
     // 점수 제출 버튼 클릭 이벤트
     $submitBtn.on('click', function () {
+		
 		console.log("is clicked");
-        if (maxScore > 30) {
-            location.href = '../challenge/gameConfirm.do?confirmed=1';
-        } else {
-            alert('최고 점수가 30점 이상이면 인증이 가능합니다!');
-        }
+		if (maxScore > 30) {
+			location.href = '../challenge/gameConfirm.do?confirmed=1';
+		} else {
+			alert('최고 점수가 30점 이상이면 인증이 가능합니다!');
+		}
     });
+	
+	$('#submit-btn2').on('click', function () {
+	    let isCorrect = true; // 모든 값이 일치하는지 확인하기 위한 플래그
+
+	    $('.asw-input').each(function (index) {
+	        const userAnswer = $(this).val(); // 사용자 입력 값
+	        const correctAnswer = $(`#answer${index}`).val(); // 정답 값
+
+	        // 값이 일치하지 않으면 isCorrect를 false로 설정
+	        if (userAnswer.trim() === '' || parseInt(userAnswer) !== parseInt(correctAnswer)) {
+	            isCorrect = false;
+	            return false; // jQuery each에서 반복 중단
+	        }
+	    });
+
+	    // 결과에 따라 동작
+	    if (isCorrect) {
+	        location.href = '../challenge/successPage.do'; // 성공 시 이동
+	    } else {
+	        alert('모든 답이 일치해야 제출할 수 있습니다!');
+	    }
+	});
 	
     // 시작 버튼 클릭 이벤트
     $startBtn.on('click', startGame);
