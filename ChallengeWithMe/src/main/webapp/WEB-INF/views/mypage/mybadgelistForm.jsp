@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,6 +17,10 @@
 		<div class="info-rightbtn">
 		<input type="button" value="마이페이지"
 		onclick="location.href='${ pageContext.request.contextPath }/mypage/mypage.do'">
+		<c:if test="${!empty xuser.us_num && xuser.admin >= 1}">
+		<input type="button" value="뱃지등록"
+		onclick="location.href='${ pageContext.request.contextPath }/mypage/adminbadgeform.do'">
+		</c:if>
 		</div>
 		</div>
 		<div class="badge-box">

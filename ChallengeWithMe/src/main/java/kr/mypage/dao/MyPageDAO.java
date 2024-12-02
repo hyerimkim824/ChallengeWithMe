@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.badge.vo.BadgeVO;
 import kr.score.dao.ScoreDAO;
 import kr.score.vo.ScoreVO;
 import kr.util.DBUtil;
@@ -439,5 +440,28 @@ public class MyPageDAO {
 			DBUtil.executeClose(rs, ps, con);
 		}
 		return list;
+	}
+	
+	// 관리자 뱃지 등록
+	public void insertBadge(BadgeVO badge)throws Exception {
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "INSERT INTO badge (bg_num, bg_img, bg_name, bg_desc) VALUES(badge_seq.nextval, ?, ?, ?)";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, badge.getBg_img());
+			ps.setString(2, badge.getBg_name());
+			ps.setString(3, badge.getBg_desc());
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
 	}
 }
