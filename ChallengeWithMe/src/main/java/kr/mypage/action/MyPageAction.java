@@ -8,6 +8,8 @@ import javax.servlet.http.HttpSession;
 
 import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
+import kr.score.dao.ScoreDAO;
+import kr.score.vo.ScoreVO;
 import kr.xuser.vo.XuserVO;
 
 public class MyPageAction implements Action{
@@ -17,20 +19,32 @@ public class MyPageAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		if(us_num == null) { // 로그인X
-			return "redirect:/xuser/loginForm.do";
+			return "redirect:/xuser/registerXuserForm.do";
 		}
 		// 로그인O
 		MyPageDAO dao = MyPageDAO.getInstance();
 		XuserVO xuser = dao.getMyInfo(us_num);
+		xuser.setRank(dao.getAchiev(us_num));
 		
 		// 선호 카테고리
-		MyPageDAO dao2 = MyPageDAO.getInstance();
-		List<String> preName = dao2.pref(us_num);
+		List<String> preName = dao.pref(us_num);
 		
 		// 뱃지 정보
-		MyPageDAO dao3 = MyPageDAO.getInstance();
-		List<Integer> bgInfo = dao3.getBadgeInfo(us_num);
+		List<Integer> bgInfo = dao.getBadgeInfo(us_num);
 		
+		// 챌린지 정보
+		List<Integer> chall = dao.getChall(us_num);
+		
+		// 랭크 점수
+		ScoreDAO dao4 = ScoreDAO.getInstance();
+		ScoreVO db_score = dao4.getScoreInfo(us_num);
+		int score = dao4.calculateScore(db_score);
+		db_score.setUs_score(score);
+		dao4.updateScoreInfo(db_score);
+		
+		
+		request.setAttribute("chall", chall);
+		request.setAttribute("score", db_score);
 		request.setAttribute("bgInfo", bgInfo);
 		request.setAttribute("preName", preName);
 		request.setAttribute("xuser", xuser);

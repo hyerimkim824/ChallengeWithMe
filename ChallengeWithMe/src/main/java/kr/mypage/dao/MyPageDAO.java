@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import kr.score.dao.ScoreDAO;
+import kr.score.vo.ScoreVO;
 import kr.util.DBUtil;
 import kr.xuser.vo.XuserVO;
 
@@ -351,21 +353,91 @@ public class MyPageDAO {
 	}
 	
 	// 달성률 이미지
-	public String getAchiev(String img, long us_num, int achiev)throws Exception{
+	public int getAchiev(long us_num)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
-		PreparedStatement ps2 = null;
 		String sql = null;
-		String achiev_img = "";
+		int num = 0;
+		
+		ScoreDAO dao = ScoreDAO.getInstance();
+		ScoreVO db_score = dao.getScoreInfo(us_num);
+		dao.updateScoreInfo(db_score);
+		int score = dao.calculateScore(db_score);
+		if(score >= 0 && score <= 99) {
+			num = 1;
+		}else if(score >= 100 && score <= 499) {
+			num = 2;
+		}else if(score >= 500 && score <= 999) {
+			num = 3;
+		}else if(score >= 1000 && score <= 1499) {
+			num = 4;
+		}else if(score >= 1500 && score <= 2499) {
+			num = 5;
+		}else if(score >= 2500 && score <= 3999) {
+			num = 6;
+		}else if(score >= 4000 && score <= 5499) {
+			num = 7;
+		}else if(score >= 5500 && score <= 6999) {
+			num = 8;
+		}else if(score >= 7000 && score <= 8999) {
+			num = 9;
+		}else if(score >= 9000){
+			num = 10;
+		}
 		
 		try {
 			con = DBUtil.getConnection();
-			sql = "";
+			sql = "UPDATE xuser SET us_rank=? WHERE us_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			ps.setInt(2, num);
+			ps.executeUpdate();
+			
+		}catch(Exception e) {
+			throw new Exception();
+		}finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+		return num;
+	}
+	
+	// 나의 챌린지 각종 정보
+	public List<Integer> getChall(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Integer> list = null;
+		String sql = null;
+		
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT (SELECT COUNT(*) FROM chall WHERE us_num = ?) as chall,"
+					+ " (SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'finished') as finished,"
+					+ " (SELECT COUNT(*) FROM participant WHERE us_num = ?) as total"
+					+ " FROM dual";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			ps.setLong(2, us_num);
+			ps.setLong(3, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<Integer>();
+			while(rs.next()) {
+				int chall = rs.getInt(1);
+				int finish = rs.getInt(2);
+				int total = rs.getInt(3);
+				list.add(chall);
+				list.add(finish);
+				list.add(total);
+			}
 		} catch (Exception e) {
 			throw new Exception(e);
 		} finally {
-			DBUtil.executeClose(null, ps2, con);
+			DBUtil.executeClose(rs, ps, con);
 		}
-		return achiev_img;
+		return list;
 	}
 }

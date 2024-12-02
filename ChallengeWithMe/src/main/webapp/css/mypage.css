@@ -76,11 +76,12 @@ form {
   padding-left: 50px;
   padding-right: 0;
   width: 400px;
-  height: 600px;
+  height: 650px;
   text-align: center;
   border: 2px solid;
   border-radius: 10px;
   margin: 0 auto;
+  cursor: pointer;
 }
 
 .form-wrapper{
@@ -118,7 +119,7 @@ form.mypage-form2{
 .green{
 	background-color: #6ae06e;
 	width: 12px;
-	height: 600px;
+	height: 650px;
 	padding: 20px;
 	position: absolute;
 	top: 0;
@@ -129,7 +130,7 @@ form.mypage-form2{
 .green2{
 	background-color: #6ae06e;
 	width: 12px;
-	height: 600px;
+	height: 650px;
 	padding: 20px;
 	position: absolute;
 	top: 0;
@@ -287,8 +288,14 @@ form.mypage-form2{
 	border-radius: 50px;
 	background-color: #d9d9d9;
 }
-input[type="button"]{
+input[type="button"]:hover{
 	cursor: pointer;
+  transform: scale(1.2);
+}
+.hole, .hole2 {
+  cursor: default;
+  pointer-events: none;
+  transition: none;
 }
 
 /* 개인 정보 */
@@ -569,6 +576,7 @@ p{
 	font-weight: 900;
 	font-size: 20px;
 	color: #796c68;
+	cursor: pointer;
 }	
 
 .info-rightbtn{

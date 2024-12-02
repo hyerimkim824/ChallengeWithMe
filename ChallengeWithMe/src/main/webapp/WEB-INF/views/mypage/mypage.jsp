@@ -64,25 +64,25 @@
 				<div class="result1">
 					<ul>
 						<li>성과 점수</li>
-						<li>점</li>
+						<li>${ score.us_score }점</li>
 					</ul>
 				</div>
 				<div class="result2">
 					<ul>
 						<li>참여횟수</li>
-						<li>회</li>
+						<li>${ chall[2] }회</li>
 					</ul>
 				</div>
 				<div class="result3">
 					<ul>
 						<li>완료횟수</li>
-						<li>회</li>
+						<li>${ chall[1] }회</li>
 					</ul>
 				</div>
 				<div class="result4">
 					<ul>
 						<li>개설횟수</li>
-						<li>회</li>
+						<li>${ chall[0] }회</li>
 					</ul>
 				</div>
 			</div>
@@ -206,12 +206,26 @@
 						<ul>
 							<li><h3>나의 등급</h3></li>
 							<li>Lv${ xuser.rank }</li>
-							<li><!-- 점수 들어갈 예정 -->점</li>
+							<li>${ score.us_score }점</li>
 						</ul>
 					</div>
 					<div>
 						<!-- 나무 애니메이션 들어가는곳 -->
-						<img src="${ pageContext.request.contextPath }/images/logo.png">
+						<c:if test="${ xuser.rank <= 2 }">
+						<img src="${ pageContext.request.contextPath }/images/Level1.png">
+						</c:if>
+						<c:if test="${ xuser.rank > 2 && xuser.rank <= 4 }">
+						<img src="${ pageContext.request.contextPath }/images/Level2.png">
+						</c:if>
+						<c:if test="${ xuser.rank > 4 &&  xuser.rank <= 6 }">
+						<img src="${ pageContext.request.contextPath }/images/Level3.png">
+						</c:if>
+						<c:if test="${ xuser.rank > 6 &&  xuser.rank <= 8 }">
+						<img src="${ pageContext.request.contextPath }/images/Level4.png">
+						</c:if>
+						<c:if test="${ xuser.rank > 8 &&  xuser.rank <= 10 }">
+						<img src="${ pageContext.request.contextPath }/images/Level5.png">
+						</c:if>
 					</div>
 				</div>
 				<!-- 우측 정보 -->

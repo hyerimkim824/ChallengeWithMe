@@ -55,6 +55,7 @@ button, input[type="button"],[type="submit"] {
   text-transform: uppercase;
   transition: transform 80ms ease-in;
   opacity: 0.75;
+  cursor: pointer;
 }
 
 button:active, input[type="button"]:active {
@@ -309,6 +310,7 @@ footer a {
 
 .custom-radio input[type="radio"] {
   display: none;
+  cursor: pointer;
 }
 
 .custom-radio span {
