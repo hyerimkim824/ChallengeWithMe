@@ -60,6 +60,7 @@ public class ScoreDAO {
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'finished') AS complete_num, " +
 					"(SELECT COUNT(*) FROM chall WHERE us_num = ?) AS create_num, " +
 					"(SELECT NVL(SUM(trans_bal), 0) FROM trans WHERE from_num = ?) AS spend_amount, " +
+					"(SELECT NVL(SUM(trans_bal), 0) FROM trans WHERE from_num = ?) AS charge_amount, " +
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'giveup') AS quit_amount " +
 					"FROM DUAL";
 
@@ -162,11 +163,9 @@ public class ScoreDAO {
 		int create_num = vo.getCreate_num();
 		int spend_amount = vo.getSpend_amount() / 1000;
 		int quit_amount = vo.getQuit_amount() * 5;
-		
-		//charge는 후에 구현
-		//int charge_amount = vo.getCharge_amount();
+		int charge_amount = vo.getCharge_amount() / 700;
 		//인증에 대한 점수도 후에 구현
-		int sum = join_score + complete_score + create_num + spend_amount;
+		int sum = join_score + complete_score + create_num + spend_amount + charge_amount;
 		
 		int score = sum >= quit_amount ? sum - quit_amount : 0;
 		

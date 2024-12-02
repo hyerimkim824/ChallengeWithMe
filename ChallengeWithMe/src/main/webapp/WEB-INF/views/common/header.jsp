@@ -3,8 +3,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- header 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
+
 <div id="header">	
 	<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" class="nav-logo left"></a>
 	
@@ -16,11 +19,7 @@
 			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
 			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">마이챌린지</a>
 		</div>
-		<div class="nav-btn">
-			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">
-			<img src="${pageContext.request.contextPath}/images/heart.png" class="img-btn">
-			<img src="${pageContext.request.contextPath}/images/alarm.png" class="img-btn">
-		</div>
+		
 		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
 	</c:if>
 	

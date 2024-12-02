@@ -9,7 +9,15 @@
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/main.css" type="text/css">
-
+<link
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	rel="stylesheet"
+	integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+	crossorigin="anonymous">
+<script
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+	integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+	crossorigin="anonymous"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -38,23 +46,23 @@
 							<div class="left1">
 								<div class="left1Img align-center">
 									<c:choose>
-										<c:when test="${list.cate_num == 1}">
+										<c:when test="${rank == 1}">
 											<img src="../images/Level1.png">
 										</c:when>
-										<c:when test="${list.cate_num == 2}">
+										<c:when test="${rank == 2}">
 											<img src="../images/Level2.png">
 										</c:when>
-										<c:when test="${list.cate_num == 3}">
+										<c:when test="${rank == 3}">
 											<img src="../images/Level3.png">
 										</c:when>
-										<c:when test="${list.cate_num == 4}">
+										<c:when test="${rank == 4}">
 											<img src="../images/Level4.png">
 										</c:when>
-										<c:when test="${list.cate_num == 5}">
+										<c:when test="${rank == 5}">
 											<img src="../images/Level5.png">
 										</c:when>
 										<c:otherwise>
-											<img src="../images/Level1.png">
+											<img src="../images/face.png">
 										</c:otherwise>
 									</c:choose>
 									
@@ -99,7 +107,7 @@
 								<ul>
 									<li><label>참여중인 챌린지</label>${ score_vo.join_num - score_vo.complete_num - score_vo.quit_amount}개</li>
 									<li><label>완료한 챌린지</label>${score_vo.complete_num}개</li>
-									<li><label>랭크 점수</label>${score_vo.us_score}점</li>
+									<li><label>성과 점수</label>${score_vo.us_score}점</li>
 								</ul>
 							</div>
 							<div class="right3">
@@ -177,23 +185,30 @@
 			<div class="c3-title">공식 챌린지</div>
 			<div class="c3-content">
 			<!-- ----------------------------슬라이더 시작----------------------------------- -->
-				<div class="prev-btn align-center">
-					<img src="../images/left.png" width="20vw" height="30vw">
+				<div id="carouselExample" class="carousel slide">
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img src="../images/health.jpg" class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="..." class="d-block w-100" alt="...">
+						</div>
+						<div class="carousel-item">
+							<img src="..." class="d-block w-100" alt="...">
+						</div>
+					</div>
+					<button class="carousel-control-prev" type="button"
+						data-bs-target="#carouselExample" data-bs-slide="prev">
+						<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Previous</span>
+					</button>
+					<button class="carousel-control-next" type="button"
+						data-bs-target="#carouselExample" data-bs-slide="next">
+						<span class="carousel-control-next-icon" aria-hidden="true"></span>
+						<span class="visually-hidden">Next</span>
+					</button>
 				</div>
-				<div class="slider-main align-center">
-					<c:forEach var="list" items="${official_list}">
-						<c:if test="${list.ch_title == ''}">
-							내용 있음
-						</c:if>
-						<c:if test="${list.ch_title != ''}">
-							내용 없음
-						</c:if>
-					</c:forEach>
-				</div>
-				<div class="next-btn align-center">
-					<img src="../images/right.png" width="20vw" height="30vw">
-				</div>
-			<!-- -----------------------------슬라이더 끝----------------------------------- -->
+				<!-- -----------------------------슬라이더 끝----------------------------------- -->
 			</div>
 		</div>
 		<div class="m-content4-container">

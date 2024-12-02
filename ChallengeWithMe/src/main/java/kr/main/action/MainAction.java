@@ -49,6 +49,8 @@ public class MainAction implements Action{
           
           ScoreDAO score_dao = ScoreDAO.getInstance();
           ScoreVO score_vo = score_dao.getScoreInfo(us_num);
+          int score = score_dao.calculateScore(score_vo);
+          score_vo.setUs_score(score);
           
           request.setAttribute("score_vo", score_vo);
           

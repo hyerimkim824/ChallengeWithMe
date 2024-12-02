@@ -1387,3 +1387,89 @@ li{
 	border:none;
 }
 
+/*=============================================================== 충전 화면 목록 ===================================================================*/
+.charge-div{
+	width:80%;
+	height:100vw;
+	border:1px solid black;
+	margin:0 auto;
+}
+
+.charge-titleDiv{
+	width:100%;
+	border:1px solid blue;
+	height:20vw;
+	font-size:3vw;
+	font-weight:bold;
+}
+.charge-mainDiv{
+	width:100%;
+	height:80%;
+	border:1px solid red;
+	position:relative;
+}
+
+.charge-nav{
+	display:flex;
+	align-items:center;
+	background:purple;
+}
+
+.nav-item{
+	height:2vw;
+	width:5vw;
+	
+}
+
+.nav-charge {
+	border-bottom:2px solid #FFE066;
+	margin-left:5%;
+}
+
+.nav-balance{
+	margin-left:50%;
+}
+
+.charge-body{
+	background:pink;
+}
+
+.charge-amount{
+	background:green;
+}
+
+.charge-amount label{
+	display:inline-block;
+	width:8vw;
+	
+}
+
+.amount-title{
+	background:blue;
+	width:30%;
+	height:5vw;
+	font-weight:bold;
+	font-size:1vw;
+}
+
+.amount-selection{
+	display:flex;
+	
+}
+
+.amount-option{
+	border-radius:20px;
+	border:1px solid black;
+	width:7vw;
+	height:2vw;
+	font-size:0.8vw;
+	margin-left:3%;
+	cursor:pointer;
+}
+.amount-input{
+	margin-left:3%;
+}
+
+.amount-result{
+	margin-left:3%;
+}
