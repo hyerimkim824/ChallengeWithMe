@@ -60,7 +60,6 @@ public class ScoreDAO {
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'finished') AS complete_num, " +
 					"(SELECT COUNT(*) FROM chall WHERE us_num = ?) AS create_num, " +
 					"(SELECT NVL(SUM(trans_bal), 0) FROM trans WHERE from_num = ?) AS spend_amount, " +
-					"(SELECT NVL(SUM(trans_bal), 0) FROM trans WHERE from_num = ?) AS charge_amount, " +
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'giveup') AS quit_amount " +
 					"FROM DUAL";
 
