@@ -11,7 +11,7 @@ import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.xuser.vo.XuserVO;
 
-public class MyBadgeListFormAction implements Action{
+public class ModifyBadgeFormAction implements Action{
 
 	@Override
 	public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -22,22 +22,14 @@ public class MyBadgeListFormAction implements Action{
 			
 		}
 		
+		MyPageDAO dao = MyPageDAO.getInstance();
+		XuserVO xuser = dao.getMyInfo(us_num);
 		
-	    MyPageDAO dao = MyPageDAO.getInstance();
-	    XuserVO xuser = dao.getMyInfo(us_num);
-	    List<BadgeVO> allBadges = dao.selectBadge();
-	    List<Long> userBadgeNumbers = dao.getUserbadge(us_num);
-
-	    // 소유 여부를 BadgeVO에 추가
-	    for (BadgeVO badge : allBadges) {
-	        badge.setOwned(userBadgeNumbers.contains(badge.getBg_num()));
-	    }
-
-	    // JSP로 전달
-	    request.setAttribute("list", allBadges);
-	    request.setAttribute("xuser", xuser);
-	    
-		return "mypage/mybadgelistForm.jsp";
+		List<BadgeVO> list = null;
+		list = dao.selectBadge();
+		
+		request.setAttribute("list", list);
+		request.setAttribute("xuser", xuser);
+		return "mypage/modifybadge.jsp";
 	}
-
 }

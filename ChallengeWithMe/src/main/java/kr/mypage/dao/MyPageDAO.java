@@ -98,7 +98,7 @@ public class MyPageDAO {
 		return list;
 	}
 	
-	// 유저 획득 뱃지 정보 불러오기
+	// 유저 획득 뱃지 개수 정보 불러오기
 	public List<Integer> getBadgeInfo(long us_num)throws Exception{
 		Connection con = null;
 		PreparedStatement ps = null;
@@ -459,6 +459,178 @@ public class MyPageDAO {
 			ps.executeUpdate();
 			
 		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 뱃지 리스트
+	public List<BadgeVO> selectBadge()throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<BadgeVO> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT * FROM badge";
+			ps = con.prepareStatement(sql);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<BadgeVO>();
+			while(rs.next()) {
+				BadgeVO badge = new BadgeVO();
+				badge.setBg_num(rs.getLong("bg_num"));
+				badge.setBg_img(rs.getString("bg_img"));
+				badge.setBg_name(rs.getString("bg_name"));
+				badge.setBg_desc(rs.getString("bg_desc"));
+				list.add(badge);
+			}
+			
+		}catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
+	
+	// 수정 뱃지 정보
+	public BadgeVO modifyBadge(long bg_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		BadgeVO badge = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT * FROM badge WHERE bg_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, bg_num);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				badge = new BadgeVO();
+				badge.setBg_num(rs.getLong("bg_num"));
+				badge.setBg_img(rs.getString("bg_img"));
+				badge.setBg_name(rs.getString("bg_name"));
+				badge.setBg_desc(rs.getString("bg_desc"));
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return badge;
+	}
+	
+	// 뱃지 정보 수정
+	public void updateBadge(BadgeVO badge, long bg_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "UPDATE badge SET bg_img=?, bg_name=?, bg_desc=? WHERE bg_num=?";
+			
+			ps = con.prepareStatement(sql);
+			ps.setString(1, badge.getBg_img());
+			ps.setString(2, badge.getBg_name());
+			ps.setString(3, badge.getBg_desc());
+			ps.setLong(4, bg_num);
+			ps.executeUpdate();
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+	}
+	
+	// 유저 획득 뱃지 번호 가져오기
+	public List<Long> getUserbadge(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		List<Long> list = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT * FROM userbadge WHERE us_num=?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			list = new ArrayList<Long>();
+			while(rs.next()) {
+				long bg_num = rs.getLong("bg_num");
+				list.add(bg_num);
+			}
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(rs, ps, con);
+		}
+		return list;
+	}
+	
+	// 대표 뱃지 가져오기
+	public String getMainBadge(long us_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		String sql = null;
+		String bg_img = "";
+		
+		try {
+			con = DBUtil.getConnection();
+			sql = "SELECT bg_img FROM badge WHERE bg_num=(SELECT bg_num FROM userbadge WHERE us_num=? AND bg_main=1)";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				bg_img = rs.getString(1);
+			}
+			
+		} catch (Exception e) {
+			throw new Exception(e);
+		} finally {
+			DBUtil.executeClose(null, ps, con);
+		}
+		return bg_img;
+	}
+	
+	// 대표 뱃지 설정
+	public void setMainBadge(long us_num, long bg_num)throws Exception{
+		Connection con = null;
+		PreparedStatement ps = null;
+		PreparedStatement ps2 = null;
+		String sql = null;
+		
+		try {
+			con = DBUtil.getConnection();
+			con.setAutoCommit(false);
+			
+			sql = "UPDATE userbadge SET bg_main=0 WHERE us_num=? AND bg_main=1";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, us_num);
+			ps.executeUpdate();
+			
+			sql = "UPDATE userbadge SET bg_main=1 WHERE us_num=? AND bg_num=?";
+			ps2 = con.prepareStatement(sql);
+			ps2.setLong(1, us_num);
+			ps2.setLong(2, bg_num);
+			ps2.executeUpdate();
+			
+			con.commit();
+		} catch (Exception e) {
+			con.rollback();
 			throw new Exception(e);
 		} finally {
 			DBUtil.executeClose(null, ps, con);

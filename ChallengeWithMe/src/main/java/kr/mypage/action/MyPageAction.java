@@ -35,6 +35,9 @@ public class MyPageAction implements Action{
 		// 챌린지 정보
 		List<Integer> chall = dao.getChall(us_num);
 		
+		// 대표 뱃지
+		String bg_img = dao.getMainBadge(us_num);
+		
 		// 랭크 점수
 		ScoreDAO dao4 = ScoreDAO.getInstance();
 		ScoreVO db_score = dao4.getScoreInfo(us_num);
@@ -43,6 +46,7 @@ public class MyPageAction implements Action{
 		dao4.updateScoreInfo(db_score);
 		
 		
+		request.setAttribute("bg_img", bg_img);
 		request.setAttribute("chall", chall);
 		request.setAttribute("score", db_score);
 		request.setAttribute("bgInfo", bgInfo);

@@ -243,8 +243,14 @@
 				<!-- 대표 뱃지 -->
 				<div class="info-left">
 					<h3>대표 뱃지</h3>
-					<a href="#"><img src="${ pageContext.request.contextPath }/images/face.png" width="200" height="200" class=""></a>
-					<input type="button" value="뱃지 변경">
+					<c:if test="${ !empty bg_img }">
+					<img src="${ pageContext.request.contextPath }/upload/${bg_img}" width="200" height="200" class="">
+					</c:if>
+					<c:if test="${ empty bg_img }">
+					<img src="${ pageContext.request.contextPath }/images/wing.png" width="200" height="200" class="">
+					</c:if>
+					<input type="button" value="뱃지 변경"
+					onclick="location.href='myBadgeListForm.do'">
 				</div>
 				<!-- 뱃지 개수 정보 -->
 				<div class="info-right">

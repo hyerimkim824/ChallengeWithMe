@@ -8,6 +8,15 @@ public class BadgeVO {
 	private String bg_img;
 	private String bg_name;
 	private String bg_desc;
+    private boolean isOwned;
+
+    public boolean isOwned() {
+        return isOwned;
+    }
+
+    public void setOwned(boolean isOwned) {
+        this.isOwned = isOwned;
+    }
 	
 	// 유저 뱃지
 	private Date bg_date;
