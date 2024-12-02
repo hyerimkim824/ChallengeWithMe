@@ -1,6 +1,10 @@
 @charset "UTF-8";
 
 /*-------------------------- 커뮤니티 공통--------------------------*/
+body {
+    font-family: 'Noto Sans','Noto Sans KR',sans-serif;
+}
+
 .custom-hr {
     border: none;
     height: 1px;
@@ -15,14 +19,15 @@
 /*-------------------------- 커뮤니티 글 목록------------------------*/
 
 .list-page-main{
-	width:80%;
+	max-width:80%;
 	margin:150px auto;
 	background:#FFE066;
 	border-radius: 20px;
 	height:auto;
 }
 
-.content-main{
+.content-header{
+	max-width: 100%;
 	display: flex;
 	justify-content: space-between; /* 양쪽 정렬 */
 	padding:20px 0 0 0;
@@ -75,6 +80,7 @@
 /* 전체 검색 박스 컨테이너 */
 .search {
 	height:20px;
+	max-width: 100%; /* 검색창 최대 너비 */
 	list-style:none;
     display: flex; /* 요소를 가로로 정렬 */
     align-items: center; /* 세로 중앙 정렬 */
@@ -83,7 +89,6 @@
     padding: 5px 5px; /* 안쪽 여백 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */ 
-    max-width: 500px; /* 검색창 최대 너비 */
     margin: 5px auto; /* 가운데 정렬 */
     outline: none;
 }
@@ -155,7 +160,7 @@
     padding: 10px 20px; /* 내부 여백 */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
-    width:90%;
+    max-width:90%;
     margin:5% auto;
     height:120px;
     position: relative; /* 위치 조정을 위해 설정 */
@@ -169,7 +174,7 @@
 }
 
 .main-title{
-	font-size: 20px;
+	font-size: 2vw;
 }
 
 .post-list-header{
@@ -254,9 +259,10 @@
 .detail-main{
 	background:white;
 	margin: 30px;
-	margin-bottom: 150px; 
+	/* margin-bottom: 150px; */ 
 	border-radius: 20px;
 	padding:0 20px;
+	height: auto;
 	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
 }
@@ -431,10 +437,6 @@ textarea#re_content.rep-content{
 	gap:15px;
 }
 
-
-/* 댓글 수정 삭제 버튼 및 내용 보여짐 */
-.sub-item{
-}
 
 /* 댓글 수정 삭제 버튼  */
 .sub-item input[type="button"] {

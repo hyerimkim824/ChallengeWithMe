@@ -23,7 +23,7 @@ public class UpdateFormAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		if(us_num == null) {//로그인이 되지 않은 경우
-			return "/xuser/login.do";
+			return "redirect:/xuser/registerXuserForm.do";
 			
 		}else {//로그인이 된 경우
 			//detail.jsp onclick에서 post_num을 받아왔기 때문에 parameter값으로 post_num사용 가능

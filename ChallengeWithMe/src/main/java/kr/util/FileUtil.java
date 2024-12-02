@@ -20,6 +20,7 @@ public class FileUtil {
 		//컨텍스트 경로상의 업로드 절대경로
 		String upload = request.getServletContext()
 				               .getRealPath(UPLOAD_PATH);
+		System.out.println(upload);
 		Part part = request.getPart(param);
 		String filename = part.getSubmittedFileName();
 		if(!filename.isEmpty()) {//파일을 업로드한 경우

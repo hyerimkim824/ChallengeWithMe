@@ -33,9 +33,8 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 	<div class="list-page-main">
-		<div class="content-main">
-			<h4 class=main-title>꼬박꼬박 커뮤니티</h4>
-			
+		<div class="content-header">
+			<h4 class="main-title">꼬박꼬박 커뮤니티</h4>
 			<div class="search-and-button">
 			<form id="search_form" action="list.do" method="get">
 				<ul class = "search">

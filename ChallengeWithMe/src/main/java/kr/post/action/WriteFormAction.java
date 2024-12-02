@@ -16,7 +16,7 @@ public class WriteFormAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		if(us_num == null) {//로그인이 되지 않은 경우
-			return "redirect:/xuser/loginForm.jsp";
+			return "redirect:/xuser/registerXuserForm.do"; 
 		}
 		
 		MyPageDAO dao = MyPageDAO.getInstance();

@@ -4,10 +4,8 @@
 <!-- header 시작 -->
 <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
-
 <script src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 <script src="${pageContext.request.contextPath}/js/header.js"></script>
-
 <div id="header">	
 	<a href="${pageContext.request.contextPath}/main/main.do"><img src="${pageContext.request.contextPath}/images/logo.png" class="nav-logo left"></a>
 	
@@ -19,8 +17,23 @@
 			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
 			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">마이챌린지</a>
 		</div>
-		
-		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
+		<div class="nav-btn">
+			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">
+			<img src="${pageContext.request.contextPath}/images/heart.png" class="img-btn">
+			<img src="${pageContext.request.contextPath}/images/alarm.png" class="img-btn">
+		</div>
+		<c:choose>
+      	  <c:when test="${!empty xuser.img}">
+            <img src="${pageContext.request.contextPath}/upload/${xuser.img}" 
+                 width="30" height="30" style="border-radius: 50%;" class="profile_img">
+      	  </c:when>
+       	  <c:otherwise>
+            <img src="${pageContext.request.contextPath}/images/face.png" 
+                 width="30" height="30" 
+                 style="border-radius: 50%;"  class="profile_img">
+     	  </c:otherwise>
+   		  </c:choose>
+	
 	</c:if>
 	
 	<!-- 관리자 계정으로 로그인된 경우 -->
@@ -32,9 +45,7 @@
 			<a href="${pageContext.request.contextPath}/member/adminList.do">관리페이지</a>
 			<a>공개챌린지</a>
 		</div>
-		
 		<img src="${pageContext.request.contextPath}/images/face.png" width="25" height="25" class="profile_img">
-		
 	</c:if>
 	
 	<!-- 로그인되지 않은 경우 -->
@@ -49,26 +60,29 @@
 		<div class="brief-box">
 				<div class="brief-box-info" style="font-size: 13px;">
 					<div class="brief-box1">
-						<p class="brief-box-img"><img src="../images/face.png"></p>
-						<input type="button"  value="프로필 수정" onclick="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">
+						<p class="brief-box-img">
+						<c:if test="${!empty xuser.img}"><img src="${pageContext.request.contextPath}/upload/${xuser.img}"
+								width="30" height="30"></c:if>
+						<c:if test="${empty xuser.img}"><img src="${pageContext.request.contextPath}/images/face.png"></c:if>
+						<input type="button"  value="마이 페이지" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">
 					</div>
 				
 					<div class="brief-box2">	
-						<p class="brief-box-nickname">님</p><br>
-						<p class="brief-box-text" >오늘도 멋진 도전을 응원합니다!💪</p>
+						<p class="brief-box-nic-text" style="font-size: 14px">${xuser.nickname}님<br>
+						오늘도<br>힘찬 도전을<br>응원합니다!💪</p>
 					</div>
 				</div>
 				<div class="brief-box3">
 					<ul class="brief-box-menu" style="font-size: 13px;">
-						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">개설한 챌린지</a></li>
-						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">잔고 잔액</a></li>
-						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">사용가이드</a></li>
-						<li><a href="location.href='${pageContext.request.contextPath}/support/FeedBack.do'">고객의 소리</a></li>
+						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">개설한 챌린지</a></li>
+						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">잔고 잔액</a></li>
+						<li><a href="${pageContext.request.contextPath}/support/FaqList.do">자주 묻는 질문</a></li>
+						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">고객의 소리</a></li>
 					</ul>
 				</div>	
 			
 			</div>
-		<div class="brief-rogout">로그아웃
+		<div class="brief-rogout"><a href="${pageContext.request.contextPath}/xuser/logout.do">로그아웃</a>
 		</div>
 	</div>
 </div>

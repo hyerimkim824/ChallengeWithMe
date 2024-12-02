@@ -18,6 +18,10 @@ public class DetailAction implements Action{
 		HttpSession session = request.getSession();
 		Long us_num = (Long)session.getAttribute("us_num");
 		
+		if(us_num == null) {//로그인이 되지 않은 경우
+			return "redirect:/xuser/registerXuserForm.do";
+		}
+		
         long post_num = Long.parseLong(request.getParameter("post_num"));
        
         PostDAO dao = PostDAO.getInstance();

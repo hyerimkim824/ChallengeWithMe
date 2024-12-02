@@ -64,7 +64,7 @@ public class PagingUtil {
 				
 				if (currentPage > pageCount) {
 					page.append("<a href="+pageUrl+"?pageNum="+ (startPage - 1) + sub_url +">");
-					page.append("[이전]");
+					page.append("<");
 					page.append("</a>");
 				}
 				//페이지 번호.현재 페이지는 빨간색으로 강조하고 링크를 제거.
@@ -88,7 +88,7 @@ public class PagingUtil {
 				// 다음 block 페이지
 				if (totalPage - startPage >= pageCount) {
 					page.append("<a href="+pageUrl+"?pageNum="+ (endPage + 1) + sub_url +">");
-					page.append("[다음]");
+					page.append(">");
 					page.append("</a>");
 				}
 			}else {

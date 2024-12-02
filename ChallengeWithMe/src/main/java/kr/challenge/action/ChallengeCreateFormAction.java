@@ -21,7 +21,7 @@ public class ChallengeCreateFormAction implements Action{
 		
 		
 		if(us_num == null) {
-			return "redirect:/xuser/loginForm.do";
+			return "redirect:/xuser/loginForm.do"; 
 		}
 		
 		MyPageDAO dao = MyPageDAO.getInstance();
