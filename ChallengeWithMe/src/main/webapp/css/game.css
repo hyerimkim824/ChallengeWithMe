@@ -316,7 +316,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    background-color:skyblue;
+    background-color:#c5e8fc;
     overflow: hidden;
     border-radius: 10px; /* main-board의 스타일과 일치 */
 }
