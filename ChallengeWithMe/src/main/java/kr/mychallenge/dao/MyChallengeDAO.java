@@ -73,7 +73,7 @@ public class MyChallengeDAO {
 	}
 	//유저별 이미지 가져오기
 	
-    public List<MyChallengeVO> getImg(long ch_num)throws Exception{
+   /* public List<MyChallengeVO> getImg(long ch_num)throws Exception{
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
@@ -108,10 +108,86 @@ public class MyChallengeDAO {
 			DBUtil.executeClose(rs, pstmt, conn);
 		}		
 		return list;
+
+	}*/
+    
+    //카테고리 별 이미지 가져오기
+     public MyChallengeVO getImage(long cate_num)throws Exception{
 		
-	
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		MyChallengeVO mychall = null;
+		String sql = null;
 		
+		try {
+			
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT ch_img FROM CHALL WHERE cate_num = ?";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 바인딩
+			pstmt.setLong(1, cate_num);
+			
+			rs= pstmt.executeQuery();
+			
+			if(rs.next()) {
+				mychall = new MyChallengeVO();
+				mychall.setCate_num(rs.getInt("cate_num"));;
+			}
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return mychall;
+
 	}
+    
+    
+     public List<MyChallengeVO> getImg(long ch_num)throws Exception{
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MyChallengeVO> list = null;
+		String sql = null;
+		
+		try {
+			
+			//커넥션풀로부터 커넥션 할당
+			conn = DBUtil.getConnection();
+			
+			sql = "SELECT ch_img FROM CHALL WHERE ch_num = ?";
+		
+			pstmt = conn.prepareStatement(sql);
+			
+			//?에 바인딩
+			pstmt.setLong(1, ch_num);
+			
+			rs= pstmt.executeQuery();
+			list = new ArrayList<MyChallengeVO>();
+			while(rs.next()) {
+				MyChallengeVO mychall = new MyChallengeVO();
+				mychall.setCh_img(rs.getString("ch_img"));
+				list.add(mychall);
+			}
+			
+			
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(rs, pstmt, conn);
+		}		
+		return list;
+
+	}
+    
 	
 	
 	//유저별 참여 관련 챌린지 리스트
@@ -244,7 +320,6 @@ public class MyChallengeDAO {
 		return total;
 
 	}
-	//참가수(한달 평균)
 	public int getOngoingCountForSpecificMonth(long us_num, int year, int month) throws Exception {
 	    Connection conn = null;
 	    PreparedStatement pstmt = null;
@@ -266,7 +341,12 @@ public class MyChallengeDAO {
 
 	        // 특정 달의 시작일과 다음 달의 시작일 계산
 	        String startDate = String.format("%d-%02d-01", year, month); // 해당 달의 시작일
-	        String endDate = String.format("%d-%02d-01", year, month + 1); // 다음 달의 시작일
+	        String endDate;
+	        if (month == 12) {
+	            endDate = String.format("%d-%02d-01", year + 1, 1); // 12월은 1월로 넘어가야 함
+	        } else {
+	            endDate = String.format("%d-%02d-01", year, month + 1); // 다른 월은 다음 달로
+	        }
 
 	        // PreparedStatement 객체 생성
 	        pstmt = conn.prepareStatement(sql);

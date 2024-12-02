@@ -8,6 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이첼린지 메인</title>
+ <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/css/style.css"
 	type="text/css">
@@ -41,6 +42,8 @@ function hideFunction(id) {
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
+	
+	
 <div class="page-main">	
 <div class="mychallenge-content-main">
     <div class="mychallenge-div">
@@ -109,26 +112,122 @@ function hideFunction(id) {
         <button id="mybutton" onclick="hideFunction('get')">챌린지 달성률</button>
         <button id="mybutton" onclick="hideFunction('like')">챌린지 선호도</button>
     </div>
+    
+    <canvas id="myBarChart" width="400" height="200"></canvas>
+         <script>
+        // 자바스크립트 변수에 데이터를 할당 (여기서 ${ongoingCountX}를 실제 값으로 대체)
+        var ongoingCount1 =  ${ongoingCount1};  // 예시 값
+        var ongoingCount2 =  ${ongoingCount2};  // 예시 값
+        var ongoingCount3 =  ${ongoingCount3};  // 예시 값
+        var ongoingCount4 =  ${ongoingCount4};  // 예시 값
+        var ongoingCount5 = ${ongoingCount5};  // 예시 값
+        var ongoingCount6 =  ${ongoingCount6};  // 예시 값
+        var ongoingCount7 =  ${ongoingCount7};  // 예시 값
+        var ongoingCount8 =  ${ongoingCount8};  // 예시 값
+        var ongoingCount9 =  ${ongoingCount9};  // 예시 값
+        var ongoingCount10 =  ${ongoingCount10}; // 예시 값
+        var ongoingCount11 =  ${ongoingCount11}; // 예시 값
+        var ongoingCount12 = ${ongoingCount12}; // 예시 값
+
+        // 막대 그래프를 그리기 위한 Chart.js 코드
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: 'Ongoing Counts',
+                    data: [
+                        ongoingCount1,
+                        ongoingCount2,
+                        ongoingCount3,
+                        ongoingCount4,
+                        ongoingCount5,
+                        ongoingCount6,
+                        ongoingCount7,
+                        ongoingCount8,
+                        ongoingCount9,
+                        ongoingCount10,
+                        ongoingCount11,
+                        ongoingCount12
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // 막대 색상
+                    borderColor: 'rgba(54, 162, 235, 1)', // 테두리 색상
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // y축 0부터 시작
+                    }
+                }
+            }
+        });
+    </script>
 
     <div id="part" class="ch-button">
         <h4>MY챌린지 참가수</h4>
-        ${partNum}
-        <h4>MY평균 챌린지 참가수</h4>
-        ${ongoingCount}
+        
+        <canvas id="myBarChart" width="400" height="200"></canvas>
+         <script>
+        // 자바스크립트 변수에 데이터를 할당 (여기서 ${ongoingCountX}를 실제 값으로 대체)
+        var ongoingCount1 =  ${ongoingCount1};  // 예시 값
+        var ongoingCount2 =  ${ongoingCount2};  // 예시 값
+        var ongoingCount3 =  ${ongoingCount3};  // 예시 값
+        var ongoingCount4 =  ${ongoingCount4};  // 예시 값
+        var ongoingCount5 = ${ongoingCount5};  // 예시 값
+        var ongoingCount6 =  ${ongoingCount6};  // 예시 값
+        var ongoingCount7 =  ${ongoingCount7};  // 예시 값
+        var ongoingCount8 =  ${ongoingCount8};  // 예시 값
+        var ongoingCount9 =  ${ongoingCount9};  // 예시 값
+        var ongoingCount10 =  ${ongoingCount10}; // 예시 값
+        var ongoingCount11 =  ${ongoingCount11}; // 예시 값
+        var ongoingCount12 = ${ongoingCount12}; // 예시 값
+
+        // 막대 그래프를 그리기 위한 Chart.js 코드
+        var ctx = document.getElementById('myBarChart').getContext('2d');
+        var myBarChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'],
+                datasets: [{
+                    label: 'Ongoing Counts',
+                    data: [
+                        ongoingCount1,
+                        ongoingCount2,
+                        ongoingCount3,
+                        ongoingCount4,
+                        ongoingCount5,
+                        ongoingCount6,
+                        ongoingCount7,
+                        ongoingCount8,
+                        ongoingCount9,
+                        ongoingCount10,
+                        ongoingCount11,
+                        ongoingCount12
+                    ],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)', // 막대 색상
+                    borderColor: 'rgba(54, 162, 235, 1)', // 테두리 색상
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true // y축 0부터 시작
+                    }
+                }
+            }
+        });
+    </script>
+       
     </div>
 
     <div id="get" class="ch-button">
         <h4>현재 참여 챌린지 달성률</h4>
         ${list}
-        <c:forEach var="ch_list" items="${list}">
-            <tr>
-                <td>${board.board_num}</td>
-                <td><a href="detail.do?board_num=${board.board_num}">${board.title}</a></td>
-                <td>${board.id}</td>
-                <td>${board.reg_date}</td>
-                <td>${board.hit}</td>
-            </tr>
-        </c:forEach>
+        
 
         <h4>한달 평균 챌린지 달성률</h4>
         ${list_month}

@@ -46,9 +46,33 @@ public class MyChallengeMainAction implements Action{
 		
 		
 	    //월별 참여 정보
-		int ongoingCount = dao.getOngoingCountForSpecificMonth(us_num, 2024, 11);
-		request.setAttribute("ongoingCount", ongoingCount);
-		// 회원번호별 챌린지 참여 개수 정보
+		int ongoingCount1 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 01);
+		request.setAttribute("ongoingCount1", ongoingCount1);
+		
+		int ongoingCount2 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 02);
+		request.setAttribute("ongoingCount2", ongoingCount2);
+		int ongoingCount3 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 03);
+		request.setAttribute("ongoingCount3", ongoingCount3);
+		int ongoingCount4 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 04);
+		request.setAttribute("ongoingCount4", ongoingCount4);
+		int ongoingCount5 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 05);
+		request.setAttribute("ongoingCount5", ongoingCount5);
+		int ongoingCount6 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 06);
+		request.setAttribute("ongoingCount6", ongoingCount6);
+		int ongoingCount7 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 07);
+		request.setAttribute("ongoingCount7", ongoingCount7);
+		int ongoingCount8 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 8);
+		request.setAttribute("ongoingCount8", ongoingCount8);
+		int ongoingCount9 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 9);
+		request.setAttribute("ongoingCount9", ongoingCount9);
+		int ongoingCount10 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 10);
+		request.setAttribute("ongoingCount10", ongoingCount10);
+		int ongoingCount11 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 11);
+		request.setAttribute("ongoingCount11", ongoingCount11);
+		int ongoingCount12 = dao.getOngoingCountForSpecificMonth(us_num, 2024, 12);
+		request.setAttribute("ongoingCount12", ongoingCount12);
+		
+		// 회원번호별 챌린지 참여 개수 정보*/
 	
 		
 		
