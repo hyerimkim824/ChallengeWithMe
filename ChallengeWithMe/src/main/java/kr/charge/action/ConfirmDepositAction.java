@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import kr.charge.dao.ChargeDAO;
 import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.score.action.RefreshUserScore;
@@ -36,6 +37,10 @@ public class ConfirmDepositAction implements Action{
 		 
 		String bal = String.valueOf(updated_bal);
 		x_dao.updateWallet(us_num, bal);
+		
+		ChargeDAO charge_dao = ChargeDAO.getInstance();
+		charge_dao.createChargeRecord(us_num, money);
+		
 		
 		RefreshUserScore us_score = new RefreshUserScore();
 		us_score.refresh(us_num);

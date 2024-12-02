@@ -60,6 +60,7 @@ public class ScoreDAO {
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'finished') AS complete_num, " +
 					"(SELECT COUNT(*) FROM chall WHERE us_num = ?) AS create_num, " +
 					"(SELECT NVL(SUM(trans_bal), 0) FROM trans WHERE from_num = ?) AS spend_amount, " +
+					"(SELECT NVL(SUM(charge_bal), 0) FROM charge WHERE us_num = ?) AS charge_amount, " +
 					"(SELECT COUNT(*) FROM participant WHERE us_num = ? AND p_stat = 'giveup') AS quit_amount " +
 					"FROM DUAL";
 
@@ -71,6 +72,7 @@ public class ScoreDAO {
 			pstmt.setLong(3, us_num);
 			pstmt.setLong(4, us_num);
 			pstmt.setLong(5, us_num);
+			pstmt.setLong(6, us_num);
 
 			rs = pstmt.executeQuery();
 
@@ -82,6 +84,7 @@ public class ScoreDAO {
 				vo.setComplete_num(rs.getInt("complete_num"));
 				vo.setCreate_num(rs.getInt("create_num"));
 				vo.setSpend_amount(rs.getInt("spend_amount"));
+				vo.setCharge_amount(rs.getInt("charge_amount"));
 				vo.setQuit_amount(rs.getInt("quit_amount"));
 			}
 
