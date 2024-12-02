@@ -16,7 +16,8 @@
 
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 
-<h1>개설 챌린지</h1>
+
+<h1>참여 챌린지 딭일</h1>
 
 <div class="page-main">
     <div class="mychallenge-content-detail">
@@ -33,28 +34,37 @@
                 </li>
             </ul>
         </div>
-
-        <table id="part-info-table">
-            <tr>
-                <th colspan="2">MY 챌린지 참여/개설 정보</th>
-            </tr>
-            <tr>
-                <td>시작전</td>
-                <td>${partTable1.part_count}</td>
-            </tr>
-            <tr>
-                <td>참여 중</td>
-                <td>${partTable2.part_count}</td>
-            </tr>
-            <tr>
-                <td>포기</td>
-                <td>${partTable3.part_count}</td>
-            </tr>
-            <tr>
-                <td>개설</td>
-                <td>${partTable1.chall_count}</td>
-            </tr>
+		<div class="align-right">
+         <table id="simple_info_table">
+            <thead>
+                <tr>
+                    <th colspan="2">MY 챌린지 참여/개설 정보</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>시작전</td>
+                    <td>${partTable1.part_count}</td>
+                </tr>
+                <tr>
+                    <td>참여 중</td>
+                    <td>${partTable2.part_count}</td>
+                </tr>
+                <tr>
+                    <td>포기</td>
+                    <td>${partTable3.part_count}</td>
+                </tr>
+                <tr>
+                    <td>완료</td>
+                    <td>${partTable4.part_count}</td>
+                </tr>
+                <tr>
+                    <td>개설</td>
+                    <td>${partTable1.chall_count}</td>
+                </tr>
+            </tbody>
         </table>
+        </div>
 
         <div class="prove-challenge">
             <c:if test="${mychall.ah_num eq 1}">
@@ -87,7 +97,18 @@
                     <input type="button" value="챌린지 인증6(가계부)" id="proved_button">
                 </a>
             </c:if>
-        </div>
+        </div> <!--인증 챌린지까지 -->
+        
+        <h3>${mychall.ch_title}</h3>
+        
+        <h4>챌린지 달성률 : </h4>
+        
+        <h4>날짜 별 달성 표시 : ${list}</h4>
+        
+        <h4>챌린지 상세정보 링크</h4>
+        
+        
+        
     </div>
 </div>
 

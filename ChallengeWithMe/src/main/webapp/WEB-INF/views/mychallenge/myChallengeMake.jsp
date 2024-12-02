@@ -19,97 +19,45 @@
 </head>
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
-<h1>개설 챌린지</h1>
+<h1>참여 챌린지</h1>
 
-<div class ="page-main">
-<div class="mychallenge-content-part">
+<div class="page-main">
+    <div class="mychallenge-content-main">
+        <div class="mychallenge-div">
+            <h4>프로필 사진</h4>
+            <ul>
+                <li>
+                    <c:if test="${empty xuser.photo}">
+                        <img src="${pageContext.request.contextPath}/images/face.png" width="150" height="150" class="my-photo">
+                    </c:if>
+                    <c:if test="${!empty xuser.photo}">
+                        <img src="${pageContext.request.contextPath}/upload/${xuser.photo}" width="150" height="150" class="my-photo">
+                    </c:if>
+                </li>
+            </ul>
+        </div>
 
-			<div class="mychallenge-div">
-				<h4>프로필 사진</h4>
-				<ul>
-					<li>
-						<c:if test="${empty xuser.photo}">
-								<img src="${pageContext.request.contextPath}/images/face.png"
-									width="150" height="150" class="my-photo">
-							</c:if> 
-							<c:if test="${!empty xuser.photo}">
-								<img
-									src="${pageContext.request.contextPath}/upload/${xuser.photo}"
-									width="150" height="150" class="my-photo">
-							</c:if>
-						</li>
-				</ul>
-			</div>
-			
-			<h3 id="gen_ch">My 개설 챌린지</h3>
-		
-		<div class="gen-part-img">
-			    <h3 id="participate_ch">개설 챌린지</h3>
-		<c:forEach var="ch_list" items="${ch_list}">
-	
-		<div  class="part-image">
-			<p>"${ch_list.ch_num}"</p>
-			<a href='${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${ch_list.ch_num}'>
-			<img src="${pageContext.request.contextPath}/images/study.jpg" width="200" height="200" class="part-photo-ex">
-			</a>		
+        <!-- 버튼들을 상단에 배치 -->
+        <div class="button-wrapper">
+            <input type="button" value="참여 챌린지" id="part_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
+            <input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
+        </div>
 
-						
-		</div>
-		</c:forEach>
-	
+        <!-- 이미지를 아래쪽에 배치 -->
+        <div class="part-image-wrapper">
+            <c:forEach var="part_list" items="${part_list}">
+                <div class="part-image">
+                    <p>${part_list.ch_num}</p>
+                    <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${part_list.ch_num}">
+                        <img src="${pageContext.request.contextPath}/images/study.jpg" class="part-photo-ex">
+                    </a>
+                </div>
+            </c:forEach>
+        </div>
 
-			<table id="info-table">
+    </div>
+    
+    <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+</div>
 
-					<tr>
-						<th colspan="2">MY 챌린지 참여/개설 정보</th>
-					</tr>
-					<tr>
-						<td>시작전</td>
-						<td>${partTable1.part_count}</td>
-					</tr>
-
-					<tr>
-						<td>참여 중</td>
-						<td>${partTable2.part_count}</td>
-					</tr>
-					
-					<tr>
-						<td>포기</td>
-						<td>${partTable3.part_count}</td>
-					</tr>
-					
-					<tr>
-						<td>개설</td>
-						<td>${partTable1.chall_count}</td>
-					</tr>
-		
-
-				</table>
-
-
-			</div>
-
-
-		</div>
-		<div class="align-left">
-
-			<input type="button" value="참여 챌린지" id="part_ch_btn"
-				onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
-			<br> <input type="button" value="개설 챌린지" id="gen_ch_btn"
-				onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
-
-		</div>
-		
-	
-		
-		
-	
-		<div class ="part-information">
-		
-			
-		
-		</div>
-	</div>
-<jsp:include page="/WEB-INF/views/common/footer.jsp" />
-</body>
 </html>

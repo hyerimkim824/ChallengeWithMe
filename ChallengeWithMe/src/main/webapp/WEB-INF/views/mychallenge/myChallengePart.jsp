@@ -82,12 +82,13 @@
         </c:forEach>
     </div>
 
-    <!-- 버튼들을 가로로 정렬 -->
+    <!-- 버튼들을 세로로 정렬 -->
     <div class="button-wrapper">
         <input type="button" value="참여 챌린지" id="part_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengePart.do'">
-        <input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.contextPath}/mychallenge/myChallengeMake.do'">
+        <input type="button" value="개설 챌린지" id="gen_ch_btn" onclick="location.href='${pageContext.request.context.path}/mychallenge/myChallengeMake.do'">
     </div>
 </div>
+
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>
