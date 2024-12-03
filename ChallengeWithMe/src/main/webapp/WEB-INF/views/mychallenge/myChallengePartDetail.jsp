@@ -7,8 +7,104 @@
 <head>
     <meta charset="UTF-8">
     <title>참여 챌린지</title>
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
+    
+<style>
+
+
+/* 제목 스타일 */
+h1 {
+    color: #f7b500;
+    text-align: center;
+    margin-top: 20px;
+}
+
+h3, h4 {
+    color: #f7b500;
+    margin: 15px 0;
+}
+
+/* 메인 컨테이너 */
+.page-main-detail {
+    background-color: #fff8dc;
+    border: 2px solid #f7b500;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 20px auto;
+    max-width: 800px;
+}
+
+/* 챌린지 인증 버튼 스타일 */
+.prove-challenge a input[type="button"] {
+    background-color: #f7b500;
+    width:200px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 10px 0;
+}
+
+.prove-challenge a input[type="button"]:hover {
+    background-color: #d99c00;
+}
+
+/* 이미지 스타일 */
+.my-photo {
+    border: 3px solid #f7b500;
+    border-radius: 10px;
+}
+
+/* 테이블 스타일 */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    background-color: #fff;
+    color: #333;
+}
+
+table th, table td {
+    border: 1px solid #f7b500;
+    padding: 10px;
+    text-align: center;
+}
+
+table th {
+    background-color: #f7b500;
+    color: white;
+}
+
+table td {
+    background-color: #fff8dc;
+}
+
+#autoTable td {
+    font-weight: bold;
+}
+
+/* 링크 스타일 */
+a {
+    text-decoration: none;
+    color: #f7b500;
+}
+
+a:hover {
+    color: #d99c00;
+}
+
+/* 인증 달성률 스타일 */
+h4 {
+    margin: 10px 0;
+}
+
+</style>
+
+
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.7.1.min.js"></script>
 </head>
 <body>
@@ -68,40 +164,39 @@
         <div class="prove-challenge">
             <c:if test="${mychall.ah_num eq 2}">
                 <a href="../pvchallenge/pvChallengePhoto.do?ch_num=${ch_num}">
-                    <input type="button" value="챌린지 인증(사진인증)" id="proved_button">
+                    <input type="button" value="사진인증" id="proved_button">
                 </a>
             </c:if>
             <c:if test="${mychall.ah_num eq 1}">
                 <a href="../pvchallenge/pvChallengeTime.do?ch_num=${ch_num}">
-                    <input type="button" value="챌린지 인증2(시간인증)" id="proved_button">
+                    <input type="button" value="시간인증" id="proved_button">
                 </a>
             </c:if>
             <c:if test="${mychall.ah_num eq 3}">
                 <a href="../pvchallenge/pvChallengeWriting.do?ch_num=${ch_num}">
-                    <input type="button" value="챌린지 인증3(문구인증)" id="proved_button">
-                </a>
-            </c:if>
-            <c:if test="${mychall.ah_num eq 5}">
-                 <a href="../challenge/challengeGame.do">
-                    <input type="button" value="챌린지 인증4(게임)" id="proved_button">
+                    <input type="button" value="문구인증" id="proved_button">
                 </a>
             </c:if>
             <c:if test="${mychall.ah_num eq 4}">
+                 <a href="../challenge/challengeGame.do">
+                    <input type="button" value="게임" id="proved_button">
+                </a>
+            </c:if>
+            <c:if test="${mychall.ah_num eq 5}">
                   <a href="../pvchallenge/pvChallengeQR.do?ch_num=${ch_num}">
-                    <input type="button" value="챌린지 인증5(QR)" id="proved_button">
+                    <input type="button" value="QR" id="proved_button">
                 </a>
             </c:if>
             <c:if test="${mychall.ah_num eq 6}">
                 <a href="../pvchallenge/pvChallengeExpense.do?ch_num=${ch_num}">
-                    <input type="button" value="챌린지 인증6(가계부)" id="proved_button">
+                    <input type="button" value="가계부" id="proved_button">
                 </a>
             </c:if>
         </div> <!--인증 챌린지까지 -->
         
         <h4>챌린지 참가 인원 : 500</h4>
         <h4>챌린지 달성률 : 0% </h4>
-        
-        <h4>현재 참여 챌린지 달성률 - 달성 표시</h4>
+       
        <table id="autoTable" border="1">
         <!-- JavaScript에서 행과 열이 추가됩니다 -->
        </table>

@@ -13,6 +13,8 @@
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
 	
+
+</style>
 <head>
 <meta charset="UTF-8"> 
 <title>참여 챌린지</title>
@@ -84,7 +86,7 @@
             <c:forEach var="ptct_list" items="${ptct_list}">
                 <div class="part-image">
                     <p>${ptct_list.ch_num}</p>
-                    <a href="${pageContext.request.contextPath}/mychallenge/myChallengePartDetail.do?ch_num=${ptct_list.ch_num}">
+                    <a href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=2">
                         <c:if test='${ptct_list.cate_num==1}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
                         <c:if test='${ptct_list.cate_num==2}'><img src="${pageContext.request.contextPath}/images/food.jpg" class="img1"></c:if>
                         <c:if test='${ptct_list.cate_num==3}'><img src="${pageContext.request.contextPath}/images/study.jpg" class="img1"></c:if>

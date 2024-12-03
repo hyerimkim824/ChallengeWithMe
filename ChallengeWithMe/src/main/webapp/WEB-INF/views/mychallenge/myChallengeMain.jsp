@@ -13,7 +13,9 @@
 
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/css/header.css"
+	type="text/css">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
