@@ -42,8 +42,16 @@
 				
 				<div class="badge-nick">
 					<div class="badge">
-						<span><img class="badge" src="${ pageContext.request.contextPath }/images/fav01.gif" width="35" height="35"></span>
+						<span>
+							<c:if test="${ !empty bg_img }">
+							<img class="badge" src="${ pageContext.request.contextPath }/upload/${bg_img}" width="35" height="35">
+							</c:if>
+							<c:if test="${ empty bg_img }">
+							<img class="badge" src="${ pageContext.request.contextPath }/images/wing.png" width="35" height="35">
+							</c:if>
+						</span>
 						<span class="level"><b>Lv${ xuser.rank }</b></span>
+						
 					</div>
 					<div>
 						<h3>닉네임</h3>
