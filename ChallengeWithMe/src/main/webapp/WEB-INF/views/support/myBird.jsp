@@ -10,7 +10,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>캐릭터 레벨업 가이드</title>
+    <title>꼬박꼬박 나만의 새</title>
     <style>
         /* Global Style Reset */
         * {
@@ -185,7 +185,7 @@
     <div class="container">
         <!-- Header -->
         <div class="header">
-            <h1>캐릭터 레벨업 가이드</h1>
+            <h1>꼬박꼬박 나만의 새</h1>
             <p>"꼬꼬"와 함께하는 도전과 성장의 여정</p>
         </div>
 
