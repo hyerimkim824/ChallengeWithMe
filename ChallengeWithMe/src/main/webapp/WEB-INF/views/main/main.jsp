@@ -28,7 +28,7 @@
 			<div class="header1-box box1">
 				<div class="header-item item1 align-left">꼬박꼬박은?</div>
 				<div class="header-item item2">
-					꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다<br> 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요
+					꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다<br> 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요
 				</div>
 				<div class="header-item item3">
 					<button class="item3-btn" type="button"
@@ -250,6 +250,93 @@
 		<div class="m-content3-container">
 			
 		</div>
+		<div class="m-content4-container">
+			<div class="c4-header">
+				<div class="c4-title">사용자 챌린지</div>
+				<div class="linkToChall" onclick="location.href='${pageContext.request.contextPath}/challenge/challengeList.do?'">챌린지 바로가기-></div>
+			</div>
+			<div class="c4-content">
+				<c:forEach var="list" items="${chall_list}">
+					<div class="ch-item">
+
+						<div class="item-header">
+							<div class="ch-category">${list.cate_name}</div>
+						</div>
+						<a
+							href="${pageContext.request.contextPath}/challenge/challengeDetail.do?ch_num=${list.ch_num}">
+							<div class="ch-background">
+								<c:if test="${empty list.ch_img}">
+									<c:choose>
+										<c:when test="${list.cate_num == 1}">
+											<img class="ch-bgImg" src="../images/health.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 2}">
+											<img class="ch-bgImg" src="../images/food.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 3}">
+											<img class="ch-bgImg" src="../images/self-develop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 4}">
+											<img class="ch-bgImg" src="../images/wakeup.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 5}">
+											<img class="ch-bgImg" src="../images/economy.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:when test="${list.cate_num == 6}">
+											<img class="ch-bgImg" src="../images/stop.jpg"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:when>
+										<c:otherwise>
+											<img class="ch-bgImg" src="../images/face.png"
+												style="max-width: 100%; max-height: 100%;" />
+										</c:otherwise>
+									</c:choose>
+								</c:if>
+								<c:if test="${!empty list.ch_img}">
+									<img class="ch-bgImg"
+										src="${pageContext.request.contextPath}/upload/${list.ch_img}"
+										style="max-width: 100%; max-height: 100%;">
+								</c:if>
+								<p class="ch-title">${list.ch_title}</p>
+								<div class="ch-dueDate align-center">
+									<c:if test="${list.dateDifference > 0 && list.ch_status != 'finished'}">
+										<div class="font-before">D-${list.dateDifference}</div>
+									</c:if>
+									<c:if test="${list.dateDifference <= 0  && list.ch_status != 'finished'}">
+										D+${list.dateDifference * -1}
+									</c:if>
+									<c:if test="${list.ch_status == 'finished'}">
+										<div class="font-end">OVER</div>
+									</c:if>
+								</div>
+							</div>
+							<div class="ch-info">
+								<div class="ch-people">
+									<img class="people-img"
+										src="${pageContext.request.contextPath}/images/person.svg">
+									<div class="info-val">${list.ch_person}/${list.ch_max}</div>
+								</div>
+								<div class="ch-like">
+									<img class="like-img"
+										src="${pageContext.request.contextPath}/images/chat-square-heart.svg">
+									<div class="info-val">${list.ch_like}</div>
+								</div>
+								<div class="ch-view">
+									<img class="view-img"
+										src="${pageContext.request.contextPath}/images/eye.svg">
+									<div class="info-val">${list.ch_view}</div>
+								</div>
+							</div>
+						</a>
+					</div>
+				</c:forEach>
+			</div>
+		</div>
 
 		<div class="space150-div"></div>
 	</div>
@@ -257,6 +344,3 @@
 
 </body>
 </html>
-
-
-

@@ -37,7 +37,11 @@ $(function(){
 					output += '<span class="modify-date">등록일 : ' + item.com_date + '</span>';
 					}
 					output += '<div class="image-nickname">';
-					output += '<img src="../upload/' + item.us_img +'" width="40px" height="40px" style="border-radius: 50%">';
+					if(item.us_img != null){
+						output += '<img src="../upload/' + item.us_img +'" width="40px" height="40px" style="border-radius: 50%">';
+					}else{
+						output += '<img src="../images/face.png" width="40px" height="40px" style="border-radius: 50%">';
+					}
                     output += '<h4>' + item.us_nickname + '님</h4>';
 					output += '</div>';
 					 // 로그인한 회원번호와 작성자의 회원번호 일치 여부 체크

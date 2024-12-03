@@ -39,8 +39,7 @@
 			<div class="detail-header">
 				<ul class="user-info">
 					<li class="post-detail-img"><c:if test="${!empty post.us_img}">
-							<img
-								src="${pageContext.request.contextPath}/upload/${post.us_img}"
+							<img src="${pageContext.request.contextPath}/upload/${post.us_img}"
 								width="40" height="40" class="my-photo">
 						</c:if> <c:if test="${empty post.us_img}">
 							<img src="${pageContext.request.contextPath}/images/face.png"
