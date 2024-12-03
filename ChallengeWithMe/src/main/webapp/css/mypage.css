@@ -1,14 +1,4 @@
-body {
-  background: white;
-  align-items: center;
-  font-family: sans-serif;
-  height: 100vh;
-  margin: -20px 0 50px;
-}
 
-ul{
-	list-style-type: none;
-}
 
 .chall ul, .prize ul{
 	padding: 0px;

@@ -14,6 +14,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp"/>
 		<!-- 마이페이지 앞 -->
+		<div>
 		<div class="form-wrapper" id="form-wrapper">
             <div class="card-3d-wrap">
               <div class="card-3d-wrapper">
@@ -299,6 +300,7 @@
 					</div>
 				</div>
 			</div>
+		</div>
 		</div>
 <script type="text/javascript">
 	function addIframe(){
