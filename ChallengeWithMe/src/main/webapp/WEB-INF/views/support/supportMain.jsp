@@ -960,13 +960,13 @@ const categoryData = {
     
     	<div class="category">
 		<div class="image-container">
-		
-				src="${pageContext.request.contextPath}/images/Level6.png"
-				alt="꼬박꼬박">
+		<a href="<%= request.getContextPath() %>/support/MyBird.do">
+		<img src="${pageContext.request.contextPath}/images/Level6.png"
+		     alt="꼬박꼬박" style="width: 80px; height: 81px;">
 			</a>
 		</div>
 		<a href="<%= request.getContextPath() %>/support/MyBird.do"
-			class="category-link">꼬박꼬박 나의 새</a>
+			class="category-link">꼬박꼬박 나만의 새</a>
 	</div>
 	<div class="category">
 		<div class="image-container">
