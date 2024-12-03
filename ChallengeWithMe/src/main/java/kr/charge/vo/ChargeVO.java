@@ -4,6 +4,8 @@ public class ChargeVO {
 	private long charge_num;
 	private long us_num;
 	private int charge_bal;
+	private String charge_date;
+	
 	public long getCharge_num() {
 		return charge_num;
 	}
@@ -21,6 +23,12 @@ public class ChargeVO {
 	}
 	public void setCharge_bal(int charge_bal) {
 		this.charge_bal = charge_bal;
+	}
+	public String getCharge_date() {
+		return charge_date;
+	}
+	public void setCharge_date(String charge_date) {
+		this.charge_date = charge_date;
 	}
 	
 	

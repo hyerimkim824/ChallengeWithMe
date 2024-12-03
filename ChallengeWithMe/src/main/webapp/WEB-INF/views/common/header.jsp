@@ -63,7 +63,7 @@
 					</div>
 				
 					<div class="brief-box2">	
-						<p class="brief-box-nic-text" style="font-size: 14px"><b>${xuser.nickname}님</b> 
+						<p class="brief-box-nic-text" style="font-size: 14px"><b>${us_nickname}님</b> 
 						오늘도 힘찬 도전을 응원합니다!💪</p>
 					</div>
 				</div>

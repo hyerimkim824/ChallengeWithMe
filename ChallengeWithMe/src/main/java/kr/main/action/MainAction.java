@@ -76,7 +76,14 @@ public class MainAction implements Action{
           }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
         	  rank = 10;
           }
+          
+          List<Integer> bgInfo = mp_dao.getBadgeInfo(us_num);
+          int bgInfoSize = bgInfo.size();
+          String bg_img = mp_dao.getMainBadge(us_num);
+          
           request.setAttribute("rank", rank);
+          request.setAttribute("bgInfo", bgInfoSize);
+          request.setAttribute("bg_img", bg_img);
       }
       //JSP 경로 반환
       return "main/main.jsp";

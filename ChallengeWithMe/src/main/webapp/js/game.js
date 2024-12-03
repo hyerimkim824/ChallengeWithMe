@@ -119,7 +119,7 @@ $(document).ready(function () {
 		
 		console.log("is clicked");
 		if (maxScore > 30) {
-			location.href = '../challenge/gameConfirm.do?confirmed=1';
+			location.href = '../challenge/challengeGameConfirm.do?confirmed=1';
 		} else {
 			alert('최고 점수가 30점 이상이면 인증이 가능합니다!');
 		}

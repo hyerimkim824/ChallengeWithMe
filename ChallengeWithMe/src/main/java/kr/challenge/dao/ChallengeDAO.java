@@ -446,7 +446,7 @@ public class ChallengeDAO {
 		List<ChallengeVO> list = null;
 		try {
 			conn= DBUtil.getConnection();
-			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, rownum AS rnum FROM chall JOIN cate ON chall.cate_num=cate.cate_num WHERE chall.official=? AND chall.ch_status!='finished' ORDER BY ch_view DESC) WHERE rnum >= 1 AND rnum <= 10";
+			sql = "SELECT * FROM (SELECT chall.*, cate.cate_name, rownum AS rnum FROM chall JOIN cate ON chall.cate_num=cate.cate_num WHERE chall.official=? AND chall.ch_visi=0 AND chall.ch_status!='finished' ORDER BY ch_view DESC) WHERE rnum >= 1 AND rnum <= 10";
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, official);
 			

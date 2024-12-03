@@ -1390,29 +1390,30 @@ li{
 /*=============================================================== 충전 화면 목록 ===================================================================*/
 .charge-div{
 	width:80%;
-	height:100vw;
-	border:1px solid black;
+	height:55vw;
+	border:3px solid black;
+	border-radius:20px;
 	margin:0 auto;
 }
 
 .charge-titleDiv{
 	width:100%;
-	border:1px solid blue;
-	height:20vw;
+	
+	height:15vw;
 	font-size:3vw;
 	font-weight:bold;
 }
 .charge-mainDiv{
 	width:100%;
 	height:80%;
-	border:1px solid red;
+	
 	position:relative;
 }
 
 .charge-nav{
 	display:flex;
 	align-items:center;
-	background:purple;
+	
 }
 
 .nav-item{
@@ -1422,6 +1423,7 @@ li{
 }
 
 .nav-charge {
+	justify-content:center;
 	border-bottom:2px solid #FFE066;
 	margin-left:5%;
 }
@@ -1431,11 +1433,11 @@ li{
 }
 
 .charge-body{
-	background:pink;
+	
 }
 
 .charge-amount{
-	background:green;
+	background:#FFE066;
 }
 
 .charge-amount label{
@@ -1445,11 +1447,14 @@ li{
 }
 
 .amount-title{
-	background:blue;
+	
 	width:30%;
 	height:5vw;
 	font-weight:bold;
 	font-size:1vw;
+	display:flex;
+	align-items:center;
+	padding-left:5%;
 }
 
 .amount-selection{
@@ -1466,10 +1471,54 @@ li{
 	margin-left:3%;
 	cursor:pointer;
 }
-.amount-input{
+.amount-input, .amount-result{
 	margin-left:3%;
+	font-size:1vw;
+	height:4vw;
+	font-weight:bold;
+	display:flex;
+	align-items:center;
 }
 
-.amount-result{
-	margin-left:3%;
+.amount-input input{
+	width:6vw;
+	height:1.5vw;
+	border-radius:5px;
+}
+
+
+
+#charge_table{
+	width:15vw;
+	border:1px solid black;
+	border-radius:10px;
+	text-align:center;
+	margin-left:5%;
+}
+
+#current_bal{
+	margin-left:10%;
+}
+
+.nav-balance{
+	display:flex;
+	width:15vw;	
+}
+
+.currbal-title{
+	width:50%;
+	font-size:1vw;
+}
+.charge-submit{
+	height:12vw;
+}
+
+.charge-submit input{
+	background:#FFE066;
+	border-radius:10px;
+	border:none;
+	width:10vw;
+	height:3.5vw;
+	font-size:1vw;
+	font-weight:bold;
 }

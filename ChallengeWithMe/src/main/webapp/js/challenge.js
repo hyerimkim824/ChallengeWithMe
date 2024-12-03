@@ -203,13 +203,10 @@ $(function(){
 	$('.auth-dd').click(function(){ 
 		if($(this).attr('id') === 'auth_time'){
 			$('#time_auth').show();
-			$('#game_auth').hide();
-		}else if($(this).attr('id') === 'auth_game'){
+		}	
+		else{
 			$('#time_auth').hide();
-			$('#game_auth').show();
-		}else{
-			$('#time_auth').hide();
-			$('#game_auth').hide();
+			
 		}
 	}); 
 	

@@ -72,7 +72,7 @@
 						<img class="user-img" src="${pageContext.request.contextPath}/images/face.png">
 					</c:if>
 					<c:if test="${us_img != null}">
-						<img class="user-img" src="${pageContext.request.contextPath}/images/${us_img}">
+						<img class="user-img" src="${pageContext.request.contextPath}/upload/${us_img}">
 					</c:if>
 					<p class="user-nickname">${us_nickname}</p>
 				</div>
@@ -140,21 +140,7 @@
 					<div class="authInfo-title">시간 인증</div>
 					<label>인증 시작시간</label> <input type="number" name="auth2_startTime" class="extra-input" id="auth2_startTime" placeholder="클릭 후 입력">
 				</div>
-				<div class="auth-info shadow-effect" id="game_auth">
-					<div class="authInfo-title">게임 인증</div>
-					<div class="game-list">
-						<div class="game-item" id="game1">
-							<img width="80px" height="80px">
-							<div class="game-name">연산게임</div>
-						</div>
-						<div class="game-item" id="game2">
-							<img width="80px" height="80px">
-							<div class="game-name">수학 문제</div>
-						</div>
-						
-					</div>
-					<input type="hidden" name="game" id="game">	
-				</div>
+				
 				
 				<div class="extra-info shadow-effect">
 					<ul>

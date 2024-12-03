@@ -10,11 +10,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
-	type="text/css">
-<script type="text/javascript"
-	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
@@ -89,19 +86,24 @@
 								<hr>
 								<div class="left2-container">
 									<div class="left2-box1">
-										<img src="../images/face.png" width="50px" height="50px">
+										<c:if test="${!empty bg_img}">
+											<img src="${ pageContext.request.contextPath }/upload/${bg_img}" width="40px" height="40px">
+										</c:if>
+										<c:if test="${empty bg_img}">
+											<img src="${ pageContext.request.contextPath }/images/wing.png" width="40px" height="40px">
+										</c:if>
 									</div>
 									<div class="left2-box2">
 										<ul>
-											<li><label>보유배찌</label>6개</li>
-											<li><label>미획득배찌</label>10개</li>
+											<li><label>보유배찌</label>${bgInfo}개</li>
+											<li><label>미획득배찌</label>${12 - bgInfo}개</li>
 										</ul>
 									</div>
 								</div>
 
 							</div>
 							<div class="left3">
-								<div class="info-link">나의배찌 -></div>
+								<div class="info-link"><a href="${pageContext.request.contextPath}/mypage/myBadgeListForm.do">나의배찌 -></a></div>
 							</div>
 						</div>
 						<hr class="vertical">
@@ -128,7 +130,7 @@
 								</ul>
 							</div>
 							<div class="right3">
-								<div class="info-link">마이페이지 -></div>
+								<div class="info-link"><a href="${pageContext.request.contextPath}/mypage/mypage.do">마이페이지 -></a></div>
 							</div>
 						</div>
 					</div>
@@ -248,12 +250,8 @@
 
 			</div>
 		</div>
-		<div class="space150-div"></div>
 		<hr>
 
-		<div class="m-content3-container">
-			
-		</div>
 		<div class="m-content4-container">
 			<div class="c4-header">
 				<div class="c4-title">사용자 챌린지</div>

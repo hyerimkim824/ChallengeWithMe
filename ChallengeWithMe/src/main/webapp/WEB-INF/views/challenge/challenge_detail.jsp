@@ -123,13 +123,13 @@
 				</div>
 			</div>
 			<div class="nickname-container">
-				<c:if test="${us_img == null}">
+				<c:if test="${chall.us_img == null}">
 					<img class="user-img"
 						src="${pageContext.request.contextPath}/images/face.png">
 				</c:if>
-				<c:if test="${us_img != null}">
+				<c:if test="${chall.us_img != null}">
 					<img class="user-img"
-						src="${pageContext.request.contextPath}/images/${us_img}">
+						src="${pageContext.request.contextPath}/upload/${chall.us_img}">
 				</c:if>
 				<p class="user-nickname">${us_nickname}</p>
 			</div>

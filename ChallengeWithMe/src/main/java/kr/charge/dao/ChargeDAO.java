@@ -2,7 +2,11 @@ package kr.charge.dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import kr.charge.vo.ChargeVO;
 import kr.util.DBUtil;
 
 public class ChargeDAO {
@@ -32,5 +36,37 @@ public class ChargeDAO {
 		}finally {
 			DBUtil.executeClose(null, pstmt, conn);
 		}
+	}
+	
+	public List<ChargeVO> getChargeRecordByUser(long us_num) throws Exception{
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = null;
+		ResultSet rs = null;
+		ChargeVO vo = null;
+		List<ChargeVO> list = null;
+		try {
+			conn = DBUtil.getConnection();
+			sql = "SELECT * FROM charge WHERE us_num=?";
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setLong(1, us_num);
+			
+			rs = pstmt.executeQuery();
+			list = new ArrayList<ChargeVO>();
+			while(rs.next()) {
+				vo = new ChargeVO();
+				vo.setUs_num(us_num);
+				vo.setCharge_bal(rs.getInt("charge_bal"));
+				vo.setCharge_date(rs.getString("charge_date"));
+				
+				list.add(vo);
+			}
+		}catch(Exception e) {
+			throw new Exception(e);
+		}finally {
+			DBUtil.executeClose(null, pstmt, conn);
+		}
+		
+		return list;
 	}
 }
