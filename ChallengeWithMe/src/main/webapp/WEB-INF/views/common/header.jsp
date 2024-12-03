@@ -68,9 +68,9 @@
 					</div>
 				</div>
 				<div class="brief-box3">
-					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">개설 챌린지</a></div>
-					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">잔고 잔액</a></div>
-					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">사용가이드</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/mychallenge/myChallengeMake.do">개설 챌린지</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/charge/deposit.do">금액 충전</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/support/CommunityHelp.do">사용가이드</a></div>
 					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">고객의소리</a></div>
 				</div>	
 			
@@ -81,3 +81,6 @@
 </div>
 
 <!-- header 끝 -->
+
+
+

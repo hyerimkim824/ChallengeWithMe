@@ -28,7 +28,7 @@
 			<div class="header1-box box1">
 				<div class="header-item item1 align-left">꼬박꼬박은?</div>
 				<div class="header-item item2">
-					꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다<br> 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요
+					꼬박꼬박은 모두가 함께 참여하는 챌린지 입니다<br> 2주 ~ 6주동안 진행하고, 목표를 완성할 수 있어요
 				</div>
 				<div class="header-item item3">
 					<button class="item3-btn" type="button"
@@ -108,8 +108,12 @@
 						<div class="card-right">
 							<div class="right1">
 								<div class="right1-box1">
-									<img
-										src="${pageContext.request.contextPath}/upload/${xuser.img}">
+									<c:if test="${xuser_img}">
+										<img src="${pageContext.request.contextPath}/upload/${xuser.img}">
+									</c:if>
+									<c:if test="${!xuser_img}">
+										<img src="${pageContext.request.contextPath}/images/face.png">
+									</c:if>
 									<div class="right-user">
 										<p>환영합니다</p>
 										<p>${xuser.nickname}님</p>
@@ -344,3 +348,6 @@
 
 </body>
 </html>
+
+
+
