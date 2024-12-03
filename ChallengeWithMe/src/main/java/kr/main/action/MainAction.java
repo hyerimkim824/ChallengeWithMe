@@ -63,8 +63,18 @@ public class MainAction implements Action{
         	  rank = 3;
           }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200) {
         	  rank = 4;
-          }else {
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
         	  rank = 5;
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
+        	  rank = 6;
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
+        	  rank = 7;
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
+        	  rank = 8;
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
+        	  rank = 9;
+          }else if(score_vo.getUs_score() > 100 && score_vo.getUs_score() <= 200){
+        	  rank = 10;
           }
           request.setAttribute("rank", rank);
       }

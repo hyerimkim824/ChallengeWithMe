@@ -17,14 +17,9 @@
 			<a href="${pageContext.request.contextPath}/post/list.do">커뮤니티</a>
 			<a href="${pageContext.request.contextPath}/mychallenge/myChallengeMain.do">마이챌린지</a>
 		</div>
-		<div class="nav-btn">
-			<img src="${pageContext.request.contextPath}/images/magnifier.png" class="img-btn">
-			<img src="${pageContext.request.contextPath}/images/heart.png" class="img-btn">
-			<img src="${pageContext.request.contextPath}/images/alarm.png" class="img-btn">
-		</div>
 		<c:choose>
-      	  <c:when test="${!empty xuser.img}">
-            <img src="${pageContext.request.contextPath}/upload/${xuser.img}" 
+      	  <c:when test="${!empty us_img}">
+            <img src="${pageContext.request.contextPath}/upload/${us_img}" 
                  width="30" height="30" style="border-radius: 50%;" class="profile_img">
       	  </c:when>
        	  <c:otherwise>
@@ -59,26 +54,24 @@
 	<div class="myBrief profileOn-background">
 		<div class="brief-box">
 				<div class="brief-box-info" style="font-size: 13px;">
-					<div class="brief-box1">
+					<div class="brief-box1 align-center">
 						<p class="brief-box-img">
-						<c:if test="${!empty xuser.img}"><img src="${pageContext.request.contextPath}/upload/${xuser.img}"
+						<c:if test="${!empty us_img}"><img src="${pageContext.request.contextPath}/upload/${us_img}"
 								width="30" height="30"></c:if>
-						<c:if test="${empty xuser.img}"><img src="${pageContext.request.contextPath}/images/face.png"></c:if>
-						<input type="button"  value="마이 페이지" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">
+						<c:if test="${empty us_img}"><img src="${pageContext.request.contextPath}/images/face.png"></c:if>
+						<input type="button" value="마이 페이지" onclick="location.href='${pageContext.request.contextPath}/mypage/mypage.do'">
 					</div>
 				
 					<div class="brief-box2">	
-						<p class="brief-box-nic-text" style="font-size: 14px">${xuser.nickname}님<br>
-						오늘도<br>힘찬 도전을<br>응원합니다!💪</p>
+						<p class="brief-box-nic-text" style="font-size: 14px"><b>${xuser.nickname}님</b> 
+						오늘도 힘찬 도전을 응원합니다!💪</p>
 					</div>
 				</div>
 				<div class="brief-box3">
-					<ul class="brief-box-menu" style="font-size: 13px;">
-						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">개설한 챌린지</a></li>
-						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">잔고 잔액</a></li>
-						<li><a href="${pageContext.request.contextPath}/support/FaqList.do">자주 묻는 질문</a></li>
-						<li><a href="${pageContext.request.contextPath}/support/FeedBack.do">고객의 소리</a></li>
-					</ul>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">개설 챌린지</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">잔고 잔액</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">사용가이드</a></div>
+					<div class="a-div"><a href="${pageContext.request.contextPath}/support/FeedBack.do">고객의소리</a></div>
 				</div>	
 			
 			</div>

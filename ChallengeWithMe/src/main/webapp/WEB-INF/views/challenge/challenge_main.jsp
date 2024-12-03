@@ -19,14 +19,14 @@
 			<div class="ch-menu">
 				<a href="${pageContext.request.contextPath}/challenge/challengeList.do">
 				<img class="ch-img"
-					src="${pageContext.request.contextPath}/images/face.png">
+					src="${pageContext.request.contextPath}/images/teamwork.jpg">
 				</a>
 				<p>챌린지 참여</p>
 			</div>
 			<div class="ch-menu">
 			<a href="${pageContext.request.contextPath}/challenge/challengeCreateForm.do">
 				<img class="ch-img"
-					src="${pageContext.request.contextPath}/images/face.png">
+					src="${pageContext.request.contextPath}/images/start2.PNG">
 			</a>
 				<p>챌린지 개설</p>
 			
@@ -34,7 +34,7 @@
 			<div class="ch-menu">
 			<a href="${pageContext.request.contextPath}/challenge/challengeOfficialList.do">
 				<img class="ch-img"
-					src="${pageContext.request.contextPath}/images/face.png">
+					src="${pageContext.request.contextPath}/images/success2.jpg">
 			</a>
 				<p>공식 챌린지 참여</p>
 			</div>
