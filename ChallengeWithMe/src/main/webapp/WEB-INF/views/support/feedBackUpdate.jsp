@@ -368,10 +368,11 @@ width: 55%
 			<h2>피드백 수정</h2>
 			<form action="FeedBackUpdate.do" method="post"
 				enctype="multipart/form-data">
+				<input type="hidden" name="sup_num" value="${feedBack.sup_num}">
 				<div class="form-group">
 				<div class="form-row2">
 					<label for="type">문의 유형</label>
-					 <select id="type" name="type">
+					 <select id="type" name="sup_pick">
 						<option value="1">신고/이용제한</option>
 						<option value="2">피해 예방</option>
 						<option value="3">기타</option>
@@ -384,7 +385,7 @@ width: 55%
 				<div class="form-group">
 		<div class="form-row3">
 					<label for="title">문의 제목</label>
-					 <input type="text" id="title"name="sup_title" value="${'          '}${feedBack.sup_title}">
+					 <input type="text" id="title" name="sup_title" value="${feedBack.sup_title}">
 				</div>
 			</div>
 				<div class="form-group">
@@ -397,7 +398,10 @@ width: 55%
 				<div class="form-group">
 				<div class="form-row5">
 					<label for="sup_img" class="form-label">파일 첨부 (선택)</label> <input
-						type="file" id="sup_img" name="sup_img" class="form-control" value="${feedBack.sup_img}">
+						type="file" id="sup_img" name="sup_img" class="form-control">
+					<c:if test="${!empty support.sup_img}">
+							<div>첨부파일 : ${support.sup_img}</div>	
+						</c:if>	
 				</div>
 				</div>
 						<div class="form-row">

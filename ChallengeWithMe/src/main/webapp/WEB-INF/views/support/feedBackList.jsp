@@ -11,11 +11,25 @@
     <title>피드백 리스트</title>
     <style>
         /* 🐤 전체 스타일 */
+        
+        html, body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh; /* 화면 전체 높이를 기준으로 레이아웃 설정 */
+    display: flex;
+    flex-direction: column; /* 세로 방향으로 Flexbox 설정 */
+}
+        
         body {
             font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff9c4;
+            background-color: 
+            min-height: 100vh; /* 전체 높이를 화면 높이로 설정 */
+            
+        }
+        .container {
+        flex: 1; /* 메인 콘텐츠 영역이 남는 공간을 차지하도록 설정 */
         }
 
         /* 🐤 헤더 스타일 */
@@ -125,6 +139,11 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
+         /* 문의 제목의 밑줄 제거 스타일 */
+    .list-table a {
+        text-decoration: none; /* 밑줄 제거 */
+        color: inherit; /* 기본 텍스트 색상 유지 */
+    }
 
         .list-table th, .list-table td {
             border: 1px solid #ddd;
@@ -182,6 +201,7 @@
             text-align: center;
             padding: 10px 0;
             background-color: #fdd835;
+             margin-top: auto; /* 자동으로 콘텐츠 아래로 푸터를 밀어냄 */
         }
 
         .footer a {
@@ -191,7 +211,7 @@
         }
 
         .footer a:hover {
-            text-decoration: underline;
+            text-decoration: none;
         }
          .modal {
             display: none;
@@ -389,9 +409,9 @@
     <div class="footer">
         <a href="ChallengeHelp.do">챌린지 안내</a> |
         <a href="SupportWrite.do">1:1 문의</a> |
-        <a href="<%= request.getContextPath() %>/mypage/MyPage.do">마이페이지</a> |
-        <a href="common/notice">공지사항</a>
+        <a href="<%= request.getContextPath() %>/mypage/mypage.do">마이페이지</a> |
+        <a href="NoticeList.do">공지사항</a>
     </div>
-    
+ 
 </body>
 </html>

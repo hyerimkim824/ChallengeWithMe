@@ -148,7 +148,8 @@ public class SupportVO {
                 case 7: return "주제제안";
                 case 8: return "챌린지";
                 case 9: return "기능/오류";
-                case 10: return "기타";
+                case 10: return "광고";
+                case 11: return "기타";
                 default: return "알 수 없음";
             }
         } catch (NumberFormatException e) {

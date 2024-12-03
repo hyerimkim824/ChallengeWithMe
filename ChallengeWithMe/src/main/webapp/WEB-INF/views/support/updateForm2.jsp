@@ -366,9 +366,8 @@ width: 55%
 		</div>
 		<div class="content">
 			<h2>1:1 문의 수정</h2>
-			<form action="Update.do" method="post"
-				enctype="multipart/form-data">
-				<input type="hidden" name="sup_num" value="${' '}${support.sup_num}">
+			<form action="Update.do" method="post" enctype="multipart/form-data">
+				<input type="hidden" name="sup_num" value="${support.sup_num}">
 				<div class="form-group">
 				<div class="form-row2">
 					<label for="type">문의 유형</label>
@@ -386,13 +385,10 @@ width: 55%
 					</select>
 					</div>
 				</div>
-				
-				
-				
 				<div class="form-group">
 		<div class="form-row3">
 					<label for="title">문의 제목</label>
-					 <input type="text" id="title"name="sup_title" value="${support.sup_title}">
+					 <input type="text" id="title" name="sup_title" value="${support.sup_title}">
 				</div>
 			</div>
 				<div class="form-group">
@@ -405,16 +401,19 @@ width: 55%
 				<div class="form-group">
 				<div class="form-row5">
 					<label for="sup_img" class="form-label">파일 첨부 (선택)</label> <input
-						type="file" id="sup_img" name="sup_img" class="form-control" value="${support.sup_img}">
+						type="file" id="sup_img" name="sup_img" class="form-control">
+						<c:if test="${!empty support.sup_img}">
+							<div>첨부파일 : ${support.sup_img}</div>	
+						</c:if>
 				</div>
 				</div>
 						<div class="form-row">
 				<div class="form-group">
 				<div class="form-row6">
 					<label for="visibility">문의 상태</label> 
-					<select class="condition" id="visibility" name="visibility" onchange="togglePasswordField()">
-						<option value="1">비공개</option>
-						<option value="2">공개</option>
+					<select class="condition" id="visibility" name="sup_visi" onchange="togglePasswordField()">
+						<option value="1" <c:if test="${support.sup_visi == 1}">selected</c:if>>비공개</option>
+						<option value="2" <c:if test="${support.sup_visi == 0}">selected</c:if>>공개</option>
 					</select>
 					</div>
 				</div>

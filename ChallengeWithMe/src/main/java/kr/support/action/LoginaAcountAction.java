@@ -17,7 +17,7 @@ public class LoginaAcountAction implements Action {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "데이터 처리 중 오류가 발생했습니다. 🐇");
-            return "error/500.jsp"; // 오류 페이지로 이동
+            return "support/notfound.jsp"; // 오류 페이지로 이동
         }
     }
 }

@@ -8,7 +8,7 @@ import kr.controller.Action;
 import kr.mypage.dao.MyPageDAO;
 import kr.xuser.vo.XuserVO;
 
-public class SupportMainAction implements Action {
+public class MyBirdAction implements Action {
 
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -26,8 +26,8 @@ public class SupportMainAction implements Action {
             xuser = dao.getMyInfo(us_num);
             
             request.setAttribute("xuser", xuser);
-            // 🐥 고객센터 메인 페이지로 이동
-            return "support/supportMain.jsp"; // JSP 페이지로 이동
+            // 🐥 나의 새 페이지로 이동
+            return "support/myBird.jsp"; // JSP 페이지로 이동
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "고객센터 메인 페이지 로드 중 오류가 발생했습니다. 🐇");

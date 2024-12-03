@@ -124,7 +124,7 @@
         <div class="section">
             <div class="section-title">도움이 필요하신가요? 🐇</div>
             <div class="section-content">
-                환불과 관련하여 추가로 궁금한 점이 있으시면 <a href="List.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 통해 문의해주세요. <br>
+                환불과 관련하여 추가로 궁금한 점이 있으시면 <a href="SupportMain.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 통해 문의해주세요. <br>
                 언제든 도와드리겠습니다! 🐥✨
             </div>
         </div>
