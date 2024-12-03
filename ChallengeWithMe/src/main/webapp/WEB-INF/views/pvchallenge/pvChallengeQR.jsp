@@ -26,7 +26,7 @@
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>QR 인증</h1>
     
-<% 
+<%  
     String chNum = request.getParameter("ch_num");
     out.println("Received ch_num: " + chNum);
 %>
