@@ -1,4 +1,6 @@
-
+ul{
+	list-style: none;
+}
 
 .chall ul, .prize ul{
 	padding: 0px;
@@ -425,7 +427,7 @@ h1{
   align-items: center; /* 세로 중앙 정렬 */
   margin-top: 50px;
 }
-p{
+.p{
 	position: absolute;
 	text-align: center;
 	border: 5px solid;

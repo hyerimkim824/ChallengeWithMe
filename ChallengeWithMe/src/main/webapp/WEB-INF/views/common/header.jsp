@@ -63,8 +63,14 @@
 					</div>
 				
 					<div class="brief-box2">	
-						<p class="brief-box-nic-text" style="font-size: 14px"><b>${us_nickname}님</b> 
+						<c:if test="${ !empty xuser.nickname }">
+						<p class="brief-box-nic-text" style="font-size: 14px"><b>${xuser.nickname}님</b> 
 						오늘도 힘찬 도전을 응원합니다!💪</p>
+						</c:if>
+						<c:if test="${ empty xuser.nickname }">
+						<p class="brief-box-nic-text" style="font-size: 14px"><b>${ us_nickname }님</b> 
+						오늘도 힘찬 도전을 응원합니다!💪</p>
+						</c:if>
 					</div>
 				</div>
 				<div class="brief-box3">

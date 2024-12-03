@@ -205,7 +205,7 @@
 			<!-- 꼬박꼬박 달성도 -->
 			<h1>꼬박꼬박 달성도</h1>
 			<div class="pp">
-			<p></p>
+			<p class="p"></p>
 			</div>
 			<div class="rank-wrapper">
 			<div class="rank" style="background-color: #ffe479">

@@ -96,6 +96,7 @@ public class XuserDAO {
 			if(rs.next()) {
 				xuser = new XuserVO();
 				xuser.setUs_num(rs.getLong("us_num"));
+				xuser.setNickname(rs.getString("us_nickname"));
 				xuser.setId(rs.getString("us_id"));
 				xuser.setBan(rs.getInt("us_ban"));
 				xuser.setPasswd(rs.getString("us_pw"));
