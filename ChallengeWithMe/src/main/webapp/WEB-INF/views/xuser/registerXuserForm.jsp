@@ -292,7 +292,6 @@ $(function() {
 		      <span>계정 정보를 입력하세요</span>
 		      <input type="text" name="logid" id="logid" maxlength="12" autocomplete="off" placeholder="아이디" />
 		      <input type="password" name="logpwd" id="logpwd" maxlength="12" autocomplete="off" placeholder="비밀번호"/>
-		      <a href="#">비밀번호 찾기</a>
 		      <input type="submit" value="로그인">
 		      <input class="main" type="button" value="메인으로"
 		        onclick="location.href='${ pageContext.request.contextPath }/main/main.do'">
