@@ -33,7 +33,7 @@ public class PvChallengeCertifyPhotoAction implements Action {
             mapAjax.put("result", "logout");
         } else {
             // 세션에서 인증 이미지 가져오기
-            String pv_img = (String) session.getAttribute("ah_img");
+            String pv_img = "ah_img";
             
             System.out.println(pv_img);
             
@@ -46,6 +46,8 @@ public class PvChallengeCertifyPhotoAction implements Action {
                 // 인증 성공 후 PvInfo 업데이트
                 PvChallengeDAO dao = PvChallengeDAO.getInstance();
                 dao.updatePvInfo(us_num, ch_num);
+                
+                
             }
         }
         

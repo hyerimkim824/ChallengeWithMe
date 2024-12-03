@@ -18,7 +18,105 @@
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetimeWriting.js"></script>	
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetimeWriting.js"></script>
+
+<style>
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff9e6; /* 부드러운 노란색 배경 */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 헤더 및 페이지 제목 */
+h1 {
+    color: #ffcc00; /* 밝은 노란색 */
+    text-align: center;
+    margin-top: 20px;
+    font-size: 32px;
+}
+
+/* 타이머 관련 스타일 */
+.status {
+    font-size: 18px;
+    color: #ff9900; /* 주황색 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.timer {
+    font-size: 40px;
+    color: #ffcc00; /* 밝은 노란색 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 인증 명언 섹션 */
+.wise {
+    font-size: 20px;
+    color: #ff9900; /* 주황색 */
+    text-align: center;
+    margin-top: 40px;
+}
+
+/* 폼 스타일 */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+label {
+    font-size: 18px;
+    color: #ff6600; /* 중간 정도의 주황색 */
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    font-size: 16px;
+    width: 300px;
+    border: 2px solid #ffcc00; /* 노란색 테두리 */
+    border-radius: 5px;
+    margin-bottom: 20px;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus {
+    border-color: #ff6600; /* 포커스 시 주황색 테두리 */
+}
+
+/* 버튼 스타일 */
+button {
+    background-color: #ffcc00; /* 노란색 배경 */
+    color: white;
+    font-size: 18px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 200px;
+}
+
+button:hover {
+    background-color: #ff6600; /* 버튼 호버 시 주황색으로 변환 */
+}
+
+/* 인증 성공 여부 스타일 */
+.wise_success {
+    font-size: 18px;
+    color: #ff9900;
+    text-align: center;
+    margin-top: 20px;
+}
+
+</style>	
 </head>
  
 <script type="text/javascript">

@@ -18,7 +18,99 @@
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
-<script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetime.js"></script>
+<script type="text/javascript" src="${ pageContext.request.contextPath}/js/pvchallengetime.js"></script>
+<style>
+/* 헤더 및 페이지 제목 */
+h1, h2 {
+    color: #ff9900; /* 따뜻한 노란색 */
+    text-align: center;
+    margin-top: 20px;
+}
+
+/* 타이머 영역 스타일 */
+.page-main-photo {
+    padding: 30px;
+    background-color: #fff8b3; /* 연한 노란색 배경 */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+}
+
+.content-main-photo {
+    text-align: center;
+}
+
+.status {
+    font-size: 18px;
+    color: #ff6600; /* 밝은 주황색 */
+    font-weight: bold;
+}
+
+.timer {
+    font-size: 30px;
+    color: #ff9900; /* 타이머 텍스트에 따뜻한 노란색 */
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+/* 인증사진 관련 스타일 */
+.mypage-div {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.mypage-div h3 {
+    color: #ff9900; /* 제목 색상 */
+    margin-bottom: 20px;
+}
+
+.my-photo {
+    border-radius: 50%; /* 사진을 원형으로 만들기 */
+    border: 4px solid #ff9900; /* 사진 테두리에 노란색 */
+    padding: 5px;
+    transition: transform 0.3s ease;
+}
+
+.my-photo:hover {
+    transform: scale(1.1); /* 마우스 오버 시 사진 크기 확대 */
+}
+
+.align-center {
+    margin-top: 10px;
+}
+
+/* 버튼 스타일 */
+input[type="button"] {
+    background-color: #ff9900; /* 버튼 배경색 */
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin: 10px;
+}
+
+input[type="button"]:hover {
+    background-color: #ff6600; /* 버튼 호버 시 주황색으로 변환 */
+}
+
+/* 파일 업로드 및 취소 버튼 스타일 */
+#photo_choice {
+    margin-top: 20px;
+}
+
+#photo_reset {
+    background-color: #cccccc; /* 회색 배경 */
+}
+
+#photo_reset:hover {
+    background-color: #999999; /* 회색 호버 */
+}
+
+</style>
+
 <script type="text/javascript">
 	$(function() {
 		$('#photo_btn').click(function() {

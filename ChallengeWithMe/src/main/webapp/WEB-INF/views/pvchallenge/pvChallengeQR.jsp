@@ -31,8 +31,9 @@
     out.println("Received ch_num: " + chNum);
 %>
     
-    <div><br><br><br><br><br><br><br><br><br><br><br><br></div>
-    <div><br><br><br><br><br><br><br><br><br><br><br><br></div>
+   
+   
+   <h1>QR 인증 성공!!!</h1>
     
     
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />

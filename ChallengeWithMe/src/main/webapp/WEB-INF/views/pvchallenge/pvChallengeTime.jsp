@@ -7,11 +7,119 @@
 <head>
     <meta charset="UTF-8">
     <title>시간 인증</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css" type="text/css">
+    
+    
+    
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/header.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
     <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
     <script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetime2.js"></script>
+    <style>
+    body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff9e6; /* 부드러운 노란색 배경 */
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* 타이머 관련 스타일 */
+.status {
+    font-size: 18px;
+    color: #ff9900; /* 주황색 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.timer {
+    font-size: 40px;
+    color: #ffcc00; /* 밝은 노란색 */
+    font-weight: bold;
+    text-align: center;
+    margin-top: 10px;
+}
+
+/* 인증사진 1, 2 관련 스타일 */
+.mypage-div1, .mypage-div2 {
+    background-color: #fff8e1; /* 밝은 노란색 배경 */
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 10px;
+    border: 1px solid #ffcc00; /* 노란색 테두리 */
+}
+
+.mypage-div1 h3, .mypage-div2 h3 {
+    font-size: 22px;
+    color: #ff6600; /* 중간 주황색 */
+    text-align: center;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.my-photo_1, .my-photo_2 {
+    border-radius: 10px;
+    border: 3px solid #ffcc00; /* 사진 테두리 */
+}
+
+.align-center {
+    text-align: center;
+}
+
+/* 버튼 스타일 */
+input[type="button"] {
+    background-color: #ffcc00; /* 노란색 배경 */
+    color: white;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+input[type="button"]:hover {
+    background-color: #ff6600; /* 호버 시 주황색 */
+}
+
+/* 사진 선택/수정 옵션 표시 */
+#photo_choice_1, #photo_choice_2 {
+    margin-top: 10px;
+}
+
+input[type="file"] {
+    margin: 10px 0;
+}
+
+/* 페이지 레이아웃 */
+.page-main {
+    padding: 20px;
+}
+
+.content-main {
+    text-align: center;
+}
+
+.pv-photo-set {
+    display: flex;
+    justify-content: center;  /* 수평 중앙 정렬 */
+    align-items: center;      /* 수직 중앙 정렬 */
+    gap: 100px;                /* 사진 간 간격 설정 */
+    margin-top: 40px;         /* 상단 여백 */
+} 
+    
+    </style>
+    
+    
     <script type="text/javascript">
         $(function() {
             // 첫 번째 사진 수정 버튼 클릭

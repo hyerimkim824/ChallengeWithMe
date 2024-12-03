@@ -57,7 +57,7 @@ function startTimer() {
     }, 1000); // 1초마다 업데이트
 
     // 수정 버튼 클릭 이벤트 설정 (타이머가 끝나지 않은 경우에만)
-    $("#photo_submit").on("click", function () {
+    $("#photo_submit_2").on("click", function () {
         if (remainingTime > 0) {
             $.ajax({
                 url: "pvChallengCertiPhoto.do",
@@ -69,7 +69,7 @@ function startTimer() {
 						
 						
                         modifyUI = '<div id="success">';
-                        modifyUI += "인증 성공했습니다!!!!";
+                        modifyUI += "<h1>인증 성공했습니다!!!!</h1>";
                         modifyUI += "</div>";
 					
 						
@@ -77,7 +77,7 @@ function startTimer() {
                         modifyUI = '<div id="fail">인증샷을 올려주세요</div>';
                     }
 
-                    $(".mypage-div").append(modifyUI); // UI 동적 추가
+                    $(".mypage-div2").append(modifyUI); // UI 동적 추가
 					clearInterval(interval); // 타이머 종료
 					display.innerHTML = "타이머 종료!";
 					modifyButton.disabled = true;

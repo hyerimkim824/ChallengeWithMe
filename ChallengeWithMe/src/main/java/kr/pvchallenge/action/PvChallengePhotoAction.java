@@ -63,7 +63,7 @@ public class PvChallengePhotoAction implements Action {
 	        pvchall.setAh_img("11");  // challengeInfo에서 이미지 값 설정
 	        pvchall.setCh_proved1(0);  // 처음에는 증명값 0
 	        pvchall.setUs_num(us_num);  // 사용자 번호
-	        pvchall.setCh_num(14);  // 도전 번호
+	        pvchall.setCh_num(Long.parseLong(request.getParameter("ch_num")));  // 도전 번호
 	        pvchall.setCh_proved2(0);  // 기본값 0
 	        pvchall.setCh_proved3(0);  // 기본값 0
 	        pvchall.setCh_proved4(0);  // 기본값 0

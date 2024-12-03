@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>마이첼린지 메인</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath }/css/style.css"type="text/css">
+
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/header.css" type="text/css">
 <link rel="stylesheet"href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
@@ -34,7 +34,7 @@
                     </c:if>
                 </li>
             </ul>
-        <table id="simple_info_table">
+        <table id="simple_info_table3">
             <thead>
                 <tr>
                     <th colspan="2">MY 챌린지 참여/개설 정보</th>

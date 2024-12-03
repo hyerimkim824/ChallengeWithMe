@@ -32,7 +32,7 @@ public class MyChallengePartDetailAction implements Action{
 
 		if (chNumStr != null) {
 		    // ch_num이 존재하면 세션에 저장
-		    session.setAttribute("ch_num", chNumStr);
+		    session.setAttribute("ch_num", Long.parseLong(chNumStr));
 		} else {
 		    // ch_num이 없다면 예외 처리
 		    throw new IllegalArgumentException("ch_num parameter is missing.");

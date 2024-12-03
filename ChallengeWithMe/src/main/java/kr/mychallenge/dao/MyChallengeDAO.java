@@ -658,7 +658,7 @@ public class MyChallengeDAO {
 					//커넥션풀로부터 커넥션 할당
 					conn = DBUtil.getConnection();
 					
-					sql = "SELECT ch.ch_num, ch.cate_num FROM chall ch JOIN participant p ON ch.us_num = p.us_num WHERE p.us_num = ?";
+					sql = "SELECT ch.ch_num, ch.cate_num FROM chall ch JOIN participant p ON ch.ch_num = p.ch_num WHERE p.us_num = ?";
 				
 					pstmt = conn.prepareStatement(sql);
 					
@@ -670,7 +670,7 @@ public class MyChallengeDAO {
 					while(rs.next()) {
 						MyChallengeVO mychall = new MyChallengeVO();
 						mychall.setCh_num(rs.getLong("ch_num"));
-						mychall.setCate_num(rs.getInt("Cate_num"));
+						mychall.setCate_num(rs.getInt("cate_num"));
 						list.add(mychall);
 					}
 					
