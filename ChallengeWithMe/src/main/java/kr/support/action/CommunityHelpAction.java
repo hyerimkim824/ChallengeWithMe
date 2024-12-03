@@ -16,7 +16,7 @@ public class CommunityHelpAction implements Action {
         } catch (Exception e) {
             e.printStackTrace();
             request.setAttribute("error", "커뮤니티 도움말 로드 중 오류가 발생했습니다. 🐇");
-            return "error/500.jsp"; // 오류 페이지로 이동
+            return "support/notfound.jsp"; // 오류 페이지로 이동
         }
     }
 }

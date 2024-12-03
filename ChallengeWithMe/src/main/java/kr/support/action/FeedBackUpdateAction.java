@@ -34,13 +34,13 @@ public class FeedBackUpdateAction implements Action {
 				return "support/feedBackUpdate.jsp";
 			}
 			// 🐰  요청 파라미터에서 데이터 가져오기
-			String title = request.getParameter("title");
-			String content = request.getParameter("content");
-			String type = request.getParameter("type"); // 문의 유형
-			String visi = request.getParameter("visibility"); // 공개 여부 추가
+			long sup_num = Long.parseLong(request.getParameter("sup_num"));
+			String title = request.getParameter("sup_title");
+			String content = request.getParameter("sup_content");
+			String type = request.getParameter("sup_pick"); // 문의 유형
+			String visi = request.getParameter("sup_visi"); // 공개 여부 추가
 			String supPwd = request.getParameter("sup_pwd"); // 비공개 비밀번호
 			String usNUM = request.getParameter("us_num");
-			String Visiblility = request.getParameter("visibility");
 			String supImg = request.getParameter("sup_img");
 	
 			// 🐥 4. 유효성 검사
@@ -54,10 +54,6 @@ public class FeedBackUpdateAction implements Action {
 			}
 			if (type == null || type.trim().isEmpty()) {
 				request.setAttribute("error", "문의 유형을 선택해주세요. 🐇");
-				return "support/emptyField.jsp"; // 에러 페이지로 이동
-			}
-			if (supPwd == null || supPwd.trim().isEmpty()) {
-				request.setAttribute("error", "비밀 번호를 입력해주세요. 🐇");
 				return "support/emptyField.jsp"; // 에러 페이지로 이동
 			}
 
@@ -80,6 +76,7 @@ public class FeedBackUpdateAction implements Action {
 		
 
 			 FeedBackVO feedBack = new FeedBackVO();
+			 feedBack.setSup_num(sup_num);
 			 feedBack.setSup_title(title.trim());
 			 feedBack.setSup_content(content.trim());
 			 feedBack.setSup_pick(type); // 문의 유형
@@ -106,18 +103,19 @@ public class FeedBackUpdateAction implements Action {
 		                return "support/emptyField.jsp"; // 비밀번호 미입력 시 에러 처리
 		            }
 		        }
-		        // 🐇 7. **DAO를 통해 데이터베이스에 저장**
+		        // 🐇 7. **DAO를 통해 데이터베이스에 업데이트 **
 		        FeedBackDAO dao = FeedBackDAO.getInstance();
-		        try {
-		            // 데이터베이스에 문의 저장
-		            dao.saveFeedBack(feedBack);
-		        } catch (SQLException e) {
-		            e.printStackTrace(); // 디버깅용
-		            request.setAttribute("error", "데이터베이스 처리 중 오류가 발생했습니다. 🐇");
-		            return "support/invalidAccess.jsp"; // 서버 오류 페이지로 이동
-		        } 
-			        // 문의 목록 페이지로 리다이렉트
-			        return "redirect:/support/FeedBackList.do";  // **리다이렉트** 후 더 이상 처리할 필요 없음
-}
-	
-}
+		        // 데이터베이스에 업데이트
+	            try {
+	            	System.out.println("FeedBackVO : " + feedBack);
+	                dao.updateFeedBack(feedBack);
+	            } catch (Exception e) {
+	                e.printStackTrace();
+	                request.setAttribute("error", "데이터베이스 업데이트 중 오류가 발생했습니다. 🐇");
+	                return "support/invalidAccess.jsp";
+	            }
+
+	        // 성공 시 리스트 페이지로 리다이렉트
+	        return "redirect:/support/FeedBackList.do";
+	    }
+	}

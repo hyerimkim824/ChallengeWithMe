@@ -88,6 +88,38 @@
             }
         }
     </script>
+   
+    <script>
+        function scrollToHash() {
+            const hash = window.location.hash; // 현재 URL의 #hash 값을 가져옴
+            if (hash) {
+                const target = document.querySelector(hash); // #q4에 해당하는 요소 선택
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                    const answer = target.querySelector(".faq-answer"); // 답변 부분 찾기
+                    if (answer) {
+                        answer.style.display = "block"; // 답변을 바로 열기
+                    }
+                }
+            }
+        }
+    </script>
+<script>
+    // 🐤 페이지 로드 시 해시 값 스크롤
+    window.onload = function () {
+        const hash = window.location.hash; // 현재 URL의 #hash 값 가져오기
+        if (hash) {
+            const target = document.querySelector(hash); // #q4에 해당하는 요소 찾기
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                const answer = target.querySelector(".faq-answer"); // 해당 질문의 답변 찾기
+                if (answer) {
+                    answer.style.display = "block"; // 답변 열기
+                }
+            }
+        }
+    };
+</script>
 </head>
 <body>
     <div class="container">
@@ -119,9 +151,9 @@
                 A4. 한 개의 이메일 주소는 한 계정만 가능해요! 다른 이메일로 추가 계정을 만들어 보세요. 💌
             </div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item" id="q5">
             <div class="faq-question" onclick="toggleAnswer('answer5')">💛 Q5. 계정이 잠겼어요. 어떻게 복구하나요?</div>
-            <div class="faq-answer" id="answer5">
+            <div class="faq-answer" id="answer5" style="display: none;">
                 A5. 여러 번 비밀번호를 잘못 입력하면 계정이 잠길 수 있어요. 10분 후 다시 시도하거나 고객센터에 문의해주세요. 🛠️
             </div>
         </div>
@@ -157,11 +189,18 @@
              
             </div>
         </div>
+        <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer('answer10')">🐥 Q11. 계정을 백업하고 복원하려면 어떻게 해야하나요? </div>
+            <div class="faq-answer" id="answer11">
+                A11. 기기 또는 번호를 변경하거나 계을 삭제했을 때 1:1 문의를 통해 계정을 백업하고 복원할 수 있습니다.😉
+             
+            </div>
+        </div>
 
         <!-- 🌟 페이지네이션 🌟 -->
         <div class="pagination">
             <a href="#" class="active">1</a>
-            <a href="#" >2</a>
+            <a href="#">2</a>
             <a href="#">3</a>
             <a href="#">4</a>
             <a href="#">5</a>

@@ -82,7 +82,7 @@
 <div id="modal" class="modal">
     <div class="modal-content">
         <h1>정말 회원탈퇴를 하시겠습니까?</h1>
-        <p>확인 버튼을 클릭 시 회원탈퇴가 확정됩니다.</p>
+        <p>확인 버튼을 클릭 시 회원탈퇴가 진행됩니다.</p>
         <input type="submit" value="확인">
     </div>
 </div>

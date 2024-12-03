@@ -32,6 +32,7 @@ public class LoginAction implements Action{
 			// 로그인 처리
 			HttpSession session = request.getSession();
 			session.setAttribute("us_num", xuser.getUs_num());
+			session.setAttribute("us_nickname", xuser.getNickname());
 			session.setAttribute("us_id", xuser.getId());
 			session.setAttribute("us_ban", xuser.getBan());
 			session.setAttribute("us_img", xuser.getImg());

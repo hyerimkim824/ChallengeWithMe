@@ -65,7 +65,24 @@ $(document).ready(function() {
 			<ul>
 				<c:forEach var="pref" items="${ list }">
 				<li class="item" id="${ pref.cate_num }">
-					<img src="${ pageContext.request.contextPath }/images/face.png">
+					<c:if test="${ pref.cate_num == 1 }">
+					<img src="${ pageContext.request.contextPath }/images/cate1.png">
+					</c:if>
+					<c:if test="${ pref.cate_num == 2 }">
+					<img src="${ pageContext.request.contextPath }/images/cate2.png">
+					</c:if>
+					<c:if test="${ pref.cate_num == 3 }">
+					<img src="${ pageContext.request.contextPath }/images/cate3.png">
+					</c:if>
+					<c:if test="${ pref.cate_num == 4 }">
+					<img src="${ pageContext.request.contextPath }/images/cate4.png">
+					</c:if>
+					<c:if test="${ pref.cate_num == 5 }">
+					<img src="${ pageContext.request.contextPath }/images/cate5.png">
+					</c:if>
+					<c:if test="${ pref.cate_num == 6 }">
+					<img src="${ pageContext.request.contextPath }/images/cate6.png">
+					</c:if>
 					<span>${ pref.cate_name }</span>
 				</li>
 				</c:forEach>

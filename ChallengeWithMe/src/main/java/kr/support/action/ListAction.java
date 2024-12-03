@@ -7,7 +7,9 @@ import javax.servlet.http.HttpSession;
 import kr.support.dao.SupportDAO;
 import kr.support.vo.SupportVO;
 import kr.util.PagingUtil;
+import kr.xuser.vo.XuserVO;
 import kr.controller.Action;
+import kr.mypage.dao.MyPageDAO;
 
 import java.util.List;
 
@@ -67,7 +69,10 @@ public class ListAction implements Action {
                 return "support/list.jsp"; // 팝업에서 바로 리스트로 복귀
             }
         }
+       MyPageDAO dao2 = MyPageDAO.getInstance();
+       XuserVO xuser =  dao2.getMyInfo(userNum);
         // 뷰에 필요한 데이터를 request에 저장
+        request.setAttribute("xuser", xuser);
         request.setAttribute("list", list);
         request.setAttribute("totalPages", totalPages.getPage());
 

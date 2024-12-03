@@ -199,6 +199,7 @@
             text-align: center;
             padding: 10px 0;
             background-color: #fdd835;
+            margin-top: 165px;
         }
 
         .footer a {

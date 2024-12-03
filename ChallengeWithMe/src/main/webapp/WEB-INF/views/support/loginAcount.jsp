@@ -279,6 +279,36 @@ h2{
         };
     </script>
 
+    <script>
+        function scrollToHash() {
+            const hash = window.location.hash; // 현재 URL의 #hash 값을 가져옴
+            if (hash) {
+                const target = document.querySelector(hash); // #q4에 해당하는 요소 선택
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                    const answer = target.querySelector(".faq-answer"); // 답변 부분 찾기
+                    if (answer) {
+                        answer.style.display = "block"; // 답변을 바로 열기
+                    }
+                }
+            }
+        }
+    </script>
+     <script>
+        function scrollToHash() {
+            const hash = window.location.hash; // 현재 URL의 #hash 값을 가져옴
+            if (hash) {
+                const target = document.querySelector(hash); // #q4에 해당하는 요소 선택
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                    const answer = target.querySelector(".faq-answer"); // 답변 부분 찾기
+                    if (answer) {
+                        answer.style.display = "block"; // 답변을 바로 열기
+                    }
+                }
+            }
+        }
+    </script>
 </head>
 <body>
 
@@ -296,7 +326,7 @@ h2{
 	</div>
 
 	<div class="nav">
-		<a href="${pageContext.request.contextPath}/support/List.do">문의 내역</a>
+		<a href="${pageContext.request.contextPath}/support/List.do">1:1 문의</a>
 		<a href="${pageContext.request.contextPath}/support/FaqList.do">자주
 			묻는 질문</a> <a
 			href="${pageContext.request.contextPath}/support/FeedBackList.do">고객의
@@ -323,7 +353,7 @@ h2{
               <div class="faq-header">로그인 및 계정 FAQ ✨</div>
 
         <!-- 🌟 FAQ 리스트 🌟 -->
-        <div class="faq-item">
+        <div class="faq-item" id="q1">
             <div class="faq-question" onclick="toggleAnswer('answer1')">🐥 Q1. 비밀번호를 잊어버렸어요. 어떻게 해야 하나요?</div>
             <div class="faq-answer" id="answer1">
                 A1. 로그인 화면에서 <strong>"비밀번호 찾기"</strong>를 클릭하세요! 이메일 주소를 입력하면 비밀번호 재설정 링크를 받을 수 있답니다. 💌
@@ -365,7 +395,7 @@ h2{
                 A7. 꼬박꼬박은 회원님들에게 공정한 환경에서 목표를 달성할 수 있는 서비스를 제공합니다. 이를 위해 본인 확인 및 중복 회원가입을 막고자 휴대폰 번호를 확인하고 있습니다. 📞️
             </div>
         </div>
-         <div class="faq-item">
+         <div class="faq-item" id="q8">
             <div class="faq-question" onclick="toggleAnswer('answer8')">🌝 Q8. 핸드폰을 바꿔도 동일한 계정을 사용할 수 있나요? </div>
             <div class="faq-answer" id="answer8">
                 A8.네, 사용 가능 합니다. 휴대폰 번호는 마이페이지 > <strong>"번호 변경"</strong> 버튼을 통해 변경할 수 있습니다. 🥸
@@ -382,6 +412,13 @@ h2{
             <div class="faq-question" onclick="toggleAnswer('answer10')">🐥 Q10. 비밀번호를 변경하고 싶어요. </div>
             <div class="faq-answer" id="answer10">
                 A10. 마이페이지 > <strong>"비밀번호 변경"</strong> 버튼을 통해 비밀번호를 변경할 수 있습니다. 😉
+             
+            </div>
+        </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleAnswer('answer11')">🐥 Q11. 계정을 백업하고 복원하려면 어떻게 해야하나요? </div>
+            <div class="faq-answer" id="answer11">
+                A11. 기기 또는 번호를 변경하거나 계을 삭제했을 때 1:1 문의를 통해 계정을 백업하고 복원할 수 있습니다.😉
              
             </div>
         </div>

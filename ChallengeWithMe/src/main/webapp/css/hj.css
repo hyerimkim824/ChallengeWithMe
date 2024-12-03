@@ -152,7 +152,19 @@ body {
     width: 18px; /* 돋보기 아이콘 크기 */
     height: 18px;
 }
-
+.result-display{
+	align-items: center; /* 수직 가운데 정렬 */
+    border-radius: 20px;
+    background-color: #fff; /* 배경색 */
+    padding: 10px 20px; /* 내부 여백 */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1), /* 얇은 그림자 */
+                0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
+    max-width:90%;
+    margin:5% auto;
+    height:100px;
+    position: relative; /* 위치 조정을 위해 설정 */
+    bottom: -30px; /
+}
 .post-list{
     align-items: center; /* 수직 가운데 정렬 */
     border-radius: 20px;
@@ -162,12 +174,13 @@ body {
                 0 4px 6px rgba(0, 0, 0, 0.05); /* 부드러운 그림자 */
     max-width:90%;
     margin:5% auto;
-    height:120px;
+    height:100px;
     position: relative; /* 위치 조정을 위해 설정 */
     bottom: -30px; /
 }
 
-.post-list-date{
+
+.post-list-header1 .post-list-date{
 	font-size: 13px;
 	color:grey;
 	float:right;
@@ -182,13 +195,19 @@ body {
 	justify-content: space-between; /* 양쪽 정렬 */
 	align-items: center; /* 세로 중앙 정렬 */
 }
-
 .post-list-header1{
+	display:flex;
+	flex-direction: column;
+	float:right;
+}
+
+.post-list-header2{
 	display:flex;
 	align-items: center; /* 세로 중앙 정렬 */
 }
 .post-list-view{
-	padding:0 35px 0 0;
+	padding:5px 0 0 40px;
+	
 }
 
 .post-list-view{

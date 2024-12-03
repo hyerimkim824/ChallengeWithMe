@@ -40,7 +40,9 @@ public class UpdateAction implements Action {
         String type = request.getParameter("sup_pick"); // 문의 유형
         String visi = request.getParameter("sup_visi"); // 공개 여부
         String supPwd = request.getParameter("sup_pwd"); // 비공개 비밀번호
-
+        
+        System.out.println(visi + ',' + supPwd);
+        
         // 🐥 유효성 검사
         if (title == null || title.trim().isEmpty()) {
             request.setAttribute("error", "문의 제목을 입력해주세요. 🐇");

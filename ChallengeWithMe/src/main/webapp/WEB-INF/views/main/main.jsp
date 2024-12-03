@@ -10,14 +10,18 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/main.css" type="text/css">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" type="text/css"> 
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+	type="text/css">
+<script type="text/javascript"
+	src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
 	<div class="page-main">
 		<div class="space100-div"></div>
 		<div class="m-title-container align-center">
-			<h1 style="font-weight:bold; font-size:3.5vw;">작심삼일? 이제는 끝!</h1>
+			<h1 style="font-weight: bold; font-size: 3.5vw;">작심삼일? 이제는 끝!</h1>
 		</div>
 		<div class="space150-div"></div>
 		<div class="m-header1-container">
@@ -39,26 +43,41 @@
 							<div class="left1">
 								<div class="left1Img align-center">
 									<c:choose>
-										<c:when test="${list.cate_num == 1}">
+										<c:when test="${rank == 1}">
 											<img src="../images/Level1.png">
 										</c:when>
-										<c:when test="${list.cate_num == 2}">
+										<c:when test="${rank == 2}">
 											<img src="../images/Level2.png">
 										</c:when>
-										<c:when test="${list.cate_num == 3}">
+										<c:when test="${rank == 3}">
 											<img src="../images/Level3.png">
 										</c:when>
-										<c:when test="${list.cate_num == 4}">
+										<c:when test="${rank == 4}">
 											<img src="../images/Level4.png">
 										</c:when>
-										<c:when test="${list.cate_num == 5}">
+										<c:when test="${rank == 5}">
 											<img src="../images/Level5.png">
+										</c:when>
+										<c:when test="${rank == 6}">
+											<img src="../images/Level6.png">
+										</c:when>
+										<c:when test="${rank == 7}">
+											<img src="../images/Level7.png">
+										</c:when>
+										<c:when test="${rank == 8}">
+											<img src="../images/Level8.png">
+										</c:when>
+										<c:when test="${rank == 9}">
+											<img src="../images/Level9.png">
+										</c:when>
+										<c:when test="${rank == 10}">
+											<img src="../images/Level10.png">
 										</c:when>
 										<c:otherwise>
 											<img src="../images/Level1.png">
 										</c:otherwise>
 									</c:choose>
-									
+
 								</div>
 								<div>
 									<p>나의 등급</p>
@@ -89,7 +108,12 @@
 						<div class="card-right">
 							<div class="right1">
 								<div class="right1-box1">
-									<img src="../images/face.png">
+									<c:if test="${xuser_img}">
+										<img src="${pageContext.request.contextPath}/upload/${xuser.img}">
+									</c:if>
+									<c:if test="${!xuser_img}">
+										<img src="${pageContext.request.contextPath}/images/face.png">
+									</c:if>
 									<div class="right-user">
 										<p>환영합니다</p>
 										<p>${xuser.nickname}님</p>
@@ -116,24 +140,33 @@
 		<div class="space50-div"></div>
 		<div class="m-content1-container">
 			<div class="space50-div"></div>
-			<div class="m-content1-title">함께 도전하며 성장하는 즐거움,<br>
- 				 누구나 느낄 수 있습니다.</div>
+			<div class="m-content1-title">
+				함께 도전하며 성장하는 즐거움,<br> 누구나 느낄 수 있습니다.
+			</div>
 			<div class="content1-box c1-box1 ">
 				<div class="c1b1-item itema1 shadow-effect">
 					<div class="c1b1-title shadow-effect">목표 달성 챌린지</div>
-					<div class="c1b1-content" style="text-align: center;">"당신도 100% 달성의 <br>주인공이 될 수 있습니다!"</div>
+					<div class="c1b1-content" style="text-align: center;">
+						"당신도 100% 달성의 <br>주인공이 될 수 있습니다!"
+					</div>
 				</div>
 				<div class="c1b1-item itema2 shadow-effect">
 					<div class="c1b1-title shadow-effect">건강한 하루 챌린지</div>
-					<div class="c1b1-content" style="text-align: center;">"매일 더 건강한 습관을 <br>만들어요!"</div>
+					<div class="c1b1-content" style="text-align: center;">
+						"매일 더 건강한 습관을 <br>만들어요!"
+					</div>
 				</div>
 				<div class="c1b1-item itema3 shadow-effect">
 					<div class="c1b1-title shadow-effect">성공을 향한 첫걸음</div>
-					<div class="c1b1-content" style="text-align: center;">"변화를 원하는 <br>모든 사람들이 모이는 곳"</div>
+					<div class="c1b1-content" style="text-align: center;">
+						"변화를 원하는 <br>모든 사람들이 모이는 곳"
+					</div>
 				</div>
 				<div class="c1b1-item itema4 shadow-effect">
 					<div class="c1b1-title shadow-effect">함께하는 즐거움</div>
-					<div class="c1b1-content" style="text-align: center;">"도전의 즐거움, <br>지금 시작하세요."</div>
+					<div class="c1b1-content" style="text-align: center;">
+						"도전의 즐거움, <br>지금 시작하세요."
+					</div>
 				</div>
 			</div>
 			<div class="content1-box c1-box2">
@@ -157,133 +190,68 @@
 		<div class="m-content2-container">
 			<div class="m-content2-main1">
 				<div class="m-content2-title">
-				함께하는<br>챌린지, 목표는<br>더 가까워집니다.
+					함께하는<br>챌린지, 목표는<br>더 가까워집니다.
 				</div>
-				<p class="m-content2-content1">인증으로 성취감을 더하고, 목표에 한 발 더 다가가세요. 
-				<br> 책임감 있는 도전이 성공의 시작입니다.</p>
-				<p class="m-content2-content2"><a class="m-content2-content2" href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지 바로가기 →</a></p>
+				<p class="m-content2-content1">
+					인증으로 성취감을 더하고, 목표에 한 발 더 다가가세요. <br> 책임감 있는 도전이 성공의 시작입니다.
+				</p>
+				<p class="m-content2-content2">
+					<a class="m-content2-content2"
+						href="${pageContext.request.contextPath}/challenge/challengeMain.do">챌린지
+						바로가기 →</a>
+				</p>
 			</div>
 			<div class="m-content2-main2">
-				<div class="m-content2-menu1" >
-				<a href="${pageContext.request.contextPath}/challenge/challengeList.do">
-					<img class="ch-img"
+				<div class="m-content2-menu1">
+					<a
+						href="${pageContext.request.contextPath}/challenge/challengeList.do">
+						<img class="ch-img"
 						src="${pageContext.request.contextPath}/images/teamwork.jpg">
-				</a>
-				<p><input type="button" value="챌린지 참여"
-						onclick="location.href='${pageContext.request.contextPath}/challenge/challengeList.do'"></p>
-				<p style="font-size:15px;">함께 도전하며<br>
-				   더 큰 성취감을<br>
-				   느껴보세요!</p>
-			</div>
-			<div class="m-content2-menu1">
-			<a href="${pageContext.request.contextPath}/challenge/challengeCreateForm.do">
-				<img class="ch-img"
-					src="${pageContext.request.contextPath}/images/start2.PNG">
-			</a>
-				<p><input type="button" value="챌린지 개설"
-						onclick="location.href='${pageContext.request.contextPath}/challenge/challengeCreateForm.do'"></p>
-				<p style="font-size:15px;">새로운 목표,<br>
-				   나만의 챌린지를<br>
-				   만들어보세요!</p>
-			
-			</div>
-			<div class="m-content2-menu1">
-			<a href="${pageContext.request.contextPath}/challenge/challengeOfficialList.do">
-				<img class="ch-img"
-					src="${pageContext.request.contextPath}/images/success2.jpg">
-			</a>
-				<p><input type="button" value="공식 챌린지"
-						onclick="location.href='${pageContext.request.contextPath}/challenge/challengeOfficialList.do'"></p>
-				<p style="font-size:15px;">도전하고<br>
-				   특별한 보상을<br>
-				   만나보세요!</p>
-			</div>
-			
+					</a>
+					<p>
+						<input type="button" value="챌린지 참여"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeList.do'">
+					</p>
+					<p style="font-size: 15px;">
+						함께 도전하며<br> 더 큰 성취감을<br> 느껴보세요!
+					</p>
+				</div>
+				<div class="m-content2-menu1">
+					<a
+						href="${pageContext.request.contextPath}/challenge/challengeCreateForm.do">
+						<img class="ch-img"
+						src="${pageContext.request.contextPath}/images/start2.PNG">
+					</a>
+					<p>
+						<input type="button" value="챌린지 개설"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeCreateForm.do'">
+					</p>
+					<p style="font-size: 15px;">
+						새로운 목표,<br> 나만의 챌린지를<br> 만들어보세요!
+					</p>
+
+				</div>
+				<div class="m-content2-menu1">
+					<a
+						href="${pageContext.request.contextPath}/challenge/challengeOfficialList.do">
+						<img class="ch-img"
+						src="${pageContext.request.contextPath}/images/success2.jpg">
+					</a>
+					<p>
+						<input type="button" value="공식 챌린지"
+							onclick="location.href='${pageContext.request.contextPath}/challenge/challengeOfficialList.do'">
+					</p>
+					<p style="font-size: 15px;">
+						도전하고<br> 특별한 보상을<br> 만나보세요!
+					</p>
+				</div>
+
 			</div>
 		</div>
 		<div class="space150-div"></div>
 		<hr>
-		
-		<div class="m-content3-container" >
-			<div class="c3-title">공식 챌린지</div>
-			<!-- ----------------------------슬라이더 시작----------------------------------- -->
-			<div id="carouselExample" class="c3-content" data-bs-ride="carousel">
-				<!-- 인디케이터 시작 -->
-				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="0" class="active"></button>
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="1"></button>
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="2"></button>
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="3"></button>
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="4"></button>
-					<button type="button" data-bs-target="#carouselExample"
-						data-bs-slide-to="5"></button>
-				</div>
-				<!-- 인디케이터 끝 -->
-				<!-- 내부 영역 시작 -->
-         <div class="carousel-inner">
-			<c:forEach var="list" items="${official_list}">
-				<!-- 1. 건강 아이템 시작 -->
-				<div class="carousel-item active">
-					<c:if test="${empty list.ch_img}">
-						<c:choose>
-							<c:when test="${list.cate_num == 1}">
-								<img class="ch-bgImg" src="../images/health.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-								<c:when test="${list.cate_num == 2}">
-								<img class="ch-bgImg" src="../images/food.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-								<c:when test="${list.cate_num == 3}">
-								<img class="ch-bgImg" src="../images/self-develop.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-							<c:when test="${list.cate_num == 4}">
-								<img class="ch-bgImg" src="../images/wakeup.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-							<c:when test="${list.cate_num == 5}">
-								<img class="ch-bgImg" src="../images/economy.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-							<c:when test="${list.cate_num == 6}">
-								<img class="ch-bgImg" src="../images/stop.jpg"
-											style="max-width: 100%; max-height: 100%;" />
-							</c:when>
-								<c:otherwise>
-								<img class="ch-bgImg" src="../images/face.png"
-											style="max-width: 100%; max-height: 100%;" />
-								</c:otherwise>
-						</c:choose>
-					</c:if>
-					<div class="carousel-title">${list.ch_title}</div>
-					<div class="carousel-date">${list.ch_start} ~ ${list.ch_end}</div>
-				</div>
-				</c:forEach>
-				</div>
-         <!-- 내부 영역 끝 -->
-         
-         <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon"></span>
-            <!-- 이전 버튼 생성 -->
-            <span class="visually-hidden">Previous</span>
-          </button>
 
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
-            <span class="carousel-control-next-icon"></span>
-            <!-- 다음 버튼 생성 -->
-            <span class="visually-hidden">Next</span>
-          </button>
-			</div>
-			
-			<!-- Optional JavaScript -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script> 
-			<!-- -----------------------------슬라이더 끝----------------------------------- -->
+		<div class="m-content3-container">
 			
 		</div>
 		<div class="m-content4-container">
@@ -377,6 +345,7 @@
 		<div class="space150-div"></div>
 	</div>
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
 </body>
 </html>
 

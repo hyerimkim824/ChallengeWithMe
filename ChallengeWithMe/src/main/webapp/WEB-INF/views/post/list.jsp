@@ -74,20 +74,10 @@
 			<c:if test="${count>0}">
 				<c:forEach var="post" items="${post}">
 					<div class="post-list">
-						<div class="post-list-date"> <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
-							<div class="post-list-header">
+						
+						<%-- 조회수 --%>
 							<div class="post-list-header1">
-								<c:if test="${!empty post.us_img}">
-									<img src="${pageContext.request.contextPath}/upload/${post.us_img}" width="40" height="40" class="my-photo">
-								</c:if>
-								<c:if test="${empty post.us_img}">
-									<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
-								</c:if>
-								<div class="post-list-nickname">${post.us_nickname}</div> 
-							</div>
-							
-							<%-- 조회수 --%>
-							<div class="post-list-header2">
+								<div class="post-list-date"> <fmt:formatDate value="${post.post_date}" pattern="yyyy-MM-dd"/></div>
 								<span class="post-list-view">
 								<img src="${pageContext.request.contextPath}/images/eye.svg" width="13" height="13">
 								<c:if test="${!empty post.post_view}">
@@ -97,7 +87,19 @@
 								0
 								</c:if>
 								</span>
+							</div>	
+							<div class="post-list-header">
+							<div class="post-list-header2">
+								<c:if test="${!empty post.us_img}">
+									<img src="${pageContext.request.contextPath}/upload/${post.us_img}" width="40" height="40" class="my-photo">
+								</c:if>
+								<c:if test="${empty post.us_img}">
+									<img src="${pageContext.request.contextPath}/images/face.png" width="40" height="40" class="my-photo">
+								</c:if>
+								<div class="post-list-nickname">${post.us_nickname}</div> 
 							</div>
+							
+							
 						</div>	
 							<hr class="custom-hr"  noshade="noshade" width="100%">
 						

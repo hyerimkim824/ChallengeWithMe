@@ -300,6 +300,26 @@ width: 55%
 .form-row7 input{
    width:25%;
 }
+    /* 푸터 */
+        .footer {
+            clear: both;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fdd835;
+             margin-top: auto; /* 자동으로 콘텐츠 아래로 푸터를 밀어냄 */
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+
+
 
 
 </style>
@@ -379,9 +399,10 @@ width: 55%
 						<option value="5">인증패스/레드카드</option>
 						<option value="6">회원가입 및 탈퇴</option>
 						<option value="7">주제제안</option>
-						<option value="8">챌린</option>
+						<option value="8">챌린지</option>
 						<option value="9">기능/오류</option>
-						<option value="10">기타</option>
+						<option value="10">광고</option>
+						<option value="11">기타</option>
 					</select>
 					</div>
 				</div>
@@ -433,5 +454,13 @@ width: 55%
 			</form>
 		</div>
 	</div>
+	
+	<!-- 푸터 -->
+    <div class="footer">
+        <a href="ChallengeHelp.do">챌린지 안내</a> |
+        <a href="SupportWrite.do">1:1 문의</a> |
+        <a href="<%= request.getContextPath() %>/mypage/mypage.do">마이페이지</a> |
+        <a href="NoticeList.do">공지사항</a>
+    </div>
 </body>
 </html> 

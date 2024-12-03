@@ -39,7 +39,11 @@
         .section-content {
             font-size: 14px;
             color: #666;
-            line-height: 1.8;
+            line-height: 1.8; 
+        }
+        
+        .section-content a{
+        text-decoration: none; /* 밑줄 제거 */
         }
         ul {
             padding-left: 20px;
@@ -113,7 +117,7 @@
         <div class="section">
             <div class="section-title">추가 도움이 필요하세요? 🐇</div>
             <div class="section-content">
-                더 궁금한 점이 있다면 <a href="List.do" style="color: #ff9900;">고객센터</a>를 방문하거나 <a href="SupportWrite.do" style="color: #ff9900;">문의하기</a>를 남겨주세요. <br>
+                더 궁금한 점이 있다면 <a href="SupportMain.do" style="color: #ff9900;">고객센터</a>를 방문하거나 <a href="SupportWrite.do" style="color: #ff9900;">문의하기</a>를 남겨주세요. <br>
                 저희가 도와드릴게요! 🐥✨
             </div>
         </div>

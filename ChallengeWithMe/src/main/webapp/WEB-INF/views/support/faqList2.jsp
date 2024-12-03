@@ -246,6 +246,24 @@ h2{
             color: #fff;
             border: 1px solid #4CAF50;
         }
+            /* 푸터 */
+        .footer {
+            clear: both;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fdd835;
+             margin-top: auto; /* 자동으로 콘텐츠 아래로 푸터를 밀어냄 */
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
     </style>
     <script>
         // 🐥 질문 클릭 시 답변 토글 스크립트 🐥
@@ -328,7 +346,7 @@ h2{
 	</div>
 
 	<div class="nav">
-		<a href="${pageContext.request.contextPath}/support/List.do">문의 내역</a>
+		<a href="${pageContext.request.contextPath}/support/List.do">1:1 문의</a>
 		<a href="${pageContext.request.contextPath}/support/FaqList.do">자주
 			묻는 질문</a> <a
 			href="${pageContext.request.contextPath}/support/FeedBackList.do">고객의
@@ -355,9 +373,9 @@ h2{
         <div class="faq-header">자주 묻는 질문 FAQ ✨</div>
 
         <!-- 🌟 FAQ 리스트 🌟 -->
-        <div class="faq-item">
+        <div class="faq-item" id="q1">
             <div class="faq-question" onclick="toggleAnswer('answer1')">🐥 Q1. 참가비 및 상금 환급 프로세스</div>
-            <div class="faq-answer" id="answer1">
+            <div class="faq-answer" id="answer1" style="display: none;">
                 A1. 꼬박꼬박에서 참가비와 상금을 환급받는 프로세스는 다음과 같습니다. <br>
                 <br>
                  1️챌린지 결과 확인 <br>
@@ -368,15 +386,16 @@ h2{
                  * 결과 확인 즉시, 참가비가 상금으로 환급됩니다.<br>
                  *85%이상 달성 시 전액 환급, 85% 미만 달성 시 달성률 만큼 환급됩니다.<br> ex) 10,000 참가비로 80% 달성 시, 8000원 환급
               <br>
+              <br>
               2. 예치금 사용 및 출금<br>
 * 예치금은 앱 내에서 현금처럼 사용 가능합니다.<br>
-* 예치금은 금액과 관계없이 자유롭게 출금 가능하며, 처 음 납부하신 방법으로만 출금이 가능합니다. (계좌입금 또 는 카드승인 취소)<br>
+* 예치금은 금액과 관계없이 자유롭게 출금 가능하며, 처음 납부하신 방법으로만 출금이 가능합니다. <br>(계좌입금 또는 카드승인 취소)<br>
 출금 방법: 마이페이지> 예치금> 계좌이체/ 카드취소
-계좌이체는 평일 기준 오후 5시에 일괄 처리되며, 카드 승 인 취소는 카드사 정책에 따라 최대 7 영업일이 소요됩니다.<br>
+계좌이체는 평일 기준 오후 5시에 일괄 처리되며,<br> 카드 승인 취소는 카드사 정책에 따라 최대 7 영업일이 소요됩니다.<br>
 <br>
 3. 상금 출금<br>
-100% 달성으로 취득한 상금은 앱 내에서 사용할 수는 없 고 출금만 가능합니다. (3,000원 단위로 출금 가능 21년
-5월 22일 개정)
+100% 달성으로 취득한 상금은 앱 내에서 사용할 수는 없 고 출금만 가능합니다.<br>(3,000원 단위로 출금 가능 24년
+11월 09일 개정)
             </div>
         </div>
         <div class="faq-item">
@@ -385,7 +404,7 @@ h2{
                 A2. 마이페이지 > 계정 설정에서 이메일 주소를 수정할 수 있어요! 인증 메일 확인을 꼭 해주세요. 📧
             </div>
         </div>
-        <div class="faq-item">
+        <div class="faq-item" id="q3">
             <div class="faq-question" onclick="toggleAnswer('answer3')">🐣 Q3. 개설 탭에 있는 챌린지 개설을 하려고 하는데, 챌린지 개설 승인 절차가 있나요?</div>
             <div class="faq-answer" id="answer3">
                 A3. 챌린지 개설을 완료하면 별도 승인 절차 없이 개설 탭에 바로 노출됩니다.<br>
@@ -457,6 +476,183 @@ h2{
              
             </div>
         </div>
+         <div class="faq-item" id="q11">
+            <div class="faq-question" onclick="toggleAnswer('answer11')">🐥 Q11. 이용제한조치가 무엇인가요? </div>
+            <div class="faq-answer" id="answer10">
+                A11. 꼬박꼬박을 이용하는 회원들의 쾌적하고 안전한 활동을 보호하기 위하여
+				약관 및 운영정책을 위반하는 활동이 신고 등을 통하여 확인되는 경우 이를 위반한 이용자의 꼬박꼬박 이용을 한시적 또는 영구적으로 제한하고 있습니다.<br>
+				<br>
+				아래와 같이 서비스를 이용할 경우 이용제한조치를 받으실 수 있습니다.<br>
+				<br>
+				■ 이용제한조치 사유<br>
+				• 음란물, 불법 사행성 도박 사이트 홍보 메시지 발송<br>
+				• 불법촬영물, 허위영상물, 아동・청소년 성 착취물 공유<br>
+				• 타인의 개인정보 유출 및 권리침해<br>
+				• 타인 계정 탈취<br>
+				• 기타 특이사항<br>
+				<br>
+				이용제한조치가 적용되면 아래와 같은 서비스 이용 등에 불편함이 있을 수 있습니다.<br>
+				<br>
+				■ 이용제한조치 적용 시<br>
+				꼬박꼬박 서비스의 실행을 포함하여 꼬박꼬박 일부 또는 전체 서비스에 대한 이용이 제한될 수 있으며, 이 경우 꼬박꼬박에 수반된 기타 서비스들 또한 이용이 제한됩니다.<br>
+				• 커뮤니티 등록/ 열람 제한<br>
+				• 챌린지 입장/ 검색 제한<br>
+				• 커뮤니티 및 채널 댓글 사용 제한<br>
+				• 챌린지 캘린더 일부 기능 사용 제한<br>
+				• 꼬박꼬박 가입 및 탈퇴 제한<br>
+				• 기타 일부 기능 제한<br>
+				<br>
+				■ 이용제한조치를 받은 경우<br>
+				• 꼬박꼬박 실행 시 표시되는 자세한 안내 문구를 확인해 주세요.<br>
+				• 고객센터를 통해 문의를 남겨주시면 사유 및 불편 해소 방법을 안내해 드립니다.<br>
+				<br>
+				운영정책 관련 궁금한 사항은 아래 페이지를 참고해 주시기 바랍니다. 😉
+             
+            </div>
+            <br>
+				            <div class="faq-item" id="q12">
+				            <div class="faq-question" onclick="toggleAnswer('answer12')">🐥 Q12. 챌린지에서 "나가기" 옵션이 안 보여요. </div>
+				            <div class="faq-answer" id="answer12">
+				                A12. 마이 챌린지 페이지에서 해당 챌린지를 선택한 후 <strong>'나가기'</strong> 버튼을 누르시면 나가실 수 있습니다.<br>
+				<br>
+				단, 아래의 경우 챌린지 나가기 진행 시 나가기 기능을 이용할 수 없습니다.<br>
+				<br>
+				■ 나가기 기능을 이용할 수 없는 경우<br>
+				• 챌린지 개설자 상태일 경우에서 나가기 😉
+				</div>
+			<div class="faq-item" id="q13"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer13')">🐥 Q13. 꼬박꼬박 지갑은 어떤 기능 인가요? </div>
+			            <div class="faq-answer" id="answer13">
+			                A13. 나의 예치금과 상금 적립 금액을 편리하게 조회하고 관리할 수 있는 기능 입니다.<br>
+			                꼬박꼬박 지갑에서는 챌린지 참여를 위한 예치금을 충전하거나 챌린지에서 받는 상금을 적립받아 현금으로 전환가능합니다.😉
+			            </div>
+			        </div>
+			        <div class="faq-item" id="q14"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer14')">🐥 Q14. 꼬박꼬박 배지는 어떻게 받을 수 있나요?</div>
+			            <div class="faq-answer" id="answer14">
+			                A14. 혹시 꼬박꼬박을 이용하다가 우연히 배지를 받게 되었나요? [마이페이지 > 보유배지 > 자세히보기] 를 클릭해보세요. 내가 받은 꼬박꼬박 배지를 확인할 수 있어요.😉
+			            </div>
+			        </div>
+			        <div class="faq-item" id="q15"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer15')">🐥 Q15. 챌린지 참가코드는 무엇인가요?</div>
+			            <div class="faq-answer" id="answer15">
+			                A15. 비공개 챌린지 참여시, 입력해야하는 참여코드에요. 참여 코드가 없을 경우 참여하지 못해요.😢
+			            </div>
+			        </div>
+			             <div class="faq-item" id="q16"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer16')">🐥 Q16. 꼬박꼬박 카카오톡 채널은 어떻게 추가하나요?</div>
+			            <div class="faq-answer" id="answer16">
+			                A16.꼬박꼬박 카카오톡 채널은 다음과 같은 방법으로 추가하실 수 있어요.<br>
+							<br>
+							채팅 탭의 상단 검색을 통해 꼬박꼬박 채널의 아이디 <strong>"coco"</strong>를 입력하여 찾을 수 있습니다. 
+							<br>
+							카카오톡 채널 검색결과에서 우측 채널추가 버튼을 터치하면 친구로 추가됩니다.😎
+			            </div>
+			        </div>
+			        <div class="faq-item" id="q17"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer17')">🐥 Q17. 당사자는 아닌데요. 가족, 지인이 이용제한/ 이용자 보호조치를 당해서 대신 문의하고자 해요.</div>
+			            <div class="faq-answer" id="answer17">
+			                A17.이용자의 상태에 대해서는 제3자에게 꼬박꼬박이 임의로 안내할 수 없습니다.<br>
+<br>
+따라서, 해당 문제가 발생한 당사자께서 직접 문의를 접수해 주셔야 합니다.<br>
+<br>
+아래 안내해 드리는 방법을 통해 궁금한 사항에 대한 상담 진행이 가능하므로<br>
+번거로우시겠지만 해당 번호의 실제 이용자분께서 홈페이지 문의하기를 통해 직접 문의를 접수해 주시기 바랍니다.<br>
+<br>
+■ 접수 방법<br>
+ <a href="<%= request.getContextPath() %>/support/SupportWrite.do" style="color: #000000; text-decoration: none; font-weight: bold;">1:1 문의하기</a>
+
+			            </div>
+			        </div>
+			          <div class="faq-item" id="q18"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer18')">🐥 Q18. 꼬박꼬박에서 신고를 받으면 어떻게 되나요?.</div>
+			            <div class="faq-answer" id="answer18">
+			                A18. 꼬박꼬박 이용 중 부적절한 메시지가 보인다면 누구나 ‘신고’ 기능을 통해 신고할 수 있습니다.
+
+신고가 접수될 경우 신고된 메시지의 운영정책 위반 정도와 빈도에 따라 오픈채팅 이용이 1일~최대 180일간 정지됩니다.
+
+단, 신고된 내용에 음란물, 불법 도박 사이트, 이에 대한 홍보 등의 내용이 포함되어 있다면
+메시지 전송이 단 1회라도 운영정책에 따라 카카오톡 서비스 이용이 영구적으로 제한될 수 있으니 유의해 주세요.
+
+운영정책 관련 궁금한 사항은 아래 페이지를 참고해 주시기 바랍니다.
+
+
+			            </div>
+			        </div>
+			          <div class="faq-item" id="q19">
+			            <div class="faq-question" onclick="toggleAnswer('answer19')">🐥 Q19. 유명인, 은행 및 기관을 사칭하는 게시글을 올렸어요. 어떻게 대처해야 하나요?</div>
+			            <div class="faq-answer" id="answer19">
+			                A19. 꼬박꼬박은 이용자 보호를 위하여 사이버 금융범죄에 대해 엄중하게 대응하고 있습니다.<br>
+			                <br>
+다만 꼬박꼬박은 이용자의 프라이버시를 보호하기 위해 이용자간 주고받는 메시지 및 콘텐츠는 열람하지 않으며,<br>
+<br>
+이용자가 서비스 내 '신고하기' 기능을 통해 문제가 되는 메시지, 콘텐츠 등을 신고하는 경우<br>
+<br>
+이를 바탕으로 해당 이용자에 대해 법령이나 약관 및 운영정책 위반 여부를 판단하고 이용제한 조치를 취하고 있습니다.<br>
+<br>
+1. 수사기관 및 금융기관 사칭 사기<br>
+<br>
+• 경찰, 검찰, 금융감독원, 우체국, 서민금융진흥원, 은행 등 기관의 정보를 프로필로 설정하거나 해당 기관임을 주장하는 메시지를 수신할 경우 사기/ 사칭을 의심하여 주시기 바랍니다.<br>
+<br>
+• 상대방으로부터 URL을 수신하여 출처를 알 수 없는 링크나 버튼을 누를 경우 고객님의 개인정보를 노리는 악성 앱이 설치될 수 있으니 선택하지 않도록 주의해 주세요.<br>
+<br>
+• 상품 가입 및 수사를 미끼로 과도한 개인정보 혹은 금품을 요구하는 경우 즉시 대화를 중단하고 사기 행위를 신고하여 주시기 바랍니다. <br>
+<br>
+2. 유명인, 연예인 사칭 투자 사기<br>
+<br>
+• 유명인의 권유, 고수익 후기 등 불법 투자 관련 홍보글을 주의해 주세요.<br>
+<br>
+• 투자 자문 및 투자 대행을 사유로 금전을 요구하는 등 투자 사기가 의심된다면 즉시 대화를 중단하고 사기 행위를 신고하여 주시기 바랍니다. <br>
+<br>
+3. 로맨스 스캠<br>
+<br>
+• 이성적인 친밀감을 형성하여 만남 등을 빌미로 금전을 요구하는 메시지에 주의해 주세요. <br>
+<br>
+4. 아르바이트 및 부업 사기<br>
+<br>
+• 재택, 고수익, 공동구매 아르바이트를 사유로 금전을 요구하거나 물품 구매를 강요하는 등 부업 관련 사기가 의심된다면 즉시 대화를 중단하고 사기 행위를 신고하여 주시기 바랍니다. <br>
+<br>
+■ 메시지 신고 방법<br>
+<br>
+• 고객의 소리 신고하기<br>
+<br>
+▣ 중요!<br>
+• 상기 안내해 드린 내용을 토대로 신고해 주시면 운영정책 위배 여부를 확인하여 피싱 행위 당사자에 대한 제한 조치가 진행됩니다.<br>
+<br>
+• 기타 피해 사실이 확인되어 즉각적인 조치가 필요할 경우 인근 경찰서 및 사이버 수사대로 문의해 주세요.<br>
+<br>
+• 경찰청 사이버 범죄 신고센터: https://ecrm.police.go.kr/minwon/main<br>
+<br>					
+
+			            </div>
+			        </div>
+			        <div class="faq-item" id="q20"><br>
+			            <div class="faq-question" onclick="toggleAnswer('answer20')">🐥 Q20. 꼬박꼬박을 사칭하는 듯한 SMS를 받았어요. 꼬박꼬박에서 보낸 것이 맞나요? </div>
+			            <div class="faq-answer" id="answer20">
+			                A20. 꼬박꼬박에서는 고객센터로 문의 접수 시 '꼬박꼬박 고객센터'을 통해 답변을 발송하며<br>
+그 외의 경우에는 SMS를 발송하지 않습니다.<br>
+<br>
+스미싱 메시지는 악의적인 목적을 가진 이용자가 꼬박꼬박을 사칭하여 발송하는 것으로 의심됩니다.<br>
+<br>
+만약, 알 수 없는 상대방으로부터 URL을 수신하여 출처를 알 수 없는 링크나 버튼을 누르실 경우<br>
+<br>
+고객님의 개인정보를 노리는 악성 앱이 설치될 수 있으니 선택하지 않도록 주의해 주세요.<br>
+<br>
+이미 링크나 버튼을 선택한 경우에는 휴대 기기에 악성 앱이나 악성 코드가 설치되었는지 확인하기 위해<br>
+<br>
+'모바일 백신', '스미싱 차단 앱', 'V3 백신' 등의 앱을 설치하여 보안 검사를 진행해 주세요.<br>
+<br>
+▣ 중요!<br>
+<br>
+• 즉각적인 조치가 필요할 경우 인근 경찰서 및 사이버 수사대로 문의해 주세요.<br>
+<br>
+• 경찰청 사이버 범죄 신고센터: https://ecrm.police.go.kr/minwon/main<br>
+			            </div>
+			        </div>
+
+             
+            </div>
+        </div>
 
         <!-- 🌟 페이지네이션 🌟 -->
         <div class="pagination">
@@ -468,5 +664,7 @@ h2{
             
         </div>
     </div>
+    
 </body>
+
 </html>

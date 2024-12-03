@@ -15,6 +15,7 @@
             padding: 0;
             background-color: #fff;
         }
+        
 
         a {
             text-decoration: none;
@@ -139,6 +140,26 @@
             background-color: #6200ee;
             color: #fff;
         }
+            /* 푸터 */
+        .footer {
+            clear: both;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fdd835;
+             margin-top: 250px;  /* 자동으로 콘텐츠 아래로 푸터를 밀어냄 */
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+
+        
     </style>
     <script>
         function toggleAnswer(id) {
@@ -150,6 +171,21 @@
             }
         }
     </script>
+    <script>
+    window.onload = function () {
+        const hash = window.location.hash; // 현재 URL에서 #hash 값을 가져옴
+        if (hash) {
+            const target = document.querySelector(hash); // 해당 id를 가진 요소 선택
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                const answer = target.querySelector(".notice-content"); // notice-content 열기
+                if (answer) {
+                    answer.style.display = "block"; // 내용을 표시
+                }
+            }
+        }
+    };
+</script>
 </head>
 <body>
     <header>
@@ -221,20 +257,30 @@
             <a href="#">다음</a>
         </div>
     </div>
+    
     <script>
-        window.onload = function () {
-            const hash = window.location.hash; // 현재 URL에서 #id 값 가져오기
-            if (hash) {
-                const target = document.querySelector(hash); // 해당 id를 가진 요소 선택
-                if (target) {
-                    target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
-                    const answer = target.querySelector(".notice-content"); // notice-content 열기
-                    if (answer) {
-                        answer.style.display = "block"; // 내용을 표시
-                    }
+    // 페이지 로드 시 해시값을 확인하고 해당 공지 토글을 열기
+    window.onload = function () {
+        const hash = window.location.hash; // 현재 URL의 #hash 값을 가져옴
+        if (hash) {
+            const target = document.querySelector(hash); // 해시와 매칭되는 요소 선택
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤 이동
+                const answer = target.nextElementSibling; // 공지사항 내용 요소 선택
+                if (answer && answer.classList.contains("notice-content")) {
+                    answer.style.display = "block"; // 내용을 열기
                 }
             }
-        };
-    </script>
+        }
+    };
+</script>
+    
+    <!-- 푸터 -->
+    <div class="footer">
+        <a href="ChallengeHelp.do">챌린지 안내</a> |
+        <a href="SupportWrite.do">1:1 문의</a> |
+        <a href="<%= request.getContextPath() %>/mypage/mypage.do">마이페이지</a> |
+        <a href="NoticeList.do">공지사항</a>
+    </div>
 </body>
 </html>

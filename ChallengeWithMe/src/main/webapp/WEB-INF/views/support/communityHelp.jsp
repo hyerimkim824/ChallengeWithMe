@@ -126,7 +126,7 @@
         <div class="section">
             <div class="section-title">도움이 필요하신가요? 🐇</div>
             <div class="section-content">
-                추가 질문이 있다면 <a href="List.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 남겨주세요. <br>
+                추가 질문이 있다면 <a href="SupportMain.do">고객센터</a>를 방문하거나 <a href="SupportWrite.do">문의하기</a>를 남겨주세요. <br>
                 저희가 도와드릴게요! 🐥✨
             </div>
         </div>
@@ -134,7 +134,8 @@
         <!-- 버튼 -->
         <div class="btn-group">
             <button class="btn" onclick="window.history.back();">이전 페이지</button>
-            <button class="btn" onclick="location.href='communityMain.jsp';">커뮤니티 메인으로 이동</button>
+            <button class="btn" onclick="location.href='${pageContext.request.contextPath}/post/list.do'">커뮤니티 메인으로 이동</button>
+            
         </div>
     </div>
 </body>

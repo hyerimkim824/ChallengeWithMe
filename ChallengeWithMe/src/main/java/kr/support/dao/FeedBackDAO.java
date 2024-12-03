@@ -201,5 +201,37 @@ public class FeedBackDAO {
             if (con != null) try { con.close(); } catch (SQLException e) {}
         }
     }
+ // 🐰 8. 피드백 데이터 수정하기
+    public void updateFeedBack(FeedBackVO feedBack) throws Exception {
+        Connection con = null;
+        PreparedStatement ps = null;
+        String sql = "UPDATE feedBack SET sup_title = ?, sup_content = ?, sup_pick = ?, sup_date = ?, sup_visi = ?, sup_pwd = ?, sup_img = ? WHERE sup_num = ?";
 
+        try {
+            con = DBUtil.getConnection(); // DB 연결
+            ps = con.prepareStatement(sql);
+
+            // PreparedStatement에 값 세팅
+            ps.setString(1, feedBack.getSup_title());  // 제목
+            ps.setString(2, feedBack.getSup_content()); // 내용
+            ps.setString(3, feedBack.getSup_pick());    // 문의 유형
+            ps.setDate(4, new java.sql.Date(System.currentTimeMillis())); // 수정 날짜
+            ps.setInt(5, feedBack.getSup_visi());    // 공개 여부
+            ps.setLong(6, feedBack.getSup_pwd());       // 비밀번호
+            ps.setString(7, feedBack.getSup_img());     // 파일 경로 추가 (첨부파일)
+            ps.setLong(8, feedBack.getSup_num());       // 수정할 데이터의 ID (sup_num)
+
+            // SQL 쿼리 실행
+            int result = ps.executeUpdate();
+
+            if (result == 0) {
+                throw new SQLException("수정할 데이터가 존재하지 않습니다! 🐇");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            throw new SQLException("문의 수정 중 오류가 발생했습니다! 🐇",e);
+        } finally {
+            DBUtil.executeClose(null, ps, con); // DB 연결 및 자원 닫기
+        }
+    }
 }

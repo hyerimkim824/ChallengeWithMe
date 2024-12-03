@@ -124,7 +124,11 @@
             border-collapse: collapse;
             margin-top: 20px;
         }
-
+/* 링크 스타일 */
+.list-table a {
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 링크 색상을 기본 텍스트 색상으로 */
+}
         .list-table th, .list-table td {
             border: 1px solid #ddd;
             padding: 10px;
@@ -291,7 +295,7 @@
 
     <!-- 네비게이션 -->
     <div class="nav">
-        <a href="${pageContext.request.contextPath}/support/List.do">문의 내역</a>
+        <a href="${pageContext.request.contextPath}/support/List.do">1:1 문의</a>
         <a href="${pageContext.request.contextPath}/support/FaqList.do">자주 묻는 질문</a>
         <a href="${pageContext.request.contextPath}/support/FeedBackList.do">고객의 소리</a>
     </div>
@@ -305,6 +309,7 @@
             <a href="${pageContext.request.contextPath}/support/RefundGuide.do">결제 및 환불</a>
             <a href="${pageContext.request.contextPath}/support/ChallengeHelp.do">꼬박꼬박 챌린지</a>
             <a href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박 커뮤니티</a>
+             <a href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박 나의 새</a>
         </div>
 
         <!-- 🐤 피드백 테이블 -->
@@ -390,6 +395,6 @@
     </div>
 
   
-</div>
+
 </body>
 </html>
