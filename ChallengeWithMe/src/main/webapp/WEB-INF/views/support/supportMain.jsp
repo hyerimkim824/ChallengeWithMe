@@ -141,7 +141,7 @@ header .menu {
     justify-content: center;
     margin-top: 50px;
     max-width: calc((100px + 85px) * 6 - 85px); /* 한 줄에 6개 */
-    margin-left:200px;
+    margin-left:250px; /*원래 175px*/
     gap: 35px 85px; /* 세로 간격을 줄이기 위해 첫 번째 값을 줄임 */
     
 }
