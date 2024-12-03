@@ -26,17 +26,26 @@ public class MyChallengeMakeAction implements Action{
 			return "redirect:/xuser/registerXuserForm.do";
 		}
 		
-		Map<String,Integer> partTable1 = dao.getListPartInfo(us_num,"시작 전");
-		Map<String,Integer> partTable2 = dao.getListPartInfo(us_num,"진행 중");
-		Map<String,Integer> partTable3 = dao.getListPartInfo(us_num,"포기");
-		Map<String,Integer> partTable4 = dao.getListPartInfo(us_num,"완료");
-		
-		
 		List<MyChallengeVO> ch_list = null; 
 		
-		ch_list = dao.getListPart(us_num);
+		ch_list = dao.getListCh(us_num);
 		
 		request.setAttribute("ch_list", ch_list);
+	
+	//저반적인 참여정보 테이블을 위한 객체
+	Map<String,Integer> partTable1 = dao.getListPartInfo(us_num,"before");
+	Map<String,Integer> partTable2 = dao.getListPartInfo(us_num,"ongoing");
+	Map<String,Integer> partTable3 = dao.getListPartInfo(us_num,"failed");
+	Map<String,Integer> partTable4 = dao.getListPartInfo(us_num,"giveup");
+	Map<String,Integer> partTable5 = dao.getListPartInfo(us_num,"completed");
+	
+	request.setAttribute("partTable1",partTable1);
+	request.setAttribute("partTable2",partTable2);
+	request.setAttribute("partTable3",partTable3);
+	request.setAttribute("partTable4",partTable4);
+	request.setAttribute("partTable5",partTable5);
+		
+	
 		
 		List<MyChallengeVO> ptct_list = null; 
 		ptct_list = dao.getGenInfo(us_num);

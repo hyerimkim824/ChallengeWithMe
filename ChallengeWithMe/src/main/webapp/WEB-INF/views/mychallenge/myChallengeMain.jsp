@@ -9,147 +9,17 @@
 <meta charset="UTF-8">
 <title>마이첼린지 메인</title>
 
-<style>
-/* 메인 컨텐츠 영역 스타일 */
-.page-main {
-    width: 80%;
-    margin: 0 auto;
-    padding: 20px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-}
 
-/* 프로필 사진 영역 */
-.mychallenge-div h4 {
-    font-size: 1.5rem;
-    color: #FFD011; /* 노란색 */
-    text-align: center;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
 
-.mychallenge-div img.my-photo {
-    border-radius: 50%;
-    border: 3px solid #FFD011; /* 노란색 테두리 */
-}
-
-/* 테이블 스타일 */
-#simple_info_table1 {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
-    border-radius: 8px;
-    overflow: hidden; /* 둥근 테두리 적용을 위한 오버플로우 숨김 */
-}
-
-/* 테이블 헤더 스타일 */
-#simple_info_table1 th {
-    background-color: #FFD011; /* 노란색 배경 */
-    color: black; /* 검은색 텍스트 */
-    font-weight: bold;
-    padding: 12px;
-    text-align: center;
-    border: none; /* 헤더의 테두리는 없애고 배경 색상으로 강조 */
-}
-
-/* 테이블 셀 스타일 */
-#simple_info_table1 td {
-    padding: 12px;
-    text-align: center;
-    border: 1px solid #FFD011; /* 노란색 테두리 */
-    background-color: #fffbcc; /* 노란색 톤의 배경 */
-    color: #333; /* 검은색 텍스트 */
-}
-
-/* 테이블 행 호버 효과 */
-#simple_info_table1 tr:hover {
-    background-color: #fdb900; /* 호버 시 밝은 노란색 */
-    transition: background-color 0.3s ease;
-}
-
-/* 버튼 스타일 */
-.common-button input[type="button"] {
-    background-color: #FFD011; /* 노란색 버튼 */
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    color: black; /* 검은색 텍스트 */
-    border-radius: 5px;
-    margin-right: 10px;
-    transition: background-color 0.3s ease;
-}
-
-.common-button input[type="button"]:hover {
-    background-color: #fdb900; /* 밝은 노란색 */
-}
-
-/* 챌린지 리포트 버튼 스타일 */
-.button-container button {
-    background-color: #FFD011; /* 노란색 */
-    color: black; /* 검은색 텍스트 */
-    border: none;
-    padding: 10px 20px;
-    margin-right: 10px;
-    font-size: 1rem;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.button-container button:hover {
-    background-color: #fdb900; /* 밝은 노란색 */
-}
-
-/* 차트 제목 */
-.ch-button h4 {
-    color: #FFD011; /* 노란색 */
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    font-weight: bold;
-}
-
-/* 테이블 스타일 (자동 생성된 테이블) */
-#autoTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-#autoTable td {
-    padding: 12px;
-    text-align: center;
-    background-color: #fffbcc; /* 노란색 톤의 배경 */
-    color: #333; /* 검은색 텍스트 */
-}
-
-/* 선호 카테고리 텍스트 스타일 */
-#cate-like {
-    color: #FFD011; /* 노란색 */
-    font-size: 1.2rem;
-    font-weight: bold;
-    margin-top: 10px;
-}
-
-/* 텍스트 강조를 위한 스타일 */
-.bold-text {
-    font-weight: bold;
-    color: #FFD011; /* 노란색 */
-}
-</style>
  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header.css"
-	type="text/css">
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>
+
+
 
 <script type="text/javascript">
 
@@ -192,7 +62,7 @@ function hideFunction(id) {
     </div>
 
     <div class="align-right">
-        <table id="simple_info_table1" >
+       <table id="simple_info_table3">
             <thead>
                 <tr>
                     <th colspan="2">MY 챌린지 참여/개설 정보</th>
@@ -208,12 +78,16 @@ function hideFunction(id) {
                     <td>${partTable2.part_count}</td>
                 </tr>
                 <tr>
-                    <td>포기</td>
+                    <td>실패</td>
                     <td>${partTable3.part_count}</td>
                 </tr>
                 <tr>
-                    <td>완료</td>
+                    <td>포기</td>
                     <td>${partTable4.part_count}</td>
+                </tr>
+                 <tr>
+                    <td>완료</td>
+                    <td>${partTable5.part_count}</td>
                 </tr>
                 <tr>
                     <td>개설</td>

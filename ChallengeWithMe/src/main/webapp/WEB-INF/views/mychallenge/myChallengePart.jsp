@@ -23,7 +23,7 @@
  
 <div class="page-main-part">
     <div class="mychallenge-content-main-part">
-         <div class="mychallenge-div-gen">
+         <div class="mychallenge-div-part">
             <ul>
                 <li>
                     <c:if test="${empty xuser.photo}">
@@ -34,7 +34,7 @@
                     </c:if>
                 </li>
             </ul>
-        <table id="simple_info_table2">
+        <table id="simple_info_table3">
             <thead>
                 <tr>
                     <th colspan="2">MY 챌린지 참여/개설 정보</th>
@@ -50,12 +50,16 @@
                     <td>${partTable2.part_count}</td>
                 </tr>
                 <tr>
-                    <td>포기</td>
+                    <td>실패</td>
                     <td>${partTable3.part_count}</td>
                 </tr>
                 <tr>
-                    <td>완료</td>
+                    <td>포기</td>
                     <td>${partTable4.part_count}</td>
+                </tr>
+                 <tr>
+                    <td>완료</td>
+                    <td>${partTable5.part_count}</td>
                 </tr>
                 <tr>
                     <td>개설</td>

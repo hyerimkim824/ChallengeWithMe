@@ -50,12 +50,16 @@
                     <td>${partTable2.part_count}</td>
                 </tr>
                 <tr>
-                    <td>포기</td>
+                    <td>실패</td>
                     <td>${partTable3.part_count}</td>
                 </tr>
                 <tr>
-                    <td>완료</td>
+                    <td>포기</td>
                     <td>${partTable4.part_count}</td>
+                </tr>
+                 <tr>
+                    <td>완료</td>
+                    <td>${partTable5.part_count}</td>
                 </tr>
                 <tr>
                     <td>개설</td>
