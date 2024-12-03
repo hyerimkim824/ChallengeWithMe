@@ -103,7 +103,7 @@ button {
     transition: background-color 0.3s ease;
     width: 200px;
 }
-
+ 
 button:hover {
     background-color: #ff6600; /* 버튼 호버 시 주황색으로 변환 */
 }

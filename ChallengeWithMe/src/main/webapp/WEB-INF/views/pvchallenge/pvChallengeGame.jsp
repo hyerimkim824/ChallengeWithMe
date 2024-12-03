@@ -19,7 +19,7 @@
 <script type="text/javascript"
 	src="${ pageContext.request.contextPath }/js/jquery-3.7.1.min.js"></script>	
 </head>
- 
+  
 <body>    
      <h1>화살표 돌림판</h1>
     <div class="wheel" id="wheel">

@@ -87,10 +87,10 @@ public class MyChallengeMainAction implements Action{
 		for (Map.Entry<String, Integer> entry : list_month.entrySet()) {
 		    table.append("<tr>")
 		         .append("<td>").append(entry.getKey()).append("</td>")
-		         .append("<td>").append(entry.getValue()).append("</td>")
+		          .append("<td>").append(entry.getValue()).append("</td>")
 		         .append("</tr>");
 		}
-
+ 
 		table.append("</table>");
 
 		// 결과를 JSP로 전달

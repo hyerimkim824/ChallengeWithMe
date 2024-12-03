@@ -33,7 +33,7 @@ public class UpdateMyPvPhotoAction implements Action{
 			String photo = FileUtil.uploadFile(request,"photo");
 			
 		PvChallengeDAO dao = PvChallengeDAO.getInstance();
-		
+		 
 		//dao.insertPvImg(photo, us_num);
 		
 		//이전 파일 삭제 처리

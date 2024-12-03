@@ -319,7 +319,7 @@ input[type="file"] {
                     </li>
                 </ul>
             </div>
-
+ 
              <!-- 두 번째 인증사진 -->
             <div class="mypage-div2">
                 <h3>인증사진 2</h3>

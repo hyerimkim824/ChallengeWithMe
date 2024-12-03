@@ -20,7 +20,7 @@
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
 <h1>참여 챌린지</h1>
-
+ 
 <div class="page-main-part">
     <div class="mychallenge-content-main-part">
          <div class="mychallenge-div-gen">

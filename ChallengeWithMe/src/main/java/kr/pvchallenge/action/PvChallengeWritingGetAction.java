@@ -37,7 +37,7 @@ public class PvChallengeWritingGetAction implements Action{
 	        "일찍 일어난 벌레는 잡아 먹힌다.",
 	        "내 너 그럴줄 알았다. 알았으면 제발 미리 말을 해줘라!",
 	        "성공은 1%의 재능과 99%의 빽"
-	    );
+	    ); 
 
 	    // 결과를 담을 Map 생성
 	    Map<String, String> mapAjax = new HashMap<String, String>();

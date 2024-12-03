@@ -8,12 +8,8 @@
 <head>
 <meta charset="UTF-8">
 <title>마이첼린지 메인</title>
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath }/css/style.css"
-	type="text/css">
-<link rel="stylesheet"
-	href="${pageContext.request.contextPath}/css/header.css"
-	type="text/css">
+
+
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/css/khr.css" type="text/css">
 <script type="text/javascript"
@@ -29,18 +25,20 @@ h1, h2 {
 
 /* 타이머 영역 스타일 */
 .page-main-photo {
+
+	width:80%;
     padding: 30px;
     background-color: #fff8b3; /* 연한 노란색 배경 */
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-}
+    margin: 30px auto;
+} 
 
 .content-main-photo {
     text-align: center;
-}
-
-.status {
+}  
+  
+.status { 
     font-size: 18px;
     color: #ff6600; /* 밝은 주황색 */
     font-weight: bold;
@@ -210,51 +208,49 @@ input[type="button"]:hover {
 
 
 	<jsp:include page="/WEB-INF/views/common/header.jsp" />
-		<h1>사진 인증</h1>
-	
+	<h1>사진 인증</h1>
+
 	<div class="page-main-photo">
-	<div class="content-main-photo">
-		<h2>사진 인증</h2>
-		
-		
-		<!-- 타이머 관련 -->
-		 <!-- 타이머 시작 버튼 -->
-    <!-- 타이머 상태 표시 -->
-    <div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>
-    
-    <!-- 타이머 표시 -->
-    <div class="timer" id="timerDisplay"></div>
-    
+		<div class="content-main-photo">
+			<h2>사진 인증</h2>
+
+
+			<!-- 타이머 관련 -->
+			<!-- 타이머 시작 버튼 -->
+			<!-- 타이머 상태 표시 -->
+			<div class="status" id="status">타이머가 아직 시작되지 않았습니다.</div>
+
+			<!-- 타이머 표시 -->
+			<div class="timer" id="timerDisplay"></div>
+
 		</div>
 		<div class="mypage-div">
 			<h3>인증사진</h3>
 			<ul>
-				<li>
-					<c:if test="${empty xuser.photo}">
-					<img src="${pageContext.request.contextPath}/images/logo.png" 
-					                  width="200" height="200" class="my-photo">
+				<c:if test="${empty xuser.photo}">
+						<img src="${pageContext.request.contextPath}/images/logo.png"
+							width="200" height="200" class="my-photo">
+					</c:if> <c:if test="${!empty xuser.photo}">
+						<img
+							src="${pageContext.request.contextPath}/upload/${member.photo}"
+							width="200" height="200" class="my-photo">
 					</c:if>
-					<c:if test="${!empty xuser.photo}">
-					<img src="${pageContext.request.contextPath}/upload/${member.photo}" 
-					                  width="200" height="200" class="my-photo">
-					</c:if>
-				</li>
-				<li>
+				
 					<div class="align-center">
 						<input type="button" value="수정" id="photo_btn">
 					</div>
-					<div id="photo_choice" style="display:none;">
-						<input type="file" id="photo" 
-						            accept="image/gif,image/png,image/jpeg"><br>
-						<input type="button" value="전송" id="photo_submit">
-						<input type="button" value="취소" id="photo_reset">            
+					<div id="photo_choice" style="display: none;">
+						<input type="file" id="photo"
+							accept="image/gif,image/png,image/jpeg"><br> <input
+							type="button" value="전송" id="photo_submit"> <input
+							type="button" value="취소" id="photo_reset">
 					</div>
-				</li>
+				
 			</ul>
 		</div>
-		
+
 	</div>
-</div>
+
 	<jsp:include page="/WEB-INF/views/common/footer.jsp" />
 </body>
 </html>

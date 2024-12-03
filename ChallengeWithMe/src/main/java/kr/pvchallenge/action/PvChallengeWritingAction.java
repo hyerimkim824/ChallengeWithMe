@@ -34,7 +34,7 @@ public class PvChallengeWritingAction implements Action{
             request.setAttribute("errorMessage", "도전 정보가 없습니다.");
             return "pvchallenge/errorPage.jsp";  // 필요한 경우 오류 페이지로 이동
         }
-        
+         
         // 조회된 도전 데이터를 JSP로 전달
         System.out.println(challengeInfo.getCh_num());
         System.out.println(challengeInfo.getAh_img());

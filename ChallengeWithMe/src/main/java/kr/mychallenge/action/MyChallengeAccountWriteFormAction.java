@@ -20,3 +20,4 @@ public class MyChallengeAccountWriteFormAction implements Action{
 	}
 
 }
+page-main-photo

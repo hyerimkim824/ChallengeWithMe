@@ -37,7 +37,7 @@ public class MyChallengePartDetailAction implements Action{
 		    // ch_num이 없다면 예외 처리
 		    throw new IllegalArgumentException("ch_num parameter is missing.");
 		}
-
+ 
 
 		    Long chNum = Long.parseLong(chNumStr);
 		  

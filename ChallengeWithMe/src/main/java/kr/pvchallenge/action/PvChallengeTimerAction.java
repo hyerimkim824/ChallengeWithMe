@@ -36,7 +36,7 @@ public class PvChallengeTimerAction implements Action{
 			//자바빈 생성
 			PvChallengeVO pvchall = new PvChallengeVO();
 			
-			// 현재 시간 (LocalTime 객체)
+		 	// 현재 시간 (LocalTime 객체)
 	        LocalTime now = LocalTime.now();
 	        
 	        // 시간 형식 지정 (HH:mm)

@@ -21,7 +21,7 @@
 	
 </head>
  
-
+ 
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>QR 인증</h1>

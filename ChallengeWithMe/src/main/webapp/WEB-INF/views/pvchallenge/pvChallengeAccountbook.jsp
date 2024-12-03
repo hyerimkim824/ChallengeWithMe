@@ -21,7 +21,7 @@
 <script type="text/javascript" src="${ pageContext.request.contextPath }/js/pvchallengetimeWriting.js"></script>	
 </head>
  
-
+ 
 <body>
 <jsp:include page="/WEB-INF/views/common/header.jsp" />
     <h1>가계부 인증</h1>

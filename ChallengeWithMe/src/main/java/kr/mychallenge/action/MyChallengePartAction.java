@@ -37,9 +37,9 @@ public class MyChallengePartAction implements Action{
 			
 			//int ch_num = session.getParameter("ch_num");
 			
-			
+			 
 			//MyChallengeVO img = dao.getImage(1);
-			
+		 	 
 			
 			
 		
