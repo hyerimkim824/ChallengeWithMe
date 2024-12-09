@@ -4,74 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>챌린지 사용 가이드</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-        }
-        .header {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-            border-bottom: 2px solid #ffcc00;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
-        }
-        .section {
-            margin-bottom: 30px;
-        }
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            color: #555;
-            margin-bottom: 10px;
-        }
-        .section-content {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.8; 
-        }
-        
-        .section-content a{
-        text-decoration: none; /* 밑줄 제거 */
-        }
-        ul {
-            padding-left: 20px;
-        }
-        ul li {
-            margin-bottom: 10px;
-            list-style: disc;
-            font-size: 14px;
-        }
-        .btn-group {
-            text-align: center;
-            margin-top: 20px;
-        }
-        .btn {
-            padding: 10px 20px;
-            font-size: 14px;
-            font-weight: bold;
-            color: #fff;
-            background-color: #ff9900;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            margin: 5px;
-        }
-        .btn:hover {
-            background-color: #e68a00;
-        }
-    </style>
+    
 </head>
 <body>
     <div class="container">
