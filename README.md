@@ -1,25 +1,49 @@
 # **꼬박꼬박**
 
 ## **Abstract**
-사용자가 사용자가 일상 속 목표를 ‘챌린지’라는 형태로 온라인에서 체계적으로 관리할 수 있도록 지원 할 수 있도록 설계된 웹 애플리케이션입니다.  
-본 프로젝트는 **Java, JSP, JSTL, CSS, HTML5, Servlet, jQuery, Bootstrap** 등을 활용하여 개발되었습니다.
 
----
+**꼬박꼬박**은 사용자가 사용자가 일상 속 목표를 ‘챌린지’라는 형태로 온라인에서 체계적으로 관리할 수 있도록 지원 할 수 있도록 설계된 웹 애플리케이션입니다.  
+
+<br>
+<br>
 
 ## **🛠 기술 스택**
+<div style="display: flex; flex-direction: column; gap: 10px;">
+  <div>
+    <h3>🎨 FRONT-END</h3>
+    <div style="display: flex; gap: 10px;">
+      <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white">
+      <img src="https://img.shields.io/badge/CSS-663399?style=for-the-badge&logo=css3&logoColor=white">
+      <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black">
+      <img src="https://img.shields.io/badge/jQuery-0769AD?style=for-the-badge&logo=jQuery&logoColor=white">
+      <img src="https://img.shields.io/badge/BootStrap-7952B3?style=for-the-badge&logo=bootstrap&logoColor=white">
+    </div>
+  </div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+  <div>
+    <h3>💻 BACK-END</h3>
+    <div style="display: flex; gap: 10px;">
+      <img src="https://img.shields.io/badge/Java-3776AB?style=for-the-badge&logo=Java&logoColor=white">
+      <img src="https://img.shields.io/badge/Servlet-FF6600?style=for-the-badge&logo=servlet&logoColor=black">
+      <img src="https://img.shields.io/badge/JSTL-003D8F?style=for-the-badge&logo=jstl&logoColor=black">
+      <img src="https://img.shields.io/badge/Oracle-DA291C?style=for-the-badge&logo=oracle&logoColor=black">
+    </div>
+  </div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 10px;">
+  <div>
+    <h3>🔧 TOOLS</h3>
+    <div style="display: flex; gap: 10px;">
+      <img src="https://img.shields.io/badge/Eclipse-2C2255?style=for-the-badge&logo=eclipseide&logoColor=white">
+       <img src="https://img.shields.io/badge/Apache Tomcat-F8DC75?style=for-the-badge&logo=apachetomcat&logoColor=black">
+    </div>
+  </div>
+</div>
 
-| **기술**        | **설명**                                                                 |
-|------------------|---------------------------------------------------------------------------|
-| **Java**         | 백엔드 로직 구현 및 비즈니스 로직 처리                                      |
-| **JSP**          | 동적 웹 페이지 생성 및 데이터 출력                                        |
-| **JSTL**         | 반복문, 조건문 등을 사용해 JSP 코드 간결화                                |
-| **Servlet**      | 클라이언트 요청 처리 및 데이터 연동                                      |
-| **HTML5**        | 구조화된 웹 콘텐츠 제작                                                 |
-| **CSS**          | 사용자 친화적인 UI 디자인 및 스타일링                                     |
-| **jQuery**       | 간단한 DOM 조작 및 Ajax를 이용한 비동기 요청                              |
-| **Bootstrap**    | 반응형 UI 설계 및 레이아웃 구축                                           |
-
----
+<br>
+<br>
+<br>
 
 ## **📄 주요 기능**
 
@@ -39,13 +63,16 @@
    - 메인 페이지에서 사용자 맞춤형 콘텐츠 표시.
 
 5. **Ajax 및 비동기 처리**
-   - **jQuery**를 사용하여 데이터 갱신 및 사용자 인터랙션 개선.
+   - **jQuery**를 사용하여 실시간 데이터 갱신 및 사용자 인터랙션 개선.
 
 6. **결제 및 예치금 관리**
    - 사용자 예치금 확인 및 전송 기능.
    - 결제 관련 데이터를 효율적으로 관리.
 
 ---
+
+<br>
+<br>
 
 ## **📂 프로젝트 구조**
 
