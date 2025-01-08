@@ -4,7 +4,331 @@
 <head>
     <meta charset="UTF-8">
     <title>자주묻는질문 FAQ</title>
- 
+    <style>
+        /* 🌟 스타일 시작 🌟 */
+
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #fcfcfc;
+}
+
+h1, h2 {
+	margin: 0;
+	padding: 10px;
+	color: #333;
+}
+h2{
+	margin-bottom: 30px;
+	margin-left: 15px;
+}
+/* 헤더 */
+.header {
+	background-color: #ffeb3b;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header input[type="text"] {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.header button {
+	padding: 5px 10px;
+	background-color: #fdd835;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-around;
+	background-color: #fff;
+	padding: 10px 0;
+}
+
+.nav a {
+	text-decoration: none;
+	color: #333;
+	padding: 10px 20px;
+}
+
+.nav a:hover {
+	background-color: #fdd835;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+}
+
+/* 사이드바 */
+.sidebar {
+	width: 20%;
+	background-color: #fff9c4;
+	padding: 15px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.sidebar a:hover {
+	background-color: #fdd835;
+	color: #fff;
+}
+h1, h2 {
+	margin: 0;
+	padding: 10px;
+	color: #333;
+}
+h2{
+	margin-bottom: 30px;
+	margin-left: 15px;
+}
+/* 헤더 */
+.header {
+	background-color: #ffeb3b;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header input[type="text"] {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.header button {
+	padding: 5px 10px;
+	background-color: #fdd835;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-around;
+	background-color: #fff;
+	padding: 10px 0;
+}
+
+.nav a {
+	text-decoration: none;
+	color: #333;
+	padding: 10px 20px;
+}
+
+.nav a:hover {
+	background-color: #fdd835;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.container{
+	display: flex;
+	flex-direction: row;
+}
+
+/* 사이드바 */
+.sidebar {
+	width: 20%;
+	background-color: #fff9c4;
+	padding: 15px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.sidebar a:hover {
+	background-color: #fdd835;
+	color: #fff;
+}
+
+
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fffde7;
+        }
+        .container2 {
+            width: 70%;
+            margin: 20px auto;
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 25px;
+        }
+        .faq-header {
+            font-size: 28px;
+            font-weight: bold;
+            color: #333;
+            border-bottom: 2px solid #4CAF50;
+            padding-bottom: 15px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .faq-item {
+            margin-bottom: 25px;
+        }
+        .faq-question {
+            font-size: 20px;
+            font-weight: bold;
+            color: #555;
+            cursor: pointer;
+            background-color: rgba(76, 200, 80, 0.5); /* #4CAF50 with 50% opacity */
+            padding: 10px;
+            border-radius: 5px;
+        }
+       
+           
+        
+        .faq-answer {
+            font-size: 16px;
+            color: #666;
+            margin-top: 10px;
+            background-color: #fffbde;
+            padding: 10px;
+            border-left: 4px solid #ffcc00;
+            display: none;
+            border-radius: 5px;
+        }
+        .faq-question:hover {
+            color: #ff9900;
+            background-color: #fff3b0;
+        }
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .pagination a {
+            text-decoration: none;
+            color: #333;
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+        .pagination a:hover {
+            background-color: #ffcc00;
+            color: #fff;
+        }
+        .pagination .active {
+            background-color: #4CAF50;
+            color: #fff;
+            border: 1px solid #4CAF50;
+        }
+            /* 푸터 */
+        .footer {
+            clear: both;
+            text-align: center;
+            padding: 10px 0;
+            background-color: #fdd835;
+             margin-top: auto; /* 자동으로 콘텐츠 아래로 푸터를 밀어냄 */
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #333;
+            padding: 5px 10px;
+        }
+
+        .footer a:hover {
+            text-decoration: none;
+        }
+    </style>
+    <script>
+        // 🐥 질문 클릭 시 답변 토글 스크립트 🐥
+        function toggleAnswer(id) {
+            const answer = document.getElementById(id);
+            if (answer.style.display === "none") {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        }
+    </script>
+    <script>
+        // 비공개 상태 선택 시 비밀번호 입력 필드 활성화
+        function togglePasswordField() {
+            var visibility = document.getElementById("visibility").value;
+            var passwordField = document.getElementById("sup_pwd");
+            var passwordInput = document.getElementById("sup_pwd_input");
+            
+            // 비공개 선택 시 비밀번호 입력 필드 보여주고, 공개 선택 시 숨기기
+            if (visibility === "1") { 
+                passwordField.style.display = "block";
+                passwordInput.setAttribute("required", "true"); // 비공개일 때만 required 속성 추가
+            } else {
+                passwordField.style.display = "none";
+                passwordInput.removeAttribute("required"); // 공개일 때는 required 속성 제거
+            }
+        }
+
+        // 페이지 로드 시 비공개 상태일 경우 비밀번호 입력 필드 표시
+        window.onload = function() {
+            togglePasswordField(); // 초기 로드 시 호출해서 비공개 상태 체크
+        };
+    </script>
+    <script>
+        function scrollToHash() {
+            const hash = window.location.hash; // 현재 URL의 #hash 값을 가져옴
+            if (hash) {
+                const target = document.querySelector(hash); // #q4에 해당하는 요소 선택
+                if (target) {
+                    target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                    const answer = target.querySelector(".faq-answer"); // 답변 부분 찾기
+                    if (answer) {
+                        answer.style.display = "block"; // 답변을 바로 열기
+                    }
+                }
+            }
+        }
+    </script>
+<script>
+    // 🐤 페이지 로드 시 해시 값 스크롤
+    window.onload = function () {
+        const hash = window.location.hash; // 현재 URL의 #hash 값 가져오기
+        if (hash) {
+            const target = document.querySelector(hash); // #q4에 해당하는 요소 찾기
+            if (target) {
+                target.scrollIntoView({ behavior: "smooth" }); // 부드럽게 스크롤
+                const answer = target.querySelector(".faq-answer"); // 해당 질문의 답변 찾기
+                if (answer) {
+                    answer.style.display = "block"; // 답변 열기
+                }
+            }
+        }
+    };
+</script>
 </head>
 <body>
 
@@ -41,6 +365,7 @@
 				챌린지</a> <a
 				href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박
 				커뮤니티</a>
+				  <a href="${pageContext.request.contextPath}/support/MyBird.do">꼬박꼬박 나만의 새</a>
 		</div>
 </head>
 <body>
