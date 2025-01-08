@@ -8,6 +8,324 @@
 <head>
 <meta charset="UTF-8">
 <title>피드백 작성</title>
+<style>
+body {
+	font-family: Arial, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #fcfcfc;
+}
+
+h1, h2 {
+	margin: 0;
+	padding: 10px;
+	color: #333;
+}
+h2{
+	margin-bottom: 30px;
+	margin-left: 15px;
+}
+/* 헤더 */
+.header {
+	background-color: #ffeb3b;
+	padding: 10px 20px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.header input[type="text"] {
+	padding: 5px;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+}
+
+.header button {
+	padding: 5px 10px;
+	background-color: #fdd835;
+	border: none;
+	cursor: pointer;
+	border-radius: 5px;
+}
+
+.nav {
+	display: flex;
+	justify-content: space-around;
+	background-color: #fff;
+	padding: 10px 0;
+}
+
+.nav a {
+	text-decoration: none;
+	color: #333;
+	padding: 10px 20px;
+}
+
+.nav a:hover {
+	background-color: #fdd835;
+	color: #fff;
+	border-radius: 5px;
+}
+
+.container {
+	display: flex;
+	flex-direction: row;
+}
+
+/* 사이드바 */
+.sidebar {
+	width: 20%;
+	background-color: #fff9c4;
+	padding: 15px;
+	box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.sidebar a {
+	display: block;
+	text-decoration: none;
+	color: #333;
+	padding: 10px;
+	margin-bottom: 10px;
+	border-radius: 5px;
+}
+
+.sidebar a:hover {
+	background-color: #fdd835;
+	color: #fff;
+}
+
+.content {
+	width: 80%;
+	padding: 20px;
+}
+
+.form-group {
+	margin-bottom: 20px;
+	
+}
+
+label {
+	font-weight: bold;
+	display: block;
+	margin-bottom: 5px;
+	 font-size: 18px;
+	
+}
+
+input {
+	width: 50%;
+	padding: 0px;
+	margin-top: 5px;
+	border:none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+/* 폼 앞에 공간을 두기 위한 스타일 */
+form {
+    margin-left: 26px; /* 상단에 40px 여백을 추가 */
+}
+.form-control{
+	width: 53%;
+	padding: 10px;
+	margin-top: 5px;
+	border:none;
+	border-radius: 5px;
+	
+	
+}
+ textarea {
+	width: 55%;
+	padding: 0px;
+	margin-top: 0px;
+	border:none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+	height: 220px;
+	
+}
+ select {
+	width: 20%;
+	padding: 10px;
+	margin-top: 5px;
+	border:none;
+	border-radius: 5px;
+	box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+.condition{
+width: 25%;
+	padding: 10px;
+	margin-top: 5px;
+	border:none;
+	border-radius: 5px;
+}
+
+
+button {
+	background-color: #fdd835;
+	color: white;
+	padding: 10px 20px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+}
+
+button:hover {
+	background-color: #ffeb3b;
+}
+
+#sup_pwd {
+	display: none;
+}
+
+#visibility option[value="1"]:checked ~ #sup_pwd {
+	display: block;
+	
+	
+}
+/* 푸터 */
+.footer {
+	clear: both;
+	text-align: center;
+	padding: 10px 0;
+	background-color: #fdd835;
+}
+
+.footer a {
+	text-decoration: none;
+	color: #333;
+	padding: 5px 10px;
+}
+
+.footer a:hover {
+	text-decoration: underline;
+}
+  
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px; /* 공간을 주기 위해 gap을 추가 */
+        }
+
+        .form-row .form-group {
+            flex: 1; /* 각 항목이 동일한 비율로 차지 */
+        }
+        
+/* 문의 유형 label과 select의 높이를 맞추기 위한 CSS */
+.form-row2 {
+    display: flex;
+    align-items: center; /* 세로로 중앙 정렬 */
+    gap: 95px; /* 공간을 주기 위해 gap을 추가 */
+margin-bottom:5%;
+}
+
+.form-row2 label,
+.form-row2 select 
+{
+    height: 40px;  /* 동일한 높이로 설정 */
+    display: flex;
+    align-items: center;  /* 텍스트를 세로로 중앙 정렬 */
+}
+
+.form-row2 select {
+    width: 20%;
+    padding: 0 10px; /* 좌우 패딩만 설정, 위아래는 0으로 */
+    border: none;
+    border-radius: 5px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-row2 label {
+    font-weight: bold;
+    margin: 0; /* 여백 없애기 */
+}
+
+/* 문의 유형 label과 select의 높이를 맞추기 위한 CSS */
+.form-row3 {
+    display: flex;
+    align-items: center; /* 세로로 중앙 정렬 */
+    gap: 95px; /* 공간을 주기 위해 gap을 추가 */
+    margin-bottom:5%;
+}
+
+.form-row3 label,
+.form-row3 input 
+{
+    height: 40px;  /* 동일한 높이로 설정 */
+    display: flex;
+    align-items: center;  /* 텍스트를 세로로 중앙 정렬 */
+}
+
+.form-row3 input {
+width: 55%
+}
+
+/* 문의 내용 label과 textarea의 높이를 맞추기 위한 CSS */
+.form-row4 {
+    display: flex;
+    gap: 95px; /* 공간을 주기 위해 gap을 추가 */
+    margin-bottom:5%;
+}
+
+/* 문의 첨부파일 label과 input의 높이를 맞추기 위한 CSS */
+.form-row5 {
+    display: flex;
+    gap: 48px; /* 공간을 주기 위해 gap을 추가 */
+    margin-bottom:5%;
+}
+/* 문의 상태 label과 select의 높이를 맞추기 위한 CSS */
+.form-row6 {
+    display: flex;
+    gap: 95px; /* 공간을 주기 위해 gap을 추가 */
+}
+.form-row6 label,
+.form-row6 select 
+{
+    height: 40px;  /* 동일한 높이로 설정 */
+    display: flex;
+    align-items: center;  /* 텍스트를 세로로 중앙 정렬 */
+}
+/* 문의 비밀번호 label과 input의 높이를 맞추기 위한 CSS */
+.form-row7 {
+    display: flex;
+    gap: 40px; /* 공간을 주기 위해 gap을 추가 */
+     margin-left: -61px; 
+}
+.form-row7 label {
+   font-size: 16px;
+   margin-top: 8px; /* 비밀번호 label을 조금 더 위로 올려줬어요 */
+}
+
+.form-row7 input{
+   width:25%;
+}
+
+
+</style>
+
+<script>
+        // 비공개 상태 선택 시 비밀번호 입력 필드 활성화
+        function togglePasswordField() {
+            var visibility = document.getElementById("visibility").value;
+            var passwordField = document.getElementById("sup_pwd");
+            var passwordInput = document.getElementById("sup_pwd_input");
+            
+            // 비공개 선택 시 비밀번호 입력 필드 보여주고, 공개 선택 시 숨기기
+            if (visibility === "1") { 
+                passwordField.style.display = "block";
+                passwordInput.setAttribute("required", "true"); // 비공개일 때만 required 속성 추가
+            } else {
+                passwordField.style.display = "none";
+                passwordInput.removeAttribute("required"); // 공개일 때는 required 속성 제거
+            }
+        }
+
+        // 페이지 로드 시 비공개 상태일 경우 비밀번호 입력 필드 표시
+        window.onload = function() {
+            togglePasswordField(); // 초기 로드 시 호출해서 비공개 상태 체크
+        };
+    </script>
 
 </head>
 <body>
@@ -45,6 +363,7 @@
 				챌린지</a> <a
 				href="${pageContext.request.contextPath}/support/CommunityHelp.do">꼬박꼬박
 				커뮤니티</a>
+				  <a href="${pageContext.request.contextPath}/support/MyBird.do">꼬박꼬박 나만의 새</a>
 		</div>
 		<div class="content">
 			<h2>고객의 소리</h2>
