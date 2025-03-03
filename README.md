@@ -38,7 +38,9 @@
   
 | Information | runtime environment |
 |------|--------|
+|Copy the on-screen text verbatim within a 10-minute time limit.|<img src="https://github.com/user-attachments/assets/ff54cd17-c613-4272-9fe8-572f9ad1544a" width="500">|
 | Upload a photo that meets the time challenge requirements (e.g., a water drinking challenge).| <img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width="500"> |
-| "Document the start and finish of a task completed within 100 [units of time] with photos (e.g., reading a book). | <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="500"> |
+| Document the start and finish of a task completed within 100 [units of time] with photos (e.g., reading a book). | <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="500"> |
+|Challenge completion upon meeting game conditions (e.g., avoiding 30 arrowheads). |<img src="https://github.com/user-attachments/assets/7ec120f7-8d32-405a-bf23-412aacd5eead" width="500">|
 
 </div>
