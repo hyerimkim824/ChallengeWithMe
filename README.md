@@ -19,11 +19,11 @@
     <li>mainpage/header/footer</li>
     <li>make challenge/participate challenge</li>
     <li>my challenge management</li>
-    <li></li>
+    <li>five verification function for challenge</li>
+    <li>community</li>
+    <li>customer service center</li>
   </ul>
 </P>
-  
-
 </div>
 
 
