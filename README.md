@@ -15,7 +15,7 @@
 <p>:pushpin: Skills : Java, JSP/Servlet, HTML5, jQuery(Ajax), Oracle</p>
 <P>:pushpin: Function & Part 
   <ul>
-    <li> register/login/mypage</li>
+    <li>register/login/mypage</li>
     <li>mainpage/header/footer</li>
     <li>make challenge/participate challenge</li>
     <li>my challenge management</li>
@@ -25,21 +25,28 @@
   </ul>
 </P>
 </div>
+<div class="mychallenge">
+<h2>My part : myChallenge page</h2>
+<p>My personal challenge management page to manage challenges I create or participate in</p>
+  <p>:ballot_box_with_check: function 1 : provide graphs and tables to visualize challenge completion rates, participation, and popularity at a glance.</p>
+  <p>:ballot_box_with_check: function 2 : Users are able to review specific information regarding the challenges they've entered and then move on to the final authentication page. </p>
+ <img src="https://github.com/user-attachments/assets/bb9af9d2-05cb-410e-8b7c-2c418ff64b39">
+</div>
 
-<img src="https://github.com/user-attachments/assets/bb9af9d2-05cb-410e-8b7c-2c418ff64b39">
-
-
-<div>
-<h2>Photo Verification Challenge</h2>
+<div class="mychalleng_function">
+  <h2>Function of Verification</h2>
+  
+<div class="photo">
+<h3>Photo Verification Challenge</h2>
 
 <img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width=500>
 
 </div>
 
 <div>
-  <h2>Time Verification</h2>
+  <h3>Time Verification</h2>
   <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d">
 
 </div>
 
-
+</div>
