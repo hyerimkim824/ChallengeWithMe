@@ -16,7 +16,10 @@
 <P>:pushpin: Function & Part 
   <ul>
     <li> register/login/mypage</li>
-    <li>mainpage/header/</li>
+    <li>mainpage/header/footer</li>
+    <li>make challenge/participate challenge</li>
+    <li>my challenge management</li>
+    <li></li>
   </ul>
 </P>
   
