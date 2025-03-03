@@ -8,6 +8,20 @@
   <img src = "https://github.com/user-attachments/assets/3cb7bf46-4740-4d67-bcbe-51a895db4e57">
 </p>
 </div>
+<div>
+  <h2>Simple Information of The Project</h2>
+    
+<p>:pushpin: The number of developer : 5 </p>
+<p>:pushpin: Skills : Java, JSP/Servlet, HTML5, jQuery(Ajax), Oracle</p>
+<P>:pushpin: Function & Part 
+  <ul>
+    <li> register/login/mypage</li>
+    <li>mainpage/header/</li>
+  </ul>
+</P>
+  
+
+</div>
 
 
 <div>
