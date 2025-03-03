@@ -26,8 +26,12 @@
 </P>
 </div>
 
+<img src="https://github.com/user-attachments/assets/bb9af9d2-05cb-410e-8b7c-2c418ff64b39">
+
 
 <div>
-<h2>사진 인증 챌린지</h2>h2>
-<img src="https://github.com/user-attachments/assets/40cfdde0-d3be-43f6-a9fb-1eef3389df46" width ="500">
+<h2>Photo Verification Challenge</h2>
+
+<img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width=500>
+
 </div>
