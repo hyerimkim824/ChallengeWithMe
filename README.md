@@ -36,16 +36,24 @@
 <div class="mychalleng_function" >
   <h2>Function of Verification</h2>
 
-  <div class="photo" align="center">
-    <h3>Photo Verification</h3>
-    <img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width="400px" style="float:right; margin-left:200px;">
-   
-  </div>
+## Function of Verification
 
-  <div class="time" align="center">
-    <h3>Time Verification </h3>
-    <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="400px" style="float:right; margin-left:200px;"> 
-  </div>
+### Photo Verification Challenge
+<table border ="0">
+  <tr>
+    <td><img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width="300"></td>
+    <td>이것은 사진 검증 챌린지에 대한 설명입니다.</td>
+  </tr>
+</table>
+
+### Time Verification Challenge
+<div align="left">
+  <p>이것은 시간 검증 챌린지에 대한 설명입니다.</p>
+</div>
+<div align="right">
+  <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="300">
+</div>
+
 </div>
 
 
