@@ -35,25 +35,10 @@
 
 <div class="mychalleng_function" >
   <h2>Function of Verification</h2>
-
-## Function of Verification
-
-### Photo Verification Challenge
-<table border ="0">
-  <tr>
-    <td><img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width="300"></td>
-    <td>이것은 사진 검증 챌린지에 대한 설명입니다.</td>
-  </tr>
-</table>
-
-### Time Verification Challenge
-<div align="left">
-  <p>이것은 시간 검증 챌린지에 대한 설명입니다.</p>
-</div>
-<div align="right">
-  <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="300">
-</div>
+  
+| Information | runtime environment |
+|------|--------|
+| Upload a photo that meets the time challenge requirements (e.g., a water drinking challenge).| <img src="https://github.com/user-attachments/assets/251f9f66-fdcd-4813-a6b5-111cbd4b22f0" width="500"> |
+| "Document the start and finish of a task completed within 100 [units of time] with photos (e.g., reading a book). | <img src="https://github.com/user-attachments/assets/a131bf0f-0b91-4fba-a6c5-109714b8088d" width="500"> |
 
 </div>
-
-
